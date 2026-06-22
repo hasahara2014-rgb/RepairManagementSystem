@@ -596,4 +596,30 @@ async function doLogin() {
           var fb = DEMO_USERS[u.toLowerCase()];
           if (fb && fb.password === p) {
             saveSession({ username:u, name:fb.name, role:fb.role,
-                   
+                          branch:fb.branch, permissions:fb.permissions,
+                          token:'demo_fallback_'+Date.now() });
+            window.location.href = 'dashboard.html';
+            return;
+          }
+        }
+        showErr(gasErr || 'ไม่สามารถเข้าสู่ระบบได้');
+        setBusy(false);
+      }
+    } catch(err) {
+      /* GAS offline → fallback demo */
+      console.warn('GAS offline, falling back to demo:', err.message);
+      var fb = DEMO_USERS[u.toLowerCase()];
+      if (fb && fb.password === p) {
+        saveSession({ username:u, name:fb.name, role:fb.role, branch:fb.branch,
+                      permissions:fb.permissions, token:'demo_fallback_' + Date.now() });
+        window.location.href = 'dashboard.html';
+      } else {
+        showErr('เชื่อมต่อ Server ไม่ได้ และชื่อผู้ใช้/รหัสผ่านไม่ถูกต้องสำหรับ Demo Mode');
+        setBusy(false);
+      }
+    }
+  }
+}
+</script>
+</body>
+</html>
