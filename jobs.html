@@ -1504,4 +1504,28 @@ async function deleteJob(id) {
 /* ── EXPORT CSV ── */
 async function exportCSV() {
   try {
-    var jobs = await DataStore.getJobs(_currentFi                                                                    
+    var jobs = await DataStore.getJobs(_currentFilter);
+    if (!jobs || !jobs.length) { UI.toast('ไม่มีข้อมูลสำหรับ Export','warning'); return; }
+    var headers = ['JOB_No','Work_Order','Refurbishment_Order','Receive_No','Equipment_ID',
+      'Material_ID','Serial_No','Asset_Tag','Status','Priority','Branch_ID',
+      'Vendor_ID','Damage_Code','Cause','Repair_Action','Create_Date','Close_Date',
+      'Labor_Cost','Parts_Cost','Total_Cost','Remark'];
+    var csv = headers.join(',') + '\n';
+    jobs.forEach(function(j) {
+      csv += headers.map(function(h){
+        var v = j[h] != null ? String(j[h]) : '';
+        return '"' + v.replace(/"/g,'""') + '"';
+      }).join(',') + '\n';
+    });
+    var blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = 'RMS_Jobs_' + new Date().toISOString().slice(0,10) + '.csv';
+    document.body.appendChild(a); a.click();
+    document.body.removeChild(a); URL.revokeObjectURL(url);
+    UI.toast('Export CSV สำเร็จ (' + jobs.length + ' รายการ)', 'success');
+  } catch(err) { UI.toast('Export Error: ' + err.message, 'danger'); }
+}
+</script>
+</body>
+</html>
