@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Dashboard — EWS Enterprise</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+<style>
+:root{--primary:#0F4C81;--primary-dark:#0a3560;--primary-light:#1a5f9e;--secondary:#1B9AAA;--secondary-dark:#147a87;--accent:#00D4FF;--success:#16A34A;--warning:#D97706;--danger:#DC2626;--critical:#991B1B;--info:#0284C7;--purple:#7C3AED;--gray-50:#F8FAFC;--gray-100:#F1F5F9;--gray-200:#E2E8F0;--gray-300:#CBD5E1;--gray-400:#94A3B8;--gray-500:#64748B;--gray-600:#475569;--gray-700:#334155;--gray-800:#1E293B;--gray-900:#0F172A;--sidebar-bg:#0a1f3d;--sidebar-width:272px;--sidebar-collapsed:64px;--sidebar-border:rgba(255,255,255,0.06);--sidebar-hover:rgba(255,255,255,0.07);--sidebar-active:rgba(27,154,170,0.18);--sidebar-text:rgba(255,255,255,0.7);--sidebar-text-active:#ffffff;--surface:#FFFFFF;--surface-raised:#FFFFFF;--bg-page:#F0F4F8;--shadow-xs:0 1px 2px rgba(0,0,0,0.05);--shadow-sm:0 1px 3px rgba(0,0,0,0.08),0 1px 2px rgba(0,0,0,0.04);--shadow-md:0 4px 6px rgba(0,0,0,0.06),0 2px 4px rgba(0,0,0,0.04);--shadow-lg:0 10px 24px rgba(0,0,0,0.08),0 4px 8px rgba(0,0,0,0.04);--shadow-xl:0 20px 48px rgba(0,0,0,0.12),0 8px 16px rgba(0,0,0,0.06);--card-shadow:var(--shadow-md);--radius-xs:4px;--radius-sm:6px;--radius-md:10px;--radius-lg:14px;--radius-xl:20px;--ease:cubic-bezier(0.16,1,0.3,1);--transition:0.18s var(--ease);--font-sans:'Inter','Noto Sans Thai','Segoe UI',system-ui,sans-serif;--font-mono:'JetBrains Mono','Fira Code','Cascadia Code',monospace;--z-sidebar:900;--z-header:800;--z-modal:1050;--z-toast:1100;}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;font-size:14px;-webkit-text-size-adjust:100%;}body{font-family:var(--font-sans);background:var(--bg-page);color:var(--gray-800);line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;}.rms-wrapper{display:flex;min-height:100vh;}.rms-sidebar{width:var(--sidebar-width);background:#0d1b2e;position:fixed;top:0;left:0;bottom:0;z-index:var(--z-sidebar);display:flex;flex-direction:column;border-right:1px solid rgba(255,255,255,0.05);transition:width var(--transition);overflow:hidden;}.sidebar-brand{display:flex;align-items:center;gap:13px;padding:22px 18px 20px;border-bottom:1px solid rgba(255,255,255,0.08);min-height:78px;flex-shrink:0;position:relative;}.sidebar-brand::after{content:"";position:absolute;bottom:0;left:18px;right:18px;height:1px;background:linear-gradient(90deg,rgba(27,154,170,0.5),transparent);}.brand-icon{width:44px;height:44px;background:linear-gradient(135deg,#1a5f9e 0%,#1B9AAA 100%);border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 12px rgba(27,154,170,0.35),inset 0 1px 0 rgba(255,255,255,0.2);position:relative;overflow:hidden;}.brand-icon::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:linear-gradient(135deg,rgba(255,255,255,0.12) 0%,transparent 50%);pointer-events:none;}.brand-icon i{font-size:1.15rem;color:#fff;filter:drop-shadow(0 1px 2px rgba(0,0,0,0.2));}.brand-icon i{color:#fff;font-size:14px;}.brand-text{overflow:hidden;}.brand-name{font-size:1.071rem;font-weight:800;color:#ffffff;letter-spacing:-.1px;line-height:1.2;white-space:nowrap;}.brand-ver{font-size:.714rem;font-weight:600;color:rgba(27,154,170,0.75);letter-spacing:.5px;text-transform:uppercase;margin-top:3px;white-space:nowrap;display:flex;align-items:center;gap:5px;}.brand-ver::before{content:"●";font-size:.35rem;color:#22c55e;vertical-align:middle;animation:livePulse 2.5s ease-in-out infinite;}.sidebar-user{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.06);flex-shrink:0;background:rgba(255,255,255,0.02);}.sidebar-footer .sidebar-user{background:transparent;border-bottom:none;padding:0 4px 8px;}.user-avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#1B9AAA,#0F4C81);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.68rem;flex-shrink:0;letter-spacing:.3px;}.user-info{overflow:hidden;flex:1;min-width:0;}.user-name{font-size:.775rem;font-weight:600;color:rgba(255,255,255,0.92);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3;}.user-role{font-size:.6rem;font-weight:500;color:rgba(255,255,255,0.32);text-transform:uppercase;letter-spacing:.7px;margin-top:1px;}.sidebar-nav{flex:1;overflow-y:auto;overflow-x:hidden;padding:8px 10px 4px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.08) transparent;}.sidebar-nav::-webkit-scrollbar{width:3px;}.sidebar-nav::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);border-radius:2px;}.nav-section-label{font-size:.786rem;font-weight:700;letter-spacing:.9px;text-transform:uppercase;color:rgba(255,255,255,0.5);padding:18px 12px 6px;margin-top:4px;white-space:nowrap;user-select:none;display:flex;align-items:center;gap:8px;}.nav-section-label::before{content:"";display:inline-block;width:14px;height:1.5px;background:rgba(27,154,170,0.6);border-radius:2px;flex-shrink:0;}.nav-item{display:flex;align-items:center;gap:11px;padding:9px 12px;border-radius:9px;color:rgba(255,255,255,0.68);text-decoration:none;font-size:.857rem;font-weight:500;line-height:1.4;transition:all .15s ease;margin-bottom:1px;position:relative;}.nav-item:hover{background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.92);}.nav-item.active{background:rgba(27,154,170,0.18);color:#fff;font-weight:700;}.nav-item.active .nav-icon{width:20px;text-align:center;font-size:.857rem;flex-shrink:0;color:rgba(255,255,255,0.45);transition:color .15s ease;line-height:1;}.nav-item:hover{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.92);}.nav-item.active{background:rgba(27,154,170,0.16);color:#ffffff;}.nav-item.active::before{content:'';position:absolute;left:0;top:18%;bottom:18%;width:2.5px;background:#1B9AAA;border-radius:0 2px 2px 0;}.nav-icon{width:16px;text-align:center;font-size:.78rem;flex-shrink:0;color:rgba(255,255,255,0.35);transition:color 0.15s ease;line-height:1;}.nav-item:hover .nav-icon{color:rgba(255,255,255,0.7);}.nav-item.active .nav-icon{color:#1B9AAA;}.nav-badge{margin-left:auto;background:#DC2626;color:#fff;font-size:.643rem;font-weight:700;padding:2px 6px;border-radius:20px;min-width:18px;text-align:center;letter-spacing:.2px;line-height:1.4;box-shadow:0 0 0 2px rgba(220,38,38,0.2);}.sidebar-footer{padding:10px 10px 12px;border-top:1px solid rgba(255,255,255,0.06);flex-shrink:0;}.rms-topbar{position:fixed;top:0;left:var(--sidebar-width);right:0;height:54px;background:#ffffff;border-bottom:1px solid var(--gray-200);display:flex;align-items:center;padding:0 22px;z-index:var(--z-header);gap:14px;box-shadow:0 1px 0 rgba(0,0,0,0.06);transition:left var(--transition);}.topbar-breadcrumb{flex:1;min-width:0;}.page-title{font-size:.9rem;font-weight:700;color:var(--gray-800);line-height:1.25;letter-spacing:-.1px;}.page-subtitle{font-size:.675rem;color:var(--gray-400);margin-top:1px;font-weight:400;letter-spacing:.1px;}.topbar-actions{display:flex;align-items:center;gap:10px;flex-shrink:0;}.topbar-icon-btn{width:34px;height:34px;border-radius:var(--radius-sm);border:1px solid var(--gray-200);background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--gray-500);font-size:.85rem;transition:all var(--transition);}.topbar-icon-btn:hover{background:var(--gray-100);color:var(--primary);border-color:var(--gray-300);}.main-content{margin-left:var(--sidebar-width);padding-top:56px;min-height:100vh;flex:1;transition:margin-left var(--transition);}.page-content{padding:24px;max-width:1600px;}.stat-card{background:var(--surface);border-radius:var(--radius-lg);padding:18px 20px;display:flex;align-items:center;gap:16px;box-shadow:var(--card-shadow);border:1px solid var(--gray-100);transition:all var(--transition);position:relative;overflow:hidden;}.stat-card::before{content:'';position:absolute;top:0;right:0;width:80px;height:80px;border-radius:50%;opacity:0.04;transform:translate(20px,-20px);}.stat-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);}.stat-icon{width:46px;height:46px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;position:relative;}.stat-icon.primary{background:rgba(15,76,129,0.1);color:var(--primary);}.stat-icon.secondary{background:rgba(27,154,170,0.1);color:var(--secondary);}.stat-icon.success{background:rgba(22,163,74,0.1);color:var(--success);}.stat-icon.warning{background:rgba(217,119,6,0.1);color:var(--warning);}.stat-icon.danger{background:rgba(220,38,38,0.1);color:var(--danger);}.stat-icon.purple{background:rgba(124,58,237,0.1);color:var(--purple);}.stat-value{font-size:1.5rem;font-weight:800;color:var(--gray-900);line-height:1;letter-spacing:-0.5px;}.stat-label{font-size:.63rem;color:var(--gray-400);font-weight:600;margin-top:3px;text-transform:uppercase;letter-spacing:.55px;}.stat-delta{font-size:.72rem;font-weight:600;margin-top:4px;display:flex;align-items:center;gap:3px;}.stat-delta.up{color:var(--success);}.stat-delta.down{color:var(--danger);}.chart-card{background:var(--surface);border-radius:var(--radius-lg);padding:20px 22px;box-shadow:var(--card-shadow);border:1px solid var(--gray-100);}.chart-title{font-size:.79rem;font-weight:700;color:var(--gray-700);display:flex;align-items:center;margin-bottom:2px;}.chart-sub{font-size:.66rem;color:var(--gray-400);margin-bottom:14px;font-weight:400;}.table-card{background:var(--surface);border-radius:var(--radius-lg);box-shadow:var(--card-shadow);border:1px solid var(--gray-100);overflow:hidden;}.table-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--gray-100);background:var(--surface);gap:12px;flex-wrap:wrap;}.table-title{font-size:.8rem;font-weight:700;color:var(--gray-700);display:flex;align-items:center;}.table{font-size:.815rem;margin-bottom:0;border-collapse:separate;border-spacing:0;}.table thead th{background:var(--gray-50);color:var(--gray-500);font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:11px 16px;border-bottom:1px solid var(--gray-200);white-space:nowrap;}.table tbody td{padding:10px 14px;border-bottom:1px solid var(--gray-100);color:var(--gray-700);vertical-align:middle;font-size:.8rem;}.table tbody tr:last-child td{border-bottom:none;}.table-hover tbody tr:hover{background:var(--gray-50);cursor:pointer;}.filter-card{background:var(--surface);border-radius:var(--radius-lg);padding:16px 20px;box-shadow:var(--card-shadow);border:1px solid var(--gray-100);}.filter-label{font-size:.62rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.65px;display:block;margin-bottom:5px;}.btn-primary-rms{background:linear-gradient(135deg,var(--primary),var(--primary-light));border:none;color:#fff;font-weight:600;font-size:.775rem;padding:7px 15px;border-radius:var(--radius-sm);transition:all var(--transition);box-shadow:0 2px 8px rgba(15,76,129,0.25);cursor:pointer;display:inline-flex;align-items:center;gap:6px;}.btn-primary-rms:hover{background:linear-gradient(135deg,var(--primary-dark),var(--primary));transform:translateY(-1px);box-shadow:0 4px 12px rgba(15,76,129,0.35);color:#fff;}.btn-primary-rms:active{transform:translateY(0);box-shadow:0 2px 4px rgba(15,76,129,0.2);}.btn-outline-rms{background:transparent;border:1px solid var(--gray-300);color:var(--gray-600);font-weight:600;font-size:.775rem;padding:6px 13px;border-radius:var(--radius-sm);transition:all var(--transition);cursor:pointer;display:inline-flex;align-items:center;gap:6px;}.btn-outline-rms:hover{background:var(--gray-50);border-color:var(--primary);color:var(--primary);}.status-btn{border:1.5px solid var(--gray-200);background:var(--gray-50);color:var(--gray-500);font-size:.7rem;font-weight:600;padding:5px 12px;border-radius:20px;cursor:pointer;transition:all var(--transition);white-space:nowrap;letter-spacing:.2px;}.status-btn:hover{background:var(--gray-100);border-color:var(--gray-300);color:var(--gray-700);}.status-btn.active{background:var(--c,var(--primary));border-color:var(--c,var(--primary));color:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.15);}.badge-priority{font-size:.6rem;font-weight:700;padding:3px 8px;border-radius:20px;letter-spacing:.3px;text-transform:uppercase;display:inline-block;}.badge-CRITICAL{background:rgba(153,27,27,0.1);color:#991B1B;border:1px solid rgba(153,27,27,0.2);}.badge-HIGH{background:rgba(217,119,6,0.1);color:#B45309;border:1px solid rgba(217,119,6,0.2);}.badge-MEDIUM{background:rgba(202,138,4,0.1);color:#92400E;border:1px solid rgba(202,138,4,0.2);}.badge-LOW{background:rgba(22,163,74,0.1);color:#166534;border:1px solid rgba(22,163,74,0.2);}.badge-status{font-size:.62rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.3px;text-transform:uppercase;display:inline-block;}.badge-IN_PROGRESS{background:rgba(2,132,199,0.1);color:#0369a1;}.badge-CLOSED{background:rgba(22,163,74,0.1);color:#15803d;}.badge-RETURNED{background:rgba(15,76,129,0.1);color:#0F4C81;}.badge-WAIT_APPROVAL{background:rgba(217,119,6,0.1);color:#b45309;}.badge-WAIT_SPARE_PART{background:rgba(124,58,237,0.1);color:#6d28d9;}.badge-SEND_REPAIR{background:rgba(27,154,170,0.1);color:#0e7490;}.badge-REJECTED{background:rgba(220,38,38,0.1);color:#dc2626;}.badge-APPROVED{background:rgba(22,163,74,0.1);color:#16a34a;}.badge-OPEN{background:rgba(100,116,139,0.1);color:#475569;}.btn-action{width:30px;height:30px;border-radius:var(--radius-xs);border:1px solid var(--gray-200);background:var(--gray-50);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:.75rem;color:var(--gray-500);transition:all var(--transition);}.btn-action:hover{background:var(--gray-100);border-color:var(--gray-300);color:var(--gray-700);}.btn-action.btn-view{color:var(--primary);border-color:rgba(15,76,129,0.2);background:rgba(15,76,129,0.05);}.btn-action.btn-view:hover{background:rgba(15,76,129,0.12);border-color:var(--primary);}.btn-action.btn-edit{color:var(--secondary);border-color:rgba(27,154,170,0.2);background:rgba(27,154,170,0.05);}.btn-action.btn-edit:hover{background:rgba(27,154,170,0.12);border-color:var(--secondary);}.btn-action.btn-delete{color:var(--danger);border-color:rgba(220,38,38,0.2);background:rgba(220,38,38,0.05);}.btn-action.btn-delete:hover{background:rgba(220,38,38,0.12);border-color:var(--danger);}.form-card{background:var(--surface);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--card-shadow);border:1px solid var(--gray-100);}.form-section-title{font-size:.62rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.8px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;gap:8px;}.form-label{font-size:.72rem;font-weight:600;color:var(--gray-600);margin-bottom:5px;}.form-control,.form-select{font-size:.82rem;border:1.5px solid var(--gray-200);border-radius:var(--radius-sm);padding:8px 12px;color:var(--gray-800);background:var(--gray-50);transition:all var(--transition);font-family:var(--font-sans);}.form-control:focus,.form-select:focus{border-color:var(--secondary);box-shadow:0 0 0 3px rgba(27,154,170,0.12);background:var(--surface);outline:none;}.form-control::placeholder{color:var(--gray-400);}.required-star{color:var(--danger);font-size:.85rem;}.input-group-text{background:var(--gray-50);border:1.5px solid var(--gray-200);color:var(--gray-400);font-size:.82rem;}.input-group .form-control{border-left:none;}.input-group:focus-within .input-group-text{border-color:var(--secondary);}.input-group:focus-within .form-control{border-color:var(--secondary);box-shadow:none;}.input-group:focus-within{box-shadow:0 0 0 3px rgba(27,154,170,0.12);border-radius:var(--radius-sm);}.modal-content{border:none;border-radius:var(--radius-xl);box-shadow:var(--shadow-xl);overflow:hidden;}.modal-header-rms{background:linear-gradient(135deg,var(--primary),var(--primary-light));padding:18px 24px;border:none;}.modal-header-rms .modal-title{font-size:.95rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px;}.modal-body{padding:24px;}.modal-footer{background:var(--gray-50);border-top:1px solid var(--gray-100);padding:14px 20px;gap:8px;}.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px;color:var(--gray-400);text-align:center;gap:10px;}.empty-state i{font-size:2.5rem;opacity:0.4;}.empty-state p{font-size:.85rem;font-weight:500;margin:0;color:var(--gray-400);}#rmsToastContainer{position:fixed;bottom:24px;right:24px;z-index:var(--z-toast);display:flex;flex-direction:column;gap:8px;pointer-events:none;}.rms-toast{background:var(--gray-900);color:#fff;padding:12px 18px;border-radius:var(--radius-md);font-size:.82rem;font-weight:500;box-shadow:var(--shadow-xl);display:flex;align-items:center;gap:10px;animation:toastIn .25s var(--ease) forwards;pointer-events:all;max-width:340px;border-left:3px solid var(--secondary);}.rms-toast.success{border-left-color:var(--success);}.rms-toast.danger{border-left-color:var(--danger);}.rms-toast.warning{border-left-color:var(--warning);}.rms-toast.info{border-left-color:var(--info);}.rms-toast.out{animation:toastOut .2s var(--ease) forwards;}@keyframes toastIn{from{opacity:0;transform:translateX(24px) scale(0.96);}to{opacity:1;transform:none;}}@keyframes toastOut{from{opacity:1;transform:none;}to{opacity:0;transform:translateX(24px) scale(0.96);}}.low-stock-badge{background:rgba(220,38,38,0.1);color:var(--danger);font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:20px;display:inline-block;}.rms-progress{height:6px;border-radius:3px;background:var(--gray-100);overflow:hidden;}.rms-progress-bar{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--primary),var(--secondary));transition:width 0.6s var(--ease);}.skeleton{background:linear-gradient(90deg,var(--gray-100) 25%,var(--gray-200) 50%,var(--gray-100) 75%);background-size:200% 100%;animation:shimmer 1.4s ease-in-out infinite;border-radius:var(--radius-sm);}@keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}.cursor-pointer{cursor:pointer;}.fw-600{font-weight:600;}.font-mono{font-family:var(--font-mono);}td.mono,.td-mono{font-family:var(--font-mono);font-size:.8rem;}.job-no-link{font-weight:700;color:var(--primary);text-decoration:none;font-family:var(--font-mono);font-size:.8rem;}.job-no-link:hover{color:var(--secondary);text-decoration:underline;}.equip-id{font-family:var(--font-mono);font-size:.8rem;font-weight:600;color:var(--gray-700);background:var(--gray-100);padding:1px 7px;border-radius:var(--radius-xs);}::-webkit-scrollbar{width:6px;height:6px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:var(--gray-300);border-radius:3px;}::-webkit-scrollbar-thumb:hover{background:var(--gray-400);}.nav-tabs{border-bottom:2px solid var(--gray-200);gap:0;}.nav-tabs .nav-link{font-size:.929rem;font-weight:600;color:var(--gray-500);border:none;border-bottom:2px solid transparent;margin-bottom:-2px;padding:9px 16px;transition:all var(--transition);background:none;border-radius:0;}.nav-tabs .nav-link:hover{color:var(--primary);}.nav-tabs .nav-link.active{color:var(--primary);border-bottom-color:var(--primary);background:none;}.alert{font-size:.82rem;border-radius:var(--radius-md);border:none;padding:12px 16px;}.alert-info{background:rgba(2,132,199,0.08);color:#0369a1;}.alert-success{background:rgba(22,163,74,0.08);color:#15803d;}.alert-warning{background:rgba(217,119,6,0.08);color:#92400E;}.alert-danger{background:rgba(220,38,38,0.08);color:#991B1B;}.badge{font-weight:600;letter-spacing:.2px;border-radius:20px;}.table-card,.chart-card,.stat-card,.filter-card,.form-card{animation:fadeUp .3s var(--ease) both;}@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}.row >:nth-child(1) .stat-card{animation-delay:0.00s;}.row >:nth-child(2) .stat-card{animation-delay:0.04s;}.row >:nth-child(3) .stat-card{animation-delay:0.08s;}.row >:nth-child(4) .stat-card{animation-delay:0.12s;}#rmsConfirm{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:calc(var(--z-modal) + 10);display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(2px);animation:fadeIn .15s ease both;}#rmsConfirm .confirm-box{background:var(--surface);border-radius:var(--radius-xl);padding:28px;max-width:380px;width:100%;box-shadow:var(--shadow-xl);}#rmsConfirm .confirm-icon{width:48px;height:48px;border-radius:50%;background:rgba(217,119,6,0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}#rmsConfirm .confirm-icon i{color:var(--warning);font-size:1.25rem;}#rmsConfirm h6{text-align:center;font-size:.92rem;font-weight:700;margin-bottom:6px;}#rmsConfirm p{text-align:center;font-size:.82rem;color:var(--gray-500);margin-bottom:20px;}@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}@media (max-width:992px){:root{--sidebar-width:var(--sidebar-collapsed);}.rms-sidebar{width:var(--sidebar-collapsed);}.brand-text,.nav-item span,.nav-section-label,.sidebar-user .user-info,.nav-badge{display:none !important;}.nav-item{justify-content:center;padding:10px;}.nav-icon{width:auto;font-size:1rem;}.page-content{padding:16px;}}@media (max-width:576px){.stat-card{padding:14px 16px;}.stat-value{font-size:1.4rem;}.filter-card{padding:12px 14px;}.table-header{padding:12px 14px;}.page-content{padding:12px;}.topbar-actions .topbar-icon-btn:not(:last-child){display:none;}}@media print{.rms-sidebar,.rms-topbar{display:none !important;}.main-content{margin:0 !important;padding:0 !important;}.table-card,.chart-card{box-shadow:none;border:1px solid #ddd;}}
+
+/* ════ UNIFIED DESIGN SYSTEM — EWS Enterprise ════ */
+.stat-card { background:var(--surface); border:1px solid var(--gray-100); border-radius:var(--radius-lg); padding:16px 18px; display:flex; align-items:center; gap:14px; box-shadow:var(--shadow-sm); height:100%; transition:box-shadow var(--transition),transform var(--transition); }
+.stat-card:hover { box-shadow:var(--shadow-md); transform:translateY(-2px); }
+.stat-icon { width:44px; height:44px; border-radius:var(--radius-md); display:flex; align-items:center; justify-content:center; font-size:1rem; flex-shrink:0; }
+.stat-icon.primary   { background:rgba(15,76,129,.1);  color:var(--primary); }
+.stat-icon.secondary { background:rgba(27,154,170,.1); color:var(--secondary); }
+.stat-icon.success   { background:rgba(22,163,74,.1);  color:var(--success); }
+.stat-icon.warning   { background:rgba(217,119,6,.1);  color:var(--warning); }
+.stat-icon.danger    { background:rgba(220,38,38,.1);  color:var(--danger); }
+.stat-icon.purple    { background:rgba(124,58,237,.1); color:var(--purple); }
+.stat-icon.info      { background:rgba(2,132,199,.1);  color:var(--info); }
+.stat-value { font-size:1.714rem; font-weight:800; color:var(--gray-900); line-height:1; letter-spacing:-1px; font-variant-numeric:tabular-nums; margin-bottom:4px; }
+.stat-label { font-size:.857rem; font-weight:700; color:var(--gray-700); margin-bottom:2px; line-height:1.3; }
+.stat-sub   { font-size:.714rem; color:var(--gray-400); line-height:1.4; }
+.page-section-title { font-size:.786rem; font-weight:700; color:var(--gray-500); letter-spacing:.5px; text-transform:uppercase; margin-bottom:10px; display:flex; align-items:center; gap:8px; }
+.page-section-title::after { content:''; flex:1; height:1px; background:var(--gray-100); }
+.tbl-hd { font-size:.786rem!important; font-weight:700!important; color:var(--gray-500)!important; letter-spacing:.4px; text-transform:uppercase; background:var(--gray-50)!important; padding:10px 14px!important; border-bottom:2px solid var(--gray-100)!important; white-space:nowrap; }
+.tbl-td { padding:10px 14px!important; font-size:.857rem; color:var(--gray-700); vertical-align:middle; }
+
+</style>
+<style>
+/* =================================================================
+   DASHBOARD 2025 — Enterprise Analytics
+   Design Language: Data-first, Card-based, Dark-accent headers
+   Typography (base 14px): 10/11/12/13/14/24px scale
+================================================================= */
+
+/* ── Root overrides for dashboard page ── */
+.page-content { padding: 0 !important; }
+.main-content { background: #F0F4F8; }
+
+/* ── Dashboard wrapper ── */
+.db { padding: 20px 24px 32px; min-height: 100%; }
+
+/* ── Top summary bar ── */
+.db-topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  background: #fff; border-radius: 14px; padding: 14px 20px;
+  margin-bottom: 20px;
+  border: 1px solid #E8EDF2;
+  box-shadow: 0 1px 3px rgba(0,0,0,.05);
+}
+.db-topbar-left  { display: flex; align-items: center; gap: 20px; }
+.db-topbar-right { display: flex; align-items: center; gap: 10px; }
+.db-live { display: flex; align-items: center; gap: 7px; font-size: .857rem; font-weight: 500; color: #475569; }
+.db-pulse {
+  width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(34,197,94,.15);
+  animation: dbP 2.5s ease-in-out infinite;
+}
+@keyframes dbP { 0%,100%{box-shadow:0 0 0 3px rgba(34,197,94,.15);} 50%{box-shadow:0 0 0 6px rgba(34,197,94,.04);} }
+.db-date { font-size: .786rem; color: #94A3B8; font-weight: 400; border-left: 1px solid #E2E8F0; padding-left: 16px; }
+.db-refresh {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: #F8FAFC; border: 1px solid #E2E8F0; color: #64748B;
+  border-radius: 8px; padding: 7px 14px; font-size: .857rem; font-weight: 600;
+  font-family: inherit; cursor: pointer; transition: all .15s;
+}
+.db-refresh:hover { background: #fff; border-color: #0F4C81; color: #0F4C81; box-shadow: 0 0 0 3px rgba(15,76,129,.08); }
+
+/* ── Section headers ── */
+.db-section {
+  display: flex; align-items: center; gap: 12px; margin-bottom: 12px;
+}
+.db-section-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 5px 12px; border-radius: 20px; white-space: nowrap;
+}
+.db-section-badge.b1 { background: rgba(15,76,129,.08); border: 1px solid rgba(15,76,129,.15); }
+.db-section-badge.b2 { background: rgba(27,154,170,.08); border: 1px solid rgba(27,154,170,.15); }
+.db-section-badge.b3 { background: rgba(124,58,237,.08); border: 1px solid rgba(124,58,237,.15); }
+.db-section-dot { width: 6px; height: 6px; border-radius: 50%; }
+.b1 .db-section-dot { background: #0F4C81; }
+.b2 .db-section-dot { background: #1B9AAA; }
+.b3 .db-section-dot { background: #7C3AED; }
+.db-section-label {
+  font-size: .857rem; font-weight: 800; letter-spacing: .5px; text-transform: uppercase;
+}
+.b1 .db-section-label { color: #0F4C81; }
+.b2 .db-section-label { color: #1B9AAA; }
+.b3 .db-section-label { color: #7C3AED; }
+.db-section-sub { font-size: .786rem; color: #94A3B8; font-weight: 400; }
+.db-section-hr  { flex: 1; height: 1px; background: #E8EDF2; }
+
+/* ═══════ KPI CARDS ═══════ */
+.kc {
+  display: block; text-decoration: none; color: inherit;
+  background: #fff; border-radius: 14px;
+  border: 1px solid #E8EDF2;
+  overflow: hidden; height: 100%;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 2px 4px rgba(0,0,0,.02);
+  transition: box-shadow .18s cubic-bezier(.16,1,.3,1), transform .18s cubic-bezier(.16,1,.3,1);
+}
+.kc:hover { box-shadow: 0 8px 24px rgba(0,0,0,.1); transform: translateY(-3px); color: inherit; text-decoration: none; }
+.kc-accent { height: 3px; }
+.kc-body   { padding: 12px 14px 11px; }
+.kc-row1   { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 8px; }
+.kc-icon   { width: 36px; height: 36px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: .929rem; }
+.kc-trend  { display: flex; align-items: center; gap: 4px; font-size: .714rem; font-weight: 700; padding: 3px 7px; border-radius: 12px; }
+.kc-val    { font-size: 1.5rem; font-weight: 800; line-height: 1; letter-spacing: -1px; margin-bottom: 3px; font-variant-numeric: tabular-nums; }
+.kc-val.dim { color: #CBD5E1 !important; }
+.kc-lbl    { font-size: .857rem; font-weight: 700; color: #1E293B; margin-bottom: 2px; line-height: 1.3; }
+.kc-desc   { font-size: .714rem; color: #64748B; line-height: 1.4; }
+.kc-warn   { border-color: rgba(220,38,38,.15); background: linear-gradient(160deg,rgba(254,242,242,.35) 0%,#fff 50%); }
+
+/* ═══════ ANALYTICS CARDS ═══════ */
+.ac {
+  background: #fff; border-radius: 14px; border: 1px solid #E8EDF2;
+  height: 100%;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04), 0 2px 4px rgba(0,0,0,.02);
+  overflow: hidden;
+}
+.ac-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 20px 14px;
+  border-bottom: 1px solid #F8FAFC;
+}
+.ac-title-row { display: flex; align-items: center; gap: 10px; }
+.ac-icon { width: 34px; height: 34px; border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: .857rem; }
+.ac-icon.c-teal  { background: rgba(27,154,170,.1);  color: #1B9AAA; }
+.ac-icon.c-red   { background: rgba(220,38,38,.1);   color: #DC2626; }
+.ac-icon.c-blue  { background: rgba(15,76,129,.1);   color: #0F4C81; }
+.ac-icon.c-amber { background: rgba(217,119,6,.1);   color: #D97706; }
+.ac-icon.c-purple{ background: rgba(124,58,237,.1);  color: #7C3AED; }
+.ac-icon.c-green { background: rgba(22,163,74,.1);   color: #16A34A; }
+.ac-title { font-size: .929rem; font-weight: 700; color: #1E293B; }
+.ac-sub   { font-size: .786rem; color: #94A3B8; margin-top: 2px; }
+.ac-badge { font-size: .714rem; font-weight: 700; padding: 3px 9px; border-radius: 12px; white-space: nowrap; }
+.ac-body  { padding: 16px 20px; }
+
+/* Donut center stat */
+.donut-wrap { position: relative; }
+.donut-center {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -55%);
+  text-align: center; pointer-events: none;
+}
+.donut-center-val { font-size: 1.143rem; font-weight: 800; color: #1E293B; line-height: 1; }
+.donut-center-lbl { font-size: .714rem; color: #94A3B8; font-weight: 500; margin-top: 2px; }
+
+/* Legend grid */
+.legend-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px 12px; margin-top: 14px; }
+.legend-item { display: flex; align-items: center; gap: 6px; }
+.legend-dot  { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.legend-name { font-size: .786rem; color: #475569; font-weight: 500; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.legend-val  { font-size: .786rem; font-weight: 700; color: #1E293B; white-space: nowrap; }
+
+/* Metric row (MTTR / efficiency cards) */
+.metric-row  { display: flex; gap: 0; border-top: 1px solid #F8FAFC; }
+.metric-item { flex: 1; padding: 14px 16px; text-align: center; border-right: 1px solid #F8FAFC; }
+.metric-item:last-child { border-right: none; }
+.metric-val  { font-size: 1.286rem; font-weight: 800; color: #1E293B; line-height: 1; margin-bottom: 4px; }
+.metric-lbl  { font-size: .714rem; color: #94A3B8; font-weight: 500; }
+
+/* Progress bar */
+.prog-row   { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.prog-row:last-child { margin-bottom: 0; }
+.prog-label { font-size: .857rem; font-weight: 600; color: #334155; min-width: 0; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.prog-bar   { width: 90px; height: 6px; background: #F1F5F9; border-radius: 99px; flex-shrink: 0; }
+.prog-fill  { height: 100%; border-radius: 99px; }
+.prog-num   { font-size: .857rem; font-weight: 700; color: #1E293B; min-width: 24px; text-align: right; }
+
+/* Sparkline row */
+.spark-row  { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid #F8FAFC; }
+.spark-row:last-child { border-bottom: none; }
+.spark-eq   { font-family: 'JetBrains Mono','Fira Code',monospace; font-size: .857rem; font-weight: 700; color: #334155; min-width: 70px; }
+.spark-bar-wrap { flex: 1; height: 8px; background: #F1F5F9; border-radius: 99px; overflow: hidden; }
+.spark-bar-fill { height: 100%; border-radius: 99px; transition: width .4s; }
+.spark-cnt  { font-size: .857rem; font-weight: 700; min-width: 24px; text-align: right; }
+.spark-tag  {
+  font-size: .714rem; font-weight: 700; padding: 2px 7px; border-radius: 10px;
+  min-width: 44px; text-align: center;
+}
+
+/* ═══════ ACTIVE JOBS TABLE ═══════ */
+.jobs-table-wrap { overflow: hidden; }
+.th-j {
+  padding: 10px 14px; font-size: .786rem; font-weight: 700; color: #64748B;
+  letter-spacing: .4px; text-transform: uppercase; background: #F8FAFC;
+  border-bottom: 2px solid #E8EDF2 !important; white-space: nowrap;
+}
+.td-j { padding: 10px 14px; vertical-align: middle; }
+.tr-j { cursor: pointer; transition: background .1s; }
+.tr-j:hover td { background: #F8FAFC !important; }
+.jno  { font-family: 'JetBrains Mono','Fira Code',monospace; font-size: .857rem; font-weight: 700; color: #0F4C81; display: block; }
+.jwo  { font-size: .714rem; color: #94A3B8; display: block; margin-top: 1px; }
+.eq-c { font-family: monospace; font-size: .857rem; font-weight: 700; background: #F1F5F9; padding: 3px 9px; border-radius: 6px; color: #334155; border: 1px solid #E2E8F0; display: inline-block; }
+.td-dmg { font-size: .857rem; color: #475569; max-width: 160px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.td-dt  { font-size: .786rem; color: #94A3B8; white-space: nowrap; }
+.act-n  { display: inline-flex; align-items: center; justify-content: center; min-width: 22px; height: 20px; border-radius: 10px; background: rgba(27,154,170,.1); color: #1B9AAA; font-size: .786rem; font-weight: 700; padding: 0 6px; margin-left: 8px; }
+
+/* ═══════ REPEAT EQUIPMENT ═══════ */
+.rp-item { padding: 11px 16px; border-bottom: 1px solid #F8FAFC; }
+.rp-item:last-child { border-bottom: none; }
+.rp-eqid { font-family: monospace; font-size: .929rem; font-weight: 700; color: #1E293B; }
+.rp-n    { font-size: .786rem; font-weight: 700; color: #D97706; }
+.rp-pill { font-size: .714rem; font-weight: 700; color: #DC2626; background: rgba(220,38,38,.08); padding: 2px 7px; border-radius: 10px; margin-left: 5px; }
+.rp-jno  { display: inline-block; font-family: monospace; font-size: .786rem; font-weight: 600; margin: 2px 2px 2px 0; padding: 3px 8px; border-radius: 5px; cursor: pointer; background: #F1F5F9; color: #64748B; border: 1px solid #E2E8F0; transition: all .12s; }
+.rp-jno:hover { background: #0F4C81; color: #fff; border-color: #0F4C81; }
+.rp-jno.op    { background: rgba(220,38,38,.08); color: #DC2626; border-color: rgba(220,38,38,.2); }
+
+/* ═══════ LOW STOCK ═══════ */
+.ls-row { display: flex; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px solid #F8FAFC; }
+.ls-row:last-child { border-bottom: none; }
+.ls-nm   { font-size: .857rem; font-weight: 600; color: #334155; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ls-bar  { height: 5px; background: #F1F5F9; border-radius: 99px; margin-top: 4px; }
+.ls-fill { height: 100%; border-radius: 99px; }
+.ls-n    { font-size: .929rem; font-weight: 700; text-align: right; white-space: nowrap; flex-shrink: 0; }
+.ls-u    { font-size: .714rem; color: #94A3B8; display: block; }
+
+/* ═══════ EMPTY ═══════ */
+.db-empty { text-align: center; padding: 32px 16px; }
+.db-empty i { font-size: 1.4rem; color: #CBD5E1; display: block; margin-bottom: 8px; }
+.db-empty p { font-size: .857rem; color: #64748B; margin: 0; font-weight: 500; }
+</style>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Thai:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="rms-wrapper" id="app"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+/* === RMS Core: app.js + sidebar.js === */
+/* ═══════════════════════════════════════════════════════════════
+   EWS Enterprise v3.0 — app.js
+   Core globals: data, Auth, DataStore, UI helpers
+   ═══════════════════════════════════════════════════════════════ */
+'use strict';
+
+/* ─────────────────────────────────────────────────────────────
+   1.  CONFIG
+   ───────────────────────────────────────────────────────────── */
+const RMS = {
+  GAS_URL: 'https://script.google.com/macros/s/AKfycbzWgWkwuN_IHIHCmPWtatKE82hSvkE0heWYFvz8pUCCTqHoVymhvoijrh1b3s_2rUks/exec',
+  USE_GAS: true,
+  VERSION: '3.0',
+};
+
+const SESSION_KEY = 'rms_v3_session';
+
+/* ─────────────────────────────────────────────────────────────
+   2.  MASTER DATA
+   ───────────────────────────────────────────────────────────── */
+const DAMAGE_CODES = [
+  'Mechanical Failure','Electrical Fault','Software Error','Overheating',
+  'Belt Broken','Motor Failure','Sensor Malfunction','Hydraulic Leak',
+  'Pneumatic Failure','PCB Damaged','Conveyor Jam','Bearing Worn',
+  'Gear Stripped','Valve Stuck','Pump Failure','Drive Fault',
+  'Communication Error','Power Supply Fault','Calibration Error','Physical Damage',
+];
+
+const EQUIPMENT_IDS = [
+  '287536','870355','802910','194827','563741','128904','445632','778901',
+  '334521','667890','112233','445566','778899','223344','556677','889900',
+  '102938','475869','630291','847562',
+];
+
+const SAMPLE_VENDORS = [
+  { Vendor_ID:'V001', Vendor_Name:'บริษัท เทคโนมาสเตอร์ จำกัด', Email:'info@technomaster.co.th', Rating:4.8, Status:'ACTIVE', Contact_Person:'คุณสมชาย', Phone:'02-111-2222' },
+  { Vendor_ID:'V002', Vendor_Name:'บริษัท อินดัสเทรียลพาร์ท จำกัด', Email:'sales@indpart.co.th',    Rating:4.5, Status:'ACTIVE', Contact_Person:'คุณวิไล',  Phone:'02-333-4444' },
+  { Vendor_ID:'V003', Vendor_Name:'บริษัท ออโตเมชั่นโปร จำกัด',   Email:'contact@autopro.co.th',   Rating:4.2, Status:'ACTIVE', Contact_Person:'คุณธนา',  Phone:'02-555-6666' },
+];
+
+const BRANCHES = [
+  { id:'HQ',  name:'EWS (HQ)'   },
+  { id:'BR1', name:'AFC'        },
+  { id:'BR2', name:'COM'        },
+];
+
+const WAREHOUSES = [
+  { id:'WH-EWS',  name:'คลัง EWS'      },
+  { id:'WH-ERA1', name:'คลัง EARAONE 1' },
+  { id:'WH-ERA2', name:'คลัง EARAONE 2' },
+];
+
+const SAMPLE_PARTS = [
+  { Part_ID:'P001', Part_Code:'BLT-001', Part_Name:'สายพาน BNA 800',       Category:'Mechanical',  Unit:'เส้น', Cost:1200,  Min_Stock:5,  Current_Stock:12, Warehouse_ID:'WH-EWS',  Location:'A-01', Status:'ACTIVE' },
+  { Part_ID:'P002', Part_Code:'BRG-002', Part_Name:'ลูกปืน 6205',           Category:'Mechanical',  Unit:'ตัว',  Cost:450,   Min_Stock:10, Current_Stock:24, Warehouse_ID:'WH-EWS',  Location:'A-02', Status:'ACTIVE' },
+  { Part_ID:'P003', Part_Code:'FUS-003', Part_Name:'ฟิวส์ 10A',             Category:'Electronic',  Unit:'อัน',  Cost:45,    Min_Stock:20, Current_Stock:3,  Warehouse_ID:'WH-EWS',  Location:'B-01', Status:'ACTIVE' },
+  { Part_ID:'P004', Part_Code:'OIL-004', Part_Name:'น้ำมันไฮดรอลิก 46',    Category:'Consumable',  Unit:'ลิตร', Cost:180,   Min_Stock:10, Current_Stock:8,  Warehouse_ID:'WH-ERA1', Location:'C-01', Status:'ACTIVE' },
+  { Part_ID:'P005', Part_Code:'SEN-005', Part_Name:'เซ็นเซอร์ Proximity',   Category:'Electronic',  Unit:'ตัว',  Cost:2800,  Min_Stock:3,  Current_Stock:2,  Warehouse_ID:'WH-EWS',  Location:'B-02', Status:'ACTIVE' },
+  { Part_ID:'P006', Part_Code:'MTR-006', Part_Name:'มอเตอร์ 1.5kW',         Category:'Mechanical',  Unit:'ตัว',  Cost:8500,  Min_Stock:2,  Current_Stock:1,  Warehouse_ID:'WH-ERA1', Location:'D-01', Status:'ACTIVE' },
+  { Part_ID:'P007', Part_Code:'VLV-007', Part_Name:'วาล์วโซลินอยด์ 24V',   Category:'Mechanical',  Unit:'ตัว',  Cost:1650,  Min_Stock:5,  Current_Stock:7,  Warehouse_ID:'WH-EWS',  Location:'A-03', Status:'ACTIVE' },
+  { Part_ID:'P008', Part_Code:'PCB-008', Part_Name:'บอร์ด PLC IO Module',   Category:'Electronic',  Unit:'ชิ้น', Cost:12000, Min_Stock:1,  Current_Stock:0,  Warehouse_ID:'WH-EWS',  Location:'B-03', Status:'ACTIVE' },
+];
+
+/* ─────────────────────────────────────────────────────────────
+   3.  SAMPLE JOBS
+   ───────────────────────────────────────────────────────────── */
+const SAMPLE_JOBS_RAW = [
+  { JOB_No:'JOB-0001', Work_Order:'90176727', Refurbishment_Order:'90176756', Receive_No:'RCV-20260426-012119-821-1',  Material_ID:'10010041', Qty:1, Equipment_ID:'287536', Damage_Code:'สายพานตก',                                          Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-01', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0002', Work_Order:'90176724', Refurbishment_Order:'90176755', Receive_No:'RCV-20260426-012119-821-2',  Material_ID:'10010041', Qty:1, Equipment_ID:'287497', Damage_Code:'สายพานตก',                                          Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-02', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0003', Work_Order:'90176700', Refurbishment_Order:'90176752', Receive_No:'RCV-20260426-012119-821-3',  Material_ID:'10010041', Qty:1, Equipment_ID:'301455', Damage_Code:'Belt loode ( สายพานตก )',                           Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-03', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0004', Work_Order:'90176715', Refurbishment_Order:'90176753', Receive_No:'RCV-20260426-012119-821-4',  Material_ID:'10010041', Qty:1, Equipment_ID:'800330', Damage_Code:'Bank Note Jam  ที่ Note Box / เปลี่ยน Note Box  ไม่หาย', Cause:'', Repair_Action:'Clean All',        Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-04', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0005', Work_Order:'90176790', Refurbishment_Order:'90176833', Receive_No:'RCV-20260426-012119-821-5',  Material_ID:'10010041', Qty:1, Equipment_ID:'287507', Damage_Code:'ใช้งานได้ไม่ถึง 5 นาที เสีย',                        Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-05', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0006', Work_Order:'90176850', Refurbishment_Order:'90176994', Receive_No:'RCV-20260426-012119-821-6',  Material_ID:'10010041', Qty:1, Equipment_ID:'872834', Damage_Code:'BNA Failure',                                        Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-06', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0007', Work_Order:'90176859', Refurbishment_Order:'90176997', Receive_No:'RCV-20260426-012119-821-7',  Material_ID:'10010041', Qty:1, Equipment_ID:'304150', Damage_Code:'Extract',                                            Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-07', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0008', Work_Order:'90176858', Refurbishment_Order:'90176996', Receive_No:'RCV-20260426-012119-821-8',  Material_ID:'10010041', Qty:1, Equipment_ID:'293820', Damage_Code:'สายพานตก',                                          Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-08', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0009', Work_Order:'90176891', Refurbishment_Order:'90176999', Receive_No:'RCV-20260426-012119-821-9',  Material_ID:'10010041', Qty:1, Equipment_ID:'287504', Damage_Code:'สายพานตก',                                          Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-09', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0010', Work_Order:'90177075', Refurbishment_Order:'90177249', Receive_No:'RCV-20260426-012119-821-10', Material_ID:'10010041', Qty:1, Equipment_ID:'287534', Damage_Code:'Extract ไม่ถีบ Notebox',                             Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-10', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0011', Work_Order:'90176739', Refurbishment_Order:'90176758', Receive_No:'RCV-20260426-012119-821-11', Material_ID:'10010041', Qty:1, Equipment_ID:'287496', Damage_Code:'ไม่ถีบ Notebox',                                    Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-11', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0012', Work_Order:'90176934', Refurbishment_Order:'90177000', Receive_No:'RCV-20260426-012119-821-12', Material_ID:'10010041', Qty:1, Equipment_ID:'287501', Damage_Code:'Out Of Service',                                     Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-12', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0013', Work_Order:'90177748', Refurbishment_Order:'90177954', Receive_No:'RCV-20260426-012119-821-13', Material_ID:'10010041', Qty:1, Equipment_ID:'287513', Damage_Code:'มีเสียงทำงานผิดปกติ',                              Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-13', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0014', Work_Order:'90177615', Refurbishment_Order:'90177948', Receive_No:'RCV-20260426-012119-821-14', Material_ID:'10010041', Qty:1, Equipment_ID:'207567', Damage_Code:'ไม่ถีบ NoteBox',                                   Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-14', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0015', Work_Order:'90177528', Refurbishment_Order:'90177958', Receive_No:'RCV-20260426-012119-821-15', Material_ID:'10010041', Qty:1, Equipment_ID:'214933', Damage_Code:'สายพานหลุด ลูกกลิ้งสีดำที่ใช้ฟรีซแบงค์เสื่อมสภาพ', Cause:'', Repair_Action:'Clean All',            Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-15', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0016', Work_Order:'90177672', Refurbishment_Order:'90177942', Receive_No:'RCV-20260426-012119-821-16', Material_ID:'10010041', Qty:1, Equipment_ID:'287510', Damage_Code:'BNA  ไม่ทำงาน',                                    Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-16', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0017', Work_Order:'90177921', Refurbishment_Order:'90178732', Receive_No:'RCV-20260426-012119-821-17', Material_ID:'10010041', Qty:1, Equipment_ID:'304151', Damage_Code:'BNA  ไม่ทำงาน',                                    Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-17', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0018', Work_Order:'90178331', Refurbishment_Order:'90178724', Receive_No:'RCV-20260426-012119-821-18', Material_ID:'10010041', Qty:1, Equipment_ID:'293818', Damage_Code:'เฟืองตัวเขียวหมุนไม่ได้',                          Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-18', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0019', Work_Order:'90178564', Refurbishment_Order:'90178726', Receive_No:'RCV-20260426-012119-821-19', Material_ID:'10010041', Qty:1, Equipment_ID:'287531', Damage_Code:'BNA Out Of Service กินเงินและเงินติดบ่อย',            Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-19', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0020', Work_Order:'90178232', Refurbishment_Order:'90178722', Receive_No:'RCV-20260426-012119-821-20', Material_ID:'10010041', Qty:1, Equipment_ID:'287498', Damage_Code:'ไม่ถีบ Note Box ไม่ Initial',                       Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-20', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0021', Work_Order:'90178667', Refurbishment_Order:'90178925', Receive_No:'RCV-20260426-012119-821-21', Material_ID:'10010041', Qty:1, Equipment_ID:'97155',  Damage_Code:'Belt Loose',                                        Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-21', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0022', Work_Order:'90178002', Refurbishment_Order:'90178727', Receive_No:'RCV-20260426-012119-821-22', Material_ID:'10010041', Qty:1, Equipment_ID:'337290', Damage_Code:'Belt Loose',                                        Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-22', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0023', Work_Order:'90177204', Refurbishment_Order:'90178733', Receive_No:'RCV-20260426-012119-821-23', Material_ID:'10010041', Qty:1, Equipment_ID:'870355', Damage_Code:'Belt Loose',                                        Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-23', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0024', Work_Order:'90179025', Refurbishment_Order:'90179135', Receive_No:'RCV-20260426-013115-817-1',  Material_ID:'10010041', Qty:1, Equipment_ID:'306779', Damage_Code:'ตีวเปิดปิดลูกปืนหาย 1 ข้อและกินเงินบ่อย',          Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-05-01', Close_Date:'2026-06-11' },
+  { JOB_No:'JOB-0025', Work_Order:'90179336', Refurbishment_Order:'90179412', Receive_No:'RCV-20260426-013115-817-2',  Material_ID:'10010041', Qty:1, Equipment_ID:'287520', Damage_Code:'Out Of Service',                                     Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-25', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0026', Work_Order:'90178966', Refurbishment_Order:'90179141', Receive_No:'RCV-20260426-013115-817-3',  Material_ID:'10010041', Qty:1, Equipment_ID:'287519', Damage_Code:'Out Of Service',                                     Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-25', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0027', Work_Order:'90178739', Refurbishment_Order:'90179140', Receive_No:'RCV-20260426-013115-817-4',  Material_ID:'10010041', Qty:1, Equipment_ID:'219541', Damage_Code:'สายพานตก',                                          Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-25', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0028', Work_Order:'90179083', Refurbishment_Order:'90179411', Receive_No:'RCV-20260426-013115-817-5',  Material_ID:'10010041', Qty:1, Equipment_ID:'287489', Damage_Code:'ไม่อ่านแบ็งค์',                                    Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-25', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0029', Work_Order:'90179370', Refurbishment_Order:'90179568', Receive_No:'RCV-20260426-013115-817-6',  Material_ID:'10010041', Qty:1, Equipment_ID:'287511', Damage_Code:'Belt หลุดบ่อย',                                    Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-25', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0030', Work_Order:'90179505', Refurbishment_Order:'90179658', Receive_No:'RCV-20260426-013115-817-7',  Material_ID:'10010041', Qty:1, Equipment_ID:'293817', Damage_Code:'สายพานตก',                                          Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-05-01', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0031', Work_Order:'90179687', Refurbishment_Order:'90179911', Receive_No:'RCV-20260426-013115-817-8',  Material_ID:'10010041', Qty:1, Equipment_ID:'129465', Damage_Code:'Belt ตก',                                           Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-05-01', Close_Date:'2026-05-01' },
+  { JOB_No:'JOB-0032', Work_Order:'90178802', Refurbishment_Order:'90178927', Receive_No:'RCV-20260504-140120-095-1',  Material_ID:'10010041', Qty:1, Equipment_ID:'287496', Damage_Code:'Belt ตก',                                           Cause:'', Repair_Action:'Adjust Alignment Belt',  Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-05-04', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0033', Work_Order:'90177695', Refurbishment_Order:'90177952', Receive_No:'RCV-20260504-140620-527-1',  Material_ID:'10010041', Qty:1, Equipment_ID:'287507', Damage_Code:'Belt ตก',                                           Cause:'', Repair_Action:'Adjust Alignment Belt',  Vendor_ID:'V001', Status:'RETURNED',    Create_Date:'2026-05-04', Close_Date:'' },
+  { JOB_No:'JOB-0034', Work_Order:'90178787', Refurbishment_Order:'90178931', Receive_No:'RCV-20260504-141753-385-1',  Material_ID:'10010041', Qty:1, Equipment_ID:'287534', Damage_Code:'Belt ตก',                                           Cause:'', Repair_Action:'Adjust Alignment Belt',  Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-05-04', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0035', Work_Order:'90179421', Refurbishment_Order:'90179660', Receive_No:'RCV-20260504-142037-222-1',  Material_ID:'10010041', Qty:1, Equipment_ID:'287496', Damage_Code:'Belt ตก',                                           Cause:'', Repair_Action:'Adjust Alignment Belt',  Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-05-04', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0036', Work_Order:'90179944', Refurbishment_Order:'90180315', Receive_No:'RCV-20260504-143951-253-1',  Material_ID:'10010041', Qty:1, Equipment_ID:'207575', Damage_Code:'',                                                  Cause:'', Repair_Action:'',                       Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-05-06', Close_Date:'2026-05-06' },
+  { JOB_No:'JOB-0037', Work_Order:'90180295', Refurbishment_Order:'90180459', Receive_No:'RCV-20260504-143951-253-2',  Material_ID:'10010041', Qty:1, Equipment_ID:'802910', Damage_Code:'',                                                  Cause:'', Repair_Action:'',                       Vendor_ID:'V001', Status:'SEND_REPAIR', Create_Date:'2026-05-04', Close_Date:'2026-06-11' },
+  { JOB_No:'JOB-0038', Work_Order:'90179987', Refurbishment_Order:'90180316', Receive_No:'RCV-20260504-143951-253-3',  Material_ID:'10010041', Qty:1, Equipment_ID:'287489', Damage_Code:'Belt ตก',                                           Cause:'', Repair_Action:'Adjust Alignment Belt',  Vendor_ID:'V001', Status:'SEND_REPAIR', Create_Date:'2026-05-04', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0039', Work_Order:'90180273', Refurbishment_Order:'90180456', Receive_No:'RCV-20260504-143951-253-4',  Material_ID:'10010041', Qty:1, Equipment_ID:'287512', Damage_Code:'',                                                  Cause:'', Repair_Action:'',                       Vendor_ID:'V001', Status:'SEND_REPAIR', Create_Date:'2026-05-04', Close_Date:'2026-05-04' },
+  { JOB_No:'JOB-0040', Work_Order:'90179751', Refurbishment_Order:'90179913', Receive_No:'RCV-20260504-143951-253-5',  Material_ID:'10010041', Qty:1, Equipment_ID:'802912', Damage_Code:'',                                                  Cause:'', Repair_Action:'',                       Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-05-06', Close_Date:'2026-05-06' },
+  { JOB_No:'JOB-0041', Work_Order:'90180361', Refurbishment_Order:'90180462', Receive_No:'RCV-20260504-143951-253-6',  Material_ID:'10010041', Qty:1, Equipment_ID:'287511', Damage_Code:'Belt ตก',                                           Cause:'', Repair_Action:'Adjust Alignment Belt',  Vendor_ID:'V001', Status:'SEND_REPAIR', Create_Date:'2026-05-04', Close_Date:'2026-06-11' },
+  { JOB_No:'JOB-0042', Work_Order:'',         Refurbishment_Order:'90181199', Receive_No:'RCV-20260531-102534-435-1',  Material_ID:'10010041', Qty:1, Equipment_ID:'870355', Damage_Code:'BNA Belt Loose',                                    Cause:'', Repair_Action:'',                       Vendor_ID:'V001', Status:'SEND_REPAIR', Create_Date:'2026-06-07', Close_Date:'' },
+  { JOB_No:'JOB-0043', Work_Order:'',         Refurbishment_Order:'90181329', Receive_No:'RCV-20260531-102534-435-2',  Material_ID:'10010041', Qty:1, Equipment_ID:'287493', Damage_Code:'BNA Belt Loose',                                    Cause:'', Repair_Action:'',                       Vendor_ID:'V001', Status:'SEND_REPAIR', Create_Date:'2026-06-07', Close_Date:'' },
+  { JOB_No:'JOB-0044', Work_Order:'',         Refurbishment_Order:'90181172', Receive_No:'RCV-20260531-102534-435-3',  Material_ID:'10010041', Qty:1, Equipment_ID:'304157', Damage_Code:'Disconnect',                                        Cause:'', Repair_Action:'',                       Vendor_ID:'V001', Status:'SEND_REPAIR', Create_Date:'2026-06-07', Close_Date:'' },
+  { JOB_No:'JOB-0045', Work_Order:'',         Refurbishment_Order:'',         Receive_No:'RCV-20260613-165709-948-1',  Material_ID:'10010041', Qty:1, Equipment_ID:'279269', Damage_Code:'',                                                  Cause:'', Repair_Action:'',                       Vendor_ID:'V001', Status:'SEND_REPAIR', Create_Date:'2026-06-11', Close_Date:'2026-06-11' },
+  { JOB_No:'JOB-0046', Work_Order:'',         Refurbishment_Order:'',         Receive_No:'RCV-20260613-165709-948-2',  Material_ID:'10010041', Qty:1, Equipment_ID:'287490', Damage_Code:'',                                                  Cause:'', Repair_Action:'',                       Vendor_ID:'V001', Status:'SEND_REPAIR', Create_Date:'2026-06-11', Close_Date:'2026-06-11' },
+];
+
+/* ─────────────────────────────────────────────────────────────
+   4.  LOCAL STATE  (in-memory + localStorage)
+   ───────────────────────────────────────────────────────────── */
+function _normalizeJob(j) {
+  if (!j) return null;
+
+  // ── Normalize Status ──
+  if (j.Status) j.Status = String(j.Status).replace(/ /g,'_').toUpperCase();
+  if (!j.Priority) j.Priority = 'HIGH';
+
+  // ── Map Sheet v3.3 field names → frontend field names ──
+  // Sheet ใช้ Actual_Close แทน Close_Date
+  if (!j.Close_Date && j.Actual_Close)   j.Close_Date   = j.Actual_Close;
+  // Sheet ใช้ Create_Date ใน col T
+  if (!j.Create_Date && j['Create_Date']) j.Create_Date = j['Create_Date'];
+  // Legacy field name aliases
+  if (!j.JOB_No && j['Job No'])                 j.JOB_No       = j['Job No'];
+  if (!j.Equipment_ID && j['Equipment ID'])      j.Equipment_ID = j['Equipment ID'];
+  if (!j.Damage_Code && j['Damage Code'])        j.Damage_Code  = j['Damage Code'];
+  if (!j.Work_Order && j['Work Order'])          j.Work_Order   = j['Work Order'];
+  if (!j.Vendor_ID && j['Vendor ID'])            j.Vendor_ID    = j['Vendor ID'];
+
+  // ── Merge กับ SAMPLE_JOBS_RAW เพื่อเติม field ที่ขาด ──
+  if (j.JOB_No && typeof SAMPLE_JOBS_RAW !== 'undefined') {
+    var sample = SAMPLE_JOBS_RAW.find(function(s){ return s.JOB_No === j.JOB_No; });
+    if (sample) {
+      if (!j.Work_Order)          j.Work_Order          = sample.Work_Order          || '';
+      if (!j.Refurbishment_Order) j.Refurbishment_Order = sample.Refurbishment_Order || '';
+      if (!j.Receive_No)          j.Receive_No          = sample.Receive_No          || '';
+      if (!j.Equipment_ID)        j.Equipment_ID        = sample.Equipment_ID        || '';
+      if (!j.Damage_Code)         j.Damage_Code         = sample.Damage_Code         || '';
+      if (!j.Vendor_ID)           j.Vendor_ID           = sample.Vendor_ID           || 'V001';
+      if (!j.Create_Date)         j.Create_Date         = sample.Create_Date         || '';
+      if (!j.Close_Date)          j.Close_Date          = sample.Close_Date          || '';
+      if (!j.Material_ID)         j.Material_ID         = sample.Material_ID         || '10010041';
+      if (!j.Priority)            j.Priority            = sample.Priority            || 'HIGH';
+      if (!j.Repair_Action)       j.Repair_Action       = sample.Repair_Action       || '';
+    }
+  }
+  return j;
+}
+
+// ── Clear corrupted localStorage cache ──────────────────────────
+function clearJobCache() {
+  try { localStorage.removeItem('rms_v3_jobs'); } catch(e) {}
+  _localJobs = SAMPLE_JOBS_RAW.map(function(j){ return Object.assign({}, j); });
+  UI.toast('ล้าง cache งานซ่อมแล้ว กำลังโหลดใหม่...', 'success');
+  setTimeout(function(){ window.location.reload(); }, 1200);
+}
+
+function _loadJobs() {
+  try {
+    const raw = localStorage.getItem('rms_v3_jobs');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      return parsed
+        .map(_normalizeJob)
+        .filter(function(j) { return j && j.JOB_No && j.JOB_No.trim() !== ''; });
+    }
+  } catch(e) { console.warn('_loadJobs error:', e); }
+  return SAMPLE_JOBS_RAW.map(function(j){ return Object.assign({}, j); });
+}
+
+function _saveJobs() {
+  try { localStorage.setItem('rms_v3_jobs', JSON.stringify(_localJobs)); } catch(e) {}
+}
+
+function _loadParts() {
+  try {
+    const raw = localStorage.getItem('rms_v3_parts');
+    if (raw) {
+      const saved = JSON.parse(raw);
+      return SAMPLE_PARTS.map(sp => {
+        const lp = saved.find(s => s.Part_Code === sp.Part_Code || s.Part_ID === sp.Part_ID);
+        return lp ? Object.assign({}, sp, { Current_Stock: parseFloat(lp.Current_Stock ?? sp.Current_Stock), Cost: parseFloat(lp.Cost ?? sp.Cost) }) : Object.assign({}, sp);
+      });
+    }
+  } catch(e) {}
+  return SAMPLE_PARTS.map(p => Object.assign({}, p));
+}
+
+function _saveParts() {
+  try { localStorage.setItem('rms_v3_parts', JSON.stringify(_localParts)); } catch(e) {}
+}
+
+var _localJobs  = _loadJobs();
+var _localParts = _loadParts();
+
+/* ─────────────────────────────────────────────────────────────
+   5.  AUTH
+   ───────────────────────────────────────────────────────────── */
+const Auth = {
+  getUser() {
+    try {
+      const s = sessionStorage.getItem(SESSION_KEY) || localStorage.getItem(SESSION_KEY);
+      return s ? JSON.parse(s) : null;
+    } catch(e) { return null; }
+  },
+  isLoggedIn() {
+    const u = this.getUser();
+    return u && (Date.now() - (u.loginTime || 0) < 8 * 3600 * 1000);
+  },
+  isAdmin() {
+    const u = this.getUser();
+    return u && ['SUPER_ADMIN', 'ADMIN'].includes(u.role);
+  },
+  isManager() {
+    const u = this.getUser();
+    return u && ['SUPER_ADMIN', 'ADMIN', 'MANAGER'].includes(u.role);
+  },
+  hasPermission(perm) {
+    const u = this.getUser();
+    return u && Array.isArray(u.permissions) && u.permissions.includes(perm);
+  },
+  guardPage() {
+    // ถ้าหน้าไม่ใช่ login แล้วยังไม่ login → redirect
+    if (!this.isLoggedIn() && !location.pathname.includes('login')) {
+      window.location.href = 'login.html';
+      return false;
+    }
+    return true;
+  },
+};
+
+/* ─────────────────────────────────────────────────────────────
+   6.  GAS HELPER
+   ───────────────────────────────────────────────────────────── */
+async function callGAS(action, payload) {
+  try {
+    const user  = Auth.getUser();
+    const token = user ? (user.token || '') : '';
+    const params = new URLSearchParams({
+      action,
+      token,
+      payload: encodeURIComponent(JSON.stringify(payload || {})),
+    });
+    const res  = await fetch(RMS.GAS_URL + '?' + params, { redirect: 'follow' });
+    return await res.json();
+  } catch(e) {
+    console.warn('callGAS error:', action, e.message);
+    return { success: false, error: e.message };
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   7.  DATASTORE  (local-first, GAS fallback)
+   ───────────────────────────────────────────────────────────── */
+const DataStore = {
+
+  /* ── JOB NO GENERATOR ── */
+  async generateJobNo() {
+    const y = new Date().getFullYear();
+    const prefix = 'JOB-' + y + '-';
+    const existing = _localJobs.filter(j => j.JOB_No && j.JOB_No.startsWith(prefix));
+    const nums = existing.map(j => parseInt(j.JOB_No.replace(prefix, ''), 10)).filter(n => !isNaN(n));
+    const next = nums.length ? Math.max(...nums) + 1 : 1;
+    return prefix + String(next).padStart(3, '0');
+  },
+
+  async generateReceiveNo() {
+    const d = new Date();
+    const y = d.getFullYear(), m = String(d.getMonth()+1).padStart(2,'0'), day = String(d.getDate()).padStart(2,'0');
+    return 'RCV-' + y + m + day + '-' + String(Math.floor(Math.random()*900)+100);
+  },
+
+  /* ── GET JOBS ── */
+  async getJobs(filter) {
+    filter = filter || {};
+    // refresh from localStorage
+    _localJobs = _loadJobs();
+
+    if (RMS.USE_GAS) {
+      try {
+        const res = await callGAS('getJobs', { filter });
+        if (res && res.success && res.data) {
+          // Merge GAS data with SAMPLE_JOBS_RAW to fill missing fields
+          var gasJobs = res.data.map(function(gasJob) {
+            var normalized = _normalizeJob(gasJob);
+            if (!normalized || !normalized.JOB_No) return null;
+            // Find matching sample job to fill in missing fields
+            var sample = SAMPLE_JOBS_RAW.find(function(s){ return s.JOB_No === normalized.JOB_No; });
+            if (sample) {
+              return Object.assign({}, sample, normalized);
+            }
+            return normalized;
+          }).filter(function(j) { return j && j.JOB_No && j.JOB_No.trim() !== ''; });
+          
+          // Merge: GAS jobs take priority, add SAMPLE_JOBS not in GAS
+          var gasJobNos = new Set(gasJobs.map(function(j){ return j.JOB_No; }));
+          var sampleOnly = SAMPLE_JOBS_RAW.filter(function(s){ return !gasJobNos.has(s.JOB_No); });
+          _localJobs = [...gasJobs, ...sampleOnly];
+          _saveJobs();
+        }
+      } catch(e) {}
+    }
+
+    // Filter out invalid/incomplete jobs
+    let jobs = [..._localJobs].filter(function(j) {
+      return j && j.JOB_No && j.JOB_No.trim() !== '';
+    });
+    if (filter.status && filter.status !== 'ALL') {
+      if (filter.status === 'REPEAT') {
+        const cnt = {};
+        _localJobs.forEach(j => { if (j.Equipment_ID) cnt[j.Equipment_ID] = (cnt[j.Equipment_ID]||0) + 1; });
+        jobs = jobs.filter(j => cnt[j.Equipment_ID] > 1);
+      } else {
+        jobs = jobs.filter(j => (j.Status||'') === filter.status);
+      }
+    }
+    if (filter.priority) jobs = jobs.filter(j => j.Priority === filter.priority);
+    if (filter.vendor)   jobs = jobs.filter(j => j.Vendor_ID === filter.vendor);
+    if (filter.branch)   jobs = jobs.filter(j => j.Branch_ID === filter.branch);
+    if (filter.search) {
+      const q = filter.search.toLowerCase();
+      jobs = jobs.filter(j =>
+        (j.JOB_No||'').toLowerCase().includes(q) ||
+        (j.Equipment_ID||'').toLowerCase().includes(q) ||
+        (j.Work_Order||'').toLowerCase().includes(q) ||
+        (j.Damage_Code||'').toLowerCase().includes(q)
+      );
+    }
+    return jobs;
+  },  // returns Array directly
+
+  async getJobById(jobNo) {
+    _localJobs = _loadJobs();
+    return _localJobs.find(j => j.JOB_No === jobNo) || null;
+  },
+
+  /* ── CREATE JOB ── */
+  async createJob(data) {
+    const job = Object.assign({ Created_By: (Auth.getUser()||{}).username || 'admin' }, data);
+    _localJobs.unshift(job);
+    _saveJobs();
+
+    if (RMS.USE_GAS) {
+      try {
+        const res = await callGAS('createJob', { data: job });
+        if (res && res.success) return { success: true, data: job };
+        return { success: true, data: job, gasWarn: res && res.error };
+      } catch(e) { return { success: true, data: job, gasWarn: e.message }; }
+    }
+    return { success: true, data: job };
+  },
+
+  /* ── UPDATE JOB ── */
+  async updateJob(jobNo, data) {
+    const idx = _localJobs.findIndex(j => j.JOB_No === jobNo);
+    if (idx < 0) return { success: false, error: 'ไม่พบ Job' };
+    _localJobs[idx] = Object.assign({}, _localJobs[idx], data);
+    _saveJobs();
+
+    if (RMS.USE_GAS) {
+      try { await callGAS('updateJob', { jobNo, data }); } catch(e) {}
+    }
+    return { success: true, data: _localJobs[idx] };
+  },
+
+  /* ── DELETE JOB ── */
+  async deleteJob(jobNo) {
+    const before = _localJobs.length;
+    _localJobs = _localJobs.filter(j => j.JOB_No !== jobNo);
+    if (_localJobs.length === before) return { success: false, error: 'ไม่พบ Job' };
+    _saveJobs();
+
+    if (RMS.USE_GAS) {
+      try { await callGAS('deleteJob', { jobNo }); } catch(e) {}
+    }
+    return { success: true };
+  },
+
+  /* ── UPDATE STATUS ── */
+  async updateStatus(jobNo, status, remark) {
+    // ✅ ใช้ updateJobStatus (lightweight) แทน updateJob เต็ม
+    // เพื่อป้องกัน undefined fields overwrite ใน Google Sheets
+    if (RMS.USE_GAS) {
+      const res = await callGAS('updateJobStatus', {
+        jobNo:  jobNo,
+        status: status,
+        remark: remark || ''
+      });
+      if (res && res.success) {
+        // อัปเดต local state ด้วย
+        const idx = _localJobs.findIndex(j => j.JOB_No === jobNo);
+        if (idx >= 0) {
+          _localJobs[idx].Status     = status;
+          _localJobs[idx].Updated_At = new Date().toISOString().slice(0,10);
+          if (status === 'CLOSED') _localJobs[idx].Close_Date = new Date().toISOString().slice(0,10);
+          _saveJobs();
+        }
+        return res;
+      }
+      // GAS failed → fallback to local only
+    }
+    // Local update only (offline/demo mode)
+    const idx = _localJobs.findIndex(j => j.JOB_No === jobNo);
+    if (idx >= 0) {
+      _localJobs[idx].Status     = status;
+      _localJobs[idx].Updated_At = new Date().toISOString().slice(0,10);
+      if (status === 'CLOSED') _localJobs[idx].Close_Date = new Date().toISOString().slice(0,10);
+      _saveJobs();
+    }
+    return { success: true };
+  },
+
+  /* ── GET DASHBOARD ── */
+  async getDashboard() {
+    _localJobs  = _loadJobs();
+    _localParts = _loadParts();
+
+    const jobs = [..._localJobs];
+    const cnt  = {};
+    jobs.forEach(j => { const s = (j.Status||'').replace(/ /g,'_'); cnt[s] = (cnt[s]||0) + 1; });
+
+    // Trend
+    const months = ['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+    const tData  = Array(12).fill(0);
+    const y = new Date().getFullYear();
+    jobs.forEach(j => { if(j.Create_Date){ const d=new Date(j.Create_Date); if(d.getFullYear()===y) tData[d.getMonth()]++; } });
+
+    // งานซ่อมจริง = ทั้งหมด - ซ่อมซ้ำ
+    const eqCount = {};
+    jobs.forEach(j => { if(j.Equipment_ID) eqCount[j.Equipment_ID] = (eqCount[j.Equipment_ID]||0)+1; });
+    const repeatJobs = jobs.filter(j => eqCount[j.Equipment_ID] > 1);
+    const realJobs   = jobs.length - repeatJobs.length; // งานซ่อมจริง (ไม่ซ้ำ)
+    const uniqueRepeatEq = Object.values(eqCount).filter(c => c > 1).length;
+
+    // MTTR (เก็บไว้สำหรับ reports.html)
+    const closed = jobs.filter(j => j.Status==='CLOSED' && j.Create_Date && j.Close_Date);
+    const mttr   = closed.length ? parseFloat((closed.reduce((s,j) => s+(new Date(j.Close_Date)-new Date(j.Create_Date))/86400000, 0)/closed.length).toFixed(1)) : 0;
+
+    // Priority
+    const byP = { CRITICAL:0, HIGH:0, MEDIUM:0, LOW:0 };
+    jobs.forEach(j => { if(j.Priority && byP[j.Priority]!==undefined) byP[j.Priority]++; });
+
+    // Low stock
+    const lowStock = _localParts.filter(p => parseFloat(p.Current_Stock||0) <= parseFloat(p.Min_Stock||0));
+
+    return {
+      success: true,
+      stats: {
+        total:           jobs.length,
+        CLOSED:          cnt.CLOSED          || 0,
+        IN_PROGRESS:     cnt.SEND_REPAIR     || 0,
+        RETURNED:        cnt.RETURNED        || 0,
+        WAIT_APPROVAL:   cnt.WAIT_APPROVAL   || 0,
+        WAIT_SPARE_PART: cnt.WAIT_SPARE_PART || 0,
+        SEND_REPAIR:     cnt.SEND_REPAIR     || 0,
+        OPEN:            cnt.OPEN            || 0,
+        realJobs:        realJobs,             // งานซ่อมจริง (ไม่ซ้ำ)
+        repeatJobs:      repeatJobs.length,    // ซ่อมซ้ำ
+        uniqueRepeatEq:  uniqueRepeatEq,       // จำนวนอุปกรณ์ที่ซ่อมซ้ำ
+      },
+      mttr,
+      realJobs,
+      repeatCount:    repeatJobs.length,
+      uniqueRepeatEq: uniqueRepeatEq,
+      pendingApprovals: cnt.WAIT_APPROVAL || 0,
+      monthlyTrend: { labels: months, data: tData },
+      vendorKPIs: SAMPLE_VENDORS.map(v => ({
+        name:   v.Vendor_Name,
+        total:  jobs.filter(j => j.Vendor_ID === v.Vendor_ID).length,
+        closed: jobs.filter(j => j.Vendor_ID === v.Vendor_ID && j.Status === 'CLOSED').length,
+      })),
+      byPriority:  byP,
+      recentJobs:  jobs.slice().sort((a,b) => (b.Create_Date||'').localeCompare(a.Create_Date||'')).slice(0,10),
+      lowStock,
+    };
+  },
+
+  /* ── PARTS ── */
+  async issuePart({ partId, partCode, qty, jobNo, remark }) {
+    _localParts = _loadParts();
+    const idx = _localParts.findIndex(p => p.Part_ID === partId || p.Part_Code === (partCode || partId));
+    if (idx < 0) return { success: false, error: 'ไม่พบ Part' };
+    const cur = parseFloat(_localParts[idx].Current_Stock || 0);
+    if (cur < qty) return { success: false, error: 'สต๊อกไม่พอ (เหลือ ' + cur + ')' };
+    _localParts[idx].Current_Stock = cur - qty;
+    _saveParts();
+
+    // log
+    try {
+      const log = JSON.parse(localStorage.getItem('rms_iss_log') || '[]');
+      log.unshift({ date: new Date().toISOString().slice(0,10), partId, qty, jobNo: jobNo||'', remark: remark||'', by: (Auth.getUser()||{}).username||'admin' });
+      localStorage.setItem('rms_iss_log', JSON.stringify(log.slice(0,200)));
+    } catch(e) {}
+
+    if (RMS.USE_GAS) { try { await callGAS('issuePart', { partId, qty, jobNo, remark }); } catch(e) {} }
+    return { success: true, newStock: _localParts[idx].Current_Stock };
+  },
+
+  async receivePart({ partId, qty, unitCost }) {
+    _localParts = _loadParts();
+    const idx = _localParts.findIndex(p => p.Part_ID === partId || p.Part_Code === partId);
+    if (idx < 0) return { success: false, error: 'ไม่พบ Part' };
+    _localParts[idx].Current_Stock = parseFloat(_localParts[idx].Current_Stock||0) + qty;
+    if (unitCost) _localParts[idx].Cost = parseFloat(unitCost);
+    _saveParts();
+
+    try {
+      const log = JSON.parse(localStorage.getItem('rms_rcv_log') || '[]');
+      log.unshift({ date: new Date().toISOString().slice(0,10), partId, qty, unitCost: unitCost||0, by: (Auth.getUser()||{}).username||'admin' });
+      localStorage.setItem('rms_rcv_log', JSON.stringify(log.slice(0,200)));
+    } catch(e) {}
+
+    if (RMS.USE_GAS) { try { await callGAS('receivePart', { partId, qty, unitCost }); } catch(e) {} }
+    return { success: true, newStock: _localParts[idx].Current_Stock };
+  },
+};
+
+/* ─────────────────────────────────────────────────────────────
+   8.  UI HELPERS
+   ───────────────────────────────────────────────────────────── */
+const UI = {
+
+  priorityBadge(p) {
+    const M = {
+      CRITICAL: { bg:'rgba(153,27,27,.1)',  color:'#991B1B', border:'rgba(153,27,27,.2)',  icon:'fa-fire'      },
+      HIGH:     { bg:'rgba(180,83,9,.1)',   color:'#B45309', border:'rgba(180,83,9,.2)',   icon:'fa-arrow-up'  },
+      MEDIUM:   { bg:'rgba(146,64,14,.1)',  color:'#92400E', border:'rgba(146,64,14,.2)',  icon:'fa-minus'     },
+      LOW:      { bg:'rgba(22,163,74,.1)',  color:'#166534', border:'rgba(22,163,74,.2)',  icon:'fa-arrow-down'},
+    };
+    const c = M[p] || M.MEDIUM;
+    return `<span style="display:inline-flex;align-items:center;gap:4px;padding:2px 9px;border-radius:20px;font-size:.63rem;font-weight:700;letter-spacing:.2px;background:${c.bg};color:${c.color};border:1px solid ${c.border}"><i class="fas ${c.icon}" style="font-size:.55rem"></i>${p||'MEDIUM'}</span>`;
+  },
+
+  statusBadge(s) {
+    const st = (s||'').replace(/ /g,'_').toUpperCase();
+    const M = {
+      IN_PROGRESS:     { bg:'rgba(2,132,199,.1)',   color:'#0369a1', label:'IN PROGRESS'      },
+      CLOSED:          { bg:'rgba(22,163,74,.1)',   color:'#15803d', label:'CLOSED'            },
+      RETURNED:        { bg:'rgba(15,76,129,.1)',   color:'#0F4C81', label:'RETURNED'          },
+      WAIT_APPROVAL:   { bg:'rgba(217,119,6,.1)',   color:'#b45309', label:'WAIT APPROVAL'     },
+      WAIT_APPROVE:    { bg:'rgba(217,119,6,.1)',   color:'#b45309', label:'WAIT APPROVE'      },
+      WAIT_SPARE_PART: { bg:'rgba(124,58,237,.1)',  color:'#6d28d9', label:'WAIT SPARE PART'   },
+      SEND_REPAIR:     { bg:'rgba(27,154,170,.1)',  color:'#0e7490', label:'SEND REPAIR'       },
+      REJECTED:        { bg:'rgba(220,38,38,.1)',   color:'#dc2626', label:'REJECTED'          },
+      APPROVED:        { bg:'rgba(22,163,74,.1)',   color:'#16a34a', label:'APPROVED'          },
+      OPEN:            { bg:'rgba(100,116,139,.1)', color:'#475569', label:'OPEN'              },
+      REPEAT:          { bg:'rgba(194,65,12,.1)',   color:'#c2410c', label:'REPEAT'            },
+    };
+    const c = M[st] || { bg:'rgba(100,116,139,.1)', color:'#475569', label: st };
+    return `<span style="display:inline-block;padding:3px 10px;border-radius:20px;font-size:.62rem;font-weight:700;letter-spacing:.2px;background:${c.bg};color:${c.color}">${c.label}</span>`;
+  },
+
+  toast(msg, type, duration) {
+    duration = duration || 3200;
+    const ICONS   = { success:'fa-check-circle', danger:'fa-times-circle', warning:'fa-exclamation-triangle', info:'fa-info-circle' };
+    const COLORS  = { success:'#16a34a', danger:'#dc2626', warning:'#d97706', info:'#0284c7' };
+    const icon    = ICONS[type]  || ICONS.info;
+    const color   = COLORS[type] || COLORS.info;
+
+    let tc = document.getElementById('rmsToastContainer');
+    if (!tc) {
+      tc = document.createElement('div');
+      tc.id = 'rmsToastContainer';
+      tc.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none;';
+      document.body.appendChild(tc);
+    }
+
+    // inject keyframes once
+    if (!document.getElementById('_rmsKF')) {
+      const s = document.createElement('style');
+      s.id = '_rmsKF';
+      s.textContent = '@keyframes _rmsIn{from{opacity:0;transform:translateX(18px) scale(.96)}to{opacity:1;transform:none}}@keyframes _rmsOut{from{opacity:1;transform:none}to{opacity:0;transform:translateX(18px) scale(.96)}}';
+      document.head.appendChild(s);
+    }
+
+    const t = document.createElement('div');
+    t.style.cssText = `background:#1e293b;color:#f1f5f9;padding:11px 16px;border-radius:9px;font-size:.8rem;font-weight:500;box-shadow:0 16px 40px rgba(0,0,0,.22);display:flex;align-items:center;gap:10px;animation:_rmsIn .22s cubic-bezier(0.16,1,0.3,1) forwards;pointer-events:all;max-width:320px;border-left:3px solid ${color};font-family:'Inter','Noto Sans Thai',sans-serif;line-height:1.4;`;
+    t.innerHTML = `<i class="fas ${icon}" style="color:${color};font-size:.8rem;flex-shrink:0"></i><span>${msg}</span>`;
+    tc.appendChild(t);
+
+    setTimeout(() => {
+      t.style.animation = '_rmsOut .18s ease forwards';
+      setTimeout(() => { try { t.remove(); } catch(e) {} }, 200);
+    }, duration);
+  },
+
+  confirm(msg, onConfirm) {
+    const ex = document.getElementById('_rmsConfirm');
+    if (ex) ex.remove();
+
+    if (!document.getElementById('_rmsCF')) {
+      const s = document.createElement('style');
+      s.id = '_rmsCF';
+      s.textContent = '@keyframes _rmsCFIn{from{opacity:0}to{opacity:1}}@keyframes _rmsCFBoxIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}';
+      document.head.appendChild(s);
+    }
+
+    const ov = document.createElement('div');
+    ov.id = '_rmsConfirm';
+    ov.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:10999;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(3px);animation:_rmsCFIn .15s ease both;';
+    ov.innerHTML = `
+      <div style="background:#fff;border-radius:16px;padding:26px 24px;max-width:360px;width:100%;box-shadow:0 20px 56px rgba(0,0,0,.2);animation:_rmsCFBoxIn .18s cubic-bezier(0.16,1,0.3,1) both;font-family:'Inter','Noto Sans Thai',sans-serif;">
+        <div style="width:44px;height:44px;border-radius:50%;background:rgba(217,119,6,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 14px">
+          <i class="fas fa-exclamation-triangle" style="color:#d97706;font-size:1rem"></i>
+        </div>
+        <p style="text-align:center;font-size:.84rem;color:#334155;font-weight:500;margin-bottom:20px;line-height:1.5">${msg}</p>
+        <div style="display:flex;gap:8px">
+          <button id="_rmsCC" style="flex:1;padding:8px;border:1.5px solid #e2e8f0;border-radius:7px;background:#f8fafc;color:#64748b;font-size:.8rem;font-weight:600;cursor:pointer;font-family:inherit;transition:background .12s" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='#f8fafc'">ยกเลิก</button>
+          <button id="_rmsCO" style="flex:1;padding:8px;border:none;border-radius:7px;background:linear-gradient(135deg,#0F4C81,#1a5f9e);color:#fff;font-size:.8rem;font-weight:700;cursor:pointer;font-family:inherit;transition:opacity .12s" onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">ยืนยัน</button>
+        </div>
+      </div>`;
+    document.body.appendChild(ov);
+
+    document.getElementById('_rmsCC').onclick = () => ov.remove();
+    document.getElementById('_rmsCO').onclick = () => { ov.remove(); if (onConfirm) onConfirm(); };
+    ov.addEventListener('click', e => { if (e.target === ov) ov.remove(); });
+  },
+};
+
+/* ─────────────────────────────────────────────────────────────
+   9.  AUTO-GUARD  (redirect ถ้าไม่ login)
+   ───────────────────────────────────────────────────────────── */
+(function autoGuard() {
+  const page = location.pathname.split('/').pop() || '';
+  const open = ['login.html', 'index.html', ''];
+  if (open.includes(page)) return;
+
+  function check() {
+    if (!Auth.isLoggedIn()) {
+      window.location.href = 'login.html';
+      return;
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', check);
+  } else {
+    check();
+  }
+})();
+
+
+/* ═══════════════════════════════════════════════════════════
+   EWS Enterprise v3.0 — Sidebar & Shell Renderer
+   ═══════════════════════════════════════════════════════════ */
+'use strict';
+
+/* ── NAV CONFIG ─────────────────────────────────────────────── */
+const NAV_CONFIG = [
+  { section: 'หลัก' },
+  { href: 'dashboard.html',  icon: 'fa-tachometer-alt', label: 'Dashboard'         },
+  { href: 'jobs.html',       icon: 'fa-briefcase',      label: 'งานซ่อม',  badgeKey: 'jobs' },
+  { href: 'approvals.html',  icon: 'fa-stamp',          label: 'อนุมัติ',   badgeKey: 'approve', managerOnly: true },
+
+  { section: 'คลัง & สินทรัพย์' },
+  { href: 'parts.html',      icon: 'fa-cogs',           label: 'คลังอะไหล่'        },
+  { href: 'store.html',      icon: 'fa-warehouse',      label: 'Store'             },
+  { href: 'analytics.html',  icon: 'fa-chart-line',     label: 'Issue Analytics'   },
+  { href: 'pm.html',         icon: 'fa-calendar-check', label: 'PM Schedule'       },
+
+  { section: 'รายงาน & วิเคราะห์' },
+  { href: 'reports.html',    icon: 'fa-chart-bar',      label: 'รายงาน'           },
+  { href: 'executive.html',  icon: 'fa-chart-line',     label: 'Executive'         },
+
+
+  { section: 'ตั้งค่า', adminOnly: true },
+  { href: 'master.html',     icon: 'fa-database',       label: 'Master Data',  adminOnly: true },
+  { href: 'vendors.html',    icon: 'fa-handshake',      label: 'Vendor',       adminOnly: true },
+  { href: 'users.html',      icon: 'fa-users',          label: 'ผู้ใช้งาน',    adminOnly: true },
+  { href: 'settings.html',   icon: 'fa-cog',            label: 'ตั้งค่าระบบ',  adminOnly: true },
+];
+
+/* ── BADGE COUNTERS ─────────────────────────────────────────── */
+function _getBadgeCounts() {
+  try {
+    const waitApprove = (typeof _localJobs !== 'undefined' ? _localJobs : [])
+      .filter(j => ['WAIT_APPROVAL','WAIT_APPROVE'].includes((j.Status||'').replace(/ /g,'_')))
+      .length;
+    const inProgress = (typeof _localJobs !== 'undefined' ? _localJobs : [])
+      .filter(j => (j.Status||'') === 'SEND_REPAIR')
+      .length;
+    return { approve: waitApprove || 0, jobs: inProgress || 0 };
+  } catch(e) { return {}; }
+}
+
+/* ── BUILD SIDEBAR HTML ─────────────────────────────────────── */
+function _buildSidebar() {
+  const cur  = location.pathname.split('/').pop() || 'dashboard.html';
+  const user = (typeof Auth !== 'undefined') ? Auth.getUser() : null;
+  const badges = _getBadgeCounts();
+  const isAdmin   = user && ['SUPER_ADMIN','ADMIN'].includes(user.role);
+  const isManager = user && ['SUPER_ADMIN','ADMIN','MANAGER'].includes(user.role);
+  const initials  = user ? (user.name||user.username||'U').slice(0,2).toUpperCase() : 'U';
+  const roleName  = user ? (user.role||'USER') : 'USER';
+  const displayName = user ? (user.name||user.username||'User') : 'User';
+
+  let navHTML = '';
+  NAV_CONFIG.forEach(item => {
+    if (item.section !== undefined) {
+      if (item.adminOnly && !isAdmin) return;
+      navHTML += `<div class="nav-section-label">${item.section}</div>`;
+      return;
+    }
+    if (item.adminOnly   && !isAdmin)   return;
+    if (item.managerOnly && !isManager) return;
+
+    const active  = cur === item.href ? 'active' : '';
+    const badgeCnt = item.badgeKey && badges[item.badgeKey] ? badges[item.badgeKey] : 0;
+    const badgeHTML = badgeCnt ? `<span class="nav-badge">${badgeCnt}</span>` : '';
+
+    navHTML += `
+      <a href="${item.href}" class="nav-item ${active}">
+        <span class="nav-icon"><i class="fas ${item.icon}"></i></span>
+        <span>${item.label}</span>
+        ${badgeHTML}
+      </a>`;
+  });
+
+  return `
+  <aside class="rms-sidebar" id="rmsSidebar">
+    <!-- Brand -->
+    <div class="sidebar-brand">
+      <div class="brand-icon"><i class="fas fa-tools"></i></div>
+      <div class="brand-text">
+        <div class="brand-name">EWS Enterprise</div>
+        <div class="brand-ver">v3.0 · CMMS</div>
+      </div>
+    </div>
+
+    <!-- Nav -->
+    <nav class="sidebar-nav">${navHTML}</nav>
+
+    <!-- Footer -->
+    <div class="sidebar-footer">
+      <div class="sidebar-user" style="padding:10px 12px 0;border-bottom:none;border-top:none;margin-bottom:8px">
+        <div class="user-avatar">${initials}</div>
+        <div class="user-info">
+          <div class="user-name">${displayName}</div>
+          <div class="user-role">${roleName}</div>
+        </div>
+      </div>
+      <button onclick="doLogout()" style="width:100%;display:flex;align-items:center;justify-content:center;gap:7px;padding:8px 12px;border-radius:7px;border:1px solid rgba(220,38,38,0.25);background:rgba(220,38,38,0.08);color:rgba(248,113,113,0.9);font-size:.72rem;font-weight:600;cursor:pointer;font-family:inherit;letter-spacing:.2px;transition:all .15s ease" onmouseover="this.style.background='rgba(220,38,38,0.15)'" onmouseout="this.style.background='rgba(220,38,38,0.08)'">
+        <i class="fas fa-sign-out-alt" style="font-size:.7rem"></i>ออกจากระบบ
+      </button>
+    </div>
+  </aside>`;
+}
+
+/* ── BUILD TOPBAR HTML ──────────────────────────────────────── */
+function _buildTopbar(title, actions) {
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('th-TH', { weekday:'short', year:'numeric', month:'short', day:'numeric' });
+
+  return `
+  <header class="rms-topbar" id="rmsTopbar">
+    <div class="topbar-breadcrumb">
+      <div class="page-title">${title}</div>
+      <div class="page-subtitle">${dateStr}</div>
+    </div>
+    <div class="topbar-actions">
+      ${actions ? `<div class="d-flex align-items-center gap-2">${actions}</div>` : ''}
+      <button class="topbar-icon-btn" onclick="window.location.reload()" title="รีเฟรช">
+        <i class="fas fa-sync-alt"></i>
+      </button>
+      <button class="topbar-icon-btn" onclick="toggleSidebar()" title="Toggle Sidebar">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </header>`;
+}
+
+/* ── MAIN RENDER FUNCTION ───────────────────────────────────── */
+function renderPageShell(title, content, actions) {
+  const wrapper = document.getElementById('app');
+  if (!wrapper) return;
+
+  // สร้าง sidebar และ main-content ใหม่ทั้งหมด
+  wrapper.innerHTML =
+    _buildSidebar() +
+    '<div class="main-content" id="mainContent"></div>';
+
+  const main = document.getElementById('mainContent');
+  if (!main) return;
+
+  main.innerHTML = _buildTopbar(title, actions || '') +
+    '<div class="page-content">' + (content || '') + '</div>';
+
+  // Toast container
+  if (!document.getElementById('rmsToastContainer')) {
+    const tc = document.createElement('div');
+    tc.id = 'rmsToastContainer';
+    tc.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none;';
+    document.body.appendChild(tc);
+  }
+}
+
+/* ── SIDEBAR TOGGLE ─────────────────────────────────────────── */
+function toggleSidebar() {
+  const sidebar = document.getElementById('rmsSidebar');
+  const main    = document.getElementById('mainContent');
+  const topbar  = document.getElementById('rmsTopbar');
+  if (!sidebar) return;
+
+  const collapsed = sidebar.classList.toggle('collapsed');
+  const w = collapsed ? 'var(--sidebar-collapsed)' : 'var(--sidebar-width)';
+  sidebar.style.width = w;
+  if (main)   main.style.marginLeft = w;
+  if (topbar) topbar.style.left = w;
+}
+
+/* ── LOGOUT ─────────────────────────────────────────────────── */
+function doLogout() {
+  try { sessionStorage.removeItem('rms_v3_session'); } catch(e) {}
+  try { localStorage.removeItem('rms_v3_session'); }  catch(e) {}
+  window.location.href = 'login.html';
+}
+
+</script>
+<script>
+'use strict';
+/* ── Chart registry ── */
+var _C = {};
+
+/* ═══════════════════════════════════════════════════════
+   INIT
+═══════════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', function () {
+  renderPageShell('Dashboard', _shell());
+  _load();
+  window.addEventListener('storage', function (e) { if (e.key === 'rms_v3_jobs') _load(); });
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) _load(); });
+});
+
+/* ─── Shell HTML ─── */
+function _shell() {
+  var now = new Date();
+  var dayTH = ['อาทิตย์','จันทร์','อังคาร','พุธ','พฤหัสบดี','ศุกร์','เสาร์'][now.getDay()];
+  var dateStr = 'วัน' + dayTH + ' ' + now.toLocaleDateString('th-TH', {day:'numeric',month:'long',year:'numeric'});
+
+  return (
+    '<div class="db">' +
+
+    /* ── Top bar ── */
+    '<div class="db-topbar">' +
+      '<div class="db-topbar-left">' +
+        '<div class="db-live"><div class="db-pulse"></div><span id="dbTs">กำลังโหลด...</span></div>' +
+        '<span class="db-date">' + dateStr + '</span>' +
+      '</div>' +
+      '<div class="db-topbar-right">' +
+        '<button class="db-refresh" onclick="_load()"><i class="fas fa-rotate" style="font-size:.75rem"></i> รีเฟรช</button>' +
+      '</div>' +
+    '</div>' +
+
+    /* ── KPI Row 1: JOB-based ── */
+    _secHead('b1','JOB No','งาน','นับจากจำนวนใบงาน (Work Orders)') +
+    '<div id="kR1" class="row g-3 mb-4"></div>' +
+
+    /* ── KPI Row 2: Equipment-based ── */
+    _secHead('b2','Equipment','อุปกรณ์','นับจาก Unique Equipment ID') +
+    '<div id="kR2" class="row g-3 mb-4"></div>' +
+
+    /* ── KPI Row 3: Work Status ── */
+    _secHead('b3','Work Status','สถานะ','งานที่ค้างอยู่ในระบบ') +
+    '<div id="kR3" class="row g-3 mb-4"></div>' +
+
+    /* ── Analytics Row 1: Trend + Status donut + MTTR ── */
+    '<div class="row g-3 mb-3">' +
+
+      /* Trend 6-month */
+      '<div class="col-xl-5 col-lg-7">' +
+        '<div class="ac" style="height:280px">' +
+          '<div class="ac-head">' +
+            '<div class="ac-title-row">' +
+              '<div class="ac-icon c-teal"><i class="fas fa-chart-area"></i></div>' +
+              '<div><div class="ac-title">Monthly Failure Trend</div><div class="ac-sub">จำนวนงานซ่อมรายเดือน (6 เดือนล่าสุด)</div></div>' +
+            '</div>' +
+            '<span id="trendTotal" class="ac-badge" style="background:rgba(27,154,170,.1);color:#1B9AAA"></span>' +
+          '</div>' +
+          '<div class="ac-body" style="padding-top:8px">' +
+            '<canvas id="cTrend" height="175"></canvas>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+
+      /* Status donut */
+      '<div class="col-xl-3 col-lg-5">' +
+        '<div class="ac" style="height:280px">' +
+          '<div class="ac-head">' +
+            '<div class="ac-title-row">' +
+              '<div class="ac-icon c-amber"><i class="fas fa-chart-donut"></i></div>' +
+              '<div><div class="ac-title">Status Distribution</div><div class="ac-sub">สัดส่วนสถานะงาน</div></div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="ac-body donut-wrap" style="padding-top:8px">' +
+            '<canvas id="cStatus" height="130"></canvas>' +
+            '<div class="donut-center"><div class="donut-center-val" id="donutTotal">—</div><div class="donut-center-lbl">JOBs</div></div>' +
+          '</div>' +
+          '<div id="cStatusLeg" class="legend-grid" style="padding:0 16px 14px"></div>' +
+        '</div>' +
+      '</div>' +
+
+      /* MTTR + KPI metrics */
+      '<div class="col-xl-4">' +
+        '<div class="ac" style="height:280px">' +
+          '<div class="ac-head">' +
+            '<div class="ac-title-row">' +
+              '<div class="ac-icon c-green"><i class="fas fa-stopwatch"></i></div>' +
+              '<div><div class="ac-title">Performance KPIs</div><div class="ac-sub">ตัวชี้วัดประสิทธิภาพ</div></div>' +
+            '</div>' +
+          '</div>' +
+          '<div id="perfMetrics"></div>' +
+        '</div>' +
+      '</div>' +
+
+    '</div>' +
+
+    /* ── Analytics Row 2: Damage + Repeat Equipment ── */
+    '<div class="row g-3 mb-3">' +
+
+      /* Damage code horizontal bar */
+      '<div class="col-xl-5 col-lg-6">' +
+        '<div class="ac">' +
+          '<div class="ac-head">' +
+            '<div class="ac-title-row">' +
+              '<div class="ac-icon c-red"><i class="fas fa-triangle-exclamation"></i></div>' +
+              '<div><div class="ac-title">Top Damage Codes</div><div class="ac-sub">ปัญหาที่พบบ่อยที่สุด</div></div>' +
+            '</div>' +
+            '<span class="ac-badge" style="background:rgba(220,38,38,.08);color:#DC2626">Top 8</span>' +
+          '</div>' +
+          '<div class="ac-body"><canvas id="cDmg" height="200"></canvas></div>' +
+        '</div>' +
+      '</div>' +
+
+      /* Repeat equipment sparkline bars */
+      '<div class="col-xl-4 col-lg-6">' +
+        '<div class="ac">' +
+          '<div class="ac-head">' +
+            '<div class="ac-title-row">' +
+              '<div class="ac-icon c-red"><i class="fas fa-arrows-rotate"></i></div>' +
+              '<div><div class="ac-title">Equipment ซ่อมซ้ำ</div><div class="ac-sub">อุปกรณ์ที่ส่งซ่อมมากกว่า 1 ครั้ง</div></div>' +
+            '</div>' +
+            '<span id="repeatStat" class="ac-badge" style="background:rgba(220,38,38,.08);color:#DC2626"></span>' +
+          '</div>' +
+          '<div class="ac-body" id="repeatBars"></div>' +
+        '</div>' +
+      '</div>' +
+
+      /* Monthly open vs close */
+      '<div class="col-xl-3">' +
+        '<div class="ac">' +
+          '<div class="ac-head">' +
+            '<div class="ac-title-row">' +
+              '<div class="ac-icon c-blue"><i class="fas fa-chart-bar"></i></div>' +
+              '<div><div class="ac-title">Open vs Close</div><div class="ac-sub">งานเปิด-ปิด รายเดือน</div></div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="ac-body"><canvas id="cOvC" height="200"></canvas></div>' +
+        '</div>' +
+      '</div>' +
+
+    '</div>' +
+
+    /* ── Analytics Row 3: Damage Progress + Vendor grouped ── */
+    '<div class="row g-3 mb-3">' +
+
+      /* Damage progress bars */
+      '<div class="col-xl-4 col-lg-6">' +
+        '<div class="ac">' +
+          '<div class="ac-head">' +
+            '<div class="ac-title-row">' +
+              '<div class="ac-icon c-amber"><i class="fas fa-list-check"></i></div>' +
+              '<div><div class="ac-title">Damage Breakdown</div><div class="ac-sub">สัดส่วนปัญหาแต่ละประเภท</div></div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="ac-body" id="dmgProgress"></div>' +
+        '</div>' +
+      '</div>' +
+
+      /* Completion rate gauge */
+      '<div class="col-xl-4 col-lg-6">' +
+        '<div class="ac">' +
+          '<div class="ac-head">' +
+            '<div class="ac-title-row">' +
+              '<div class="ac-icon c-green"><i class="fas fa-circle-check"></i></div>' +
+              '<div><div class="ac-title">Closure Rate</div><div class="ac-sub">อัตราการปิดงานสำเร็จ</div></div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="ac-body" style="padding-top:8px"><canvas id="cRate" height="175"></canvas></div>' +
+          '<div id="rateMetrics" class="metric-row"></div>' +
+        '</div>' +
+      '</div>' +
+
+      /* Vendor stacked bar */
+      '<div class="col-xl-4">' +
+        '<div class="ac">' +
+          '<div class="ac-head">' +
+            '<div class="ac-title-row">' +
+              '<div class="ac-icon c-blue"><i class="fas fa-handshake"></i></div>' +
+              '<div><div class="ac-title">Vendor Performance</div><div class="ac-sub">งานซ่อมแยกตาม Vendor</div></div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="ac-body" style="padding-top:8px"><canvas id="cVdr" height="175"></canvas></div>' +
+        '</div>' +
+      '</div>' +
+
+    '</div>' +
+
+    /* ── Bottom: Active jobs + Repeat panel + Low stock ── */
+    '<div class="row g-3">' +
+      '<div class="col-xl-7">' +
+        '<div class="table-card jobs-table-wrap">' +
+          '<div class="table-header">' +
+            '<div class="table-title"><i class="fas fa-wrench me-2" style="color:#1B9AAA"></i>งานที่ยังค้างอยู่<span id="actCnt" class="act-n"></span></div>' +
+            '<a href="jobs.html" class="btn-outline-rms" style="font-size:.786rem;padding:6px 14px">ดูทั้งหมด →</a>' +
+          '</div>' +
+          '<div id="actTbl"></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="col-xl-5 d-flex flex-column gap-3">' +
+        '<div class="table-card">' +
+          '<div class="table-header"><div class="table-title"><i class="fas fa-exclamation-circle me-2" style="color:#DC2626"></i>Equipment ซ่อมซ้ำ</div></div>' +
+          '<div id="rptPanel" style="max-height:260px;overflow-y:auto"></div>' +
+        '</div>' +
+        '<div class="table-card">' +
+          '<div class="table-header">' +
+            '<div class="table-title"><i class="fas fa-cubes me-2" style="color:#D97706"></i>Low Stock Alert</div>' +
+            '<a href="parts.html" class="btn-outline-rms" style="font-size:.786rem;padding:6px 14px">จัดการ</a>' +
+          '</div>' +
+          '<div id="lstk" style="padding:12px 16px"></div>' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+
+    '</div>' /* .db */
+  );
+}
+
+function _secHead(cls, key, th, sub) {
+  return (
+    '<div class="db-section mb-2">' +
+      '<div class="db-section-badge ' + cls + '">' +
+        '<span class="db-section-dot"></span>' +
+        '<span class="db-section-label">' + key + '</span>' +
+      '</div>' +
+      '<span class="db-section-sub">' + sub + '</span>' +
+      '<div class="db-section-hr"></div>' +
+    '</div>'
+  );
+}
+
+/* ═══════════════════════════════════════════════════════
+   LOAD
+═══════════════════════════════════════════════════════ */
+async function _load() {
+  _panels();
+  var dL = _localData();
+  if (dL) { _kpis(dL); _charts(dL); }
+  if (typeof RMS !== 'undefined' && RMS.USE_GAS) {
+    try { var g = await DataStore.getDashboard(); if (g && g.success) { _kpis(g); _charts(g); } }
+    catch(e) { console.warn('GAS:', e.message); }
+  }
+  var t = new Date(), el = document.getElementById('dbTs');
+  if (el) el.textContent = 'Live · อัปเดต ' + t.toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
+}
+
+/* ── Helpers ── */
+function _jbs() {
+  var j = _localJobs.filter(function(x){return x&&x.JOB_No&&x.JOB_No.trim();});
+  if (!j.length && typeof SAMPLE_JOBS_RAW !== 'undefined')
+    j = SAMPLE_JOBS_RAW.map(function(x){return Object.assign({},x);});
+  return j;
+}
+function _ns(s) { return (s||'').trim().replace(/ /g,'_').toUpperCase(); }
+function _rgba(hex, a) {
+  if (!hex||!hex.startsWith('#')) return 'rgba(0,0,0,'+a+')';
+  var r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
+  return 'rgba('+r+','+g+','+b+','+a+')';
+}
+
+function _localData() {
+  var js=_jbs(), cnt={};
+  js.forEach(function(j){ var s=_ns(j.Status); cnt[s]=(cnt[s]||0)+1; });
+  /* monthly */
+  var a12=Array(12).fill(0), c12=Array(12).fill(0), yr=new Date().getFullYear();
+  js.forEach(function(j){
+    if(j.Create_Date){var d=new Date(j.Create_Date);if(!isNaN(d)&&d.getFullYear()===yr)a12[d.getMonth()]++;}
+    if(j.Close_Date||j.Actual_Close){var cl=new Date(j.Close_Date||j.Actual_Close);if(!isNaN(cl)&&cl.getFullYear()===yr)c12[cl.getMonth()]++;}
+  });
+  /* MTTR */
+  var diffs=[];
+  js.forEach(function(j){
+    if(j.Status==='CLOSED'&&j.Create_Date&&(j.Close_Date||j.Actual_Close)){
+      try{var diff=(new Date(j.Close_Date||j.Actual_Close)-new Date(j.Create_Date))/86400000; if(diff>=0)diffs.push(diff);}catch(e){}
+    }
+  });
+  var mttr=diffs.length?+(diffs.reduce(function(s,v){return s+v;},0)/diffs.length).toFixed(1):0;
+  /* damage */
+  var dmg={};
+  js.forEach(function(j){if(j.Damage_Code)dmg[j.Damage_Code]=(dmg[j.Damage_Code]||0)+1;});
+  var topDmg=Object.entries(dmg).sort(function(a,b){return b[1]-a[1];}).slice(0,8);
+  /* equip */
+  var eqC={};
+  js.forEach(function(j){if(j.Equipment_ID)eqC[j.Equipment_ID]=(eqC[j.Equipment_ID]||0)+1;});
+  var MN=['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
+  var nm=new Date().getMonth(), lbl=[], open6=[], close6=[];
+  for(var i=5;i>=0;i--){var m=(nm-i+12)%12;lbl.push(MN[m]);open6.push(a12[m]);close6.push(c12[m]);}
+  return {
+    success:true, mttr:mttr,
+    stats:{total:js.length,CLOSED:cnt.CLOSED||0,IN_PROGRESS:cnt.SEND_REPAIR||0,
+      SEND_REPAIR:cnt.SEND_REPAIR||0,WAIT_PARTS:(cnt.WAIT_PARTS||0)+(cnt.WAIT_SPARE_PART||0),
+      REWORK:cnt.REWORK||0,RETURNED:cnt.RETURNED||0,WAIT_APPROVAL:cnt.WAIT_APPROVAL||0},
+    monthlyTrend:{labels:lbl,open:open6,close:close6},
+    topDmg:topDmg, eqCount:eqC,
+  };
+}
+
+/* ═══════════════════════════════════════════════════════
+   RENDER KPIs
+═══════════════════════════════════════════════════════ */
+function _kpis(d) {
+  var s=d.stats||{}, js=_jbs(), sc={}, eqC={}, eqS={};
+  js.forEach(function(j){var st=_ns(j.Status);sc[st]=(sc[st]||0)+1;});
+  js.forEach(function(j){if(j.Equipment_ID)eqC[j.Equipment_ID]=(eqC[j.Equipment_ID]||0)+1;});
+  js.forEach(function(j){
+    if(!j.Equipment_ID)return;
+    var st=_ns(j.Status);if(!eqS[st])eqS[st]={};eqS[st][j.Equipment_ID]=1;
+  });
+  function uEq(k){return Object.keys(eqS[k]||{}).length;}
+  function jv(k){return s[k]!==undefined?s[k]:(sc[k]||0);}
+
+  var Jt=(s.total!==undefined&&s.total>0)?s.total:js.length;
+  var Jc=jv('CLOSED'), Ji=jv('SEND_REPAIR');
+  var Jr=js.filter(function(j){return eqC[j.Equipment_ID]>1;}).length;
+  var Et=Object.keys(eqC).length, Ec=uEq('CLOSED'), Ei=uEq('SEND_REPAIR');
+  var Er=Object.values(eqC).filter(function(c){return c>1;}).length;
+  var Wsr=jv('SEND_REPAIR'), Wwp=jv('WAIT_PARTS')+(sc.WAIT_SPARE_PART||0);
+  var Wrw=jv('REWORK'), Wrt=jv('RETURNED');
+
+  var r1=document.getElementById('kR1');
+  if(r1) r1.innerHTML=[
+    /* Total: stacked layers = work orders stack */
+    _kc('#0F4C81','fa-layer-group',  'งานทั้งหมด',    Jt,  'Total Work Orders',           'jobs.html'),
+    /* Closed: circle-check = done/verified */
+    _kc('#16A34A','fa-circle-check', 'ปิดงานแล้ว',   Jc,  'Closed — งานสำเร็จ',          'jobs.html?status=CLOSED'),
+    /* InProgress: gear spinning = active work */
+    _kc('#3B82F6','fa-gear',         'กำลังดำเนินการ',Ji,  'In Progress — กำลังซ่อม',     'jobs.html?status=SEND_REPAIR'),
+    /* Repeat: arrows-rotate = recurring loop */
+    _kc('#DC2626','fa-arrows-rotate','ซ่อมซ้ำ',       Jr,  'Repeat — '+Jr+' JOBs / '+Object.values(eqC).filter(function(c){return c>1;}).length+' Equip',
+      'jobs.html?status=REPEAT', true),
+  ].join('');
+
+  var r2=document.getElementById('kR2');
+  if(r2) r2.innerHTML=[
+    /* Total equip: cpu/chip = equipment */
+    _kc('#0F4C81','fa-microchip',    'อุปกรณ์ทั้งหมด',Et, 'Unique Equipment IDs',         'jobs.html'),
+    /* Closed equip: shield-check = protected/done */
+    _kc('#16A34A','fa-shield-check', 'ปิดงานแล้ว',   Ec, 'Equip ที่มี JOB ปิดแล้ว',      'jobs.html?status=CLOSED'),
+    /* InProgress equip: wrench = being repaired */
+    _kc('#3B82F6','fa-wrench',       'กำลังดำเนินการ',Ei, 'Equip ที่ยังซ่อมอยู่',         'jobs.html?status=SEND_REPAIR'),
+    /* Repeat equip: triangle-exclamation = alert */
+    _kc('#DC2626','fa-triangle-exclamation','ซ่อมซ้ำ', Er, 'Equipment ที่มี > 1 JOB',     'jobs.html?status=REPEAT', true),
+  ].join('');
+
+  var r3=document.getElementById('kR3');
+  if(r3) r3.innerHTML=[
+    /* Send repair: truck = shipping out */
+    _kc('#0284C7','fa-truck-fast',   'ส่งซ่อม',       Wsr, 'Send Repair — ส่งออกซ่อม',   'jobs.html?status=SEND_REPAIR'),
+    /* Wait parts: cube = spare part box */
+    _kc('#F59E0B','fa-cube',         'รอ Spare Part', Wwp, 'Wait Parts — รอชิ้นส่วน',     'jobs.html?status=WAIT_PARTS'),
+    /* Rework: screwdriver-wrench = redo work */
+    _kc('#7C3AED','fa-screwdriver-wrench','Rework',   Wrw, 'Rework — งานส่งซ่อมใหม่',     'jobs.html?status=REWORK'),
+    /* Returned: arrow-turn-left = sent back */
+    _kc('#D97706','fa-arrow-turn-up','ส่งกลับ',       Wrt, 'Returned — ส่งคืนเครื่อง',   'jobs.html?status=RETURNED'),
+  ].join('');
+}
+
+function _kc(color, icon, label, val, desc, href, danger) {
+  var n    = Number(val);
+  var isDgr = danger === true && n > 0;
+  var zero  = n === 0;
+  var vClr  = zero ? '#CBD5E1' : color;
+  var icoBg = color.startsWith('var') ? 'rgba(15,76,129,.12)' : _rgba(color, zero?.05:.12);
+  var icoClr= zero ? '#94A3B8' : color;
+  /* icon: wrap + sub-detail icon */
+  var iconHTML = (
+    '<div class="kc-icon" style="background:'+icoBg+';color:'+icoClr+'">' +
+      '<i class="fas '+icon+'" style="font-size:.9rem;filter:drop-shadow(0 1px 1px rgba(0,0,0,.08))"></i>' +
+    '</div>'
+  );
+  /* badge */
+  var badge = isDgr
+    ? '<span class="kc-trend" style="background:'+_rgba(color,.1)+';color:'+color+'">' +
+        '<i class="fas fa-circle" style="font-size:.35rem"></i>ต้องดูแล</span>'
+    : '';
+  /* value — format with comma if ≥1000 */
+  var displayVal = isNaN(n) ? '—' : (n >= 1000 ? n.toLocaleString() : val);
+  return (
+    '<div class="col-xl-3 col-md-6 col-6">' +
+    '<a href="'+href+'" class="kc'+(isDgr?' kc-warn':'')+'" style="text-decoration:none">' +
+      '<div class="kc-accent" style="background:'+(zero?'#F1F5F9':color)+'"></div>' +
+      '<div class="kc-body">' +
+        '<div class="kc-row1">' +
+          iconHTML + badge +
+        '</div>' +
+        '<div class="kc-val'+(zero?' dim':'')+'" style="color:'+vClr+'">'+displayVal+'</div>' +
+        '<div class="kc-lbl">'+label+'</div>' +
+        '<div class="kc-desc">'+desc+'</div>' +
+      '</div>' +
+    '</a></div>'
+  );
+}
+/* ═══════════════════════════════════════════════════════
+   CHARTS
+═══════════════════════════════════════════════════════ */
+function _mc(id, type, labels, datasets, opts) {
+  var ctx=document.getElementById(id); if(!ctx)return;
+  if(_C[id]){try{_C[id].destroy();}catch(e){}}
+  var o={responsive:true,maintainAspectRatio:false,animation:{duration:500},plugins:{legend:{display:false}}};
+  if(type==='line'||type==='bar'){
+    o.scales={
+      x:{grid:{display:false},ticks:{color:'#94A3B8',font:{size:10,family:'Inter'},maxRotation:0}},
+      y:{grid:{color:'rgba(0,0,0,.04)',drawBorder:false},ticks:{color:'#94A3B8',font:{size:10,family:'Inter'}},beginAtZero:true,border:{display:false}},
+    };
+    if(opts&&opts.stacked){o.scales.x.stacked=true;o.scales.y.stacked=true;}
+    if(opts&&opts.indexAxis)o.indexAxis=opts.indexAxis;
+    if(opts&&opts.y_suggestedMax)o.scales.y.suggestedMax=opts.y_suggestedMax;
+  }
+  if(type==='doughnut')o.cutout='68%';
+  if(opts&&opts.legend)o.plugins.legend={display:true,position:'bottom',labels:{boxWidth:10,font:{size:10,family:'Inter'},color:'#64748B',padding:12}};
+  if(opts&&opts.tip)o.plugins.tooltip=opts.tip;
+  _C[id]=new Chart(ctx,{type:type,data:{labels:labels,datasets:datasets},options:o});
+}
+
+function _charts(d) {
+  var js=_jbs(), tr=d.monthlyTrend||{labels:[],open:[],close:[]};
+
+  /* 1. Trend line */
+  _mc('cTrend','line',tr.labels,[{
+    label:'เปิดงาน',data:tr.open,
+    borderColor:'#1B9AAA',backgroundColor:'rgba(27,154,170,.08)',
+    fill:true,tension:.4,borderWidth:2.5,
+    pointBackgroundColor:'#1B9AAA',pointBorderColor:'#fff',pointBorderWidth:2.5,
+    pointRadius:4.5,pointHoverRadius:7,
+  }],{tip:{callbacks:{title:function(i){return i[0]?i[0].label:'';},label:function(i){return ' '+i.parsed.y+' งาน';}}}});
+  var tot=document.getElementById('trendTotal');
+  if(tot){var sm=tr.open.reduce(function(a,b){return a+b;},0);tot.textContent=sm+' งาน 6 เดือน';}
+
+  /* 2. Status donut */
+  var sc={};
+  js.forEach(function(j){var s=_ns(j.Status);sc[s]=(sc[s]||0)+1;});
+  var sl=[
+    {l:'Closed',      v:sc.CLOSED||0,                              c:'#16A34A'},
+    {l:'Send Repair', v:sc.SEND_REPAIR||0,                        c:'#0284C7'},
+    {l:'In Progress', v:sc.SEND_REPAIR||0,                        c:'#3B82F6'},
+    {l:'Wait Parts',  v:(sc.WAIT_PARTS||0)+(sc.WAIT_SPARE_PART||0),c:'#F59E0B'},
+    {l:'Rework',      v:sc.REWORK||0,                             c:'#7C3AED'},
+    {l:'Returned',    v:sc.RETURNED||0,                           c:'#D97706'},
+  ].filter(function(s){return s.v>0;});
+  if(!sl.length)sl=[{l:'ไม่มีข้อมูล',v:1,c:'#E2E8F0'}];
+  _mc('cStatus','doughnut',sl.map(function(s){return s.l;}),
+    [{data:sl.map(function(s){return s.v;}),backgroundColor:sl.map(function(s){return s.c;}),borderWidth:3,borderColor:'#fff',hoverOffset:6}],{});
+  var dTot=document.getElementById('donutTotal'); if(dTot)dTot.textContent=js.length;
+  var leg=document.getElementById('cStatusLeg');
+  if(leg)leg.innerHTML=sl.map(function(s){return '<div class="legend-item"><span class="legend-dot" style="background:'+s.c+'"></span><span class="legend-name">'+s.l+'</span><span class="legend-val">'+s.v+'</span></div>';}).join('');
+
+  /* 3. Performance metrics */
+  var closed=js.filter(function(j){return j.Status==='CLOSED';}).length;
+  var total=js.length;
+  var closeRate=total>0?Math.round(closed/total*100):0;
+  var eqC={};
+  js.forEach(function(j){if(j.Equipment_ID)eqC[j.Equipment_ID]=(eqC[j.Equipment_ID]||0)+1;});
+  var repEq=Object.values(eqC).filter(function(c){return c>1;}).length;
+  var repJobs=js.filter(function(j){return eqC[j.Equipment_ID]>1;}).length;
+  var realJobs=total-repJobs;
+  var perf=document.getElementById('perfMetrics');
+  if(perf)perf.innerHTML=(
+    '<div class="metric-row">' +
+      _metricItem((d.mttr||0)+'d','MTTR เฉลี่ย') +
+      _metricItem(closeRate+'%','Close Rate') +
+    '</div>' +
+    '<div class="metric-row">' +
+      _metricItem(realJobs,'งานซ่อมจริง') +
+      _metricItem(repEq+' เครื่อง','Repeat Equip') +
+    '</div>' +
+    '<div class="metric-row">' +
+      _metricItem(total,'Total JOBs') +
+      _metricItem(closed,'Closed') +
+    '</div>'
+  );
+
+  /* 4. Top damage codes horizontal bar */
+  var topD=d.topDmg||(function(){var dm={};js.forEach(function(j){if(j.Damage_Code)dm[j.Damage_Code]=(dm[j.Damage_Code]||0)+1;});return Object.entries(dm).sort(function(a,b){return b[1]-a[1];}).slice(0,8);})();
+  if(topD.length)_mc('cDmg','bar',
+    topD.map(function(x){return x[0].length>22?x[0].slice(0,21)+'…':x[0];}),
+    [{label:'ครั้ง',data:topD.map(function(x){return x[1];}),
+      backgroundColor:topD.map(function(_,i){return ['rgba(220,38,38,.7)','rgba(220,38,38,.6)','rgba(220,38,38,.5)','rgba(220,38,38,.4)','rgba(220,38,38,.35)','rgba(220,38,38,.3)','rgba(220,38,38,.25)','rgba(220,38,38,.2)'][i]||'rgba(220,38,38,.2)';}),
+      borderRadius:5,barThickness:14}],
+    {indexAxis:'y',tip:{callbacks:{label:function(i){return ' '+i.parsed.x+' ครั้ง';}}}});
+
+  /* 5. Repeat equipment spark bars */
+  var repData=Object.entries(d.eqCount||eqC).filter(function(x){return x[1]>1;}).sort(function(a,b){return b[1]-a[1];}).slice(0,8);
+  var maxRep=repData.length?repData[0][1]:1;
+  var rb=document.getElementById('repeatBars');
+  var rs=document.getElementById('repeatStat');
+  if(rs)rs.textContent=repData.length+' เครื่อง';
+  if(rb)rb.innerHTML=repData.map(function(item){
+    var eq=item[0],n=item[1],pct=Math.round(n/maxRep*100);
+    var col=n>=3?'#DC2626':n>=2?'#D97706':'#1B9AAA';
+    var openJ=js.filter(function(j){return j.Equipment_ID===eq&&_ns(j.Status)!=='CLOSED';}).length;
+    return '<div class="spark-row">' +
+      '<span class="spark-eq">'+eq+'</span>' +
+      '<div class="spark-bar-wrap"><div class="spark-bar-fill" style="width:'+pct+'%;background:'+col+'"></div></div>' +
+      '<span class="spark-cnt" style="color:'+col+'">'+n+'</span>' +
+      '<span class="spark-tag" style="background:'+_rgba(col,.1)+';color:'+col+'">'+(openJ>0?openJ+' ค้าง':'ปิดแล้ว')+'</span>' +
+    '</div>';
+  }).join('');
+
+  /* 6. Open vs Close grouped bar */
+  _mc('cOvC','bar',tr.labels,
+    [{label:'เปิดงาน',data:tr.open,backgroundColor:'rgba(15,76,129,.6)',borderRadius:4,borderSkipped:false},
+     {label:'ปิดงาน', data:tr.close,backgroundColor:'rgba(22,163,74,.6)',borderRadius:4,borderSkipped:false}],
+    {legend:true});
+
+  /* 7. Damage progress bars (proportion) */
+  var dmTotal=topD.reduce(function(a,b){return a+b[1];},0)||1;
+  var colors=['#DC2626','#D97706','#3B82F6','#0284C7','#16A34A','#7C3AED','#F59E0B','#1B9AAA'];
+  var dp=document.getElementById('dmgProgress');
+  if(dp)dp.innerHTML=topD.map(function(x,i){
+    var pct=Math.round(x[1]/dmTotal*100);
+    var c=colors[i%colors.length];
+    return '<div class="prog-row">' +
+      '<span class="prog-label" title="'+x[0]+'">'+x[0]+'</span>' +
+      '<div class="prog-bar"><div class="prog-fill" style="width:'+pct+'%;background:'+c+'"></div></div>' +
+      '<span class="prog-num">'+x[1]+'</span>' +
+    '</div>';
+  }).join('');
+
+  /* 8. Closure rate polar / doughnut gauge */
+  _mc('cRate','doughnut',['ปิดแล้ว','ยังค้าง'],
+    [{data:[closed,total-closed],backgroundColor:['#16A34A','#F1F5F9'],borderWidth:0,hoverOffset:0}],
+    {});
+  var rm=document.getElementById('rateMetrics');
+  if(rm)rm.innerHTML=(
+    _metricItem(closeRate+'%','Close Rate') +
+    _metricItem(d.mttr||0+'d','MTTR') +
+    _metricItem(realJobs,'Real JOBs')
+  );
+
+  /* 9. Vendor */
+  var vnd=typeof SAMPLE_VENDORS!=='undefined'?SAMPLE_VENDORS:[];
+  if(vnd.length)_mc('cVdr','bar',
+    vnd.map(function(v){return (v.Vendor_Name||'').replace('บริษัท ','').slice(0,14);}),
+    [{label:'ทั้งหมด',data:vnd.map(function(v){return js.filter(function(j){return j.Vendor_ID===v.Vendor_ID;}).length;}),backgroundColor:'rgba(15,76,129,.55)',borderRadius:4},
+     {label:'ปิดแล้ว',data:vnd.map(function(v){return js.filter(function(j){return j.Vendor_ID===v.Vendor_ID&&j.Status==='CLOSED';}).length;}),backgroundColor:'rgba(22,163,74,.65)',borderRadius:4}],
+    {legend:true,stacked:false});
+}
+
+function _metricItem(val,lbl) {
+  return '<div class="metric-item"><div class="metric-val">'+val+'</div><div class="metric-lbl">'+lbl+'</div></div>';
+}
+
+/* ═══════════════════════════════════════════════════════
+   PANELS
+═══════════════════════════════════════════════════════ */
+function _panels() { _act(); _rpt(); _lst(); }
+
+function _act() {
+  var el=document.getElementById('actTbl'),ct=document.getElementById('actCnt');
+  if(!el)return;
+  var list=_jbs().filter(function(j){return _ns(j.Status)!=='CLOSED';})
+    .sort(function(a,b){return (b.Create_Date||'').localeCompare(a.Create_Date||'');});
+  if(ct)ct.textContent=list.length;
+  if(!list.length){el.innerHTML='<div class="db-empty"><i class="fas fa-check-circle" style="color:#16A34A"></i><p>ไม่มีงานค้าง — ทุกอย่างเรียบร้อย</p></div>';return;}
+  el.innerHTML='<div class="table-responsive"><table class="table table-hover mb-0 align-middle">' +
+    '<thead><tr><th class="th-j">JOB No</th><th class="th-j">Equipment</th><th class="th-j">อาการ</th><th class="th-j">Status</th><th class="th-j">วันที่รับ</th></tr></thead><tbody id="tBd">' +
+    list.map(function(j){
+      return '<tr data-jno="'+j.JOB_No+'" class="tr-j">' +
+        '<td class="td-j"><span class="jno">'+j.JOB_No+'</span><span class="jwo">WO: '+(j.Work_Order||'—')+'</span></td>' +
+        '<td class="td-j"><span class="eq-c">'+(j.Equipment_ID||'—')+'</span></td>' +
+        '<td class="td-j td-dmg" title="'+(j.Damage_Code||'')+'">'+(j.Damage_Code||'—')+'</td>' +
+        '<td class="td-j">'+UI.statusBadge(j.Status)+'</td>' +
+        '<td class="td-j td-dt">'+(j.Create_Date||'—')+'</td></tr>';
+    }).join('')+'</tbody></table></div>';
+  var tb=document.querySelector('#tBd');
+  if(tb)tb.addEventListener('click',function(e){var r=e.target.closest('tr[data-jno]');if(r)window.location.href='jobs.html?view='+r.dataset.jno;});
+}
+
+function _rpt() {
+  var el=document.getElementById('rptPanel'); if(!el)return;
+  var eqC={};
+  _localJobs.forEach(function(j){if(j.Equipment_ID&&j.JOB_No)eqC[j.Equipment_ID]=(eqC[j.Equipment_ID]||0)+1;});
+  var list=Object.entries(eqC).filter(function(x){return x[1]>1;}).sort(function(a,b){return b[1]-a[1];}).slice(0,8);
+  if(!list.length){el.innerHTML='<div class="db-empty"><i class="fas fa-check-circle" style="color:#16A34A"></i><p>ไม่มีอุปกรณ์ซ่อมซ้ำ</p></div>';return;}
+  el.innerHTML=list.map(function(it){
+    var eq=it[0],n=it[1];
+    var eqJs=_localJobs.filter(function(j){return j.Equipment_ID===eq&&j.JOB_No;});
+    var open=eqJs.filter(function(j){return _ns(j.Status)!=='CLOSED';});
+    return '<div class="rp-item"><div class="d-flex justify-content-between align-items-center mb-2">' +
+      '<span class="rp-eqid">'+eq+'</span>' +
+      '<span class="rp-n">'+n+' ครั้ง'+(open.length?'<span class="rp-pill">'+open.length+' ค้าง</span>':'')+'</span>' +
+      '</div><div>'+eqJs.map(function(j){
+        var o=open.indexOf(j)>=0;
+        return '<span class="rp-jno'+(o?' op':'')+'" data-jno="'+j.JOB_No+'">'+j.JOB_No+'</span>';
+      }).join('')+'</div></div>';
+  }).join('');
+  el.addEventListener('click',function(e){var s=e.target.closest('[data-jno]');if(s)window.location.href='jobs.html?view='+s.dataset.jno;});
+}
+
+function _lst() {
+  var el=document.getElementById('lstk'); if(!el)return;
+  var low=_localParts.filter(function(p){return parseFloat(p.Current_Stock||0)<=parseFloat(p.Min_Stock||0);});
+  if(!low.length){el.innerHTML='<div class="db-empty" style="padding:20px"><i class="fas fa-check-circle" style="color:#16A34A"></i><p>สต๊อกปกติ</p></div>';return;}
+  el.innerHTML=low.slice(0,5).map(function(p){
+    var cur=parseFloat(p.Current_Stock||0),mn=parseFloat(p.Min_Stock||0),mx=parseFloat(p.Max_Stock||50);
+    var pct=Math.min(100,Math.round(cur/Math.max(mx,1)*100));
+    var c=cur<=0?'#DC2626':cur<=mn?'#F59E0B':'#16A34A';
+    return '<div class="ls-row"><div style="flex:1;min-width:0"><div class="ls-nm">'+(p.Part_Name||p.Part_Code||'—')+'</div>' +
+      '<div class="ls-bar"><div class="ls-fill" style="width:'+pct+'%;background:'+c+'"></div></div></div>' +
+      '<div class="ls-n" style="color:'+c+'">'+cur+'<span class="ls-u">/'+mn+' '+(p.Unit||'PC')+'</span></div></div>';
+  }).join('');
+}
+</script>
+
+</body>
+</html>
