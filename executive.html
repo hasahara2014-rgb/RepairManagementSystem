@@ -942,14 +942,14 @@ async function loadExec() {
       +'</div></div>';
   }).join('');
 
-  requestAnimationFrame(function(){ requestAnimationFrame(function(){
+  setTimeout(function(){
     _exTrend(jobs);
     _exStatus(jobs);
     _exPriority(jobs);
     _exVendor(jobs);
     _exRepeat();
     _exInProg(inProg);
-  }); });
+  }, 50);
 
   } catch(err) {
     console.error("loadExec:", err);

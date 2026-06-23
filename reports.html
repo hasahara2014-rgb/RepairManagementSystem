@@ -941,9 +941,9 @@ function renderAllReports() {
   var inProg   = jobs.filter(function(j){ return j.Status==='SEND_REPAIR'; });
   var eqCnt    = {};
   _localJobs.forEach(function(j){ if(j.Equipment_ID) eqCnt[j.Equipment_ID]=(eqCnt[j.Equipment_ID]||0)+1; });
-  var repeatCnt = Object.values(eqCnt).filter(function(c){ return c>1;
+  var repeatCnt = Object.values(eqCnt).filter(function(c){ return c>1; }).length;
   var repeatJobCnt2 = jobs.filter(function(j){ return eqCnt[j.Equipment_ID]>1; }).length;
-  var realJobs = jobs.length - repeatJobCnt2; }).length;
+  var realJobs = jobs.length - repeatJobCnt2;
   var withDates = closed.filter(function(j){ return j.Create_Date&&j.Close_Date; });
   var mttr = withDates.length ? parseFloat((withDates.reduce(function(s,j){ return s+(new Date(j.Close_Date)-new Date(j.Create_Date))/86400000; },0)/withDates.length).toFixed(1)) : 0;
   
