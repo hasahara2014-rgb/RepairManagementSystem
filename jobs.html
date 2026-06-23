@@ -817,6 +817,73 @@ function renderPageShell(title, content, actions) {
     tc.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none;';
     document.body.appendChild(tc);
   }
+
+  // Modals (jobModal, viewModal, statusModal)
+  if (!document.getElementById('jobModal')) {
+    var modalsDiv = document.createElement('div');
+    modalsDiv.innerHTML = [
+      /* ── JOB CREATE / EDIT MODAL ── */
+      '<div class="modal fade" id="jobModal" tabindex="-1" aria-labelledby="jobModalTitle" aria-hidden="true">',
+        '<div class="modal-dialog modal-xl modal-dialog-scrollable">',
+          '<div class="modal-content">',
+            '<div class="modal-header modal-header-rms">',
+              '<h5 class="modal-title" id="jobModalTitle"><i class="fas fa-plus-circle me-2"></i>สร้างงานซ่อมใหม่</h5>',
+              '<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>',
+            '</div>',
+            '<div class="modal-body" id="jobFormBody">',
+              '<div class="text-center py-5"><div class="spinner-border" style="color:var(--secondary)"></div></div>',
+            '</div>',
+            '<div class="modal-footer">',
+              '<button type="button" class="btn-outline-rms" data-bs-dismiss="modal"><i class="fas fa-times me-1"></i>ยกเลิก</button>',
+              '<button type="button" class="btn-primary-rms" id="saveJobBtn" onclick="saveJob()"><i class="fas fa-save me-1"></i>บันทึก</button>',
+            '</div>',
+          '</div>',
+        '</div>',
+      '</div>',
+
+      /* ── VIEW JOB MODAL ── */
+      '<div class="modal fade" id="viewModal" tabindex="-1" aria-labelledby="viewModalTitle" aria-hidden="true">',
+        '<div class="modal-dialog modal-lg modal-dialog-scrollable">',
+          '<div class="modal-content">',
+            '<div class="modal-header modal-header-rms">',
+              '<h5 class="modal-title" id="viewModalTitle"><i class="fas fa-tools me-2"></i>รายละเอียดงาน</h5>',
+              '<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>',
+            '</div>',
+            '<div class="modal-body" id="viewBody">',
+              '<div class="text-center py-5"><div class="spinner-border" style="color:var(--secondary)"></div></div>',
+            '</div>',
+            '<div class="modal-footer">',
+              '<button type="button" class="btn-outline-rms" data-bs-dismiss="modal"><i class="fas fa-times me-1"></i>ปิด</button>',
+              '<button type="button" class="btn-primary-rms" onclick="_hideModal(\'viewModal\');setTimeout(function(){editJob(_viewJobNo);},200)"><i class="fas fa-pen me-1"></i>แก้ไข</button>',
+            '</div>',
+          '</div>',
+        '</div>',
+      '</div>',
+
+      /* ── STATUS CHANGE MODAL ── */
+      '<div class="modal fade" id="statusModal" tabindex="-1" aria-labelledby="statusModalLabel" aria-hidden="true">',
+        '<div class="modal-dialog modal-sm">',
+          '<div class="modal-content">',
+            '<div class="modal-header modal-header-rms">',
+              '<h5 class="modal-title" id="statusModalLabel"><i class="fas fa-exchange-alt me-2"></i>เปลี่ยนสถานะ</h5>',
+              '<button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>',
+            '</div>',
+            '<div class="modal-body">',
+              '<input type="hidden" id="statusJobNo">',
+              '<div class="mb-3"><label class="form-label fw-600">งาน: <span id="statusJobLabel" style="color:var(--primary);font-family:monospace"></span></label></div>',
+              '<div class="mb-3"><label class="form-label">สถานะใหม่ <span class="required-star">*</span></label><select class="form-select" id="newStatusSel"></select></div>',
+              '<div class="mb-2"><label class="form-label">หมายเหตุ</label><textarea class="form-control" id="statusRemark" rows="2" placeholder="หมายเหตุ (ถ้ามี)"></textarea></div>',
+            '</div>',
+            '<div class="modal-footer">',
+              '<button type="button" class="btn-outline-rms" data-bs-dismiss="modal"><i class="fas fa-times me-1"></i>ยกเลิก</button>',
+              '<button type="button" class="btn-primary-rms" onclick="confirmStatus()"><i class="fas fa-check me-1"></i>ยืนยัน</button>',
+            '</div>',
+          '</div>',
+        '</div>',
+      '</div>',
+    ].join('');
+    document.body.appendChild(modalsDiv);
+  }
 }
 
 /* ── SIDEBAR TOGGLE ─────────────────────────────────────────── */
@@ -1432,100 +1499,4 @@ async function viewJob(id) {
       var bold = r[4]?';font-weight:700;color:var(--primary)':'';
       html += '<div class="'+cls+'"><label class="form-label">'+r[0]+'</label>' +
         '<div style="padding:7px 11px;background:var(--gray-50);border:1.5px solid var(--gray-200);border-radius:var(--radius-sm);font-size:.82rem;min-height:34px;color:var(--gray-700)'+(r[2]?';font-family:monospace':'')+bold+'">'+(r[1]||'—')+'</div></div>';
-    });
-
-    if (sameEq.length) {
-      html += '<div class="col-12"><label class="form-label">งานซ่อมอื่นของ Equipment นี้ (' + j.Equipment_ID + ')</label>' +
-        '<div style="padding:10px 12px;background:rgba(220,38,38,.04);border:1px solid rgba(220,38,38,.15);border-radius:var(--radius-sm)">';
-      sameEq.forEach(function(x) {
-        html += '<span class="view-related-job" data-jno="'+x.JOB_No+'" style="display:inline-block;margin:3px;font-family:monospace;font-size:.75rem;font-weight:600;color:var(--primary);background:var(--gray-100);padding:3px 9px;border-radius:4px;cursor:pointer;border:1px solid var(--gray-200)">' + x.JOB_No + ' (' + (x.Status||'') + ')</span>';
-      });
-      html += '</div></div>';
-    }
-
-    html += '</div>';
-    if (body) {
-      body.innerHTML = html;
-      body.addEventListener('click', function(e) {
-        var s = e.target.closest('.view-related-job[data-jno]');
-        if (s) { _hideModal('viewModal'); setTimeout(function(){ viewJob(s.dataset.jno); },200); }
-      });
-    }
-  } catch(err) {
-    if (body) body.innerHTML = '<div class="alert alert-danger">'+err.message+'</div>';
-  }
-}
-
-/* ── STATUS MODAL ── */
-function openStatusModal(id, curStatus) {
-  var el = document.getElementById('statusJobNo');
-  if (el) el.value = id;
-  var cur  = (curStatus||'').replace(/ /g,'_').toUpperCase();
-  var next = STATUS_FLOW[cur] || Object.keys(STATUS_CFG);
-  var sel  = document.getElementById('newStatusSel');
-  if (sel) sel.innerHTML = next.map(function(s){
-    return '<option value="'+s+'">'+(STATUS_CFG[s]?STATUS_CFG[s].label:s)+'</option>';
-  }).join('');
-  var rm = document.getElementById('statusRemark');
-  if (rm) rm.value = '';
-  var lbl = document.getElementById('statusJobLabel');
-  if (lbl) lbl.textContent = id;
-  _showModal('statusModal');
-}
-
-async function confirmStatus() {
-  var id     = (document.getElementById('statusJobNo')||{}).value;
-  var status = (document.getElementById('newStatusSel')||{}).value;
-  var remark = (document.getElementById('statusRemark')||{}).value;
-  if (!id||!status) return;
-  try {
-    var res = await DataStore.updateStatus(id, status, remark);
-    if (res&&res.success!==false) {
-      UI.toast('อัปเดตสถานะ '+id+' สำเร็จ','success');
-      _hideModal('statusModal');
-      loadJobs();
-    } else {
-      UI.toast((res&&res.error)||'เกิดข้อผิดพลาด','danger');
-    }
-  } catch(err) { UI.toast('Error: '+err.message,'danger'); }
-}
-
-/* ── DELETE ── */
-async function deleteJob(id) {
-  UI.confirm('ยืนยันลบงาน ' + id + '?\nการลบไม่สามารถย้อนกลับได้', async function() {
-    try {
-      var res = await DataStore.deleteJob(id);
-      if (res&&res.success!==false) { UI.toast('ลบงาน '+id+' สำเร็จ','success'); loadJobs(); }
-      else UI.toast((res&&res.error)||'เกิดข้อผิดพลาด','danger');
-    } catch(err) { UI.toast('Error: '+err.message,'danger'); }
-  });
-}
-
-/* ── EXPORT CSV ── */
-async function exportCSV() {
-  try {
-    var jobs = await DataStore.getJobs(_currentFilter);
-    if (!jobs || !jobs.length) { UI.toast('ไม่มีข้อมูลสำหรับ Export','warning'); return; }
-    var headers = ['JOB_No','Work_Order','Refurbishment_Order','Receive_No','Equipment_ID',
-      'Material_ID','Serial_No','Asset_Tag','Status','Priority','Branch_ID',
-      'Vendor_ID','Damage_Code','Cause','Repair_Action','Create_Date','Close_Date',
-      'Labor_Cost','Parts_Cost','Total_Cost','Remark'];
-    var csv = headers.join(',') + '\n';
-    jobs.forEach(function(j) {
-      csv += headers.map(function(h){
-        var v = j[h] != null ? String(j[h]) : '';
-        return '"' + v.replace(/"/g,'""') + '"';
-      }).join(',') + '\n';
-    });
-    var blob = new Blob(['\uFEFF' + csv], { type: 'text/csv;charset=utf-8;' });
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement('a');
-    a.href = url; a.download = 'RMS_Jobs_' + new Date().toISOString().slice(0,10) + '.csv';
-    document.body.appendChild(a); a.click();
-    document.body.removeChild(a); URL.revokeObjectURL(url);
-    UI.toast('Export CSV สำเร็จ (' + jobs.length + ' รายการ)', 'success');
-  } catch(err) { UI.toast('Export Error: ' + err.message, 'danger'); }
-}
-</script>
-</body>
-</html>
+ 
