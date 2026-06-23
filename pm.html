@@ -420,7 +420,7 @@ body{font-family:var(--font-sans);background:var(--bg-page);-webkit-font-smoothi
 <script>
 /* === RMS Core: app.js + sidebar.js === */
 /* ═══════════════════════════════════════════════════════════════
-   EWS Enterprise v3.0 — app.js
+   EWS Enterprise v4.0 — app.js
    Core globals: data, Auth, DataStore, UI helpers
    ═══════════════════════════════════════════════════════════════ */
 'use strict';
@@ -1070,51 +1070,42 @@ const UI = {
 
 
 /* ═══════════════════════════════════════════════════════════
-   EWS Enterprise v3.0 — Sidebar & Shell Renderer
+   EWS Enterprise v4.0 — Sidebar & Shell Renderer
    ═══════════════════════════════════════════════════════════ */
 'use strict';
 
 /* ── NAV CONFIG ─────────────────────────────────────────────── */
 const NAV_CONFIG = [
-  { section: 'หลัก' },
-  { href: 'dashboard.html',  icon: 'fa-tachometer-alt', label: 'Dashboard'         },
-  { href: 'jobs.html',       icon: 'fa-briefcase',      label: 'งานซ่อม',  badgeKey: 'jobs' },
-  { href: 'approvals.html',  icon: 'fa-stamp',          label: 'อนุมัติ',   badgeKey: 'approve', managerOnly: true },
-
-  { section: 'คลัง & สินทรัพย์' },
-  { href: 'parts.html',      icon: 'fa-cogs',           label: 'คลังอะไหล่'        },
-  { href: 'store.html',      icon: 'fa-warehouse',      label: 'Store'             },
-  { href: 'pm.html',         icon: 'fa-calendar-check', label: 'PM Schedule'       },
-
-  { section: 'รายงาน & วิเคราะห์' },
-  { href: 'reports.html',    icon: 'fa-chart-bar',      label: 'รายงาน'           },
-  { href: 'executive.html',  icon: 'fa-chart-line',     label: 'Executive'         },
-  { href: 'analytics.html',  icon: 'fa-brain',          label: 'AI Analytics'      },
-
-  { section: 'ตั้งค่า', adminOnly: true },
-  { href: 'master.html',     icon: 'fa-database',       label: 'Master Data',  adminOnly: true },
-  { href: 'vendors.html',    icon: 'fa-handshake',      label: 'Vendor',       adminOnly: true },
-  { href: 'users.html',      icon: 'fa-users',          label: 'ผู้ใช้งาน',    adminOnly: true },
-  { href: 'settings.html',   icon: 'fa-cog',            label: 'ตั้งค่าระบบ',  adminOnly: true },
+  { href:'dashboard.html',  icon:'fa-gauge-high',      label:'Dashboard'       },
+  { href:'jobs.html',       icon:'fa-wrench',          label:'Work Orders',    badgeKey:'jobs' },
+  { href:'approvals.html',  icon:'fa-clipboard-check', label:'Approvals',      badgeKey:'approve', managerOnly:true },
+  { section:'Operations' },
+  { href:'pm.html',         icon:'fa-calendar-check',  label:'PM Schedule'     },
+  { href:'parts.html',      icon:'fa-cubes',           label:'Spare Parts'     },
+  { href:'store.html',      icon:'fa-boxes-stacking',  label:'Store / Receive' },
+  { section:'Analytics' },
+  { href:'reports.html',    icon:'fa-chart-bar',       label:'Reports'         },
+  { href:'analytics.html',  icon:'fa-chart-line',      label:'Analytics'       },
+  { href:'executive.html',  icon:'fa-crown',           label:'Executive'       },
+  { section:'Admin', adminOnly:true },
+  { href:'vendors.html',    icon:'fa-building',        label:'Vendors',        adminOnly:true },
+  { href:'users.html',      icon:'fa-users',           label:'Users',          adminOnly:true },
+  { href:'master.html',     icon:'fa-database',        label:'Master Data',    adminOnly:true },
+  { href:'settings.html',   icon:'fa-gear',            label:'Settings',       adminOnly:true },
 ];
 
-/* ── BADGE COUNTERS ─────────────────────────────────────────── */
 function _getBadgeCounts() {
   try {
-    const waitApprove = (typeof _localJobs !== 'undefined' ? _localJobs : [])
-      .filter(j => ['WAIT_APPROVAL','WAIT_APPROVE'].includes((j.Status||'').replace(/ /g,'_')))
-      .length;
-    const inProgress = (typeof _localJobs !== 'undefined' ? _localJobs : [])
-      .filter(j => (j.Status||'') === 'SEND_REPAIR')
-      .length;
-    return { approve: waitApprove || 0, jobs: inProgress || 0 };
+    const jobs = typeof _localJobs !== 'undefined' ? _localJobs : [];
+    const approve = jobs.filter(j=>['WAIT_APPROVAL','WAIT_APPROVE'].includes((j.Status||'').replace(/ /g,'_'))).length;
+    const inProg  = jobs.filter(j=>(j.Status||'')==='SEND_REPAIR').length;
+    return { approve: approve||0, jobs: inProg||0 };
   } catch(e) { return {}; }
 }
 
-/* ── BUILD SIDEBAR HTML ─────────────────────────────────────── */
 function _buildSidebar() {
-  const cur  = location.pathname.split('/').pop() || 'dashboard.html';
-  const user = (typeof Auth !== 'undefined') ? Auth.getUser() : null;
+  const cur    = location.pathname.split('/').pop() || 'dashboard.html';
+  const user   = (typeof Auth !== 'undefined') ? Auth.getUser() : null;
   const badges = _getBadgeCounts();
   const isAdmin   = user && ['SUPER_ADMIN','ADMIN'].includes(user.role);
   const isManager = user && ['SUPER_ADMIN','ADMIN','MANAGER'].includes(user.role);
@@ -1131,74 +1122,60 @@ function _buildSidebar() {
     }
     if (item.adminOnly   && !isAdmin)   return;
     if (item.managerOnly && !isManager) return;
-
-    const active  = cur === item.href ? 'active' : '';
-    const badgeCnt = item.badgeKey && badges[item.badgeKey] ? badges[item.badgeKey] : 0;
+    const active    = cur === item.href ? ' active' : '';
+    const badgeCnt  = item.badgeKey && badges[item.badgeKey] ? badges[item.badgeKey] : 0;
     const badgeHTML = badgeCnt ? `<span class="nav-badge">${badgeCnt}</span>` : '';
-
-    navHTML += `
-      <a href="${item.href}" class="nav-item ${active}">
-        <span class="nav-icon"><i class="fas ${item.icon}"></i></span>
-        <span>${item.label}</span>
-        ${badgeHTML}
-      </a>`;
+    navHTML += `<a href="${item.href}" class="nav-item${active}"><span class="nav-icon"><i class="fas ${item.icon}"></i></span><span>${item.label}</span>${badgeHTML}</a>`;
   });
 
   return `
   <aside class="rms-sidebar" id="rmsSidebar">
-    <!-- Brand -->
     <div class="sidebar-brand">
-      <div class="brand-icon"><i class="fas fa-tools"></i></div>
+      <div class="brand-icon"><i class="fas fa-bolt"></i></div>
       <div class="brand-text">
         <div class="brand-name">EWS Enterprise</div>
-        <div class="brand-ver">v3.0 · CMMS</div>
+        <div class="brand-ver">v4.0</div>
       </div>
     </div>
-
-    <!-- Nav -->
+    <div class="sidebar-user">
+      <div class="user-avatar">${initials}</div>
+      <div class="user-info">
+        <div class="user-name">${displayName}</div>
+        <div class="user-role">${roleName}</div>
+      </div>
+    </div>
     <nav class="sidebar-nav">${navHTML}</nav>
-
-    <!-- Footer -->
     <div class="sidebar-footer">
-      <div class="sidebar-user" style="padding:10px 12px 0;border-bottom:none;border-top:none;margin-bottom:8px">
-        <div class="user-avatar">${initials}</div>
+      <div class="sidebar-user" style="padding:10px 12px 0;border-bottom:none;margin-bottom:6px">
+        <div class="user-avatar" style="background:rgba(255,255,255,.08);border-radius:8px">
+          <i class="fas fa-right-from-bracket" style="font-size:.65rem;color:rgba(255,255,255,.5)"></i>
+        </div>
         <div class="user-info">
-          <div class="user-name">${displayName}</div>
-          <div class="user-role">${roleName}</div>
+          <button onclick="doLogout()" style="background:none;border:none;color:rgba(255,255,255,.5);font-size:.78rem;font-weight:600;cursor:pointer;padding:0;font-family:inherit;text-align:left;transition:color .15s" onmouseover="this.style.color='rgba(248,113,113,.9)'" onmouseout="this.style.color='rgba(255,255,255,.5)'">Sign Out</button>
         </div>
       </div>
-      <button onclick="doLogout()" style="width:100%;display:flex;align-items:center;justify-content:center;gap:7px;padding:8px 12px;border-radius:7px;border:1px solid rgba(220,38,38,0.25);background:rgba(220,38,38,0.08);color:rgba(248,113,113,0.9);font-size:.72rem;font-weight:600;cursor:pointer;font-family:inherit;letter-spacing:.2px;transition:all .15s ease" onmouseover="this.style.background='rgba(220,38,38,0.15)'" onmouseout="this.style.background='rgba(220,38,38,0.08)'">
-        <i class="fas fa-sign-out-alt" style="font-size:.7rem"></i>ออกจากระบบ
-      </button>
     </div>
   </aside>`;
 }
 
-/* ── BUILD TOPBAR HTML ──────────────────────────────────────── */
 function _buildTopbar(title, actions) {
   const now = new Date();
   const dateStr = now.toLocaleDateString('th-TH', { weekday:'short', year:'numeric', month:'short', day:'numeric' });
   const waitCnt = (typeof _getBadgeCounts === 'function') ? (_getBadgeCounts().approve || 0) : 0;
-  const bellDot = waitCnt > 0 ? '<span class="rms-bell-dot" title="'+waitCnt+' รายการรออนุมัติ"></span>' : '<span class="rms-bell-dot rms-bell-hidden"></span>';
-
+  const bellDot = waitCnt > 0 ? `<span class="rms-bell-dot" title="${waitCnt} รายการรออนุมัติ"></span>` : '';
   return `
-  <header class="rms-topbar" id="rmsTopbar">
-    <div class="topbar-breadcrumb">
+  <header class="rms-topbar" id="rmsTopbar" style="border-top:3px solid var(--primary,#1264A3)">
+    <div class="topbar-breadcrumb" style="flex:1;min-width:0">
       <div class="page-title">${title}</div>
-      <div class="page-subtitle"><span class="tb-brand">EWS Enterprise</span><span class="tb-sep">›</span><span>${dateStr}</span></div>
+      <div class="page-subtitle">${dateStr}</div>
     </div>
     <div class="topbar-actions">
       ${actions ? `<div class="d-flex align-items-center gap-2">${actions}</div>` : ''}
-      <button class="topbar-icon-btn" onclick="window.location.reload()" title="รีเฟรช">
-        <i class="fas fa-sync-alt"></i>
+      <button class="topbar-icon-btn" onclick="window.location.reload()" title="Refresh"><i class="fas fa-sync-alt"></i></button>
+      <button class="topbar-icon-btn rms-bell-btn" title="Approvals" onclick="window.location.href='approvals.html'" style="position:relative">
+        <i class="fas fa-bell"></i>${bellDot}
       </button>
-      <button class="topbar-icon-btn rms-bell-btn" title="การแจ้งเตือน" onclick="window.location.href='approvals.html'">
-        <i class="fas fa-bell"></i>
-        ${bellDot}
-      </button>
-      <button class="topbar-icon-btn" onclick="toggleSidebar()" title="Toggle Sidebar">
-        <i class="fas fa-bars"></i>
-      </button>
+      <a href="dashboard.html" class="topbar-icon-btn" title="Dashboard"><i class="fas fa-gauge-high"></i></a>
     </div>
   </header>`;
 }
