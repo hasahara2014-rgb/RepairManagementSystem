@@ -767,6 +767,38 @@ function calcKPIs(jobs, parts) {
     else ageGroups['31+ วัน']++;
   });
 
+  // ── Equipment-based metrics (group jobs by Equipment_ID) ──
+  const eqMap = {};
+  jobs.forEach(j => {
+    if (!j.Equipment_ID) return;
+    if (!eqMap[j.Equipment_ID]) eqMap[j.Equipment_ID] = [];
+    eqMap[j.Equipment_ID].push(j);
+  });
+  const eqList = Object.entries(eqMap).map(([id, jobList]) => {
+    const sorted = [...jobList].sort((a, b) => (b.Create_Date||'').localeCompare(a.Create_Date||''));
+    const latest  = sorted[0];
+    const earliest= sorted[sorted.length - 1];
+    const tatDays = (earliest.Create_Date && latest.Close_Date)
+      ? (new Date(latest.Close_Date) - new Date(earliest.Create_Date)) / 86400000 : null;
+    return {
+      id,
+      currentStatus: latest.Status,
+      jobCount: jobList.length,
+      tatDays,
+      latestDamage: latest.Damage_Code || '—',
+      vendorId: latest.Vendor_ID,
+      firstDate: earliest.Create_Date,
+      lastClose: latest.Close_Date,
+    };
+  });
+  const eqTotal    = eqList.length;
+  const eqWIP      = eqList.filter(e => e.currentStatus === 'SEND_REPAIR').length;
+  const eqClosed   = eqList.filter(e => e.currentStatus === 'CLOSED').length;
+  const eqReturned = eqList.filter(e => e.currentStatus === 'RETURNED').length;
+  const eqYield    = eqTotal ? Math.round(eqClosed / eqTotal * 100) : 0;
+  const eqTatArr   = eqList.map(e => e.tatDays).filter(t => t !== null);
+  const eqAvgTAT   = eqTatArr.length ? (eqTatArr.reduce((s,t) => s+t, 0) / eqTatArr.length).toFixed(1) : '—';
+
   return {
     total: jobs.length,
     closed: closed.length,
@@ -780,6 +812,8 @@ function calcKPIs(jobs, parts) {
     closeRate: UI.pct(closed.length, jobs.length),
     months, pareto, vendorPerf, repeatTable, actionList, statusCnt, ageGroups,
     invValue, lowStock, critStock,
+    // Equipment-based
+    eqList, eqTotal, eqWIP, eqClosed, eqReturned, eqYield, eqAvgTAT,
   };
 }
 
@@ -1204,41 +1238,125 @@ function renderVendors(kpi) {
 </div>`;
 }
 
-function renderRefurbishment(kpi) {
-  const total = _jobs.length;
-  const funnel = [
-    { label:'Received', count:total, color:'#0F4C81', icon:'fa-inbox' },
-    { label:'In Repair', count:kpi.sendRepair+kpi.returned+kpi.closed, color:'#1B9AAA', icon:'fa-screwdriver-wrench' },
-    { label:'Completed', count:kpi.closed+kpi.returned, color:'#D97706', icon:'fa-clipboard-check' },
-    { label:'Returned', count:kpi.returned, color:'#16A34A', icon:'fa-truck-ramp-box' },
-    { label:'Closed', count:kpi.closed, color:'#059669', icon:'fa-circle-check' },
-  ];
-  const yieldRate = total ? Math.round(kpi.closed/total*100) : 0;
-  const wipCount = kpi.sendRepair;
+let _refurbMode = 'job'; // 'job' | 'equipment'
 
-  return `
+function switchRefurbMode(mode) {
+  _refurbMode = mode;
+  document.querySelectorAll('.rfb-toggle-btn').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+  _renderRefurbContent(_kpi);
+}
+
+function _renderRefurbContent(kpi) {
+  const el = document.getElementById('rfb-content');
+  if (!el) return;
+  const byEq = (_refurbMode === 'equipment');
+
+  // ── KPI values ──
+  const total    = byEq ? kpi.eqTotal    : _jobs.length;
+  const wipCount = byEq ? kpi.eqWIP      : kpi.sendRepair;
+  const closedN  = byEq ? kpi.eqClosed   : kpi.closed;
+  const returnedN= byEq ? kpi.eqReturned : kpi.returned;
+  const yieldRate= byEq ? kpi.eqYield    : (total ? Math.round(closedN/total*100) : 0);
+  const avgTAT   = byEq ? kpi.eqAvgTAT  : kpi.mttr;
+  const tatLabel = byEq ? (avgTAT === '—' ? '—' : avgTAT + 'd') : avgTAT + 'd';
+  const unit     = byEq ? 'Equipment' : 'Job';
+
+  // ── Funnel data ──
+  const funnel = byEq ? [
+    { label:'Received',  count: kpi.eqTotal,                          color:'#0F4C81', icon:'fa-microchip' },
+    { label:'In Repair', count: kpi.eqWIP + kpi.eqReturned + kpi.eqClosed, color:'#1B9AAA', icon:'fa-screwdriver-wrench' },
+    { label:'Completed', count: kpi.eqClosed + kpi.eqReturned,        color:'#D97706', icon:'fa-clipboard-check' },
+    { label:'Returned',  count: kpi.eqReturned,                       color:'#16A34A', icon:'fa-truck-ramp-box' },
+    { label:'Closed',    count: kpi.eqClosed,                         color:'#059669', icon:'fa-circle-check' },
+  ] : [
+    { label:'Received',  count: _jobs.length,                         color:'#0F4C81', icon:'fa-inbox' },
+    { label:'In Repair', count: kpi.sendRepair+kpi.returned+kpi.closed, color:'#1B9AAA', icon:'fa-screwdriver-wrench' },
+    { label:'Completed', count: kpi.closed+kpi.returned,              color:'#D97706', icon:'fa-clipboard-check' },
+    { label:'Returned',  count: kpi.returned,                         color:'#16A34A', icon:'fa-truck-ramp-box' },
+    { label:'Closed',    count: kpi.closed,                           color:'#059669', icon:'fa-circle-check' },
+  ];
+
+  // ── WIP table ──
+  let wipTableHTML;
+  if (byEq) {
+    const eqWIPList = kpi.eqList.filter(e => e.currentStatus === 'SEND_REPAIR');
+    wipTableHTML = `
+<div class="sec-head"><span class="sec-head-label"><i class="fas fa-microchip me-2"></i>Equipment In Repair (WIP)</span><div class="sec-head-line"></div></div>
+<div class="tbl-card">
+  <div class="tbl-head"><span class="tbl-title">อุปกรณ์ที่อยู่ระหว่างซ่อม <span class="tbl-cnt">${eqWIPList.length} รายการ</span></span></div>
+  <div style="overflow-x:auto">
+  <table class="etbl">
+    <thead><tr><th>Equipment ID</th><th>Total Jobs</th><th>Current Status</th><th>Latest Damage</th><th>First Received</th><th>Vendor</th><th>TAT (days)</th></tr></thead>
+    <tbody>
+    ${kpi.eqList.map(e => {
+      const vendorName = (SAMPLE_VENDORS.find(v=>v.Vendor_ID===e.vendorId)||{}).Vendor_Name?.replace('บริษัท ','').replace(' จำกัด','') || '—';
+      const tatStr = e.tatDays !== null ? Math.round(e.tatDays) + 'd' : '—';
+      const tatColor = e.tatDays > 30 ? '#DC2626' : e.tatDays > 14 ? '#D97706' : '#64748B';
+      return `<tr>
+        <td><span style="font-family:monospace;font-weight:700;color:var(--primary);font-size:.8rem">${e.id}</span></td>
+        <td style="text-align:center"><span style="font-weight:700">${e.jobCount}</span></td>
+        <td>${UI.statusBadge(e.currentStatus)}</td>
+        <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${e.latestDamage}</td>
+        <td>${UI.fmtDate(e.firstDate)}</td>
+        <td>${vendorName}</td>
+        <td><span style="font-weight:700;color:${tatColor}">${tatStr}</span></td>
+      </tr>`;
+    }).join('')}
+    </tbody>
+  </table>
+  </div>
+</div>`;
+  } else {
+    const jobWIP = _jobs.filter(j => j.Status === 'SEND_REPAIR');
+    wipTableHTML = `
+<div class="sec-head"><span class="sec-head-label"><i class="fas fa-list me-2"></i>Active Repair Jobs (WIP)</span><div class="sec-head-line"></div></div>
+<div class="tbl-card">
+  <div class="tbl-head"><span class="tbl-title">งานที่อยู่ระหว่างซ่อม <span class="tbl-cnt">${jobWIP.length} รายการ</span></span></div>
+  <div style="overflow-x:auto">
+  <table class="etbl">
+    <thead><tr><th>Job No.</th><th>Equipment ID</th><th>Damage Code</th><th>Vendor</th><th>Created</th><th>Days Open</th></tr></thead>
+    <tbody>
+    ${jobWIP.map(j => {
+      const days = j.Create_Date ? Math.floor((new Date()-new Date(j.Create_Date))/86400000) : 0;
+      const dayColor = days>30?'#DC2626':days>14?'#D97706':'#64748B';
+      return `<tr>
+        <td><span style="font-family:monospace;font-size:.78rem;font-weight:700;color:var(--primary)">${j.JOB_No||'—'}</span></td>
+        <td><span style="font-family:monospace;font-size:.78rem;background:var(--gray-100);padding:2px 7px;border-radius:4px">${j.Equipment_ID||'—'}</span></td>
+        <td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${j.Damage_Code||'—'}</td>
+        <td>${(SAMPLE_VENDORS.find(v=>v.Vendor_ID===j.Vendor_ID)||{}).Vendor_Name?.replace('บริษัท ','').replace(' จำกัด','') || '—'}</td>
+        <td>${UI.fmtDate(j.Create_Date)}</td>
+        <td><span style="font-weight:700;color:${dayColor}">${days} วัน</span></td>
+      </tr>`;
+    }).join('')}
+    </tbody>
+  </table>
+  </div>
+</div>`;
+  }
+
+  el.innerHTML = `
 <div class="kpi-grid">
-  ${kpiCard('fa-inbox','primary','kc-primary',total,'Total Received','รับเข้าซ่อมทั้งหมด')}
-  ${kpiCard('fa-gear','secondary','kc-secondary',wipCount,'WIP (In Repair)','กำลังซ่อมอยู่')}
-  ${kpiCard('fa-circle-check','success','kc-success',kpi.closed,'Repaired & Closed','ซ่อมเสร็จแล้ว')}
-  ${kpiCard('fa-truck-ramp-box','info','kc-info',kpi.returned,'Returned','คืนให้ลูกค้าแล้ว')}
+  ${kpiCard('fa-inbox','primary','kc-primary',total,'Total Received','รับเข้าซ่อมทั้งหมด ('+unit+')')}
+  ${kpiCard('fa-gear','secondary','kc-secondary',wipCount,'WIP (In Repair)','กำลังซ่อมอยู่ ('+unit+')')}
+  ${kpiCard('fa-circle-check','success','kc-success',closedN,'Repaired & Closed','ซ่อมเสร็จแล้ว ('+unit+')')}
+  ${kpiCard('fa-truck-ramp-box','info','kc-info',returnedN,'Returned','คืนให้ลูกค้าแล้ว ('+unit+')')}
   ${kpiCard('fa-percent','warning','kc-warning',yieldRate+'%','Repair Yield','อัตราซ่อมสำเร็จ')}
-  ${kpiCard('fa-clock','purple','kc-purple',kpi.mttr+'d','Avg TAT','เวลาดำเนินงานเฉลี่ย')}
+  ${kpiCard('fa-clock','purple','kc-purple',tatLabel,'Avg TAT','เวลาดำเนินงานเฉลี่ย')}
 </div>
 
 <div class="sec-head"><span class="sec-head-label"><i class="fas fa-filter me-2"></i>Refurbishment Funnel</span><div class="sec-head-line"></div></div>
 <div class="chart-card mb-3">
-  <div class="chart-head"><div><div class="chart-title"><i class="fas fa-filter me-2" style="color:var(--primary);font-size:.75rem"></i>Repair Process Funnel</div><div class="chart-sub">ขั้นตอนการซ่อมและจำนวนงานในแต่ละขั้น</div></div></div>
+  <div class="chart-head"><div><div class="chart-title"><i class="fas fa-filter me-2" style="color:var(--primary);font-size:.75rem"></i>Repair Process Funnel</div><div class="chart-sub">${byEq ? 'จำนวน Equipment ในแต่ละขั้นตอนการซ่อม' : 'ขั้นตอนการซ่อมและจำนวนงานในแต่ละขั้น'}</div></div></div>
   <div style="display:flex;align-items:flex-end;justify-content:center;gap:20px;padding:20px 0;flex-wrap:wrap">
     ${funnel.map((f,i) => {
-      const h = Math.max(40, Math.round(f.count/total*160));
+      const h = Math.max(40, total ? Math.round(f.count/total*160) : 40);
       return `<div style="display:flex;flex-direction:column;align-items:center;gap:8px">
         <div style="font-size:1.4rem;font-weight:800;color:${f.color}">${f.count}</div>
         <div style="width:${Math.max(60,100-i*10)}px;height:${h}px;background:${f.color};border-radius:8px 8px 0 0;opacity:${1-i*0.1};display:flex;align-items:center;justify-content:center;transition:height .6s">
           <i class="fas ${f.icon}" style="color:rgba(255,255,255,.8);font-size:1.2rem"></i>
         </div>
         <div style="font-size:.68rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;text-align:center;max-width:80px">${f.label}</div>
-        <div style="font-size:.65rem;color:var(--gray-400)">${total?Math.round(f.count/total*100):0}%</div>
+        <div style="font-size:.65rem;color:var(--gray-400)">${total ? Math.round(f.count/total*100) : 0}%</div>
       </div>`;
     }).join('<div style="color:var(--gray-300);font-size:1.2rem;padding-bottom:48px">▶</div>')}
   </div>
@@ -1269,177 +1387,17 @@ function renderRefurbishment(kpi) {
   </div>
 </div>
 
-<div class="sec-head"><span class="sec-head-label"><i class="fas fa-list me-2"></i>Active Repair Jobs (WIP)</span><div class="sec-head-line"></div></div>
-<div class="tbl-card">
-  <div class="tbl-head"><span class="tbl-title">งานที่อยู่ระหว่างซ่อม <span class="tbl-cnt">${wipCount} รายการ</span></span></div>
-  <div style="overflow-x:auto">
-  <table class="etbl">
-    <thead><tr><th>Job No.</th><th>Equipment ID</th><th>Damage Code</th><th>Vendor</th><th>Created</th><th>Days Open</th></tr></thead>
-    <tbody>
-    ${_jobs.filter(j=>j.Status==='SEND_REPAIR').map(j => {
-      const days = j.Create_Date ? Math.floor((new Date()-new Date(j.Create_Date))/86400000) : 0;
-      const dayColor = days>30?'#DC2626':days>14?'#D97706':'#64748B';
-      return `<tr>
-        <td><span style="font-family:monospace;font-size:.78rem;font-weight:700;color:var(--primary)">${j.JOB_No||'—'}</span></td>
-        <td><span style="font-family:monospace;font-size:.78rem;background:var(--gray-100);padding:2px 7px;border-radius:4px">${j.Equipment_ID||'—'}</span></td>
-        <td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${j.Damage_Code||'—'}</td>
-        <td>${(SAMPLE_VENDORS.find(v=>v.Vendor_ID===j.Vendor_ID)||{}).Vendor_Name?.replace('บริษัท ','').replace(' จำกัด','') || '—'}</td>
-        <td>${UI.fmtDate(j.Create_Date)}</td>
-        <td><span style="font-weight:700;color:${dayColor}">${days} วัน</span></td>
-      </tr>`;
-    }).join('')}
-    </tbody>
-  </table>
-  </div>
-</div>`;
+${wipTableHTML}`;
 }
 
-function kpiCard(icon, iconClass, cardClass, value, label, sub) {
-  return `<div class="kpi-card ${cardClass}">
-    <div class="kpi-icon ${iconClass}"><i class="fas ${icon}"></i></div>
-    <div class="kpi-value">${value}</div>
-    <div class="kpi-label">${label}</div>
-    <div class="kpi-sub">${sub}</div>
-  </div>`;
-}
-
-/* ── MODULE SWITCH ── */
-const MODULES = [
-  { id:'executive',  label:'Executive Overview', icon:'fa-gauge-high' },
-  { id:'workorders', label:'Work Orders',         icon:'fa-wrench'     },
-  { id:'reliability',label:'Reliability',         icon:'fa-chart-line' },
-  { id:'inventory',  label:'Inventory',           icon:'fa-boxes-stacking' },
-  { id:'vendors',    label:'Vendors',             icon:'fa-building'   },
-  { id:'refurb',     label:'Refurbishment',       icon:'fa-recycle'    },
-];
-
-function switchModule(id) {
-  _activeModule = id;
-  document.querySelectorAll('.mod-tab').forEach(t => t.classList.toggle('active', t.dataset.mod === id));
-  renderCurrentModule();
-}
-
-function renderCurrentModule() {
-  const el = document.getElementById('mod-content');
-  if (!el) return;
-  const kpi = _kpi;
-  let html = '';
-  if (_activeModule === 'executive')  html = renderExecutive(kpi);
-  else if (_activeModule === 'workorders') html = renderWorkOrders(kpi);
-  else if (_activeModule === 'reliability') html = renderReliability(kpi);
-  else if (_activeModule === 'inventory') html = renderInventory(kpi);
-  else if (_activeModule === 'vendors') html = renderVendors(kpi);
-  else if (_activeModule === 'refurb') html = renderRefurbishment(kpi);
-  el.innerHTML = html;
-  // Build charts after DOM update
-  requestAnimationFrame(() => {
-    if (_activeModule === 'executive')  buildExecCharts(kpi);
-    else if (_activeModule === 'workorders') buildWOCharts(kpi);
-    else if (_activeModule === 'reliability') buildReliabilityCharts(kpi);
-    else if (_activeModule === 'inventory') buildInventoryCharts(kpi);
-    else if (_activeModule === 'vendors') buildVendorCharts(kpi);
-  });
-}
-
-/* ── SIDEBAR ── */
-function buildSidebar(user) {
-  const nav = NAV_CONFIG.map(item => {
-    if (item.sep) return `<div class="nav-section-label">${item.label}</div>`;
-    const active = item.active ? ' active' : '';
-    const badge = item.badge ? `<span class="nav-badge">${item.badge}</span>` : '';
-    return `<a class="nav-item${active}" href="${item.href}"><i class="nav-icon fas ${item.icon}"></i><span>${item.label}</span>${badge}</a>`;
-  }).join('');
-  const initials = (user.username||'U').substring(0,2).toUpperCase();
+function renderRefurbishment(kpi) {
   return `
-<div class="sidebar-brand">
-  <div class="brand-icon"><i class="fas fa-bolt"></i></div>
-  <div class="brand-text"><div class="brand-name">EWS Enterprise</div><div class="brand-ver">v${RMS.VERSION}</div></div>
-</div>
-<div class="sidebar-user">
-  <div class="user-avatar">${initials}</div>
-  <div class="user-info"><div class="user-name">${user.username||'User'}</div><div class="user-role">${user.role||'user'}</div></div>
-</div>
-<div class="sidebar-nav">${nav}</div>
-<div class="sidebar-footer">
-  <div class="sidebar-user">
-    <div class="user-avatar" style="background:rgba(255,255,255,.08)"><i class="fas fa-right-from-bracket" style="font-size:.65rem;color:rgba(255,255,255,.5)"></i></div>
-    <div class="user-info"><a onclick="Auth.logout()" style="color:rgba(255,255,255,.5);font-size:.75rem;font-weight:600;cursor:pointer;text-decoration:none">Logout</a></div>
+<div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:4px">
+  <div>
+    <div style="font-size:1rem;font-weight:700;color:var(--gray-700)"><i class="fas fa-recycle me-2" style="color:var(--primary)"></i>Refurbishment Dashboard</div>
+    <div style="font-size:.75rem;color:var(--gray-400);margin-top:2px">ภาพรวมการรับซ่อมและกระบวนการซ่อม</div>
   </div>
-</div>`;
-}
-
-function buildTopbar(kpi) {
-  const now = new Date();
-  const dateStr = now.toLocaleDateString('th-TH', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
-  return `
-<div style="flex:1;min-width:0">
-  <div class="page-title"><i class="fas fa-gauge-high me-2" style="color:var(--primary)"></i>Enterprise Dashboard</div>
-  <div class="page-subtitle">${dateStr}</div>
-</div>
-<div class="topbar-actions">
-  <div class="db-live"><div class="live-dot"></div>Live Data</div>
-  <button class="btn-refresh" onclick="refreshData()" id="btnRefresh"><i class="fas fa-sync-alt"></i>Refresh</button>
-  <a href="reports.html" class="topbar-icon-btn" title="Reports"><i class="fas fa-chart-bar"></i></a>
-  <a href="settings.html" class="topbar-icon-btn" title="Settings"><i class="fas fa-gear"></i></a>
-</div>`;
-}
-
-function buildModTabs() {
-  return MODULES.map(m => `<button class="mod-tab${m.id===_activeModule?' active':''}" data-mod="${m.id}" onclick="switchModule('${m.id}')"><i class="fas ${m.icon}"></i><span>${m.label}</span></button>`).join('');
-}
-
-/* ── MAIN RENDER ── */
-function renderApp(user) {
-  const app = document.getElementById('app');
-  app.innerHTML = `
-<div class="rms-sidebar" id="sidebar">${buildSidebar(user)}</div>
-<div class="rms-topbar" id="topbar">${buildTopbar(_kpi)}</div>
-<div class="main-content">
-  <div class="db-page">
-    <div class="mod-tabs">${buildModTabs()}</div>
-    <div id="mod-content"></div>
-  </div>
-</div>`;
-  renderCurrentModule();
-}
-
-/* ── DATA REFRESH ── */
-async function refreshData() {
-  const btn = document.getElementById('btnRefresh');
-  if (btn) btn.classList.add('loading');
-  try {
-    _jobs = await DataStore.getJobs();
-    _parts = DataStore.getParts();
-    _kpi = calcKPIs(_jobs, _parts);
-    renderCurrentModule();
-    UI.toast('อัปเดตข้อมูลสำเร็จ', 'success');
-  } catch(e) {
-    UI.toast('ไม่สามารถโหลดข้อมูลได้', 'danger');
-  }
-  if (btn) btn.classList.remove('loading');
-}
-
-/* ── INIT ── */
-(async function init() {
-  const user = Auth.getUser();
-  if (!user) { location.href = 'login.html'; return; }
-
-  try {
-    _jobs = await DataStore.getJobs();
-    _parts = DataStore.getParts();
-    _kpi = calcKPIs(_jobs, _parts);
-  } catch(e) {
-    _jobs = [...SAMPLE_JOBS];
-    _parts = [...SAMPLE_PARTS];
-    _kpi = calcKPIs(_jobs, _parts);
-  }
-
-  renderApp(user);
-  document.getElementById('rms-loader').style.display = 'none';
-
-  // Auto-refresh every 5 minutes
-  setInterval(() => { refreshData(); }, 300000);
-})();
-</script>
-</body>
-</html>
+  <div style="display:flex;gap:6px;align-items:center">
+    <span style="font-size:.72rem;color:var(--gray-400);margin-right:4px">อ้างอิงจาก:</span>
+    <button class="rfb-toggle-btn active" data-mode="job" onclick="switchRefurbMode('job')"
+      style="padding:5px 14px;border-radius:20px;border:1.5px solid var(--primary);background:var(--primary);color:#fff;font-size:.75rem;font-weight:600;cursor:pointer;transition:a
