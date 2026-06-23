@@ -172,7 +172,7 @@
    1.  CONFIG
    ───────────────────────────────────────────────────────────── */
 const RMS = {
-  GAS_URL: 'https://script.google.com/macros/s/AKfycbzWgWkwuN_IHIHCmPWtatKE82hSvkE0heWYFvz8pUCCTqHoVymhvoijrh1b3s_2rUks/exec',
+  GAS_URL: localStorage.getItem('rms_gas_url') || 'https://script.google.com/macros/s/AKfycbxo3RTi8R1hJMJ49r9TSaQAfCVIWD-ibgS9xhxMWdxO-3JqzSf8nbbrW04ffxzggdurhw/exec',
   USE_GAS: true,
   VERSION: '3.0',
 };

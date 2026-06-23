@@ -434,7 +434,7 @@ body{
 /* ── CONFIG ── */
 // GAS_URL_DEFAULT = fallback URL — อัปเดตที่นี่หากมีการ re-deploy GAS
 // Runtime URL ที่ใช้จริงจะอ่านจาก localStorage (ถูกเขียนโดย bootstrapGasUrl ตอน load)
-const GAS_URL_DEFAULT = 'https://script.google.com/macros/s/AKfycbzWgWkwuN_IHIHCmPWtatKE82hSvkE0heWYFvz8pUCCTqHoVymhvoijrh1b3s_2rUks/exec';
+const GAS_URL_DEFAULT = 'https://script.google.com/macros/s/AKfycbxo3RTi8R1hJMJ49r9TSaQAfCVIWD-ibgS9xhxMWdxO-3JqzSf8nbbrW04ffxzggdurhw/exec';
 const GAS_URL_STORAGE = 'rms_gas_url';
 function getGasUrl() {
   try { return localStorage.getItem(GAS_URL_STORAGE) || GAS_URL_DEFAULT; } catch(e) { return GAS_URL_DEFAULT; }
@@ -584,25 +584,20 @@ async function doLogin() {
           localStorage.setItem('rms_remember', JSON.stringify({ u: u }));
         window.location.href = 'dashboard.html';
       } else {
-        /* ── Smart fallback: ถ้า GAS มี internal error → ลอง demo mode ── */
+        /* ── Demo fallback: ถ้า GAS login ไม่ผ่าน → ลอง demo users ── */
         var gasErr = data.error || '';
-        var isGasInternalErr = gasErr.includes('is not defined') ||
-                               gasErr.includes('ReferenceError') ||
-                               gasErr.includes('TypeError') ||
-                               gasErr.includes('Cannot read') ||
-                               gasErr === 'Script error.';
-        if (isGasInternalErr) {
-          console.warn('GAS internal error, trying demo fallback:', gasErr);
-          var fb = DEMO_USERS[u.toLowerCase()];
-          if (fb && fb.password === p) {
-            saveSession({ username:u, name:fb.name, role:fb.role,
-                          branch:fb.branch, permissions:fb.permissions,
-                          token:'demo_fallback_'+Date.now() });
-            window.location.href = 'dashboard.html';
-            return;
-          }
+        console.warn('GAS login failed, trying demo fallback:', gasErr);
+        var fb = DEMO_USERS[u.toLowerCase()];
+        if (fb && fb.password === p) {
+          saveSession({ username:u, name:fb.name, role:fb.role,
+                        branch:fb.branch, permissions:fb.permissions,
+                        token:'demo_fallback_'+Date.now() });
+          if (document.getElementById('rememberMe').checked)
+            localStorage.setItem('rms_remember', JSON.stringify({ u: u }));
+          window.location.href = 'dashboard.html';
+          return;
         }
-        showErr(gasErr || 'ไม่สามารถเข้าสู่ระบบได้');
+        showErr(gasErr || 'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง');
         setBusy(false);
       }
     } catch(err) {

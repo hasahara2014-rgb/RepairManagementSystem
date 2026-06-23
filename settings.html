@@ -25,7 +25,7 @@
    1.  CONFIG
    ───────────────────────────────────────────────────────────── */
 const RMS = {
-  GAS_URL: 'https://script.google.com/macros/s/AKfycbzWgWkwuN_IHIHCmPWtatKE82hSvkE0heWYFvz8pUCCTqHoVymhvoijrh1b3s_2rUks/exec',
+  GAS_URL: localStorage.getItem('rms_gas_url') || 'https://script.google.com/macros/s/AKfycbxo3RTi8R1hJMJ49r9TSaQAfCVIWD-ibgS9xhxMWdxO-3JqzSf8nbbrW04ffxzggdurhw/exec',
   USE_GAS: true,
   VERSION: '3.0',
 };
@@ -879,9 +879,12 @@ document.addEventListener("DOMContentLoaded",()=>{
 function saveSystemSettings(){
   const url=document.getElementById("gasUrl")?.value.trim();
   const mode=document.getElementById("gasMode")?.value==="true";
-  if(url)RMS.GAS_URL=url;
+  if(url){
+    try { localStorage.setItem("rms_gas_url", url); } catch(e) {}
+    RMS.GAS_URL=url;
+  }
   RMS.USE_GAS=mode;
-  UI.toast("บันทึกการตั้งค่าสำเร็จ (session นี้เท่านั้น)","success");
+  UI.toast("บันทึกการตั้งค่าสำเร็จ — มีผลทุกหน้า","success");
 }
 function clearCache(){
   localStorage.removeItem("rms_v3_jobs");localStorage.removeItem("rms_v3_parts");
