@@ -74,7 +74,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ═══ Enterprise UI v3.1 ═══ */
+/* Enterprise UI v3.1 */
 .tb-brand{color:var(--gray-400);font-weight:500}
 .tb-sep{color:var(--gray-300);margin:0 5px}
 .page-subtitle{display:flex;align-items:center;gap:0;font-size:.675rem;color:var(--gray-500);margin-top:2px;line-height:1.4}
@@ -84,8 +84,6 @@
 @keyframes bellPulse{0%,100%{box-shadow:0 0 0 0 rgba(220,38,38,.35)}50%{box-shadow:0 0 0 4px rgba(220,38,38,.08)}}
 .stat-card{border-left:3px solid transparent;transition:border-left-color .2s,box-shadow .2s,transform .2s}
 .stat-card:hover{border-left-color:var(--secondary)}
-.stat-delta{font-size:.75rem;font-weight:600;margin-top:5px;display:flex;align-items:center;gap:4px;line-height:1.3}
-.stat-delta.up{color:var(--success)}.stat-delta.down{color:var(--danger)}.stat-delta.neutral{color:var(--gray-400)}
 .topbar-icon-btn:hover{background:var(--gray-100);color:var(--primary);border-color:var(--primary);box-shadow:0 0 0 3px rgba(15,76,129,.08)}
 .kc{border-left:3px solid transparent;transition:border-left-color .2s,transform .2s,box-shadow .2s}
 .kc:hover{border-left-color:var(--secondary);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.08)}
@@ -779,9 +777,9 @@ const NAV_CONFIG = [
   { href: 'pm.html',         icon: 'fa-calendar-check', label: 'PM Schedule'       },
 
   { section: 'รายงาน & วิเคราะห์' },
+  { href: 'analytics.html',  icon: 'fa-chart-line',     label: 'AI Analytics'      },
   { href: 'reports.html',    icon: 'fa-chart-bar',      label: 'รายงาน'           },
   { href: 'executive.html',  icon: 'fa-chart-line',     label: 'Executive'         },
-  { href: 'analytics.html',  icon: 'fa-chart-line',     label: 'AI Analytics'      },
 
 
   { section: 'ตั้งค่า', adminOnly: true },
@@ -1140,4 +1138,13 @@ function iaSortTable(col){
 }
 function iaExportCSV(){
   if(!_iaFiltered.length){iaToast('ไม่มีข้อมูล','warning');return;}
-  var h='Doc_No,Date,Movement_Type,Material_ID,Qty,From_Location,To_Location,JOB_No
+  var h='Doc_No,Date,Movement_Type,Material_ID,Qty,From_Location,To_Location,JOB_No,Reference,User\n';
+  var rows=_iaFiltered.map(function(r){return [r.Doc_No,r.Date,r.Movement_Type,r.Material_ID,r.Qty,r.From_Location,r.To_Location,r.JOB_No,r.Reference,r.User].join(',');}).join('\n');
+  var blob=new Blob([h+rows],{type:'text/csv;charset=utf-8'});
+  var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='issue_analytics_'+new Date().toISOString().slice(0,10)+'.csv';a.click();
+  iaToast('Export สำเร็จ','success');
+}
+function iaToast(msg,type){if(typeof UI!=='undefined'&&UI.toast)UI.toast(msg,type||'info');else console.log('[IA]',msg);}
+</script>
+</body>
+</html>
