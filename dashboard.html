@@ -225,6 +225,36 @@
 
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+Thai:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══ Enterprise UI v3.1 ═══ */
+.tb-brand{color:var(--gray-400);font-weight:500}
+.tb-sep{color:var(--gray-300);margin:0 5px}
+.page-subtitle{display:flex;align-items:center;gap:0;font-size:.675rem;color:var(--gray-500);margin-top:2px;line-height:1.4}
+.rms-bell-btn{position:relative}
+.rms-bell-dot{position:absolute;top:6px;right:6px;width:7px;height:7px;background:#DC2626;border-radius:50%;border:1.5px solid #fff;animation:bellPulse 2.5s ease-in-out infinite}
+.rms-bell-hidden{display:none}
+@keyframes bellPulse{0%,100%{box-shadow:0 0 0 0 rgba(220,38,38,.35)}50%{box-shadow:0 0 0 4px rgba(220,38,38,.08)}}
+.stat-card{border-left:3px solid transparent;transition:border-left-color .2s,box-shadow .2s,transform .2s}
+.stat-card:hover{border-left-color:var(--secondary)}
+.stat-delta{font-size:.75rem;font-weight:600;margin-top:5px;display:flex;align-items:center;gap:4px;line-height:1.3}
+.stat-delta.up{color:var(--success)}.stat-delta.down{color:var(--danger)}.stat-delta.neutral{color:var(--gray-400)}
+.topbar-icon-btn:hover{background:var(--gray-100);color:var(--primary);border-color:var(--primary);box-shadow:0 0 0 3px rgba(15,76,129,.08)}
+.kc{border-left:3px solid transparent;transition:border-left-color .2s,transform .2s,box-shadow .2s}
+.kc:hover{border-left-color:var(--secondary);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.08)}
+.table thead th{font-size:.7rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--gray-500);background:#F8FAFC;border-bottom:2px solid var(--gray-100);padding:10px 14px;white-space:nowrap}
+.table tbody td{padding:10px 14px;font-size:.857rem;border-bottom:1px solid var(--gray-100);vertical-align:middle}
+.table tbody tr:hover td{background:#F8FAFC}
+.badge-status{font-size:.65rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.2px;display:inline-flex;align-items:center;gap:4px}
+.badge-SEND_REPAIR{background:#E0F2F7;color:#0e7490;border:1px solid rgba(14,116,144,.2)}
+.badge-CLOSED{background:#DCFCE7;color:#15803d;border:1px solid rgba(21,128,61,.2)}
+.badge-WAIT_APPROVAL{background:#FEF3C7;color:#b45309;border:1px solid rgba(180,83,9,.2)}
+.badge-REJECTED{background:#FEE2E2;color:#dc2626;border:1px solid rgba(220,38,38,.2)}
+.badge-OPEN{background:#F1F5F9;color:#475569;border:1px solid rgba(71,85,105,.15)}
+.badge-WAIT_SPARE_PART{background:#F3E8FF;color:#6d28d9;border:1px solid rgba(109,40,217,.2)}
+.nav-item.active{background:linear-gradient(90deg,rgba(27,154,170,.18),rgba(27,154,170,.06));color:#fff;font-weight:600}
+.nav-item.active::before{width:3px;background:linear-gradient(180deg,#1B9AAA,#0F4C81)}
+.sidebar-brand{background:linear-gradient(180deg,#0d1b2e,#0a1624)}
+</style>
 </head>
 <body>
 <div id="rms-loader" style="position:fixed;top:0;left:0;right:0;bottom:0;background:#f8fafc;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;font-family:'Sarabun',sans-serif"><div style="width:44px;height:44px;border:4px solid #e2e8f0;border-top-color:#1e3a5f;border-radius:50%;animation:_rms_spin 0.8s linear infinite"></div><div style="margin-top:14px;color:#64748b;font-size:.9rem;font-weight:500">กำลังโหลด...</div><style>@keyframes _rms_spin{to{transform:rotate(360deg)}}</style></div>
@@ -993,17 +1023,23 @@ function _buildSidebar() {
 function _buildTopbar(title, actions) {
   const now = new Date();
   const dateStr = now.toLocaleDateString('th-TH', { weekday:'short', year:'numeric', month:'short', day:'numeric' });
+  const waitCnt = (typeof _getBadgeCounts === 'function') ? (_getBadgeCounts().approve || 0) : 0;
+  const bellDot = waitCnt > 0 ? '<span class="rms-bell-dot" title="'+waitCnt+' รายการรออนุมัติ"></span>' : '<span class="rms-bell-dot rms-bell-hidden"></span>';
 
   return `
   <header class="rms-topbar" id="rmsTopbar">
     <div class="topbar-breadcrumb">
       <div class="page-title">${title}</div>
-      <div class="page-subtitle">${dateStr}</div>
+      <div class="page-subtitle"><span class="tb-brand">EWS Enterprise</span><span class="tb-sep">›</span><span>${dateStr}</span></div>
     </div>
     <div class="topbar-actions">
       ${actions ? `<div class="d-flex align-items-center gap-2">${actions}</div>` : ''}
       <button class="topbar-icon-btn" onclick="window.location.reload()" title="รีเฟรช">
         <i class="fas fa-sync-alt"></i>
+      </button>
+      <button class="topbar-icon-btn rms-bell-btn" title="การแจ้งเตือน" onclick="window.location.href='approvals.html'">
+        <i class="fas fa-bell"></i>
+        ${bellDot}
       </button>
       <button class="topbar-icon-btn" onclick="toggleSidebar()" title="Toggle Sidebar">
         <i class="fas fa-bars"></i>
@@ -1380,52 +1416,54 @@ function _kpis(d) {
   var Wsr=jv('SEND_REPAIR'), Wwp=jv('WAIT_PARTS')+(sc.WAIT_SPARE_PART||0);
   var Wrw=jv('REWORK'), Wrt=jv('RETURNED');
 
+  /* ── Month-over-month delta ── */
+  var _now=new Date(), _cm=_now.getMonth(), _cy=_now.getFullYear();
+  var _pm=(_cm-1+12)%12, _py=_cm===0?_cy-1:_cy;
+  function _mj(m,y,flt){
+    return js.filter(function(j){
+      var d=j.Create_Date?new Date(j.Create_Date):null;
+      if(!d||isNaN(d))return false;
+      return d.getMonth()===m&&d.getFullYear()===y&&(!flt||_ns(j.Status)===flt);
+    }).length;
+  }
+  var dTotal = _mj(_cm,_cy) - _mj(_pm,_py);
+  var dClosed= _mj(_cm,_cy,'CLOSED') - _mj(_pm,_py,'CLOSED');
+  var dInProg= _mj(_cm,_cy,'SEND_REPAIR') - _mj(_pm,_py,'SEND_REPAIR');
+
   var r1=document.getElementById('kR1');
   if(r1) r1.innerHTML=[
-    /* Total: stacked layers = work orders stack */
-    _kc('#0F4C81','fa-layer-group',  'งานทั้งหมด',    Jt,  'Total Work Orders',           'jobs.html'),
-    /* Closed: circle-check = done/verified */
-    _kc('#16A34A','fa-circle-check', 'ปิดงานแล้ว',   Jc,  'Closed — งานสำเร็จ',          'jobs.html?status=CLOSED'),
-    /* InProgress: gear spinning = active work */
-    _kc('#3B82F6','fa-gear',         'กำลังดำเนินการ',Ji,  'In Progress — กำลังซ่อม',     'jobs.html?status=SEND_REPAIR'),
-    /* Repeat: arrows-rotate = recurring loop */
+    _kc('#0F4C81','fa-layer-group',  'งานทั้งหมด',    Jt,  'Total Work Orders',           'jobs.html',       false, dTotal),
+    _kc('#16A34A','fa-circle-check', 'ปิดงานแล้ว',   Jc,  'Closed — งานสำเร็จ',          'jobs.html?status=CLOSED', false, dClosed),
+    _kc('#3B82F6','fa-gear',         'กำลังดำเนินการ',Ji,  'In Progress — กำลังซ่อม',     'jobs.html?status=SEND_REPAIR', false, dInProg),
     _kc('#DC2626','fa-arrows-rotate','ซ่อมซ้ำ',       Jr,  'Repeat — '+Jr+' JOBs / '+Object.values(eqC).filter(function(c){return c>1;}).length+' Equip',
       'jobs.html?status=REPEAT', true),
   ].join('');
 
   var r2=document.getElementById('kR2');
   if(r2) r2.innerHTML=[
-    /* Total equip: cpu/chip = equipment */
     _kc('#0F4C81','fa-microchip',    'อุปกรณ์ทั้งหมด',Et, 'Unique Equipment IDs',         'jobs.html'),
-    /* Closed equip: shield-check = protected/done */
     _kc('#16A34A','fa-shield-check', 'ปิดงานแล้ว',   Ec, 'Equip ที่มี JOB ปิดแล้ว',      'jobs.html?status=CLOSED'),
-    /* InProgress equip: wrench = being repaired */
     _kc('#3B82F6','fa-wrench',       'กำลังดำเนินการ',Ei, 'Equip ที่ยังซ่อมอยู่',         'jobs.html?status=SEND_REPAIR'),
-    /* Repeat equip: triangle-exclamation = alert */
     _kc('#DC2626','fa-triangle-exclamation','ซ่อมซ้ำ', Er, 'Equipment ที่มี > 1 JOB',     'jobs.html?status=REPEAT', true),
   ].join('');
 
   var r3=document.getElementById('kR3');
   if(r3) r3.innerHTML=[
-    /* Send repair: truck = shipping out */
     _kc('#0284C7','fa-truck-fast',   'ส่งซ่อม',       Wsr, 'Send Repair — ส่งออกซ่อม',   'jobs.html?status=SEND_REPAIR'),
-    /* Wait parts: cube = spare part box */
     _kc('#F59E0B','fa-cube',         'รอ Spare Part', Wwp, 'Wait Parts — รอชิ้นส่วน',     'jobs.html?status=WAIT_PARTS'),
-    /* Rework: screwdriver-wrench = redo work */
     _kc('#7C3AED','fa-screwdriver-wrench','Rework',   Wrw, 'Rework — งานส่งซ่อมใหม่',     'jobs.html?status=REWORK'),
-    /* Returned: arrow-turn-left = sent back */
     _kc('#D97706','fa-arrow-turn-up','ส่งกลับ',       Wrt, 'Returned — ส่งคืนเครื่อง',   'jobs.html?status=RETURNED'),
   ].join('');
 }
 
-function _kc(color, icon, label, val, desc, href, danger) {
+function _kc(color, icon, label, val, desc, href, danger, delta) {
   var n    = Number(val);
   var isDgr = danger === true && n > 0;
   var zero  = n === 0;
   var vClr  = zero ? '#CBD5E1' : color;
   var icoBg = color.startsWith('var') ? 'rgba(15,76,129,.12)' : _rgba(color, zero?.05:.12);
   var icoClr= zero ? '#94A3B8' : color;
-  /* icon: wrap + sub-detail icon */
+  /* icon */
   var iconHTML = (
     '<div class="kc-icon" style="background:'+icoBg+';color:'+icoClr+'">' +
       '<i class="fas '+icon+'" style="font-size:.9rem;filter:drop-shadow(0 1px 1px rgba(0,0,0,.08))"></i>' +
@@ -1436,6 +1474,17 @@ function _kc(color, icon, label, val, desc, href, danger) {
     ? '<span class="kc-trend" style="background:'+_rgba(color,.1)+';color:'+color+'">' +
         '<i class="fas fa-circle" style="font-size:.35rem"></i>ต้องดูแล</span>'
     : '';
+  /* delta indicator */
+  var deltaHTML = '';
+  if (delta !== undefined && delta !== null) {
+    var d = Number(delta);
+    var dSign = d > 0 ? '+' : '';
+    var dClr  = d > 0 ? '#16A34A' : d < 0 ? '#DC2626' : '#94A3B8';
+    var dIco  = d > 0 ? 'fa-arrow-trend-up' : d < 0 ? 'fa-arrow-trend-down' : 'fa-minus';
+    deltaHTML = '<div style="margin-top:5px;display:flex;align-items:center;gap:4px;font-size:.72rem;font-weight:600;color:'+dClr+'">' +
+      '<i class="fas '+dIco+'" style="font-size:.6rem"></i>' +
+      dSign+d+' จากเดือนที่แล้ว</div>';
+  }
   /* value — format with comma if ≥1000 */
   var displayVal = isNaN(n) ? '—' : (n >= 1000 ? n.toLocaleString() : val);
   return (
@@ -1449,6 +1498,7 @@ function _kc(color, icon, label, val, desc, href, danger) {
         '<div class="kc-val'+(zero?' dim':'')+'" style="color:'+vClr+'">'+displayVal+'</div>' +
         '<div class="kc-lbl">'+label+'</div>' +
         '<div class="kc-desc">'+desc+'</div>' +
+        deltaHTML +
       '</div>' +
     '</a></div>'
   );
@@ -1654,16 +1704,4 @@ function _lst() {
   var el=document.getElementById('lstk'); if(!el)return;
   var low=_localParts.filter(function(p){return parseFloat(p.Current_Stock||0)<=parseFloat(p.Min_Stock||0);});
   if(!low.length){el.innerHTML='<div class="db-empty" style="padding:20px"><i class="fas fa-check-circle" style="color:#16A34A"></i><p>สต๊อกปกติ</p></div>';return;}
-  el.innerHTML=low.slice(0,5).map(function(p){
-    var cur=parseFloat(p.Current_Stock||0),mn=parseFloat(p.Min_Stock||0),mx=parseFloat(p.Max_Stock||50);
-    var pct=Math.min(100,Math.round(cur/Math.max(mx,1)*100));
-    var c=cur<=0?'#DC2626':cur<=mn?'#F59E0B':'#16A34A';
-    return '<div class="ls-row"><div style="flex:1;min-width:0"><div class="ls-nm">'+(p.Part_Name||p.Part_Code||'—')+'</div>' +
-      '<div class="ls-bar"><div class="ls-fill" style="width:'+pct+'%;background:'+c+'"></div></div></div>' +
-      '<div class="ls-n" style="color:'+c+'">'+cur+'<span class="ls-u">/'+mn+' '+(p.Unit||'PC')+'</span></div></div>';
-  }).join('');
-}
-</script>
-
-</body>
-</html>
+  el.innerHTML=low.slice(0
