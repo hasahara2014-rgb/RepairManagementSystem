@@ -976,9 +976,9 @@ async function loadExec() {
     {icon:'fa-percentage', cls:'success',   color:'var(--success)',   label:'Close Rate',   val:closeRate+'%',  unit:''},
     {icon:'fa-redo',       cls:'danger',    color:'var(--danger)',    label:'ซ่อมซ้ำ',      val:repeatCnt,      unit:'เครื่อง'},
   ].map(function(k){
-    return '<div class="col-6 col-md-3 col-xl"><div class="stat-card" style="border-top:3px solid '+k.color+'">'
+    return '<div class="col-6 col-md-3 col-xl"><div class="stat-card" style="border-left:4px solid '+k.color+'">'
       +'<div class="stat-icon '+k.cls+'"><i class="fas '+k.icon+'"></i></div>'
-      +'<div><div class="stat-value" style="color:'+k.color+';font-size:1.3rem">'+k.val+'</div>'
+      +'<div><div class="stat-value">'+k.val+'</div>'
       +'<div class="stat-label">'+k.label+(k.unit?' ('+k.unit+')':'')+'</div></div>'
       +'</div></div>';
   }).join('');
@@ -1137,3 +1137,4 @@ function _exInProg(inProg){
 </script>
 </body>
 </html>
+                                          
