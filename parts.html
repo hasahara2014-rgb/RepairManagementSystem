@@ -1,2437 +1,560 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>คลังอะไหล่ — EWS Enterprise</title>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
-<style>
-:root{--primary:#0F4C81;--primary-dark:#0a3560;--primary-light:#1a5f9e;--secondary:#1B9AAA;--secondary-dark:#147a87;--accent:#00D4FF;--success:#16A34A;--warning:#D97706;--danger:#DC2626;--critical:#991B1B;--info:#0284C7;--purple:#7C3AED;--gray-50:#F8FAFC;--gray-100:#F1F5F9;--gray-200:#E2E8F0;--gray-300:#CBD5E1;--gray-400:#94A3B8;--gray-500:#64748B;--gray-600:#475569;--gray-700:#334155;--gray-800:#1E293B;--gray-900:#0F172A;--sidebar-bg:#0a1f3d;--sidebar-width:252px;--sidebar-collapsed:64px;--sidebar-border:rgba(255,255,255,0.06);--sidebar-hover:rgba(255,255,255,0.07);--sidebar-active:rgba(27,154,170,0.18);--sidebar-text:rgba(255,255,255,0.7);--sidebar-text-active:#ffffff;--surface:#FFFFFF;--surface-raised:#FFFFFF;--bg-page:#F0F4F8;--shadow-xs:0 1px 2px rgba(0,0,0,0.05);--shadow-sm:0 1px 3px rgba(0,0,0,0.08),0 1px 2px rgba(0,0,0,0.04);--shadow-md:0 4px 6px rgba(0,0,0,0.06),0 2px 4px rgba(0,0,0,0.04);--shadow-lg:0 10px 24px rgba(0,0,0,0.08),0 4px 8px rgba(0,0,0,0.04);--shadow-xl:0 20px 48px rgba(0,0,0,0.12),0 8px 16px rgba(0,0,0,0.06);--card-shadow:var(--shadow-md);--radius-xs:4px;--radius-sm:6px;--radius-md:10px;--radius-lg:14px;--radius-xl:20px;--ease:cubic-bezier(0.16,1,0.3,1);--transition:0.18s var(--ease);--font-sans:'Inter','Noto Sans Thai','Segoe UI',system-ui,sans-serif;--font-mono:'JetBrains Mono','Fira Code','Cascadia Code',monospace;--z-sidebar:900;--z-header:800;--z-modal:1050;--z-toast:1100;}*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}html{scroll-behavior:smooth;font-size:14px;-webkit-text-size-adjust:100%;}body{font-family:var(--font-sans);background:var(--bg-page);color:var(--gray-800);line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;overflow-x:hidden;}.rms-wrapper{display:flex;min-height:100vh;}.rms-sidebar{width:var(--sidebar-width);background:#0d1b2e;position:fixed;top:0;left:0;bottom:0;z-index:var(--z-sidebar);display:flex;flex-direction:column;border-right:1px solid rgba(255,255,255,0.05);transition:width var(--transition);overflow:hidden;}.sidebar-brand{display:flex;align-items:center;gap:11px;padding:18px 16px 16px;border-bottom:1px solid rgba(255,255,255,0.06);min-height:64px;flex-shrink:0;}.brand-icon{width:34px;height:34px;background:linear-gradient(135deg,#1a5f9e,#1B9AAA);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 2px 8px rgba(27,154,170,0.35);}.brand-icon i{color:#fff;font-size:14px;}.brand-text{overflow:hidden;}.brand-name{font-size:.82rem;font-weight:700;color:#ffffff;letter-spacing:.15px;line-height:1.2;white-space:nowrap;}.brand-ver{font-size:.625rem;font-weight:500;color:rgba(255,255,255,0.32);letter-spacing:.7px;text-transform:uppercase;margin-top:1px;white-space:nowrap;}.sidebar-user{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.06);flex-shrink:0;background:rgba(255,255,255,0.02);}.sidebar-footer .sidebar-user{background:transparent;border-bottom:none;padding:0 4px 8px;}.user-avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#1B9AAA,#0F4C81);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.68rem;flex-shrink:0;letter-spacing:.3px;}.user-info{overflow:hidden;flex:1;min-width:0;}.user-name{font-size:.775rem;font-weight:600;color:rgba(255,255,255,0.92);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.3;}.user-role{font-size:.6rem;font-weight:500;color:rgba(255,255,255,0.32);text-transform:uppercase;letter-spacing:.7px;margin-top:1px;}.sidebar-nav{flex:1;overflow-y:auto;overflow-x:hidden;padding:8px 10px 4px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.08) transparent;}.sidebar-nav::-webkit-scrollbar{width:3px;}.sidebar-nav::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);border-radius:2px;}.nav-section-label{font-size:.575rem;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:rgba(255,255,255,0.22);padding:14px 10px 5px;white-space:nowrap;user-select:none;}.nav-item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:7px;color:rgba(255,255,255,0.62);text-decoration:none;font-size:.8rem;font-weight:500;line-height:1;transition:background 0.15s ease,color 0.15s ease;cursor:pointer;white-space:nowrap;position:relative;margin-bottom:1px;letter-spacing:.1px;}.nav-item:hover{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.92);}.nav-item.active{background:rgba(27,154,170,0.16);color:#ffffff;}.nav-item.active::before{content:'';position:absolute;left:0;top:18%;bottom:18%;width:2.5px;background:#1B9AAA;border-radius:0 2px 2px 0;}.nav-icon{width:16px;text-align:center;font-size:.78rem;flex-shrink:0;color:rgba(255,255,255,0.35);transition:color 0.15s ease;line-height:1;}.nav-item:hover .nav-icon{color:rgba(255,255,255,0.7);}.nav-item.active .nav-icon{color:#1B9AAA;}.nav-badge{margin-left:auto;background:#DC2626;color:#fff;font-size:.575rem;font-weight:700;padding:1px 5px;border-radius:20px;min-width:16px;text-align:center;letter-spacing:.2px;line-height:1.6;}.sidebar-footer{padding:10px 10px 12px;border-top:1px solid rgba(255,255,255,0.06);flex-shrink:0;}.rms-topbar{position:fixed;top:0;left:var(--sidebar-width);right:0;height:54px;background:#ffffff;border-bottom:1px solid var(--gray-200);display:flex;align-items:center;padding:0 22px;z-index:var(--z-header);gap:14px;box-shadow:0 1px 0 rgba(0,0,0,0.06);transition:left var(--transition);}.topbar-breadcrumb{flex:1;min-width:0;}.page-title{font-size:.9rem;font-weight:700;color:var(--gray-800);line-height:1.25;letter-spacing:-.1px;}.page-subtitle{font-size:.675rem;color:var(--gray-400);margin-top:1px;font-weight:400;letter-spacing:.1px;}.topbar-actions{display:flex;align-items:center;gap:10px;flex-shrink:0;}.topbar-icon-btn{width:34px;height:34px;border-radius:var(--radius-sm);border:1px solid var(--gray-200);background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--gray-500);font-size:.85rem;transition:all var(--transition);}.topbar-icon-btn:hover{background:var(--gray-100);color:var(--primary);border-color:var(--gray-300);}.main-content{margin-left:var(--sidebar-width);padding-top:57px;min-height:100vh;flex:1;transition:margin-left var(--transition);}.page-content{padding:24px;max-width:1600px;}.stat-card{background:var(--surface);border-radius:var(--radius-lg);padding:18px 20px;display:flex;align-items:center;gap:16px;box-shadow:var(--card-shadow);border:1px solid var(--gray-100);transition:all var(--transition);position:relative;overflow:hidden;}.stat-card::before{content:'';position:absolute;top:0;right:0;width:80px;height:80px;border-radius:50%;opacity:0.04;transform:translate(20px,-20px);}.stat-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);}.stat-icon{width:46px;height:46px;border-radius:var(--radius-md);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;position:relative;}.stat-icon.primary{background:rgba(15,76,129,0.1);color:var(--primary);}.stat-icon.secondary{background:rgba(27,154,170,0.1);color:var(--secondary);}.stat-icon.success{background:rgba(22,163,74,0.1);color:var(--success);}.stat-icon.warning{background:rgba(217,119,6,0.1);color:var(--warning);}.stat-icon.danger{background:rgba(220,38,38,0.1);color:var(--danger);}.stat-icon.purple{background:rgba(124,58,237,0.1);color:var(--purple);}.stat-value{font-size:1.5rem;font-weight:800;color:var(--gray-900);line-height:1;letter-spacing:-0.5px;}.stat-label{font-size:.63rem;color:var(--gray-400);font-weight:600;margin-top:3px;text-transform:uppercase;letter-spacing:.55px;}.stat-delta{font-size:.72rem;font-weight:600;margin-top:4px;display:flex;align-items:center;gap:3px;}.stat-delta.up{color:var(--success);}.stat-delta.down{color:var(--danger);}.chart-card{background:var(--surface);border-radius:var(--radius-lg);padding:20px 22px;box-shadow:var(--card-shadow);border:1px solid var(--gray-100);}.chart-title{font-size:.79rem;font-weight:700;color:var(--gray-700);display:flex;align-items:center;margin-bottom:2px;}.chart-sub{font-size:.66rem;color:var(--gray-400);margin-bottom:14px;font-weight:400;}.table-card{background:var(--surface);border-radius:var(--radius-lg);box-shadow:var(--card-shadow);border:1px solid var(--gray-100);overflow:hidden;}.table-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--gray-100);background:var(--surface);gap:12px;flex-wrap:wrap;}.table-title{font-size:.8rem;font-weight:700;color:var(--gray-700);display:flex;align-items:center;}.table{font-size:.815rem;margin-bottom:0;border-collapse:separate;border-spacing:0;}.table thead th{background:var(--gray-50);color:var(--gray-500);font-size:.63rem;font-weight:700;text-transform:uppercase;letter-spacing:.7px;padding:11px 16px;border-bottom:1px solid var(--gray-200);white-space:nowrap;}.table tbody td{padding:10px 14px;border-bottom:1px solid var(--gray-100);color:var(--gray-700);vertical-align:middle;font-size:.8rem;}.table tbody tr:last-child td{border-bottom:none;}.table-hover tbody tr:hover{background:var(--gray-50);cursor:pointer;}.filter-card{background:var(--surface);border-radius:var(--radius-lg);padding:16px 20px;box-shadow:var(--card-shadow);border:1px solid var(--gray-100);}.filter-label{font-size:.62rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.65px;display:block;margin-bottom:5px;}.btn-primary-rms{background:linear-gradient(135deg,var(--primary),var(--primary-light));border:none;color:#fff;font-weight:600;font-size:.775rem;padding:7px 15px;border-radius:var(--radius-sm);transition:all var(--transition);box-shadow:0 2px 8px rgba(15,76,129,0.25);cursor:pointer;display:inline-flex;align-items:center;gap:6px;}.btn-primary-rms:hover{background:linear-gradient(135deg,var(--primary-dark),var(--primary));transform:translateY(-1px);box-shadow:0 4px 12px rgba(15,76,129,0.35);color:#fff;}.btn-primary-rms:active{transform:translateY(0);box-shadow:0 2px 4px rgba(15,76,129,0.2);}.btn-outline-rms{background:transparent;border:1px solid var(--gray-300);color:var(--gray-600);font-weight:600;font-size:.775rem;padding:6px 13px;border-radius:var(--radius-sm);transition:all var(--transition);cursor:pointer;display:inline-flex;align-items:center;gap:6px;}.btn-outline-rms:hover{background:var(--gray-50);border-color:var(--primary);color:var(--primary);}.status-btn{border:1.5px solid var(--gray-200);background:var(--gray-50);color:var(--gray-500);font-size:.7rem;font-weight:600;padding:5px 12px;border-radius:20px;cursor:pointer;transition:all var(--transition);white-space:nowrap;letter-spacing:.2px;}.status-btn:hover{background:var(--gray-100);border-color:var(--gray-300);color:var(--gray-700);}.status-btn.active{background:var(--c,var(--primary));border-color:var(--c,var(--primary));color:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.15);}.badge-priority{font-size:.6rem;font-weight:700;padding:3px 8px;border-radius:20px;letter-spacing:.3px;text-transform:uppercase;display:inline-block;}.badge-CRITICAL{background:rgba(153,27,27,0.1);color:#991B1B;border:1px solid rgba(153,27,27,0.2);}.badge-HIGH{background:rgba(217,119,6,0.1);color:#B45309;border:1px solid rgba(217,119,6,0.2);}.badge-MEDIUM{background:rgba(202,138,4,0.1);color:#92400E;border:1px solid rgba(202,138,4,0.2);}.badge-LOW{background:rgba(22,163,74,0.1);color:#166534;border:1px solid rgba(22,163,74,0.2);}.badge-status{font-size:.62rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.3px;text-transform:uppercase;display:inline-block;}.badge-IN_PROGRESS{background:rgba(2,132,199,0.1);color:#0369a1;}.badge-CLOSED{background:rgba(22,163,74,0.1);color:#15803d;}.badge-RETURNED{background:rgba(15,76,129,0.1);color:#0F4C81;}.badge-WAIT_APPROVAL{background:rgba(217,119,6,0.1);color:#b45309;}.badge-WAIT_SPARE_PART{background:rgba(124,58,237,0.1);color:#6d28d9;}.badge-SEND_REPAIR{background:rgba(27,154,170,0.1);color:#0e7490;}.badge-REJECTED{background:rgba(220,38,38,0.1);color:#dc2626;}.badge-APPROVED{background:rgba(22,163,74,0.1);color:#16a34a;}.badge-OPEN{background:rgba(100,116,139,0.1);color:#475569;}.btn-action{width:30px;height:30px;border-radius:var(--radius-xs);border:1px solid var(--gray-200);background:var(--gray-50);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:.75rem;color:var(--gray-500);transition:all var(--transition);}.btn-action:hover{background:var(--gray-100);border-color:var(--gray-300);color:var(--gray-700);}.btn-action.btn-view{color:var(--primary);border-color:rgba(15,76,129,0.2);background:rgba(15,76,129,0.05);}.btn-action.btn-view:hover{background:rgba(15,76,129,0.12);border-color:var(--primary);}.btn-action.btn-edit{color:var(--secondary);border-color:rgba(27,154,170,0.2);background:rgba(27,154,170,0.05);}.btn-action.btn-edit:hover{background:rgba(27,154,170,0.12);border-color:var(--secondary);}.btn-action.btn-delete{color:var(--danger);border-color:rgba(220,38,38,0.2);background:rgba(220,38,38,0.05);}.btn-action.btn-delete:hover{background:rgba(220,38,38,0.12);border-color:var(--danger);}.form-card{background:var(--surface);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--card-shadow);border:1px solid var(--gray-100);}.form-section-title{font-size:.62rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.8px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--gray-100);display:flex;align-items:center;gap:8px;}.form-label{font-size:.72rem;font-weight:600;color:var(--gray-600);margin-bottom:5px;}.form-control,.form-select{font-size:.82rem;border:1.5px solid var(--gray-200);border-radius:var(--radius-sm);padding:8px 12px;color:var(--gray-800);background:var(--gray-50);transition:all var(--transition);font-family:var(--font-sans);}.form-control:focus,.form-select:focus{border-color:var(--secondary);box-shadow:0 0 0 3px rgba(27,154,170,0.12);background:var(--surface);outline:none;}.form-control::placeholder{color:var(--gray-400);}.required-star{color:var(--danger);font-size:.85rem;}.input-group-text{background:var(--gray-50);border:1.5px solid var(--gray-200);color:var(--gray-400);font-size:.82rem;}.input-group .form-control{border-left:none;}.input-group:focus-within .input-group-text{border-color:var(--secondary);}.input-group:focus-within .form-control{border-color:var(--secondary);box-shadow:none;}.input-group:focus-within{box-shadow:0 0 0 3px rgba(27,154,170,0.12);border-radius:var(--radius-sm);}.modal-content{border:none;border-radius:var(--radius-xl);box-shadow:var(--shadow-xl);overflow:hidden;}.modal-header-rms{background:linear-gradient(135deg,var(--primary),var(--primary-light));padding:18px 24px;border:none;}.modal-header-rms .modal-title{font-size:.95rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px;}.modal-body{padding:24px;}.modal-footer{background:var(--gray-50);border-top:1px solid var(--gray-100);padding:14px 20px;gap:8px;}.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px;color:var(--gray-400);text-align:center;gap:10px;}.empty-state i{font-size:2.5rem;opacity:0.4;}.empty-state p{font-size:.85rem;font-weight:500;margin:0;color:var(--gray-400);}#rmsToastContainer{position:fixed;bottom:24px;right:24px;z-index:var(--z-toast);display:flex;flex-direction:column;gap:8px;pointer-events:none;}.rms-toast{background:var(--gray-900);color:#fff;padding:12px 18px;border-radius:var(--radius-md);font-size:.82rem;font-weight:500;box-shadow:var(--shadow-xl);display:flex;align-items:center;gap:10px;animation:toastIn .25s var(--ease) forwards;pointer-events:all;max-width:340px;border-left:3px solid var(--secondary);}.rms-toast.success{border-left-color:var(--success);}.rms-toast.danger{border-left-color:var(--danger);}.rms-toast.warning{border-left-color:var(--warning);}.rms-toast.info{border-left-color:var(--info);}.rms-toast.out{animation:toastOut .2s var(--ease) forwards;}@keyframes toastIn{from{opacity:0;transform:translateX(24px) scale(0.96);}to{opacity:1;transform:none;}}@keyframes toastOut{from{opacity:1;transform:none;}to{opacity:0;transform:translateX(24px) scale(0.96);}}.low-stock-badge{background:rgba(220,38,38,0.1);color:var(--danger);font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:20px;display:inline-block;}.rms-progress{height:6px;border-radius:3px;background:var(--gray-100);overflow:hidden;}.rms-progress-bar{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--primary),var(--secondary));transition:width 0.6s var(--ease);}.skeleton{background:linear-gradient(90deg,var(--gray-100) 25%,var(--gray-200) 50%,var(--gray-100) 75%);background-size:200% 100%;animation:shimmer 1.4s ease-in-out infinite;border-radius:var(--radius-sm);}@keyframes shimmer{0%{background-position:200% 0;}100%{background-position:-200% 0;}}.cursor-pointer{cursor:pointer;}.fw-600{font-weight:600;}.font-mono{font-family:var(--font-mono);}td.mono,.td-mono{font-family:var(--font-mono);font-size:.8rem;}.job-no-link{font-weight:700;color:var(--primary);text-decoration:none;font-family:var(--font-mono);font-size:.8rem;}.job-no-link:hover{color:var(--secondary);text-decoration:underline;}.equip-id{font-family:var(--font-mono);font-size:.8rem;font-weight:600;color:var(--gray-700);background:var(--gray-100);padding:1px 7px;border-radius:var(--radius-xs);}::-webkit-scrollbar{width:6px;height:6px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:var(--gray-300);border-radius:3px;}::-webkit-scrollbar-thumb:hover{background:var(--gray-400);}.nav-tabs{border-bottom:2px solid var(--gray-200);gap:0;}.nav-tabs .nav-link{font-size:.8rem;font-weight:600;color:var(--gray-500);border:none;border-bottom:2px solid transparent;margin-bottom:-2px;padding:9px 16px;transition:all var(--transition);background:none;border-radius:0;}.nav-tabs .nav-link:hover{color:var(--primary);}.nav-tabs .nav-link.active{color:var(--primary);border-bottom-color:var(--primary);background:none;}.alert{font-size:.82rem;border-radius:var(--radius-md);border:none;padding:12px 16px;}.alert-info{background:rgba(2,132,199,0.08);color:#0369a1;}.alert-success{background:rgba(22,163,74,0.08);color:#15803d;}.alert-warning{background:rgba(217,119,6,0.08);color:#92400E;}.alert-danger{background:rgba(220,38,38,0.08);color:#991B1B;}.badge{font-weight:600;letter-spacing:.2px;border-radius:20px;}.table-card,.chart-card,.stat-card,.filter-card,.form-card{animation:fadeUp .3s var(--ease) both;}@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}.row >:nth-child(1) .stat-card{animation-delay:0.00s;}.row >:nth-child(2) .stat-card{animation-delay:0.04s;}.row >:nth-child(3) .stat-card{animation-delay:0.08s;}.row >:nth-child(4) .stat-card{animation-delay:0.12s;}#rmsConfirm{position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:calc(var(--z-modal) + 10);display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(2px);animation:fadeIn .15s ease both;}#rmsConfirm .confirm-box{background:var(--surface);border-radius:var(--radius-xl);padding:28px;max-width:380px;width:100%;box-shadow:var(--shadow-xl);}#rmsConfirm .confirm-icon{width:48px;height:48px;border-radius:50%;background:rgba(217,119,6,0.1);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}#rmsConfirm .confirm-icon i{color:var(--warning);font-size:1.25rem;}#rmsConfirm h6{text-align:center;font-size:.92rem;font-weight:700;margin-bottom:6px;}#rmsConfirm p{text-align:center;font-size:.82rem;color:var(--gray-500);margin-bottom:20px;}@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}@media (max-width:992px){:root{--sidebar-width:var(--sidebar-collapsed);}.rms-sidebar{width:var(--sidebar-collapsed);}.brand-text,.nav-item span,.nav-section-label,.sidebar-user .user-info,.nav-badge{display:none !important;}.nav-item{justify-content:center;padding:10px;}.nav-icon{width:auto;font-size:1rem;}.page-content{padding:16px;}}@media (max-width:576px){.stat-card{padding:14px 16px;}.stat-value{font-size:1.4rem;}.filter-card{padding:12px 14px;}.table-header{padding:12px 14px;}.page-content{padding:12px;}.topbar-actions .topbar-icon-btn:not(:last-child){display:none;}}@media print{.rms-sidebar,.rms-topbar{display:none !important;}.main-content{margin:0 !important;padding:0 !important;}.table-card,.chart-card{box-shadow:none;border:1px solid #ddd;}}
-</style>
-
-<style>
-/* ── PARTS-SPECIFIC STYLES ── */
-
-/* Tab navigation */
-.parts-tabs {
-  display: flex;
-  gap: 4px;
-  background: var(--gray-100);
-  padding: 5px;
-  border-radius: var(--radius-md);
-  margin-bottom: 20px;
-}
-.parts-tab {
-  flex: 1;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 7px;
-  background: transparent;
-  color: var(--gray-500);
-  font-size: .775rem;
-  font-weight: 600;
-  font-family: inherit;
-  cursor: pointer;
-  transition: all .18s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  white-space: nowrap;
-}
-.parts-tab:hover { background: #fff; color: var(--gray-700); box-shadow: 0 1px 4px rgba(0,0,0,.06); }
-.parts-tab.active {
-  background: #fff;
-  color: var(--primary);
-  box-shadow: 0 2px 8px rgba(0,0,0,.09);
-  font-weight: 700;
-}
-.parts-tab .tab-badge {
-  background: var(--danger);
-  color: #fff;
-  font-size: .58rem;
-  font-weight: 700;
-  padding: 1px 5px;
-  border-radius: 20px;
-  min-width: 16px;
-  text-align: center;
-}
-
-/* Stock level indicator */
-.stock-bar { height: 5px; border-radius: 3px; background: var(--gray-100); overflow: hidden; margin-top: 4px; }
-.stock-bar-fill { height: 100%; border-radius: 3px; transition: width .4s ease; }
-
-/* Part category badge */
-.cat-badge {
-  display: inline-block;
-  padding: 2px 8px;
-  border-radius: 20px;
-  font-size: .62rem;
-  font-weight: 700;
-  letter-spacing: .3px;
-}
-.cat-Mechanical  { background: rgba(15,76,129,.1);  color: var(--primary);   }
-.cat-Electronic  { background: rgba(124,58,237,.1); color: var(--purple);    }
-.cat-Consumable  { background: rgba(217,119,6,.1);  color: var(--warning);   }
-.cat-Other       { background: rgba(100,116,139,.1);color: var(--gray-500);  }
-
-/* Transaction form */
-.tx-form-card {
-  background: #fff;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--gray-100);
-  box-shadow: var(--shadow-md);
-  overflow: hidden;
-}
-.tx-form-header {
-  background: linear-gradient(135deg, var(--primary), var(--primary-light));
-  padding: 16px 24px;
-  color: #fff;
-}
-.tx-form-header.receive {
-  background: linear-gradient(135deg, var(--success), #22c55e);
-}
-.tx-form-body { padding: 24px; }
-
-/* History item */
-.history-item {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--gray-100);
-  transition: background .12s;
-}
-.history-item:hover { background: var(--gray-50); }
-.history-item:last-child { border-bottom: none; }
-.history-type-icon {
-  width: 34px; height: 34px;
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  font-size: .82rem;
-}
-.history-type-icon.issue   { background: rgba(27,154,170,.12);  color: var(--secondary); }
-.history-type-icon.receive { background: rgba(22,163,74,.12);   color: var(--success);   }
-
-/* Low stock progress */
-.low-stock-row { background: rgba(220,38,38,.03) !important; }
-
-/* Quick action buttons in table */
-.quick-btn {
-  width: 28px; height: 28px;
-  border-radius: 6px;
-  border: 1px solid;
-  display: inline-flex; align-items: center; justify-content: center;
-  cursor: pointer; font-size: .72rem;
-  transition: all .15s;
-}
-.quick-btn.issue   { border-color: rgba(27,154,170,.3);  background: rgba(27,154,170,.07);  color: var(--secondary); }
-.quick-btn.receive { border-color: rgba(22,163,74,.3);   background: rgba(22,163,74,.07);   color: var(--success);   }
-.quick-btn.edit    { border-color: rgba(217,119,6,.3);   background: rgba(217,119,6,.07);   color: var(--warning);   }
-.quick-btn.del     { border-color: rgba(220,38,38,.3);   background: rgba(220,38,38,.07);   color: var(--danger);    }
-.quick-btn:hover   { filter: brightness(.9); transform: scale(1.08); }
-
-/* Dashboard chart card */
-.dash-chart-card {
-  background: #fff;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--gray-100);
-  box-shadow: var(--shadow-md);
-  padding: 20px;
-  height: 100%;
-}
-
-/* Empty state mini */
-.empty-mini {
-  text-align: center;
-  padding: 40px 20px;
-  color: var(--gray-400);
-}
-.empty-mini i { font-size: 2rem; opacity: .35; display: block; margin-bottom: 10px; }
-.empty-mini p { font-size: .83rem; font-weight: 500; margin: 0; }
-
-/* _saveParts helper — inject via JS */
-</style>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
+<title>EWS Enterprise — Inventory — Spare Parts</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
-/* ═══ Enterprise UI v3.1 ═══ */
-.tb-brand{color:var(--gray-400);font-weight:500}
-.tb-sep{color:var(--gray-300);margin:0 5px}
-.page-subtitle{display:flex;align-items:center;gap:0;font-size:.675rem;color:var(--gray-500);margin-top:2px;line-height:1.4}
-.rms-bell-btn{position:relative}
-.rms-bell-dot{position:absolute;top:6px;right:6px;width:7px;height:7px;background:#DC2626;border-radius:50%;border:1.5px solid #fff;animation:bellPulse 2.5s ease-in-out infinite}
-.rms-bell-hidden{display:none}
-@keyframes bellPulse{0%,100%{box-shadow:0 0 0 0 rgba(220,38,38,.35)}50%{box-shadow:0 0 0 4px rgba(220,38,38,.08)}}
-.stat-card{border-left:4px solid transparent;transition:border-left-color .2s,box-shadow .2s,transform .2s}
-.stat-card:hover{border-left-color:var(--secondary)}.stat-card:has(.stat-icon.primary){border-left-color:var(--primary)}.stat-card:has(.stat-icon.secondary){border-left-color:var(--secondary)}.stat-card:has(.stat-icon.success){border-left-color:var(--success)}.stat-card:has(.stat-icon.warning){border-left-color:var(--warning)}.stat-card:has(.stat-icon.danger){border-left-color:var(--danger)}.stat-card:has(.stat-icon.purple){border-left-color:var(--purple)}.stat-card:has(.stat-icon.info){border-left-color:var(--info)}
-.stat-delta{font-size:.75rem;font-weight:600;margin-top:5px;display:flex;align-items:center;gap:4px;line-height:1.3}
-.stat-delta.up{color:var(--success)}.stat-delta.down{color:var(--danger)}.stat-delta.neutral{color:var(--gray-400)}
-.topbar-icon-btn:hover{background:var(--gray-100);color:var(--primary);border-color:var(--primary);box-shadow:0 0 0 3px rgba(15,76,129,.08)}
-.kc{border-left:3px solid transparent;transition:border-left-color .2s,transform .2s,box-shadow .2s}
-.kc:hover{border-left-color:var(--secondary);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.08)}
-.table thead th{font-size:.7rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--gray-500);background:#F8FAFC;border-bottom:2px solid var(--gray-100);padding:10px 14px;white-space:nowrap}
-.table tbody td{padding:10px 14px;font-size:.857rem;border-bottom:1px solid var(--gray-100);vertical-align:middle}
-.table tbody tr:hover td{background:#F8FAFC}
-.badge-status{font-size:.65rem;font-weight:700;padding:3px 10px;border-radius:20px;letter-spacing:.2px;display:inline-flex;align-items:center;gap:4px}
-.badge-SEND_REPAIR{background:#E0F2F7;color:#0e7490;border:1px solid rgba(14,116,144,.2)}
-.badge-CLOSED{background:#DCFCE7;color:#15803d;border:1px solid rgba(21,128,61,.2)}
-.badge-WAIT_APPROVAL{background:#FEF3C7;color:#b45309;border:1px solid rgba(180,83,9,.2)}
-.badge-REJECTED{background:#FEE2E2;color:#dc2626;border:1px solid rgba(220,38,38,.2)}
-.badge-OPEN{background:#F1F5F9;color:#475569;border:1px solid rgba(71,85,105,.15)}
-.badge-WAIT_SPARE_PART{background:#F3E8FF;color:#6d28d9;border:1px solid rgba(109,40,217,.2)}
-.nav-item.active{background:linear-gradient(90deg,rgba(27,154,170,.18),rgba(27,154,170,.06));color:#fff;font-weight:600}
-.nav-item.active::before{width:3px;background:linear-gradient(180deg,#1B9AAA,#0F4C81)}
-.sidebar-brand{background:linear-gradient(180deg,#0d1b2e,#0a1624)}
-</style>
 
-<style id="ds-v4">
-/* ═══════════════════════════════════════════════════════════════
-   EWS Enterprise Design System v4.0 — World-Class Override
-   SAP Fiori / Fluent Design inspired
-   ═══════════════════════════════════════════════════════════════ */
-@import url('https://fonts.googleapis.com/css2?family=Sarabun:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
-
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --font-sans:'Inter','Sarabun','Noto Sans Thai',system-ui,sans-serif;
-  /* Refined Primary — Fiori Blue */
-  --primary:#1264A3;--primary-dark:#0C4F84;--primary-light:#1976C8;
-  --primary-50:#EBF4FC;--primary-100:#C9E2F7;
-  /* Secondary — Deep Teal */
-  --secondary:#0E8A8A;--secondary-dark:#0A6B6B;--secondary-light:#11ACAC;
-  /* Semantic */
-  --success:#107C10;--success-bg:#DFF6DD;
-  --warning:#C45911;--warning-bg:#FFF4CE;
-  --danger:#A4262C;--danger-bg:#FDE7E9;
-  --info:#0078D4;--info-bg:#E8F4FE;
-  --purple:#7B52C3;--purple-bg:#F4EEF9;
-  /* Neutral — Slate Gray (cooler) */
-  --gray-50:#F9FAFB;--gray-100:#F3F4F6;--gray-200:#E5E7EB;
-  --gray-300:#D1D5DB;--gray-400:#9CA3AF;--gray-500:#6B7280;
-  --gray-600:#4B5563;--gray-700:#374151;--gray-800:#1F2937;--gray-900:#111827;
-  /* Sidebar */
-  --sidebar-width:252px;--sidebar-collapsed:64px;
-  /* Surfaces */
-  --surface:#FFFFFF;--bg-page:#EEF2F7;
-  /* Shadows — Refined */
-  --shadow-xs:0 1px 2px rgba(0,0,0,0.04);
-  --shadow-sm:0 1px 3px rgba(0,0,0,0.07),0 1px 2px rgba(0,0,0,0.04);
-  --shadow-md:0 4px 12px rgba(0,0,0,0.08),0 2px 4px rgba(0,0,0,0.04);
-  --shadow-lg:0 12px 28px rgba(0,0,0,0.10),0 4px 8px rgba(0,0,0,0.04);
-  --shadow-xl:0 24px 56px rgba(0,0,0,0.12),0 8px 16px rgba(0,0,0,0.06);
-  /* Card */
-  --card-shadow:var(--shadow-sm);
-  --card-radius:12px;
-  --card-border:1px solid var(--gray-200);
+  --p60:#0F62FE;--p70:#0043CE;--p50:#4589FF;
+  --g100:#161616;--g90:#262626;--g80:#393939;--g70:#525252;
+  --g60:#6F6F6F;--g50:#8D8D8D;--g40:#A8A8A8;--g30:#C6C6C6;
+  --g20:#E0E0E0;--g10:#F4F4F4;--white:#FFFFFF;
+  --green50:#198038;--green10:#DEFBE6;
+  --red60:#DA1E28;--red10:#FFF1F1;
+  --yellow30:#F1C21B;--yellow10:#FFF8E1;
+  --teal50:#009D9A;--teal10:#D9FBFB;
+  --purple50:#8A3FFC;--purple10:#F6F2FF;
+  --orange40:#FF832B;--orange10:#FFF2E8;
+  --cyan50:#1192E8;--cyan10:#E5F6FF;
+  --sidebar-w:220px;--topbar-h:52px;--qbar-h:50px;
+  --font:'IBM Plex Sans',system-ui,sans-serif;--t-fast:.12s ease;
+}
+html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g10);color:var(--g100);overflow:hidden}
+.mxm-shell{display:flex;height:100vh;overflow:hidden}
+.mxm-sidebar{width:var(--sidebar-w);min-width:var(--sidebar-w);background:var(--g100);display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;z-index:100;flex-shrink:0;transition:width .2s,min-width .2s;scrollbar-width:thin;scrollbar-color:var(--g80) transparent}
+.mxm-sidebar.collapsed{width:48px;min-width:48px}
+.mxm-sidebar.collapsed .nav-label,.mxm-sidebar.collapsed .sidebar-section-label,.mxm-sidebar.collapsed .sys-info,.mxm-sidebar.collapsed .sb-brand-text{display:none}
+.mxm-sidebar.collapsed .sb-brand{justify-content:center}
+.mxm-sidebar.collapsed .nav-item{justify-content:center;padding:10px 0}
+.sb-brand{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--g80);flex-shrink:0;min-height:52px}
+.sb-logo-box{width:28px;height:28px;background:var(--p60);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sb-logo-box span{color:#fff;font-weight:700;font-size:.85rem}
+.sb-brand-text .brand-name{color:#fff;font-weight:600;font-size:.78rem;line-height:1.2;white-space:nowrap}
+.sb-brand-text .brand-sub{color:var(--g50);font-size:.65rem;white-space:nowrap}
+.sidebar-nav{flex:1;padding:8px 0}
+.sidebar-section-label{color:var(--g50);font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.8px;padding:12px 16px 4px;white-space:nowrap}
+.nav-item{display:flex;align-items:center;gap:12px;padding:9px 16px;color:var(--g30);font-size:.78rem;text-decoration:none;border-left:3px solid transparent;transition:background var(--t-fast),color var(--t-fast);white-space:nowrap}
+.nav-item:hover{background:var(--g90);color:#fff}
+.nav-item.active{background:var(--g90);color:#fff;border-left-color:var(--p60)}
+.nav-icon{font-size:.85rem;width:16px;text-align:center;flex-shrink:0}
+.nav-badge{background:var(--p60);color:#fff;font-size:.6rem;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:auto}
+.sys-info{padding:12px 14px;border-top:1px solid var(--g80);flex-shrink:0}
+.sys-title{color:var(--g40);font-size:.63rem;font-weight:600;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px}
+.sys-status-row{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.sys-dot{width:8px;height:8px;border-radius:50%;background:#24A148}
+.sys-online{color:var(--g30);font-size:.72rem}
+.sys-update{color:var(--g50);font-size:.63rem;line-height:1.5}
+.mxm-main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+.mxm-topbar{height:var(--topbar-h);min-height:var(--topbar-h);background:#fff;border-bottom:1px solid var(--g20);display:flex;align-items:center;padding:0 16px;gap:12px;z-index:50;flex-shrink:0}
+.tb-menu-btn{background:none;border:none;color:var(--g70);width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.tb-menu-btn:hover{background:var(--g10)}
+.tb-brand{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+.tb-title-block .tb-title{font-size:.92rem;font-weight:600;color:var(--g100);white-space:nowrap}
+.tb-title-block .tb-sub{font-size:.68rem;color:var(--g50);white-space:nowrap}
+.tb-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.tb-btn-primary{background:var(--p60);border:none;color:#fff;font-family:var(--font);font-size:.72rem;font-weight:600;padding:7px 16px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:background var(--t-fast);white-space:nowrap}
+.tb-btn-primary:hover{background:var(--p70)}
+.tb-btn-ghost{background:none;border:1px solid var(--g20);color:var(--g70);font-family:var(--font);font-size:.72rem;padding:7px 14px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:background var(--t-fast)}
+.tb-btn-ghost:hover{background:var(--g10)}
+.tb-icon-btn{position:relative;background:none;border:none;width:34px;height:34px;cursor:pointer;color:var(--g70);font-size:.9rem;display:flex;align-items:center;justify-content:center;text-decoration:none}
+.tb-icon-btn:hover{background:var(--g10)}
+.tb-bell-badge{position:absolute;top:4px;right:4px;background:var(--red60);color:#fff;font-size:.5rem;font-weight:700;width:14px;height:14px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.tb-user{display:flex;align-items:center;gap:8px;padding:4px 10px;cursor:pointer;border:1px solid transparent;transition:border-color var(--t-fast)}
+.tb-user:hover{background:var(--g10);border-color:var(--g20)}
+.tb-avatar{width:28px;height:28px;background:var(--p60);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;flex-shrink:0}
+.tb-username{font-size:.72rem;font-weight:500;color:var(--g100);white-space:nowrap}
+.mxm-content{flex:1;overflow-y:auto;overflow-x:hidden;padding:16px;scrollbar-width:thin;scrollbar-color:var(--g20) transparent}
+.mxm-qbar{height:var(--qbar-h);min-height:var(--qbar-h);background:var(--g90);display:flex;align-items:center;padding:0 16px;gap:4px;flex-shrink:0;overflow-x:auto}
+.qbar-label{color:var(--g50);font-size:.65rem;font-weight:600;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;margin-right:8px}
+.qbar-btn{display:flex;align-items:center;gap:7px;background:none;border:1px solid var(--g80);color:var(--g30);font-family:var(--font);font-size:.72rem;padding:6px 14px;cursor:pointer;white-space:nowrap;transition:background var(--t-fast),color var(--t-fast)}
+.qbar-btn:hover{background:var(--g80);color:#fff}
+.qbar-sep{width:1px;height:24px;background:var(--g80);flex-shrink:0;margin:0 4px}
+/* Cards */
+.ccard{background:#fff;padding:16px;margin-bottom:2px}
+.ccard-title{font-size:.78rem;font-weight:600;color:var(--g100);margin-bottom:2px}
+.ccard-sub{font-size:.65rem;color:var(--g50)}
+.ccard-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:12px;gap:8px}
+/* KPI strip */
+.ks-strip{display:grid;gap:2px;margin-bottom:2px}
+.ks-card{background:#fff;padding:12px 16px;border-top:2px solid var(--g30)}
+.ks-card.ksc-p{border-top-color:var(--p60)}.ks-card.ksc-g{border-top-color:var(--green50)}
+.ks-card.ksc-r{border-top-color:var(--red60)}.ks-card.ksc-y{border-top-color:var(--yellow30)}
+.ks-card.ksc-t{border-top-color:var(--teal50)}.ks-card.ksc-o{border-top-color:var(--orange40)}
+.ks-label{font-size:.6rem;font-weight:600;color:var(--g60);text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
+.ks-value{font-size:1.3rem;font-weight:300;color:var(--g100);line-height:1}
+.ks-sub{font-size:.62rem;color:var(--g50);margin-top:2px}
+/* Table */
+.page-toolbar{background:#fff;border-bottom:1px solid var(--g20);padding:10px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;flex-shrink:0}
+.filter-select,.filter-input{background:var(--g10);border:1px solid var(--g20);color:var(--g100);font-family:var(--font);font-size:.72rem;padding:5px 10px;outline:none;cursor:pointer;min-width:120px}
+.filter-input{background:#fff;min-width:200px}.filter-input::placeholder{color:var(--g40)}
+.filter-select:focus,.filter-input:focus{border-color:var(--p60)}
+.search-wrap{position:relative;flex:1;min-width:180px;max-width:320px}
+.search-wrap input{width:100%;padding-left:32px}
+.search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--g50);font-size:.75rem;pointer-events:none}
+.toolbar-spacer{flex:1}
+.tbl-wrap{flex:1;overflow-y:auto}
+.data-table{width:100%;border-collapse:collapse;background:#fff}
+.data-table thead th{position:sticky;top:0;z-index:10;background:#fff;border-bottom:2px solid var(--g20);font-size:.65rem;font-weight:600;color:var(--g60);text-transform:uppercase;letter-spacing:.4px;padding:10px 12px;text-align:left;white-space:nowrap;user-select:none}
+.data-table thead th:hover{background:var(--g10);cursor:pointer}
+.data-table tbody tr{border-bottom:1px solid var(--g10);transition:background var(--t-fast)}
+.data-table tbody tr:hover{background:var(--cyan10)}
+.data-table td{padding:9px 12px;font-size:.75rem;color:var(--g100);vertical-align:middle;white-space:nowrap}
+.td-mono{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--p60);font-size:.78rem}
+.td-eq{font-family:'IBM Plex Mono',monospace;background:var(--g10);padding:2px 7px;font-size:.72rem;color:var(--g80)}
+.td-long{max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* Badges */
+.bs{display:inline-block;font-size:.62rem;font-weight:600;padding:2px 8px;letter-spacing:.2px}
+.bs-OPEN{background:var(--cyan10);color:var(--cyan50)}.bs-SEND_REPAIR{background:var(--yellow10);color:#8B6900}
+.bs-WAIT_APPROVAL{background:var(--purple10);color:var(--purple50)}.bs-WAIT_SPARE_PART{background:var(--orange10);color:var(--orange40)}
+.bs-CLOSED{background:var(--green10);color:var(--green50)}.bs-RETURNED{background:var(--teal10);color:var(--teal50)}
+.pri{display:inline-flex;align-items:center;gap:4px;font-size:.62rem;font-weight:600}
+.pri-dot{width:7px;height:7px;border-radius:50%}
+.pri-CRITICAL{color:var(--red60)}.pri-CRITICAL .pri-dot{background:var(--red60)}
+.pri-HIGH{color:var(--orange40)}.pri-HIGH .pri-dot{background:var(--orange40)}
+.pri-MEDIUM{color:#8B6900}.pri-MEDIUM .pri-dot{background:var(--yellow30)}
+.pri-LOW{color:var(--green50)}.pri-LOW .pri-dot{background:var(--green50)}
+/* Modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:500;display:flex;align-items:flex-start;justify-content:flex-end}
+.modal-overlay.hidden{display:none}
+.modal-panel{width:480px;height:100%;background:#fff;display:flex;flex-direction:column;overflow:hidden;animation:slideIn .2s ease}
+@keyframes slideIn{from{transform:translateX(100%)}to{transform:translateX(0)}}
+.modal-header{padding:16px 20px;border-bottom:1px solid var(--g20);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.modal-title{font-size:.92rem;font-weight:600;color:var(--g100)}
+.modal-close{background:none;border:none;color:var(--g60);font-size:1.1rem;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center}
+.modal-close:hover{background:var(--g10)}
+.modal-body{flex:1;overflow-y:auto;padding:20px}
+.modal-footer{padding:14px 20px;border-top:1px solid var(--g20);display:flex;gap:8px;justify-content:flex-end;flex-shrink:0}
+.mf-label{display:block;font-size:.7rem;font-weight:600;color:var(--g70);margin-bottom:5px}
+.mf-input,.mf-select,.mf-textarea{width:100%;background:#fff;border:1px solid var(--g30);font-family:var(--font);font-size:.8rem;color:var(--g100);padding:8px 12px;outline:none}
+.mf-input:focus,.mf-select:focus,.mf-textarea:focus{border-color:var(--p60);box-shadow:inset 0 0 0 1px var(--p60)}
+.mf-textarea{height:80px;resize:vertical}
+.mf-group{margin-bottom:16px}
+.mf-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn-prim{background:var(--p60);border:none;color:#fff;font-family:var(--font);font-size:.78rem;font-weight:600;padding:9px 20px;cursor:pointer;transition:background var(--t-fast)}
+.btn-prim:hover{background:var(--p70)}
+.btn-ghost{background:none;border:1px solid var(--g20);color:var(--g70);font-family:var(--font);font-size:.78rem;padding:9px 16px;cursor:pointer}
+.btn-ghost:hover{background:var(--g10)}
+.btn-danger{background:var(--red60);border:none;color:#fff;font-family:var(--font);font-size:.78rem;font-weight:600;padding:9px 16px;cursor:pointer}
+.hidden{display:none!important}
+/* Toast */
+.toast-container{position:fixed;top:14px;right:14px;z-index:9999;display:flex;flex-direction:column;gap:6px;pointer-events:none}
+.rms-toast{background:var(--g90);color:#fff;padding:10px 16px;font-size:.75rem;display:flex;align-items:center;gap:8px;min-width:220px;animation:fadeIn .2s ease;box-shadow:0 4px 12px rgba(0,0,0,.3);pointer-events:all}
+.rms-toast.success{border-left:3px solid var(--green50)}.rms-toast.danger{border-left:3px solid var(--red60)}.rms-toast.info{border-left:3px solid var(--p60)}
+.rms-toast.out{opacity:0;transform:translateX(20px);transition:.25s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
+/* Prog bar */
+.prog-bar{background:var(--g10);height:8px;flex:1}.prog-fill{height:100%;transition:width .6s}
+/* Grid rows */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:2px}
+.grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;margin-bottom:2px}
+.grid-4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:2px;margin-bottom:2px}
+.grid-13{display:grid;grid-template-columns:1fr 3fr;gap:2px;margin-bottom:2px}
+.grid-31{display:grid;grid-template-columns:3fr 1fr;gap:2px;margin-bottom:2px}
+
+
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — TABLET & MOBILE
+   ══════════════════════════════════════════ */
+
+/* Sidebar overlay (mobile) */
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:199;backdrop-filter:blur(2px)}
+.sidebar-overlay.active{display:block}
+
+/* ── TABLET ≤1024px ── */
+@media(max-width:1024px){
+  .mxm-sidebar{position:fixed;z-index:200;height:100%;transform:translateX(-240px);transition:transform .22s cubic-bezier(.4,0,.2,1);box-shadow:none}
+  .mxm-sidebar.mobile-open{transform:translateX(0);box-shadow:4px 0 24px rgba(0,0,0,.25)}
+  .mxm-main{margin-left:0!important;width:100%!important}
+  .mxm-topbar{padding-left:12px}
+  .tb-menu-btn{display:flex!important}
+  .tb-plant-select{max-width:140px}
+  .tb-date-range{display:none}
+  .kpi-row{grid-template-columns:repeat(4,1fr)!important}
+  .chart-row-3,.chart-row-4{grid-template-columns:1fr 1fr!important}
+  .chart-row-222{grid-template-columns:1fr 1fr!important}
+  .chart-row-42,.chart-row-24{grid-template-columns:1fr!important}
+  .grid-3{grid-template-columns:1fr 1fr!important}
+  .settings-grid{grid-template-columns:180px 1fr!important}
 }
 
-/* ── GLOBAL ── */
-body{font-family:var(--font-sans);background:var(--bg-page);-webkit-font-smoothing:antialiased;color:var(--gray-800);}
-
-/* ── SIDEBAR v4 ── */
-.rms-sidebar{background:#0B1927;}
-.sidebar-brand{background:linear-gradient(180deg,rgba(18,100,163,.12) 0%,transparent 100%);border-bottom:1px solid rgba(255,255,255,.07);}
-.brand-icon{background:linear-gradient(135deg,#1264A3,#0E8A8A);border-radius:10px;box-shadow:0 4px 12px rgba(18,100,163,.4);}
-.brand-name{font-size:.84rem;font-weight:700;letter-spacing:-.1px;}
-.brand-ver{font-size:.6rem;letter-spacing:.8px;color:rgba(255,255,255,.3);}
-.nav-item{border-radius:8px;font-size:.795rem;padding:8px 11px;transition:background .12s,color .12s;}
-.nav-item:hover{background:rgba(255,255,255,.07);color:rgba(255,255,255,.95);}
-.nav-item.active{background:rgba(14,138,138,.18);color:#fff;}
-.nav-item.active::before{background:#0E8A8A;width:3px;border-radius:0 3px 3px 0;}
-.nav-item.active .nav-icon{color:#0E8A8A;}
-.nav-section-label{font-size:.555rem;letter-spacing:1.6px;color:rgba(255,255,255,.2);padding:16px 11px 5px;}
-.nav-badge{font-size:.58rem;padding:1px 6px;border-radius:20px;}
-.user-avatar{width:32px;height:32px;border-radius:8px;font-size:.72rem;box-shadow:0 2px 6px rgba(0,0,0,.2);}
-.user-name{font-size:.79rem;font-weight:600;}
-.user-role{font-size:.61rem;letter-spacing:.6px;}
-
-/* ── TOPBAR v4 ── */
-.rms-topbar{border-bottom:1px solid var(--gray-200);border-top:3px solid var(--primary);box-shadow:0 2px 8px rgba(0,0,0,.05);background:#fff;}
-.page-title{font-size:.92rem;font-weight:700;color:var(--gray-900);letter-spacing:-.1px;}
-.page-subtitle{font-size:.68rem;color:var(--gray-400);font-weight:400;}
-.topbar-icon-btn{border-radius:8px;width:34px;height:34px;border:1px solid var(--gray-200);transition:all .15s;}
-.topbar-icon-btn:hover{background:var(--primary-50);border-color:var(--primary-100);color:var(--primary);}
-
-/* ── PAGE CONTENT ── */
-.main-content{background:var(--bg-page);}
-.page-content{padding:22px 24px 40px;max-width:1760px;}
-
-/* ── STAT CARDS v4 ── */
-.stat-card{
-  background:#fff;border-radius:12px;
-  border:1px solid var(--gray-200);border-left:4px solid transparent;
-  padding:16px 18px;display:flex;align-items:center;gap:14px;
-  box-shadow:var(--shadow-xs);
-  transition:transform .15s ease,box-shadow .15s ease,border-color .15s;
-  height:100%;
+/* ── MOBILE ≤767px ── */
+@media(max-width:767px){
+  .mxm-topbar{padding:0 10px;gap:6px}
+  .tb-title-sub,.ccard-sub{display:none}
+  .tb-title{font-size:.8rem}
+  .tb-plant-select{display:none}
+  .tb-icon-btn{width:32px;height:32px}
+  .kpi-row{grid-template-columns:repeat(2,1fr)!important}
+  .chart-row-3,.chart-row-4,.chart-row-222,.chart-row-42,.chart-row-24,.chart-row-2{grid-template-columns:1fr!important}
+  .grid-2,.grid-3{grid-template-columns:1fr!important}
+  .mxm-content{padding:8px!important}
+  .mxm-qbar{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:0 8px;gap:6px;justify-content:flex-start}
+  .qbar-btn{white-space:nowrap;flex-shrink:0;font-size:.68rem;padding:0 10px}
+  .filter-bar{flex-wrap:wrap;gap:6px;padding:8px 10px}
+  .fb-input{width:100%;min-width:0;flex:1 1 100%}
+  .fb-select{flex:1 1 calc(50% - 6px);min-width:0}
+  .fb-btn{width:100%}
+  .data-table{font-size:.72rem}
+  .data-table th,.data-table td{padding:7px 8px;white-space:nowrap}
+  .ccard{padding:10px}
+  .modal-panel{width:100vw!important;max-width:100vw!important;border-radius:0}
+  .modal-overlay{align-items:flex-end!important}
+  .modal-panel{height:92vh!important;border-radius:12px 12px 0 0!important}
+  .form-row{flex-direction:column!important;gap:8px!important}
+  .settings-grid{grid-template-columns:1fr!important;gap:0}
+  .settings-nav{display:flex;flex-wrap:wrap;border-right:none;border-bottom:1px solid var(--g20)}
+  .sn-item{flex:1 1 auto;text-align:center;padding:8px 6px;font-size:.7rem}
+  .sn-item i{display:block;margin-bottom:2px;font-size:.85rem}
+  .tab-btn{font-size:.7rem;padding:10px 10px}
+  .pager{flex-direction:column;gap:6px;align-items:flex-start;padding:8px 10px}
+  .pg-btn{padding:4px 10px;font-size:.72rem}
+  .kpi-value{font-size:1.25rem}
+  .kpi-label{font-size:.58rem}
+  td.td-long{max-width:120px}
 }
-.stat-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-md);}
-.stat-card:has(.stat-icon.primary)  {border-left-color:var(--primary);}
-.stat-card:has(.stat-icon.secondary){border-left-color:var(--secondary);}
-.stat-card:has(.stat-icon.success)  {border-left-color:var(--success);}
-.stat-card:has(.stat-icon.warning)  {border-left-color:var(--warning);}
-.stat-card:has(.stat-icon.danger)   {border-left-color:var(--danger);}
-.stat-card:has(.stat-icon.purple)   {border-left-color:var(--purple);}
-.stat-card:has(.stat-icon.info)     {border-left-color:var(--info);}
-.stat-icon{width:44px;height:44px;border-radius:10px;font-size:.95rem;}
-.stat-icon.primary  {background:var(--primary-50);color:var(--primary);}
-.stat-icon.secondary{background:rgba(14,138,138,.08);color:var(--secondary);}
-.stat-icon.success  {background:var(--success-bg);color:var(--success);}
-.stat-icon.warning  {background:var(--warning-bg);color:var(--warning);}
-.stat-icon.danger   {background:var(--danger-bg);color:var(--danger);}
-.stat-icon.purple   {background:var(--purple-bg);color:var(--purple);}
-.stat-icon.info     {background:var(--info-bg);color:var(--info);}
-.stat-value{font-size:1.75rem;font-weight:800;color:var(--gray-900);line-height:1;letter-spacing:-1px;font-variant-numeric:tabular-nums;}
-.stat-label{font-size:.735rem;font-weight:600;color:var(--gray-700);line-height:1.3;margin-top:3px;}
-.stat-sub{font-size:.685rem;color:var(--gray-400);margin-top:2px;}
-.stat-delta{font-size:.72rem;font-weight:600;margin-top:4px;display:flex;align-items:center;gap:3px;}
-.stat-delta.up{color:var(--success);}
-.stat-delta.down{color:var(--danger);}
 
-/* ── SECTION HEADER ── */
-.page-section-title{
-  font-size:.72rem;font-weight:700;color:var(--gray-500);
-  text-transform:uppercase;letter-spacing:.8px;
-  margin-bottom:12px;margin-top:4px;
-  display:flex;align-items:center;gap:10px;
+/* ── SMALL MOBILE ≤480px ── */
+@media(max-width:480px){
+  .kpi-row{grid-template-columns:repeat(2,1fr)!important}
+  .kpi-value{font-size:1.1rem}
+  .mxm-topbar{min-height:44px;height:44px}
+  .tb-title{display:none}
 }
-.page-section-title::after{content:'';flex:1;height:1px;background:var(--gray-200);}
-.page-section-title i{font-size:.7rem;color:var(--primary);}
 
-/* ── CHART CARDS v4 ── */
-.chart-card{
-  background:#fff;border-radius:12px;
-  border:var(--card-border);padding:20px 22px;
-  box-shadow:var(--shadow-xs);
-}
-.chart-title{font-size:.8rem;font-weight:700;color:var(--gray-800);}
-.chart-sub{font-size:.67rem;color:var(--gray-400);margin-bottom:14px;margin-top:2px;}
-
-/* ── TABLE CARDS v4 ── */
-.table-card{background:#fff;border-radius:12px;border:var(--card-border);box-shadow:var(--shadow-xs);overflow:hidden;}
-.table-header{display:flex;align-items:center;justify-content:space-between;padding:15px 20px;border-bottom:1px solid var(--gray-100);gap:12px;flex-wrap:wrap;}
-.table-title{font-size:.8rem;font-weight:700;color:var(--gray-800);display:flex;align-items:center;gap:8px;}
-.table thead th{
-  background:var(--gray-50);color:var(--gray-500);
-  font-size:.65rem;font-weight:700;letter-spacing:.65px;
-  text-transform:uppercase;padding:11px 16px;
-  border-bottom:2px solid var(--gray-200);white-space:nowrap;
-}
-.table tbody td{
-  padding:11px 16px;font-size:.815rem;color:var(--gray-700);
-  border-bottom:1px solid var(--gray-50);vertical-align:middle;
-}
-.table tbody tr:last-child td{border-bottom:none;}
-.table-hover tbody tr:hover td,.table-hover tbody tr:hover{background:var(--gray-50)!important;}
-
-/* ── FILTER CARD v4 ── */
-.filter-card{
-  background:#fff;border-radius:12px;border:var(--card-border);
-  padding:16px 20px;box-shadow:var(--shadow-xs);
-}
-.filter-label{font-size:.64rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:.6px;display:block;margin-bottom:5px;}
-
-/* ── FORM v4 ── */
-.form-card{background:#fff;border-radius:12px;border:var(--card-border);padding:22px 24px;box-shadow:var(--shadow-xs);}
-.form-label{font-size:.73rem;font-weight:600;color:var(--gray-600);margin-bottom:5px;}
-.form-control,.form-select{
-  font-size:.82rem;border:1.5px solid var(--gray-200);border-radius:8px;
-  padding:8px 12px;color:var(--gray-800);background:var(--gray-50);
-  transition:border-color .15s,box-shadow .15s,background .15s;
-  font-family:var(--font-sans);
-}
-.form-control:focus,.form-select:focus{
-  border-color:var(--primary);background:#fff;outline:none;
-  box-shadow:0 0 0 3px rgba(18,100,163,.1);
-}
-.form-control::placeholder{color:var(--gray-400);}
-.form-section-title{
-  font-size:.63rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;
-  letter-spacing:.8px;margin-bottom:14px;padding-bottom:10px;
-  border-bottom:1px solid var(--gray-100);display:flex;align-items:center;gap:8px;
-}
-.required-star{color:var(--danger);}
-
-/* ── INPUT GROUP ── */
-.input-group-text{background:var(--gray-50);border:1.5px solid var(--gray-200);color:var(--gray-400);font-size:.82rem;}
-.input-group .form-control{border-left:none;}
-.input-group:focus-within{box-shadow:0 0 0 3px rgba(18,100,163,.1);border-radius:8px;}
-.input-group:focus-within .input-group-text,.input-group:focus-within .form-control{border-color:var(--primary);box-shadow:none;}
-
-/* ── BUTTONS v4 ── */
-.btn-primary-rms{
-  background:var(--primary);border:none;color:#fff;
-  font-weight:600;font-size:.79rem;padding:8px 16px;
-  border-radius:8px;cursor:pointer;display:inline-flex;align-items:center;gap:7px;
-  transition:all .15s;box-shadow:0 1px 3px rgba(18,100,163,.25);
-  font-family:var(--font-sans);letter-spacing:.1px;
-}
-.btn-primary-rms:hover{background:var(--primary-dark);box-shadow:0 4px 12px rgba(18,100,163,.35);transform:translateY(-1px);color:#fff;}
-.btn-primary-rms:active{transform:none;box-shadow:none;}
-.btn-outline-rms{
-  background:transparent;border:1.5px solid var(--gray-300);color:var(--gray-600);
-  font-weight:600;font-size:.79rem;padding:7px 15px;border-radius:8px;
-  cursor:pointer;display:inline-flex;align-items:center;gap:7px;
-  transition:all .15s;font-family:var(--font-sans);
-}
-.btn-outline-rms:hover{background:var(--gray-50);border-color:var(--primary);color:var(--primary);}
-
-/* ── STATUS FILTER BUTTONS ── */
-.status-btn{
-  border:1.5px solid var(--gray-200);background:var(--gray-50);color:var(--gray-500);
-  font-size:.71rem;font-weight:600;padding:5px 13px;border-radius:20px;
-  cursor:pointer;transition:all .15s;white-space:nowrap;font-family:var(--font-sans);
-}
-.status-btn:hover{background:var(--gray-100);border-color:var(--gray-300);color:var(--gray-700);}
-.status-btn.active{background:var(--c,var(--primary));border-color:var(--c,var(--primary));color:#fff;box-shadow:0 2px 8px rgba(0,0,0,.12);}
-
-/* ── BADGE SYSTEM v4 ── */
-.badge-priority,.badge-status{
-  font-size:.61rem;font-weight:700;padding:3px 9px;
-  border-radius:20px;letter-spacing:.2px;
-  text-transform:uppercase;display:inline-block;line-height:1.5;
-}
-.badge-CRITICAL{background:rgba(153,27,27,.09);color:#991B1B;border:1px solid rgba(153,27,27,.18);}
-.badge-HIGH    {background:rgba(180,83,9,.09);color:#B45309;border:1px solid rgba(180,83,9,.18);}
-.badge-MEDIUM  {background:rgba(146,64,14,.09);color:#92400E;border:1px solid rgba(146,64,14,.18);}
-.badge-LOW     {background:rgba(16,124,16,.09);color:#15803d;border:1px solid rgba(16,124,16,.18);}
-.badge-CLOSED        {background:rgba(16,124,16,.09);color:#15803d;}
-.badge-SEND_REPAIR   {background:rgba(14,138,138,.09);color:#0e7490;}
-.badge-RETURNED      {background:rgba(18,100,163,.09);color:#1264A3;}
-.badge-WAIT_APPROVAL {background:rgba(196,89,17,.09);color:#C45911;}
-.badge-WAIT_SPARE_PART{background:rgba(123,82,195,.09);color:#7B52C3;}
-.badge-REJECTED      {background:rgba(164,38,44,.09);color:#A4262C;}
-.badge-APPROVED      {background:rgba(16,124,16,.09);color:#15803d;}
-.badge-OPEN          {background:rgba(107,114,128,.09);color:#6B7280;}
-.badge-IN_PROGRESS   {background:rgba(0,120,212,.09);color:#0078D4;}
-
-/* ── ACTION BUTTONS ── */
-.btn-action{
-  width:30px;height:30px;border-radius:7px;
-  border:1px solid var(--gray-200);background:var(--gray-50);
-  display:inline-flex;align-items:center;justify-content:center;
-  cursor:pointer;font-size:.75rem;color:var(--gray-500);transition:all .15s;
-}
-.btn-action:hover{background:var(--gray-100);border-color:var(--gray-300);color:var(--gray-700);}
-.btn-action.btn-view{color:var(--primary);border-color:rgba(18,100,163,.2);background:var(--primary-50);}
-.btn-action.btn-view:hover{background:var(--primary-100);border-color:var(--primary);}
-.btn-action.btn-edit{color:var(--secondary);border-color:rgba(14,138,138,.2);background:rgba(14,138,138,.06);}
-.btn-action.btn-edit:hover{background:rgba(14,138,138,.12);border-color:var(--secondary);}
-.btn-action.btn-delete{color:var(--danger);border-color:rgba(164,38,44,.2);background:var(--danger-bg);}
-.btn-action.btn-delete:hover{background:rgba(164,38,44,.12);border-color:var(--danger);}
-
-/* ── MODAL v4 ── */
-.modal-content{border:none;border-radius:16px;box-shadow:var(--shadow-xl);overflow:hidden;}
-.modal-header-rms{
-  background:linear-gradient(135deg,var(--primary) 0%,var(--primary-light) 100%);
-  padding:18px 24px;border:none;
-}
-.modal-header-rms .modal-title{font-size:.95rem;font-weight:700;color:#fff;}
-.modal-body{padding:24px;}
-.modal-footer{background:var(--gray-50);border-top:1px solid var(--gray-100);padding:14px 20px;gap:8px;}
-
-/* ── TOAST v4 ── */
-.rms-toast{
-  background:#1C2B3A;color:#fff;padding:12px 18px;border-radius:10px;
-  font-size:.82rem;font-weight:500;box-shadow:var(--shadow-xl);
-  display:flex;align-items:center;gap:10px;max-width:340px;
-  border-left:3px solid var(--secondary);pointer-events:all;
-}
-.rms-toast.success{border-left-color:var(--success);}
-.rms-toast.danger{border-left-color:var(--danger);}
-.rms-toast.warning{border-left-color:var(--warning);}
-.rms-toast.info{border-left-color:var(--info);}
-
-/* ── NAV TABS v4 ── */
-.nav-tabs{border-bottom:2px solid var(--gray-200);}
-.nav-tabs .nav-link{
-  font-size:.8rem;font-weight:600;color:var(--gray-500);
-  border:none;border-bottom:2px solid transparent;
-  margin-bottom:-2px;padding:9px 16px;transition:all .15s;
-}
-.nav-tabs .nav-link:hover{color:var(--primary);}
-.nav-tabs .nav-link.active{color:var(--primary);border-bottom-color:var(--primary);}
-
-/* ── MISC HELPERS ── */
-.equip-id{font-family:var(--font-mono,'JetBrains Mono',monospace);font-size:.79rem;font-weight:600;color:var(--gray-700);background:var(--gray-100);padding:2px 8px;border-radius:5px;}
-.job-no-link{font-weight:700;color:var(--primary);text-decoration:none;font-family:var(--font-mono,'JetBrains Mono',monospace);font-size:.79rem;}
-.job-no-link:hover{color:var(--secondary);}
-.rms-progress{height:6px;border-radius:3px;background:var(--gray-100);overflow:hidden;}
-.rms-progress-bar{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--primary),var(--secondary));transition:width .6s ease;}
-.low-stock-badge{background:var(--danger-bg);color:var(--danger);font-size:.7rem;font-weight:700;padding:3px 9px;border-radius:20px;display:inline-block;}
-.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:48px 24px;color:var(--gray-400);text-align:center;gap:10px;}
-.empty-state i{font-size:2.5rem;opacity:.35;}
-.empty-state p{font-size:.85rem;font-weight:500;margin:0;}
-.skeleton{background:linear-gradient(90deg,var(--gray-100) 25%,var(--gray-200) 50%,var(--gray-100) 75%);background-size:200% 100%;animation:shimmer 1.4s ease-in-out infinite;border-radius:8px;}
-
-/* ── ALERT v4 ── */
-.alert{font-size:.82rem;border-radius:10px;border:none;padding:12px 16px;}
-.alert-info{background:var(--info-bg);color:#005A9E;}
-.alert-success{background:var(--success-bg);color:#057005;}
-.alert-warning{background:var(--warning-bg);color:#8A3A00;}
-.alert-danger{background:var(--danger-bg);color:#750B1C;}
-
-/* ── CONFIRM DIALOG ── */
-#rmsConfirm .confirm-box{background:#fff;border-radius:16px;padding:28px;max-width:380px;width:100%;box-shadow:var(--shadow-xl);}
-#rmsConfirm .confirm-icon{width:50px;height:50px;border-radius:50%;background:var(--warning-bg);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
-#rmsConfirm .confirm-icon i{color:var(--warning);font-size:1.3rem;}
-#rmsConfirm h6{text-align:center;font-size:.92rem;font-weight:700;margin-bottom:6px;color:var(--gray-900);}
-#rmsConfirm p{text-align:center;font-size:.82rem;color:var(--gray-500);margin-bottom:20px;}
-
-/* ── RESPONSIVE ── */
-@media(max-width:992px){
-  :root{--sidebar-width:var(--sidebar-collapsed);}
-  .rms-sidebar{width:var(--sidebar-collapsed);}
-  .brand-text,.nav-item span,.nav-section-label,.sidebar-user .user-info,.nav-badge{display:none!important;}
-  .nav-item{justify-content:center;padding:10px;}
-  .nav-icon{width:auto;font-size:1rem;}
-  .page-content{padding:14px;}
-}
-@media(max-width:576px){
-  .stat-card{padding:14px 16px;}
-  .stat-value{font-size:1.5rem;}
-  .filter-card,.table-header{padding:12px 14px;}
-  .page-content{padding:10px;}
-  .topbar-actions .topbar-icon-btn:not(:last-child):not(:nth-last-child(2)){display:none;}
-}
-@media print{
-  .rms-sidebar,.rms-topbar{display:none!important;}
-  .main-content{margin:0!important;padding:0!important;}
-  .table-card,.chart-card{box-shadow:none;border:1px solid #ddd;}
-}
-::-webkit-scrollbar{width:6px;height:6px;}
-::-webkit-scrollbar-track{background:transparent;}
-::-webkit-scrollbar-thumb{background:var(--gray-300);border-radius:3px;}
-::-webkit-scrollbar-thumb:hover{background:var(--gray-400);}
-/* ── TBLE HELPER CLASSES (used in Unified Design block) ── */
-.tbl-hd{font-size:.65rem!important;font-weight:700!important;color:var(--gray-500)!important;letter-spacing:.5px;text-transform:uppercase;background:var(--gray-50)!important;padding:11px 14px!important;border-bottom:2px solid var(--gray-200)!important;white-space:nowrap;}
-.tbl-td{padding:11px 14px!important;font-size:.815rem;color:var(--gray-700);vertical-align:middle;}
-.stat-label{font-size:.72rem;font-weight:700;color:var(--gray-700);margin-bottom:2px;line-height:1.3;}
-.stat-sub{font-size:.68rem;color:var(--gray-400);line-height:1.4;}
+.loading-overlay{position:fixed;inset:0;background:rgba(22,22,22,.75);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;gap:16px}
+.loading-overlay.hidden{display:none}
+.loading-spinner{width:40px;height:40px;border:3px solid #393939;border-top-color:#4589FF;border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-overlay p{color:#F4F4F4;font-size:14px;margin:0}
 </style>
-
 </head>
 <body>
-<div id="rms-loader" style="position:fixed;top:0;left:0;right:0;bottom:0;background:#f8fafc;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;font-family:'Sarabun',sans-serif"><div style="width:44px;height:44px;border:4px solid #e2e8f0;border-top-color:#1e3a5f;border-radius:50%;animation:_rms_spin 0.8s linear infinite"></div><div style="margin-top:14px;color:#64748b;font-size:.9rem;font-weight:500">กำลังโหลด...</div><style>@keyframes _rms_spin{to{transform:rotate(360deg)}}</style></div>
-<div class="rms-wrapper" id="app"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<div class="toast-container" id="toastContainer"></div>
+<div id="loadingOverlay" class="loading-overlay hidden"><div class="loading-spinner"></div><p>Loading data...</p></div>
+<div class="mxm-shell">
+<aside class="mxm-sidebar" id="mxmSidebar">
+  <div class="sb-brand">
+    <div class="sb-logo-box"><span>EWS</span></div>
+    <div class="sb-brand-text"><div class="brand-name">EWS Enterprise</div><div class="brand-sub">Repair Management v5.0</div></div>
+  </div>
+  <nav class="sidebar-nav"><a class="nav-item" href="dashboard.html"><i class="nav-icon fas fa-gauge-high"></i><span class="nav-label">Dashboards</span></a>
+<a class="nav-item" href="jobs.html"><i class="nav-icon fas fa-clipboard-list"></i><span class="nav-label">Work Orders</span></a>
+<a class="nav-item" href="approvals.html"><i class="nav-icon fas fa-clipboard-check"></i><span class="nav-label">Approvals</span></a>
+<div class="sidebar-section-label">Operations</div>
+<a class="nav-item" href="pm.html"><i class="nav-icon fas fa-calendar-check"></i><span class="nav-label">Preventive Maintenance</span></a>
+<a class="nav-item active" href="parts.html"><i class="nav-icon fas fa-cubes"></i><span class="nav-label">Inventory</span></a>
+<a class="nav-item" href="store.html"><i class="nav-icon fas fa-boxes-stacking"></i><span class="nav-label">Store / Receiving</span></a>
+<a class="nav-item" href="vendors.html"><i class="nav-icon fas fa-building"></i><span class="nav-label">Vendors</span></a>
+<div class="sidebar-section-label">Analytics</div>
+<a class="nav-item" href="reports.html"><i class="nav-icon fas fa-chart-bar"></i><span class="nav-label">Reports &amp; Analytics</span></a>
+<a class="nav-item" href="analytics.html"><i class="nav-icon fas fa-chart-line"></i><span class="nav-label">Trend Analysis</span></a>
+<a class="nav-item" href="executive.html"><i class="nav-icon fas fa-crown"></i><span class="nav-label">Executive View</span></a>
+<div class="sidebar-section-label">Administration</div>
+<a class="nav-item" href="master.html"><i class="nav-icon fas fa-database"></i><span class="nav-label">Master Data</span></a>
+<a class="nav-item" href="users.html"><i class="nav-icon fas fa-users"></i><span class="nav-label">Users</span></a>
+<a class="nav-item" href="settings.html"><i class="nav-icon fas fa-gear"></i><span class="nav-label">Settings</span></a>
+</nav>
+  <div class="sys-info">
+    <div class="sys-title">System Status</div>
+    <div class="sys-status-row"><div class="sys-dot"></div><div class="sys-online">Online</div></div>
+    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">—</span></div>
+  </div>
+</aside>
+<div class="mxm-main">
+<header class="mxm-topbar">
+  <button class="tb-menu-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
+  <div class="tb-brand">
+    <div class="tb-title-block">
+      <div class="tb-title">Spare Parts Inventory</div>
+      <div class="tb-sub">Manage stock levels, issues and receipts</div>
+    </div>
+  </div>
+  <div class="tb-right">
+    <button class="tb-btn-primary" onclick="openModal()"><i class="fas fa-plus"></i> Add Part</button>
+    <button class="tb-icon-btn" onclick="location.reload()" title="Refresh"><i class="fas fa-sync-alt"></i></button>
+    <button class="tb-icon-btn"><i class="fas fa-bell"></i></button>
+    <a href="dashboard.html" class="tb-icon-btn" title="Dashboard"><i class="fas fa-gauge-high"></i></a>
+    <div class="tb-user" onclick="logout()" title="Logout" style="cursor:pointer">
+      <div class="tb-avatar" id="tbAvatar">—</div>
+      <span class="tb-username" id="tbUsername">—</span>
+    </div>
+  </div>
+</header>
+
+<div class="page-toolbar">
+  <div class="search-wrap"><i class="fas fa-search search-icon"></i><input class="filter-input" id="searchInput" placeholder="Search part name, ID or category..." oninput="renderTable()"></div>
+  <select class="filter-select" id="filterCat" onchange="renderTable()">
+    <option value="">All Categories</option>
+    <option>Bearing</option><option>Seal</option><option>Electronics</option>
+    <option>Belt</option><option>Filter</option><option>Electrical</option><option>Mechanical</option><option>Instrument</option>
+  </select>
+  <select class="filter-select" id="filterStock" onchange="renderTable()">
+    <option value="">All Stock Levels</option><option value="ok">In Stock</option>
+    <option value="low">Low Stock</option><option value="out">Out of Stock</option>
+  </select>
+  <div class="toolbar-spacer"></div>
+  <button class="tb-btn-primary" onclick="openModal()"><i class="fas fa-plus"></i> Add Part</button>
+</div>
+<div class="ks-strip" style="grid-template-columns:repeat(5,1fr);display:grid;gap:2px;flex-shrink:0">
+  <div class="ks-card ksc-p"><div class="ks-label">Total Parts</div><div class="ks-value" id="ksTotal">—</div></div>
+  <div class="ks-card ksc-g"><div class="ks-label">In Stock Items</div><div class="ks-value" id="ksInStock">—</div></div>
+  <div class="ks-card ksc-y"><div class="ks-label">Low Stock</div><div class="ks-value" id="ksLow">—</div></div>
+  <div class="ks-card ksc-r"><div class="ks-label">Out of Stock</div><div class="ks-value" id="ksOut">—</div></div>
+  <div class="ks-card ksc-t"><div class="ks-label">Inventory Value (฿)</div><div class="ks-value" id="ksValue">—</div></div>
+</div>
+<div class="tbl-wrap">
+<table class="data-table" style="min-width:600px"><thead><tr>
+  <th>Part ID</th><th>Part Name</th><th>Category</th><th>Unit</th>
+  <th>Current Stock</th><th>Min Stock</th><th>Stock Status</th><th>Unit Cost (฿)</th><th>Total Value (฿)</th><th>Location</th><th>Actions</th>
+</tr></thead><tbody id="tBody"></tbody></table>
+</div>
+<div class="modal-overlay hidden" id="partModal">
+  <div class="modal-panel">
+    <div class="modal-header"><div class="modal-title" id="modalTitle">Add Part</div><button class="modal-close" onclick="closeModal()"><i class="fas fa-xmark"></i></button></div>
+    <div class="modal-body">
+      <input type="hidden" id="editId">
+      <div class="mf-row">
+        <div class="mf-group"><label class="mf-label">Part ID</label><input class="mf-input" id="mId" placeholder="P-xxx" readonly style="background:var(--g10)"></div>
+        <div class="mf-group"><label class="mf-label">Category</label><select class="mf-select" id="mCat"><option>Bearing</option><option>Seal</option><option>Electronics</option><option>Belt</option><option>Filter</option><option>Electrical</option><option>Mechanical</option><option>Instrument</option></select></div>
+      </div>
+      <div class="mf-group"><label class="mf-label">Part Name *</label><input class="mf-input" id="mName" placeholder="Full part name..."></div>
+      <div class="mf-row">
+        <div class="mf-group"><label class="mf-label">Unit</label><input class="mf-input" id="mUnit" value="ชิ้น"></div>
+        <div class="mf-group"><label class="mf-label">Location</label><input class="mf-input" id="mLoc" placeholder="e.g. A-01-03"></div>
+      </div>
+      <div class="mf-row">
+        <div class="mf-group"><label class="mf-label">Current Stock</label><input class="mf-input" type="number" id="mStock" value="0" min="0"></div>
+        <div class="mf-group"><label class="mf-label">Min Stock</label><input class="mf-input" type="number" id="mMin" value="2" min="0"></div>
+      </div>
+      <div class="mf-group"><label class="mf-label">Unit Cost (฿)</label><input class="mf-input" type="number" id="mCost" value="0" min="0"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-danger hidden" id="btnDel" onclick="deletePart()"><i class="fas fa-trash"></i> Delete</button>
+      <button class="btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn-prim" onclick="savePart()"><i class="fas fa-save"></i> Save</button>
+    </div>
+  </div>
+</div>
+<!-- Issue Modal -->
+<div class="modal-overlay hidden" id="issueModal">
+  <div class="modal-panel" style="width:360px">
+    <div class="modal-header"><div class="modal-title">Issue / Receive Parts</div><button class="modal-close" onclick="document.getElementById('issueModal').classList.add('hidden')"><i class="fas fa-xmark"></i></button></div>
+    <div class="modal-body">
+      <div class="mf-group"><label class="mf-label">Part</label><input class="mf-input" id="iPartName" readonly style="background:var(--g10)"></div>
+      <div class="mf-group"><label class="mf-label">Action</label><select class="mf-select" id="iAction"><option value="issue">Issue (Out)</option><option value="receive">Receive (In)</option></select></div>
+      <div class="mf-group"><label class="mf-label">Quantity</label><input class="mf-input" type="number" id="iQty" value="1" min="1"></div>
+      <div class="mf-group"><label class="mf-label">Reference / Job No.</label><input class="mf-input" id="iRef" placeholder="e.g. JOB-0032"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" onclick="document.getElementById('issueModal').classList.add('hidden')">Cancel</button>
+      <button class="btn-prim" onclick="doIssue()"><i class="fas fa-check"></i> Confirm</button>
+    </div>
+  </div>
+</div>
+
+<footer class="mxm-qbar"><span class="qbar-label">Quick Actions</span><div class="qbar-sep"></div><button class="qbar-btn" onclick="openModal()"><i class="fas fa-plus"></i> Add Part</button><button class="qbar-btn" onclick="location.href='store.html'"><i class="fas fa-boxes-stacking"></i> Store / Receive</button><button class="qbar-btn" onclick="location.href='dashboard.html'"><i class="fas fa-gauge-high"></i> Dashboard</button></footer>
+</div>
+</div>
 <script>
-/* === RMS Core: app.js + sidebar.js === */
-/* ═══════════════════════════════════════════════════════════════
-   EWS Enterprise v4.0 — app.js
-   Core globals: data, Auth, DataStore, UI helpers
-   ═══════════════════════════════════════════════════════════════ */
-'use strict';
 
-/* ─────────────────────────────────────────────────────────────
-   1.  CONFIG
-   ───────────────────────────────────────────────────────────── */
-const RMS = {
-  GAS_URL: localStorage.getItem('rms_gas_url') || 'https://script.google.com/macros/s/AKfycbxo3RTi8R1hJMJ49r9TSaQAfCVIWD-ibgS9xhxMWdxO-3JqzSf8nbbrW04ffxzggdurhw/exec',
-  USE_GAS: true,
-  VERSION: '3.0',
-};
 
-const SESSION_KEY = 'rms_v3_session';
-
-/* ─────────────────────────────────────────────────────────────
-   2.  MASTER DATA
-   ───────────────────────────────────────────────────────────── */
-const DAMAGE_CODES = [
-  'Mechanical Failure','Electrical Fault','Software Error','Overheating',
-  'Belt Broken','Motor Failure','Sensor Malfunction','Hydraulic Leak',
-  'Pneumatic Failure','PCB Damaged','Conveyor Jam','Bearing Worn',
-  'Gear Stripped','Valve Stuck','Pump Failure','Drive Fault',
-  'Communication Error','Power Supply Fault','Calibration Error','Physical Damage',
-];
-
-const EQUIPMENT_IDS = [
-  '287536','870355','802910','194827','563741','128904','445632','778901',
-  '334521','667890','112233','445566','778899','223344','556677','889900',
-  '102938','475869','630291','847562',
-];
-
-const SAMPLE_VENDORS = [
-  { Vendor_ID:'V001', Vendor_Name:'บริษัท เทคโนมาสเตอร์ จำกัด', Email:'info@technomaster.co.th', Rating:4.8, Status:'ACTIVE', Contact_Person:'คุณสมชาย', Phone:'02-111-2222' },
-  { Vendor_ID:'V002', Vendor_Name:'บริษัท อินดัสเทรียลพาร์ท จำกัด', Email:'sales@indpart.co.th',    Rating:4.5, Status:'ACTIVE', Contact_Person:'คุณวิไล',  Phone:'02-333-4444' },
-  { Vendor_ID:'V003', Vendor_Name:'บริษัท ออโตเมชั่นโปร จำกัด',   Email:'contact@autopro.co.th',   Rating:4.2, Status:'ACTIVE', Contact_Person:'คุณธนา',  Phone:'02-555-6666' },
-];
-
-const BRANCHES = [
-  { id:'HQ',  name:'EWS (HQ)'   },
-  { id:'BR1', name:'AFC'        },
-  { id:'BR2', name:'COM'        },
-];
-
-const WAREHOUSES = [
-  { id:'WH-EWS',  name:'คลัง EWS'      },
-  { id:'WH-ERA1', name:'คลัง EARAONE 1' },
-  { id:'WH-ERA2', name:'คลัง EARAONE 2' },
-];
-
-const SAMPLE_PARTS = [
-  { Part_ID:'P001', Part_Code:'BLT-001', Part_Name:'สายพาน BNA 800',       Category:'Mechanical',  Unit:'เส้น', Cost:1200,  Min_Stock:5,  Current_Stock:12, Warehouse_ID:'WH-EWS',  Location:'A-01', Status:'ACTIVE' },
-  { Part_ID:'P002', Part_Code:'BRG-002', Part_Name:'ลูกปืน 6205',           Category:'Mechanical',  Unit:'ตัว',  Cost:450,   Min_Stock:10, Current_Stock:24, Warehouse_ID:'WH-EWS',  Location:'A-02', Status:'ACTIVE' },
-  { Part_ID:'P003', Part_Code:'FUS-003', Part_Name:'ฟิวส์ 10A',             Category:'Electronic',  Unit:'อัน',  Cost:45,    Min_Stock:20, Current_Stock:3,  Warehouse_ID:'WH-EWS',  Location:'B-01', Status:'ACTIVE' },
-  { Part_ID:'P004', Part_Code:'OIL-004', Part_Name:'น้ำมันไฮดรอลิก 46',    Category:'Consumable',  Unit:'ลิตร', Cost:180,   Min_Stock:10, Current_Stock:8,  Warehouse_ID:'WH-ERA1', Location:'C-01', Status:'ACTIVE' },
-  { Part_ID:'P005', Part_Code:'SEN-005', Part_Name:'เซ็นเซอร์ Proximity',   Category:'Electronic',  Unit:'ตัว',  Cost:2800,  Min_Stock:3,  Current_Stock:2,  Warehouse_ID:'WH-EWS',  Location:'B-02', Status:'ACTIVE' },
-  { Part_ID:'P006', Part_Code:'MTR-006', Part_Name:'มอเตอร์ 1.5kW',         Category:'Mechanical',  Unit:'ตัว',  Cost:8500,  Min_Stock:2,  Current_Stock:1,  Warehouse_ID:'WH-ERA1', Location:'D-01', Status:'ACTIVE' },
-  { Part_ID:'P007', Part_Code:'VLV-007', Part_Name:'วาล์วโซลินอยด์ 24V',   Category:'Mechanical',  Unit:'ตัว',  Cost:1650,  Min_Stock:5,  Current_Stock:7,  Warehouse_ID:'WH-EWS',  Location:'A-03', Status:'ACTIVE' },
-  { Part_ID:'P008', Part_Code:'PCB-008', Part_Name:'บอร์ด PLC IO Module',   Category:'Electronic',  Unit:'ชิ้น', Cost:12000, Min_Stock:1,  Current_Stock:0,  Warehouse_ID:'WH-EWS',  Location:'B-03', Status:'ACTIVE' },
-];
-
-/* ─────────────────────────────────────────────────────────────
-   3.  SAMPLE JOBS
-   ───────────────────────────────────────────────────────────── */
-const SAMPLE_JOBS_RAW = [
-  { JOB_No:'JOB-0001', Work_Order:'90176727', Refurbishment_Order:'90176756', Receive_No:'RCV-20260426-012119-821-1',  Material_ID:'10010041', Qty:1, Equipment_ID:'287536', Damage_Code:'สายพานตก',                                          Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-01', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0002', Work_Order:'90176724', Refurbishment_Order:'90176755', Receive_No:'RCV-20260426-012119-821-2',  Material_ID:'10010041', Qty:1, Equipment_ID:'287497', Damage_Code:'สายพานตก',                                          Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-02', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0003', Work_Order:'90176700', Refurbishment_Order:'90176752', Receive_No:'RCV-20260426-012119-821-3',  Material_ID:'10010041', Qty:1, Equipment_ID:'301455', Damage_Code:'Belt loode ( สายพานตก )',                           Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-03', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0004', Work_Order:'90176715', Refurbishment_Order:'90176753', Receive_No:'RCV-20260426-012119-821-4',  Material_ID:'10010041', Qty:1, Equipment_ID:'800330', Damage_Code:'Bank Note Jam  ที่ Note Box / เปลี่ยน Note Box  ไม่หาย', Cause:'', Repair_Action:'Clean All',        Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-04', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0005', Work_Order:'90176790', Refurbishment_Order:'90176833', Receive_No:'RCV-20260426-012119-821-5',  Material_ID:'10010041', Qty:1, Equipment_ID:'287507', Damage_Code:'ใช้งานได้ไม่ถึง 5 นาที เสีย',                        Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-05', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0006', Work_Order:'90176850', Refurbishment_Order:'90176994', Receive_No:'RCV-20260426-012119-821-6',  Material_ID:'10010041', Qty:1, Equipment_ID:'872834', Damage_Code:'BNA Failure',                                        Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-06', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0007', Work_Order:'90176859', Refurbishment_Order:'90176997', Receive_No:'RCV-20260426-012119-821-7',  Material_ID:'10010041', Qty:1, Equipment_ID:'304150', Damage_Code:'Extract',                                            Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-07', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0008', Work_Order:'90176858', Refurbishment_Order:'90176996', Receive_No:'RCV-20260426-012119-821-8',  Material_ID:'10010041', Qty:1, Equipment_ID:'293820', Damage_Code:'สายพานตก',                                          Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-08', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0009', Work_Order:'90176891', Refurbishment_Order:'90176999', Receive_No:'RCV-20260426-012119-821-9',  Material_ID:'10010041', Qty:1, Equipment_ID:'287504', Damage_Code:'สายพานตก',                                          Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-09', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0010', Work_Order:'90177075', Refurbishment_Order:'90177249', Receive_No:'RCV-20260426-012119-821-10', Material_ID:'10010041', Qty:1, Equipment_ID:'287534', Damage_Code:'Extract ไม่ถีบ Notebox',                             Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-10', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0011', Work_Order:'90176739', Refurbishment_Order:'90176758', Receive_No:'RCV-20260426-012119-821-11', Material_ID:'10010041', Qty:1, Equipment_ID:'287496', Damage_Code:'ไม่ถีบ Notebox',                                    Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-11', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0012', Work_Order:'90176934', Refurbishment_Order:'90177000', Receive_No:'RCV-20260426-012119-821-12', Material_ID:'10010041', Qty:1, Equipment_ID:'287501', Damage_Code:'Out Of Service',                                     Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-12', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0013', Work_Order:'90177748', Refurbishment_Order:'90177954', Receive_No:'RCV-20260426-012119-821-13', Material_ID:'10010041', Qty:1, Equipment_ID:'287513', Damage_Code:'มีเสียงทำงานผิดปกติ',                              Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-13', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0014', Work_Order:'90177615', Refurbishment_Order:'90177948', Receive_No:'RCV-20260426-012119-821-14', Material_ID:'10010041', Qty:1, Equipment_ID:'207567', Damage_Code:'ไม่ถีบ NoteBox',                                   Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-14', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0015', Work_Order:'90177528', Refurbishment_Order:'90177958', Receive_No:'RCV-20260426-012119-821-15', Material_ID:'10010041', Qty:1, Equipment_ID:'214933', Damage_Code:'สายพานหลุด ลูกกลิ้งสีดำที่ใช้ฟรีซแบงค์เสื่อมสภาพ', Cause:'', Repair_Action:'Clean All',            Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-15', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0016', Work_Order:'90177672', Refurbishment_Order:'90177942', Receive_No:'RCV-20260426-012119-821-16', Material_ID:'10010041', Qty:1, Equipment_ID:'287510', Damage_Code:'BNA  ไม่ทำงาน',                                    Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-16', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0017', Work_Order:'90177921', Refurbishment_Order:'90178732', Receive_No:'RCV-20260426-012119-821-17', Material_ID:'10010041', Qty:1, Equipment_ID:'304151', Damage_Code:'BNA  ไม่ทำงาน',                                    Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-17', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0018', Work_Order:'90178331', Refurbishment_Order:'90178724', Receive_No:'RCV-20260426-012119-821-18', Material_ID:'10010041', Qty:1, Equipment_ID:'293818', Damage_Code:'เฟืองตัวเขียวหมุนไม่ได้',                          Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-18', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0019', Work_Order:'90178564', Refurbishment_Order:'90178726', Receive_No:'RCV-20260426-012119-821-19', Material_ID:'10010041', Qty:1, Equipment_ID:'287531', Damage_Code:'BNA Out Of Service กินเงินและเงินติดบ่อย',            Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-19', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0020', Work_Order:'90178232', Refurbishment_Order:'90178722', Receive_No:'RCV-20260426-012119-821-20', Material_ID:'10010041', Qty:1, Equipment_ID:'287498', Damage_Code:'ไม่ถีบ Note Box ไม่ Initial',                       Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-20', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0021', Work_Order:'90178667', Refurbishment_Order:'90178925', Receive_No:'RCV-20260426-012119-821-21', Material_ID:'10010041', Qty:1, Equipment_ID:'97155',  Damage_Code:'Belt Loose',                                        Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-21', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0022', Work_Order:'90178002', Refurbishment_Order:'90178727', Receive_No:'RCV-20260426-012119-821-22', Material_ID:'10010041', Qty:1, Equipment_ID:'337290', Damage_Code:'Belt Loose',                                        Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-22', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0023', Work_Order:'90177204', Refurbishment_Order:'90178733', Receive_No:'RCV-20260426-012119-821-23', Material_ID:'10010041', Qty:1, Equipment_ID:'870355', Damage_Code:'Belt Loose',                                        Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-23', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0024', Work_Order:'90179025', Refurbishment_Order:'90179135', Receive_No:'RCV-20260426-013115-817-1',  Material_ID:'10010041', Qty:1, Equipment_ID:'306779', Damage_Code:'ตีวเปิดปิดลูกปืนหาย 1 ข้อและกินเงินบ่อย',          Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-05-01', Close_Date:'2026-06-11' },
-  { JOB_No:'JOB-0025', Work_Order:'90179336', Refurbishment_Order:'90179412', Receive_No:'RCV-20260426-013115-817-2',  Material_ID:'10010041', Qty:1, Equipment_ID:'287520', Damage_Code:'Out Of Service',                                     Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-25', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0026', Work_Order:'90178966', Refurbishment_Order:'90179141', Receive_No:'RCV-20260426-013115-817-3',  Material_ID:'10010041', Qty:1, Equipment_ID:'287519', Damage_Code:'Out Of Service',                                     Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-25', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0027', Work_Order:'90178739', Refurbishment_Order:'90179140', Receive_No:'RCV-20260426-013115-817-4',  Material_ID:'10010041', Qty:1, Equipment_ID:'219541', Damage_Code:'สายพานตก',                                          Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-25', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0028', Work_Order:'90179083', Refurbishment_Order:'90179411', Receive_No:'RCV-20260426-013115-817-5',  Material_ID:'10010041', Qty:1, Equipment_ID:'287489', Damage_Code:'ไม่อ่านแบ็งค์',                                    Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-25', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0029', Work_Order:'90179370', Refurbishment_Order:'90179568', Receive_No:'RCV-20260426-013115-817-6',  Material_ID:'10010041', Qty:1, Equipment_ID:'287511', Damage_Code:'Belt หลุดบ่อย',                                    Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-04-25', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0030', Work_Order:'90179505', Refurbishment_Order:'90179658', Receive_No:'RCV-20260426-013115-817-7',  Material_ID:'10010041', Qty:1, Equipment_ID:'293817', Damage_Code:'สายพานตก',                                          Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-05-01', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0031', Work_Order:'90179687', Refurbishment_Order:'90179911', Receive_No:'RCV-20260426-013115-817-8',  Material_ID:'10010041', Qty:1, Equipment_ID:'129465', Damage_Code:'Belt ตก',                                           Cause:'', Repair_Action:'Clean All',             Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-05-01', Close_Date:'2026-05-01' },
-  { JOB_No:'JOB-0032', Work_Order:'90178802', Refurbishment_Order:'90178927', Receive_No:'RCV-20260504-140120-095-1',  Material_ID:'10010041', Qty:1, Equipment_ID:'287496', Damage_Code:'Belt ตก',                                           Cause:'', Repair_Action:'Adjust Alignment Belt',  Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-05-04', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0033', Work_Order:'90177695', Refurbishment_Order:'90177952', Receive_No:'RCV-20260504-140620-527-1',  Material_ID:'10010041', Qty:1, Equipment_ID:'287507', Damage_Code:'Belt ตก',                                           Cause:'', Repair_Action:'Adjust Alignment Belt',  Vendor_ID:'V001', Status:'RETURNED',    Create_Date:'2026-05-04', Close_Date:'' },
-  { JOB_No:'JOB-0034', Work_Order:'90178787', Refurbishment_Order:'90178931', Receive_No:'RCV-20260504-141753-385-1',  Material_ID:'10010041', Qty:1, Equipment_ID:'287534', Damage_Code:'Belt ตก',                                           Cause:'', Repair_Action:'Adjust Alignment Belt',  Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-05-04', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0035', Work_Order:'90179421', Refurbishment_Order:'90179660', Receive_No:'RCV-20260504-142037-222-1',  Material_ID:'10010041', Qty:1, Equipment_ID:'287496', Damage_Code:'Belt ตก',                                           Cause:'', Repair_Action:'Adjust Alignment Belt',  Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-05-04', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0036', Work_Order:'90179944', Refurbishment_Order:'90180315', Receive_No:'RCV-20260504-143951-253-1',  Material_ID:'10010041', Qty:1, Equipment_ID:'207575', Damage_Code:'',                                                  Cause:'', Repair_Action:'',                       Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-05-06', Close_Date:'2026-05-06' },
-  { JOB_No:'JOB-0037', Work_Order:'90180295', Refurbishment_Order:'90180459', Receive_No:'RCV-20260504-143951-253-2',  Material_ID:'10010041', Qty:1, Equipment_ID:'802910', Damage_Code:'',                                                  Cause:'', Repair_Action:'',                       Vendor_ID:'V001', Status:'SEND_REPAIR', Create_Date:'2026-05-04', Close_Date:'2026-06-11' },
-  { JOB_No:'JOB-0038', Work_Order:'90179987', Refurbishment_Order:'90180316', Receive_No:'RCV-20260504-143951-253-3',  Material_ID:'10010041', Qty:1, Equipment_ID:'287489', Damage_Code:'Belt ตก',                                           Cause:'', Repair_Action:'Adjust Alignment Belt',  Vendor_ID:'V001', Status:'SEND_REPAIR', Create_Date:'2026-05-04', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0039', Work_Order:'90180273', Refurbishment_Order:'90180456', Receive_No:'RCV-20260504-143951-253-4',  Material_ID:'10010041', Qty:1, Equipment_ID:'287512', Damage_Code:'',                                                  Cause:'', Repair_Action:'',                       Vendor_ID:'V001', Status:'SEND_REPAIR', Create_Date:'2026-05-04', Close_Date:'2026-05-04' },
-  { JOB_No:'JOB-0040', Work_Order:'90179751', Refurbishment_Order:'90179913', Receive_No:'RCV-20260504-143951-253-5',  Material_ID:'10010041', Qty:1, Equipment_ID:'802912', Damage_Code:'',                                                  Cause:'', Repair_Action:'',                       Vendor_ID:'V001', Status:'CLOSED',      Create_Date:'2026-05-06', Close_Date:'2026-05-06' },
-  { JOB_No:'JOB-0041', Work_Order:'90180361', Refurbishment_Order:'90180462', Receive_No:'RCV-20260504-143951-253-6',  Material_ID:'10010041', Qty:1, Equipment_ID:'287511', Damage_Code:'Belt ตก',                                           Cause:'', Repair_Action:'Adjust Alignment Belt',  Vendor_ID:'V001', Status:'SEND_REPAIR', Create_Date:'2026-05-04', Close_Date:'2026-06-11' },
-  { JOB_No:'JOB-0042', Work_Order:'',         Refurbishment_Order:'90181199', Receive_No:'RCV-20260531-102534-435-1',  Material_ID:'10010041', Qty:1, Equipment_ID:'870355', Damage_Code:'BNA Belt Loose',                                    Cause:'', Repair_Action:'',                       Vendor_ID:'V001', Status:'SEND_REPAIR', Create_Date:'2026-06-07', Close_Date:'' },
-  { JOB_No:'JOB-0043', Work_Order:'',         Refurbishment_Order:'90181329', Receive_No:'RCV-20260531-102534-435-2',  Material_ID:'10010041', Qty:1, Equipment_ID:'287493', Damage_Code:'BNA Belt Loose',                                    Cause:'', Repair_Action:'',                       Vendor_ID:'V001', Status:'SEND_REPAIR', Create_Date:'2026-06-07', Close_Date:'' },
-  { JOB_No:'JOB-0044', Work_Order:'',         Refurbishment_Order:'90181172', Receive_No:'RCV-20260531-102534-435-3',  Material_ID:'10010041', Qty:1, Equipment_ID:'304157', Damage_Code:'Disconnect',                                        Cause:'', Repair_Action:'',                       Vendor_ID:'V001', Status:'SEND_REPAIR', Create_Date:'2026-06-07', Close_Date:'' },
-  { JOB_No:'JOB-0045', Work_Order:'',         Refurbishment_Order:'',         Receive_No:'RCV-20260613-165709-948-1',  Material_ID:'10010041', Qty:1, Equipment_ID:'279269', Damage_Code:'',                                                  Cause:'', Repair_Action:'',                       Vendor_ID:'V001', Status:'SEND_REPAIR', Create_Date:'2026-06-11', Close_Date:'2026-06-11' },
-  { JOB_No:'JOB-0046', Work_Order:'',         Refurbishment_Order:'',         Receive_No:'RCV-20260613-165709-948-2',  Material_ID:'10010041', Qty:1, Equipment_ID:'287490', Damage_Code:'',                                                  Cause:'', Repair_Action:'',                       Vendor_ID:'V001', Status:'SEND_REPAIR', Create_Date:'2026-06-11', Close_Date:'2026-06-11' },
-];
-
-/* ─────────────────────────────────────────────────────────────
-   4.  LOCAL STATE  (in-memory + localStorage)
-   ───────────────────────────────────────────────────────────── */
-function _normalizeJob(j) {
-  if (!j) return null;
-
-  // ── Normalize Status ──
-  if (j.Status) j.Status = String(j.Status).replace(/ /g,'_').toUpperCase();
-  if (!j.Priority) j.Priority = 'HIGH';
-
-  // ── Map Sheet v3.3 field names → frontend field names ──
-  // Sheet ใช้ Actual_Close แทน Close_Date
-  if (!j.Close_Date && j.Actual_Close)   j.Close_Date   = j.Actual_Close;
-  // Sheet ใช้ Create_Date ใน col T
-  if (!j.Create_Date && j['Create_Date']) j.Create_Date = j['Create_Date'];
-  // Legacy field name aliases
-  if (!j.JOB_No && j['Job No'])                 j.JOB_No       = j['Job No'];
-  if (!j.Equipment_ID && j['Equipment ID'])      j.Equipment_ID = j['Equipment ID'];
-  if (!j.Damage_Code && j['Damage Code'])        j.Damage_Code  = j['Damage Code'];
-  if (!j.Work_Order && j['Work Order'])          j.Work_Order   = j['Work Order'];
-  if (!j.Vendor_ID && j['Vendor ID'])            j.Vendor_ID    = j['Vendor ID'];
-
-  // ── Merge กับ SAMPLE_JOBS_RAW เพื่อเติม field ที่ขาด ──
-  if (j.JOB_No && typeof SAMPLE_JOBS_RAW !== 'undefined') {
-    var sample = SAMPLE_JOBS_RAW.find(function(s){ return s.JOB_No === j.JOB_No; });
-    if (sample) {
-      if (!j.Work_Order)          j.Work_Order          = sample.Work_Order          || '';
-      if (!j.Refurbishment_Order) j.Refurbishment_Order = sample.Refurbishment_Order || '';
-      if (!j.Receive_No)          j.Receive_No          = sample.Receive_No          || '';
-      if (!j.Equipment_ID)        j.Equipment_ID        = sample.Equipment_ID        || '';
-      if (!j.Damage_Code)         j.Damage_Code         = sample.Damage_Code         || '';
-      if (!j.Vendor_ID)           j.Vendor_ID           = sample.Vendor_ID           || 'V001';
-      if (!j.Create_Date)         j.Create_Date         = sample.Create_Date         || '';
-      if (!j.Close_Date)          j.Close_Date          = sample.Close_Date          || '';
-      if (!j.Material_ID)         j.Material_ID         = sample.Material_ID         || '10010041';
-      if (!j.Priority)            j.Priority            = sample.Priority            || 'HIGH';
-      if (!j.Repair_Action)       j.Repair_Action       = sample.Repair_Action       || '';
-    }
-  }
-  return j;
-}
-
-// ── Clear corrupted localStorage cache ──────────────────────────
-function clearJobCache() {
-  try { localStorage.removeItem('rms_v3_jobs'); } catch(e) {}
-  _localJobs = SAMPLE_JOBS_RAW.map(function(j){ return Object.assign({}, j); });
-  UI.toast('ล้าง cache งานซ่อมแล้ว กำลังโหลดใหม่...', 'success');
-  setTimeout(function(){ window.location.reload(); }, 1200);
-}
-
-function _loadJobs() {
-  try {
-    const raw = localStorage.getItem('rms_v3_jobs');
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      return parsed
-        .map(_normalizeJob)
-        .filter(function(j) { return j && j.JOB_No && j.JOB_No.trim() !== ''; });
-    }
-  } catch(e) { console.warn('_loadJobs error:', e); }
-  return SAMPLE_JOBS_RAW.map(function(j){ return Object.assign({}, j); });
-}
-
-function _saveJobs() {
-  try { localStorage.setItem('rms_v3_jobs', JSON.stringify(_localJobs)); } catch(e) {}
-}
-
-function _loadParts() {
-  try {
-    const raw = localStorage.getItem('rms_v3_parts');
-    if (raw) {
-      const saved = JSON.parse(raw);
-      return SAMPLE_PARTS.map(sp => {
-        const lp = saved.find(s => s.Part_Code === sp.Part_Code || s.Part_ID === sp.Part_ID);
-        return lp ? Object.assign({}, sp, { Current_Stock: parseFloat(lp.Current_Stock ?? sp.Current_Stock), Cost: parseFloat(lp.Cost ?? sp.Cost) }) : Object.assign({}, sp);
-      });
-    }
-  } catch(e) {}
-  return SAMPLE_PARTS.map(p => Object.assign({}, p));
-}
-
-function _saveParts() {
-  try { localStorage.setItem('rms_v3_parts', JSON.stringify(_localParts)); } catch(e) {}
-}
-
-var _localJobs  = _loadJobs();
-var _localParts = _loadParts();
-
-/* ─────────────────────────────────────────────────────────────
-   5.  AUTH
-   ───────────────────────────────────────────────────────────── */
-const Auth = {
-  getUser() {
-    try {
-      const s = sessionStorage.getItem(SESSION_KEY) || localStorage.getItem(SESSION_KEY);
-      return s ? JSON.parse(s) : null;
-    } catch(e) { return null; }
-  },
-  isLoggedIn() {
-    const u = this.getUser();
-    return u && (Date.now() - (u.loginTime || 0) < 8 * 3600 * 1000);
-  },
-  isAdmin() {
-    const u = this.getUser();
-    return u && ['SUPER_ADMIN', 'ADMIN'].includes(u.role);
-  },
-  isManager() {
-    const u = this.getUser();
-    return u && ['SUPER_ADMIN', 'ADMIN', 'MANAGER'].includes(u.role);
-  },
-  hasPermission(perm) {
-    const u = this.getUser();
-    return u && Array.isArray(u.permissions) && u.permissions.includes(perm);
-  },
-  guardPage() {
-    // ถ้าหน้าไม่ใช่ login แล้วยังไม่ login → redirect
-    if (!this.isLoggedIn() && !location.pathname.includes('login')) {
-      window.location.href = 'login.html';
-      return false;
-    }
-    return true;
-  },
-};
-
-/* ─────────────────────────────────────────────────────────────
-   6.  GAS HELPER
-   ───────────────────────────────────────────────────────────── */
-async function callGAS(action, payload) {
-  try {
-    const user  = Auth.getUser();
-    const token = user ? (user.token || '') : '';
-    const params = new URLSearchParams({
-      action,
-      token,
-      payload: encodeURIComponent(JSON.stringify(payload || {})),
-    });
-    const res  = await fetch(RMS.GAS_URL + '?' + params, { redirect: 'follow' });
-    return await res.json();
-  } catch(e) {
-    console.warn('callGAS error:', action, e.message);
-    return { success: false, error: e.message };
-  }
-}
-
-/* ─────────────────────────────────────────────────────────────
-   7.  DATASTORE  (local-first, GAS fallback)
-   ───────────────────────────────────────────────────────────── */
-const DataStore = {
-
-  /* ── JOB NO GENERATOR ── */
-  async generateJobNo() {
-    const y = new Date().getFullYear();
-    const prefix = 'JOB-' + y + '-';
-    const existing = _localJobs.filter(j => j.JOB_No && j.JOB_No.startsWith(prefix));
-    const nums = existing.map(j => parseInt(j.JOB_No.replace(prefix, ''), 10)).filter(n => !isNaN(n));
-    const next = nums.length ? Math.max(...nums) + 1 : 1;
-    return prefix + String(next).padStart(3, '0');
-  },
-
-  async generateReceiveNo() {
-    const d = new Date();
-    const y = d.getFullYear(), m = String(d.getMonth()+1).padStart(2,'0'), day = String(d.getDate()).padStart(2,'0');
-    return 'RCV-' + y + m + day + '-' + String(Math.floor(Math.random()*900)+100);
-  },
-
-  /* ── GET JOBS ── */
-  async getJobs(filter) {
-    filter = filter || {};
-    // refresh from localStorage
-    _localJobs = _loadJobs();
-
-    if (RMS.USE_GAS) {
-      try {
-        const res = await callGAS('getJobs', { filter });
-        if (res && res.success && res.data) {
-          // Merge GAS data with SAMPLE_JOBS_RAW to fill missing fields
-          var gasJobs = res.data.map(function(gasJob) {
-            var normalized = _normalizeJob(gasJob);
-            if (!normalized || !normalized.JOB_No) return null;
-            // Find matching sample job to fill in missing fields
-            var sample = SAMPLE_JOBS_RAW.find(function(s){ return s.JOB_No === normalized.JOB_No; });
-            if (sample) {
-              return Object.assign({}, sample, normalized);
-            }
-            return normalized;
-          }).filter(function(j) { return j && j.JOB_No && j.JOB_No.trim() !== ''; });
-          
-          // Merge: GAS jobs take priority, add SAMPLE_JOBS not in GAS
-          var gasJobNos = new Set(gasJobs.map(function(j){ return j.JOB_No; }));
-          var sampleOnly = SAMPLE_JOBS_RAW.filter(function(s){ return !gasJobNos.has(s.JOB_No); });
-          _localJobs = [...gasJobs, ...sampleOnly];
-          _saveJobs();
-        }
-      } catch(e) {}
-    }
-
-    // Filter out invalid/incomplete jobs
-    let jobs = [..._localJobs].filter(function(j) {
-      return j && j.JOB_No && j.JOB_No.trim() !== '';
-    });
-    if (filter.status && filter.status !== 'ALL') {
-      if (filter.status === 'REPEAT') {
-        const cnt = {};
-        _localJobs.forEach(j => { if (j.Equipment_ID) cnt[j.Equipment_ID] = (cnt[j.Equipment_ID]||0) + 1; });
-        jobs = jobs.filter(j => cnt[j.Equipment_ID] > 1);
-      } else {
-        jobs = jobs.filter(j => (j.Status||'') === filter.status);
-      }
-    }
-    if (filter.priority) jobs = jobs.filter(j => j.Priority === filter.priority);
-    if (filter.vendor)   jobs = jobs.filter(j => j.Vendor_ID === filter.vendor);
-    if (filter.branch)   jobs = jobs.filter(j => j.Branch_ID === filter.branch);
-    if (filter.search) {
-      const q = filter.search.toLowerCase();
-      jobs = jobs.filter(j =>
-        (j.JOB_No||'').toLowerCase().includes(q) ||
-        (j.Equipment_ID||'').toLowerCase().includes(q) ||
-        (j.Work_Order||'').toLowerCase().includes(q) ||
-        (j.Damage_Code||'').toLowerCase().includes(q)
-      );
-    }
-    return jobs;
-  },  // returns Array directly
-
-  async getJobById(jobNo) {
-    _localJobs = _loadJobs();
-    return _localJobs.find(j => j.JOB_No === jobNo) || null;
-  },
-
-  /* ── CREATE JOB ── */
-  async createJob(data) {
-    const job = Object.assign({ Created_By: (Auth.getUser()||{}).username || 'admin' }, data);
-    _localJobs.unshift(job);
-    _saveJobs();
-
-    if (RMS.USE_GAS) {
-      try {
-        const res = await callGAS('createJob', { data: job });
-        if (res && res.success) return { success: true, data: job };
-        return { success: true, data: job, gasWarn: res && res.error };
-      } catch(e) { return { success: true, data: job, gasWarn: e.message }; }
-    }
-    return { success: true, data: job };
-  },
-
-  /* ── UPDATE JOB ── */
-  async updateJob(jobNo, data) {
-    const idx = _localJobs.findIndex(j => j.JOB_No === jobNo);
-    if (idx < 0) return { success: false, error: 'ไม่พบ Job' };
-    _localJobs[idx] = Object.assign({}, _localJobs[idx], data);
-    _saveJobs();
-
-    if (RMS.USE_GAS) {
-      try { await callGAS('updateJob', { jobNo, data }); } catch(e) {}
-    }
-    return { success: true, data: _localJobs[idx] };
-  },
-
-  /* ── DELETE JOB ── */
-  async deleteJob(jobNo) {
-    const before = _localJobs.length;
-    _localJobs = _localJobs.filter(j => j.JOB_No !== jobNo);
-    if (_localJobs.length === before) return { success: false, error: 'ไม่พบ Job' };
-    _saveJobs();
-
-    if (RMS.USE_GAS) {
-      try { await callGAS('deleteJob', { jobNo }); } catch(e) {}
-    }
-    return { success: true };
-  },
-
-  /* ── UPDATE STATUS ── */
-  async updateStatus(jobNo, status, remark) {
-    // ✅ ใช้ updateJobStatus (lightweight) แทน updateJob เต็ม
-    // เพื่อป้องกัน undefined fields overwrite ใน Google Sheets
-    if (RMS.USE_GAS) {
-      const res = await callGAS('updateJobStatus', {
-        jobNo:  jobNo,
-        status: status,
-        remark: remark || ''
-      });
-      if (res && res.success) {
-        // อัปเดต local state ด้วย
-        const idx = _localJobs.findIndex(j => j.JOB_No === jobNo);
-        if (idx >= 0) {
-          _localJobs[idx].Status     = status;
-          _localJobs[idx].Updated_At = new Date().toISOString().slice(0,10);
-          if (status === 'CLOSED') _localJobs[idx].Close_Date = new Date().toISOString().slice(0,10);
-          _saveJobs();
-        }
-        return res;
-      }
-      // GAS failed → fallback to local only
-    }
-    // Local update only (offline/demo mode)
-    const idx = _localJobs.findIndex(j => j.JOB_No === jobNo);
-    if (idx >= 0) {
-      _localJobs[idx].Status     = status;
-      _localJobs[idx].Updated_At = new Date().toISOString().slice(0,10);
-      if (status === 'CLOSED') _localJobs[idx].Close_Date = new Date().toISOString().slice(0,10);
-      _saveJobs();
-    }
-    return { success: true };
-  },
-
-  /* ── GET DASHBOARD ── */
-  async getDashboard() {
-    _localJobs  = _loadJobs();
-    _localParts = _loadParts();
-
-    const jobs = [..._localJobs];
-    const cnt  = {};
-    jobs.forEach(j => { const s = (j.Status||'').replace(/ /g,'_'); cnt[s] = (cnt[s]||0) + 1; });
-
-    // Trend
-    const months = ['ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];
-    const tData  = Array(12).fill(0);
-    const y = new Date().getFullYear();
-    jobs.forEach(j => { if(j.Create_Date){ const d=new Date(j.Create_Date); if(d.getFullYear()===y) tData[d.getMonth()]++; } });
-
-    // งานซ่อมจริง = ทั้งหมด - ซ่อมซ้ำ
-    const eqCount = {};
-    jobs.forEach(j => { if(j.Equipment_ID) eqCount[j.Equipment_ID] = (eqCount[j.Equipment_ID]||0)+1; });
-    const repeatJobs = jobs.filter(j => eqCount[j.Equipment_ID] > 1);
-    const realJobs   = jobs.length - repeatJobs.length; // งานซ่อมจริง (ไม่ซ้ำ)
-    const uniqueRepeatEq = Object.values(eqCount).filter(c => c > 1).length;
-
-    // MTTR (เก็บไว้สำหรับ reports.html)
-    const closed = jobs.filter(j => j.Status==='CLOSED' && j.Create_Date && j.Close_Date);
-    const mttr   = closed.length ? parseFloat((closed.reduce((s,j) => s+(new Date(j.Close_Date)-new Date(j.Create_Date))/86400000, 0)/closed.length).toFixed(1)) : 0;
-
-    // Priority
-    const byP = { CRITICAL:0, HIGH:0, MEDIUM:0, LOW:0 };
-    jobs.forEach(j => { if(j.Priority && byP[j.Priority]!==undefined) byP[j.Priority]++; });
-
-    // Low stock
-    const lowStock = _localParts.filter(p => parseFloat(p.Current_Stock||0) <= parseFloat(p.Min_Stock||0));
-
-    return {
-      success: true,
-      stats: {
-        total:           jobs.length,
-        CLOSED:          cnt.CLOSED          || 0,
-        IN_PROGRESS:     cnt.SEND_REPAIR     || 0,
-        RETURNED:        cnt.RETURNED        || 0,
-        WAIT_APPROVAL:   cnt.WAIT_APPROVAL   || 0,
-        WAIT_SPARE_PART: cnt.WAIT_SPARE_PART || 0,
-        SEND_REPAIR:     cnt.SEND_REPAIR     || 0,
-        OPEN:            cnt.OPEN            || 0,
-        realJobs:        realJobs,             // งานซ่อมจริง (ไม่ซ้ำ)
-        repeatJobs:      repeatJobs.length,    // ซ่อมซ้ำ
-        uniqueRepeatEq:  uniqueRepeatEq,       // จำนวนอุปกรณ์ที่ซ่อมซ้ำ
-      },
-      mttr,
-      realJobs,
-      repeatCount:    repeatJobs.length,
-      uniqueRepeatEq: uniqueRepeatEq,
-      pendingApprovals: cnt.WAIT_APPROVAL || 0,
-      monthlyTrend: { labels: months, data: tData },
-      vendorKPIs: SAMPLE_VENDORS.map(v => ({
-        name:   v.Vendor_Name,
-        total:  jobs.filter(j => j.Vendor_ID === v.Vendor_ID).length,
-        closed: jobs.filter(j => j.Vendor_ID === v.Vendor_ID && j.Status === 'CLOSED').length,
-      })),
-      byPriority:  byP,
-      recentJobs:  jobs.slice().sort((a,b) => (b.Create_Date||'').localeCompare(a.Create_Date||'')).slice(0,10),
-      lowStock,
-    };
-  },
-
-  /* ── PARTS ── */
-  async issuePart({ partId, partCode, qty, jobNo, remark }) {
-    _localParts = _loadParts();
-    const idx = _localParts.findIndex(p => p.Part_ID === partId || p.Part_Code === (partCode || partId));
-    if (idx < 0) return { success: false, error: 'ไม่พบ Part' };
-    const cur = parseFloat(_localParts[idx].Current_Stock || 0);
-    if (cur < qty) return { success: false, error: 'สต๊อกไม่พอ (เหลือ ' + cur + ')' };
-    _localParts[idx].Current_Stock = cur - qty;
-    _saveParts();
-
-    // log
-    try {
-      const log = JSON.parse(localStorage.getItem('rms_iss_log') || '[]');
-      log.unshift({ date: new Date().toISOString().slice(0,10), partId, qty, jobNo: jobNo||'', remark: remark||'', by: (Auth.getUser()||{}).username||'admin' });
-      localStorage.setItem('rms_iss_log', JSON.stringify(log.slice(0,200)));
-    } catch(e) {}
-
-    if (RMS.USE_GAS) { try { await callGAS('issuePart', { partId, qty, jobNo, remark }); } catch(e) {} }
-    return { success: true, newStock: _localParts[idx].Current_Stock };
-  },
-
-  async receivePart({ partId, qty, unitCost }) {
-    _localParts = _loadParts();
-    const idx = _localParts.findIndex(p => p.Part_ID === partId || p.Part_Code === partId);
-    if (idx < 0) return { success: false, error: 'ไม่พบ Part' };
-    _localParts[idx].Current_Stock = parseFloat(_localParts[idx].Current_Stock||0) + qty;
-    if (unitCost) _localParts[idx].Cost = parseFloat(unitCost);
-    _saveParts();
-
-    try {
-      const log = JSON.parse(localStorage.getItem('rms_rcv_log') || '[]');
-      log.unshift({ date: new Date().toISOString().slice(0,10), partId, qty, unitCost: unitCost||0, by: (Auth.getUser()||{}).username||'admin' });
-      localStorage.setItem('rms_rcv_log', JSON.stringify(log.slice(0,200)));
-    } catch(e) {}
-
-    if (RMS.USE_GAS) { try { await callGAS('receivePart', { partId, qty, unitCost }); } catch(e) {} }
-    return { success: true, newStock: _localParts[idx].Current_Stock };
-  },
-};
-
-/* ─────────────────────────────────────────────────────────────
-   8.  UI HELPERS
-   ───────────────────────────────────────────────────────────── */
-const UI = {
-
-  priorityBadge(p) {
-    const M = {
-      CRITICAL: { bg:'rgba(153,27,27,.1)',  color:'#991B1B', border:'rgba(153,27,27,.2)',  icon:'fa-fire'      },
-      HIGH:     { bg:'rgba(180,83,9,.1)',   color:'#B45309', border:'rgba(180,83,9,.2)',   icon:'fa-arrow-up'  },
-      MEDIUM:   { bg:'rgba(146,64,14,.1)',  color:'#92400E', border:'rgba(146,64,14,.2)',  icon:'fa-minus'     },
-      LOW:      { bg:'rgba(22,163,74,.1)',  color:'#166534', border:'rgba(22,163,74,.2)',  icon:'fa-arrow-down'},
-    };
-    const c = M[p] || M.MEDIUM;
-    return `<span style="display:inline-flex;align-items:center;gap:4px;padding:2px 9px;border-radius:20px;font-size:.63rem;font-weight:700;letter-spacing:.2px;background:${c.bg};color:${c.color};border:1px solid ${c.border}"><i class="fas ${c.icon}" style="font-size:.55rem"></i>${p||'MEDIUM'}</span>`;
-  },
-
-  statusBadge(s) {
-    const st = (s||'').replace(/ /g,'_').toUpperCase();
-    const M = {
-      IN_PROGRESS:     { bg:'rgba(2,132,199,.1)',   color:'#0369a1', label:'IN PROGRESS'      },
-      CLOSED:          { bg:'rgba(22,163,74,.1)',   color:'#15803d', label:'CLOSED'            },
-      RETURNED:        { bg:'rgba(15,76,129,.1)',   color:'#0F4C81', label:'RETURNED'          },
-      WAIT_APPROVAL:   { bg:'rgba(217,119,6,.1)',   color:'#b45309', label:'WAIT APPROVAL'     },
-      WAIT_APPROVE:    { bg:'rgba(217,119,6,.1)',   color:'#b45309', label:'WAIT APPROVE'      },
-      WAIT_SPARE_PART: { bg:'rgba(124,58,237,.1)',  color:'#6d28d9', label:'WAIT SPARE PART'   },
-      SEND_REPAIR:     { bg:'rgba(27,154,170,.1)',  color:'#0e7490', label:'SEND REPAIR'       },
-      REJECTED:        { bg:'rgba(220,38,38,.1)',   color:'#dc2626', label:'REJECTED'          },
-      APPROVED:        { bg:'rgba(22,163,74,.1)',   color:'#16a34a', label:'APPROVED'          },
-      OPEN:            { bg:'rgba(100,116,139,.1)', color:'#475569', label:'OPEN'              },
-      REPEAT:          { bg:'rgba(194,65,12,.1)',   color:'#c2410c', label:'REPEAT'            },
-    };
-    const c = M[st] || { bg:'rgba(100,116,139,.1)', color:'#475569', label: st };
-    return `<span style="display:inline-block;padding:3px 10px;border-radius:20px;font-size:.62rem;font-weight:700;letter-spacing:.2px;background:${c.bg};color:${c.color}">${c.label}</span>`;
-  },
-
-  toast(msg, type, duration) {
-    duration = duration || 3200;
-    const ICONS   = { success:'fa-check-circle', danger:'fa-times-circle', warning:'fa-exclamation-triangle', info:'fa-info-circle' };
-    const COLORS  = { success:'#16a34a', danger:'#dc2626', warning:'#d97706', info:'#0284c7' };
-    const icon    = ICONS[type]  || ICONS.info;
-    const color   = COLORS[type] || COLORS.info;
-
-    let tc = document.getElementById('rmsToastContainer');
-    if (!tc) {
-      tc = document.createElement('div');
-      tc.id = 'rmsToastContainer';
-      tc.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none;';
-      document.body.appendChild(tc);
-    }
-
-    // inject keyframes once
-    if (!document.getElementById('_rmsKF')) {
-      const s = document.createElement('style');
-      s.id = '_rmsKF';
-      s.textContent = '@keyframes _rmsIn{from{opacity:0;transform:translateX(18px) scale(.96)}to{opacity:1;transform:none}}@keyframes _rmsOut{from{opacity:1;transform:none}to{opacity:0;transform:translateX(18px) scale(.96)}}';
-      document.head.appendChild(s);
-    }
-
-    const t = document.createElement('div');
-    t.style.cssText = `background:#1e293b;color:#f1f5f9;padding:11px 16px;border-radius:9px;font-size:.8rem;font-weight:500;box-shadow:0 16px 40px rgba(0,0,0,.22);display:flex;align-items:center;gap:10px;animation:_rmsIn .22s cubic-bezier(0.16,1,0.3,1) forwards;pointer-events:all;max-width:320px;border-left:3px solid ${color};font-family:'Inter','Noto Sans Thai',sans-serif;line-height:1.4;`;
-    t.innerHTML = `<i class="fas ${icon}" style="color:${color};font-size:.8rem;flex-shrink:0"></i><span>${msg}</span>`;
-    tc.appendChild(t);
-
-    setTimeout(() => {
-      t.style.animation = '_rmsOut .18s ease forwards';
-      setTimeout(() => { try { t.remove(); } catch(e) {} }, 200);
-    }, duration);
-  },
-
-  confirm(msg, onConfirm) {
-    const ex = document.getElementById('_rmsConfirm');
-    if (ex) ex.remove();
-
-    if (!document.getElementById('_rmsCF')) {
-      const s = document.createElement('style');
-      s.id = '_rmsCF';
-      s.textContent = '@keyframes _rmsCFIn{from{opacity:0}to{opacity:1}}@keyframes _rmsCFBoxIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}';
-      document.head.appendChild(s);
-    }
-
-    const ov = document.createElement('div');
-    ov.id = '_rmsConfirm';
-    ov.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.42);z-index:10999;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(3px);animation:_rmsCFIn .15s ease both;';
-    ov.innerHTML = `
-      <div style="background:#fff;border-radius:16px;padding:26px 24px;max-width:360px;width:100%;box-shadow:0 20px 56px rgba(0,0,0,.2);animation:_rmsCFBoxIn .18s cubic-bezier(0.16,1,0.3,1) both;font-family:'Inter','Noto Sans Thai',sans-serif;">
-        <div style="width:44px;height:44px;border-radius:50%;background:rgba(217,119,6,.1);display:flex;align-items:center;justify-content:center;margin:0 auto 14px">
-          <i class="fas fa-exclamation-triangle" style="color:#d97706;font-size:1rem"></i>
-        </div>
-        <p style="text-align:center;font-size:.84rem;color:#334155;font-weight:500;margin-bottom:20px;line-height:1.5">${msg}</p>
-        <div style="display:flex;gap:8px">
-          <button id="_rmsCC" style="flex:1;padding:8px;border:1.5px solid #e2e8f0;border-radius:7px;background:#f8fafc;color:#64748b;font-size:.8rem;font-weight:600;cursor:pointer;font-family:inherit;transition:background .12s" onmouseover="this.style.background='#f1f5f9'" onmouseout="this.style.background='#f8fafc'">ยกเลิก</button>
-          <button id="_rmsCO" style="flex:1;padding:8px;border:none;border-radius:7px;background:linear-gradient(135deg,#0F4C81,#1a5f9e);color:#fff;font-size:.8rem;font-weight:700;cursor:pointer;font-family:inherit;transition:opacity .12s" onmouseover="this.style.opacity='.88'" onmouseout="this.style.opacity='1'">ยืนยัน</button>
-        </div>
-      </div>`;
-    document.body.appendChild(ov);
-
-    document.getElementById('_rmsCC').onclick = () => ov.remove();
-    document.getElementById('_rmsCO').onclick = () => { ov.remove(); if (onConfirm) onConfirm(); };
-    ov.addEventListener('click', e => { if (e.target === ov) ov.remove(); });
-  },
-};
-
-/* ─────────────────────────────────────────────────────────────
-   9.  AUTO-GUARD  (redirect ถ้าไม่ login)
-   ───────────────────────────────────────────────────────────── */
-(function autoGuard() {
-  const page = location.pathname.split('/').pop() || '';
-  const open = ['login.html', 'index.html', ''];
-  if (open.includes(page)) return;
-
-  function check() {
-    if (!Auth.isLoggedIn()) {
-      window.location.href = 'login.html';
-      return;
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', check);
-  } else {
-    check();
-  }
+(function(){
+  const s=JSON.parse(sessionStorage.getItem('rms_v3_session')||localStorage.getItem('rms_v3_session')||'null');
+  if(!s||(Date.now()-s.loginTime>28800000)){location.href='login.html';return}
+  document.getElementById('tbAvatar').textContent=(s.username||'U').substring(0,2).toUpperCase();
+  document.getElementById('tbUsername').textContent=s.displayName||s.username||'User';
 })();
 
 
-/* ═══════════════════════════════════════════════════════════
-   EWS Enterprise v4.0 — Sidebar & Shell Renderer
-   ═══════════════════════════════════════════════════════════ */
-'use strict';
 
-/* ── NAV CONFIG ─────────────────────────────────────────────── */
-const NAV_CONFIG = [
-  { href:'dashboard.html',  icon:'fa-gauge-high',      label:'Dashboard'       },
-  { href:'jobs.html',       icon:'fa-wrench',          label:'Work Orders',    badgeKey:'jobs' },
-  { href:'approvals.html',  icon:'fa-clipboard-check', label:'Approvals',      badgeKey:'approve', managerOnly:true },
-  { section:'Operations' },
-  { href:'pm.html',         icon:'fa-calendar-check',  label:'PM Schedule'     },
-  { href:'parts.html',      icon:'fa-cubes',           label:'Spare Parts'     },
-  { href:'store.html',      icon:'fa-boxes-stacking',  label:'Store / Receive' },
-  { section:'Analytics' },
-  { href:'reports.html',    icon:'fa-chart-bar',       label:'Reports'         },
-  { href:'analytics.html',  icon:'fa-chart-line',      label:'Analytics'       },
-  { href:'executive.html',  icon:'fa-crown',           label:'Executive'       },
-  { section:'Admin', adminOnly:true },
-  { href:'vendors.html',    icon:'fa-building',        label:'Vendors',        adminOnly:true },
-  { href:'users.html',      icon:'fa-users',           label:'Users',          adminOnly:true },
-  { href:'master.html',     icon:'fa-database',        label:'Master Data',    adminOnly:true },
-  { href:'settings.html',   icon:'fa-gear',            label:'Settings',       adminOnly:true },
+function logout(){
+  sessionStorage.removeItem('rms_v3_session');
+  localStorage.removeItem('rms_v3_session');
+  location.href='login.html';
+}
+
+function toast(msg,type='info'){
+  const c=document.getElementById('toastContainer')||document.body;
+  const t=document.createElement('div'); t.className='rms-toast '+type;
+  const icons={success:'fa-circle-check',danger:'fa-circle-exclamation',info:'fa-circle-info'};
+  t.innerHTML=`<i class="fas ${icons[type]||icons.info}"></i><span>${msg}</span>`;
+  (document.getElementById('toastContainer')||document.body).appendChild(t);
+  setTimeout(()=>{t.classList.add('out');setTimeout(()=>t.remove(),250)},3000);
+}
+function toggleSidebar(){
+  const sb=document.getElementById('mxmSidebar');
+  const ov=document.getElementById('sidebarOverlay');
+  if(window.innerWidth<=1024){
+    sb.classList.toggle('mobile-open');
+    if(ov)ov.classList.toggle('active',sb.classList.contains('mobile-open'));
+  } else {
+    sb.classList.toggle('collapsed');
+  }
+}
+function fmtDate(d){if(!d)return'—';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'2-digit'})}
+function statusBadge(s){const st=(s||'OPEN').replace(/ /g,'_').toUpperCase();const lbl={OPEN:'Open',SEND_REPAIR:'In Repair',RETURNED:'Returned',WAIT_APPROVAL:'Wait Approval',WAIT_SPARE_PART:'Wait Parts',CLOSED:'Closed'};return`<span class="bs bs-${st}">${lbl[st]||st}</span>`}
+function priBadge(p){const pr=(p||'MEDIUM').toUpperCase();const lbl={CRITICAL:'Critical',HIGH:'High',MEDIUM:'Medium',LOW:'Low'};return`<span class="pri pri-${pr}"><span class="pri-dot"></span>${lbl[pr]||pr}</span>`}
+
+
+const GAS_URL=localStorage.getItem('rms_gas_url')||'https://script.google.com/macros/s/AKfycbxo3RTi8R1hJMJ49r9TSaQAfCVIWD-ibgS9xhxMWdxO-3JqzSf8nbbrW04ffxzggdurhw/exec';
+
+function _getToken(){
+  const s=JSON.parse(sessionStorage.getItem('rms_v3_session')||localStorage.getItem('rms_v3_session')||'null');
+  return s?.token||'';
+}
+const SAMPLE_PARTS_LOCAL=[
+  {id:'P001',name:'Motor Bearing 6205',cat:'Bearing',unit:'ชิ้น',stock:12,min:5,cost:350,loc:'A-01-01'},
+  {id:'P002',name:'Hydraulic Seal Kit 50mm',cat:'Seal',unit:'ชุด',stock:3,min:5,cost:890,loc:'A-02-03'},
+  {id:'P003',name:'Drive Belt B-Type',cat:'Belt',unit:'เส้น',stock:8,min:3,cost:220,loc:'B-01-02'},
+  {id:'P004',name:'Relay 24VDC',cat:'Electrical',unit:'ชิ้น',stock:15,min:5,cost:180,loc:'C-03-01'},
+  {id:'P005',name:'Oil Filter HF200',cat:'Filter',unit:'ชิ้น',stock:6,min:4,cost:450,loc:'B-02-01'},
+  {id:'P006',name:'Pressure Gauge 0-16bar',cat:'Instrument',unit:'ชิ้น',stock:4,min:2,cost:680,loc:'C-01-04'},
+  {id:'P007',name:'Contactor LC1-D09',cat:'Electrical',unit:'ชิ้น',stock:7,min:3,cost:520,loc:'C-03-02'},
+  {id:'P008',name:'Gear Oil VG220 (20L)',cat:'Lubricant',unit:'ถัง',stock:5,min:2,cost:1200,loc:'D-01-01'},
 ];
+let PARTS=[...SAMPLE_PARTS_LOCAL];
 
-function _getBadgeCounts() {
-  try {
-    const jobs = typeof _localJobs !== 'undefined' ? _localJobs : [];
-    const approve = jobs.filter(j=>['WAIT_APPROVAL','WAIT_APPROVE'].includes((j.Status||'').replace(/ /g,'_'))).length;
-    const inProg  = jobs.filter(j=>(j.Status||'')==='SEND_REPAIR').length;
-    return { approve: approve||0, jobs: inProg||0 };
-  } catch(e) { return {}; }
+
+let _issuePart=null;
+
+function stockStatus(s,m){
+  if(s===0)return{label:'Out of Stock',style:'background:var(--red10);color:var(--red60)'};
+  if(s<=m)return{label:'Low Stock',style:'background:var(--yellow10);color:#8B6900'};
+  return{label:'In Stock',style:'background:var(--green10);color:var(--green50)'};
 }
 
-function _buildSidebar() {
-  const cur    = location.pathname.split('/').pop() || 'dashboard.html';
-  const user   = (typeof Auth !== 'undefined') ? Auth.getUser() : null;
-  const badges = _getBadgeCounts();
-  const isAdmin   = user && ['SUPER_ADMIN','ADMIN'].includes(user.role);
-  const isManager = user && ['SUPER_ADMIN','ADMIN','MANAGER'].includes(user.role);
-  const initials  = user ? (user.name||user.username||'U').slice(0,2).toUpperCase() : 'U';
-  const roleName  = user ? (user.role||'USER') : 'USER';
-  const displayName = user ? (user.name||user.username||'User') : 'User';
+function renderKPIs(){
+  const total=PARTS.length;
+  const inStock=PARTS.filter(p=>p.stock>p.min).length;
+  const low=PARTS.filter(p=>p.stock>0&&p.stock<=p.min).length;
+  const out=PARTS.filter(p=>p.stock===0).length;
+  const val=PARTS.reduce((s,p)=>s+p.stock*p.cost,0);
+  document.getElementById('ksTotal').textContent=total;
+  document.getElementById('ksInStock').textContent=inStock;
+  document.getElementById('ksLow').textContent=low;
+  document.getElementById('ksOut').textContent=out;
+  document.getElementById('ksValue').textContent=val.toLocaleString();
+}
 
-  let navHTML = '';
-  NAV_CONFIG.forEach(item => {
-    if (item.section !== undefined) {
-      if (item.adminOnly && !isAdmin) return;
-      navHTML += `<div class="nav-section-label">${item.section}</div>`;
-      return;
-    }
-    if (item.adminOnly   && !isAdmin)   return;
-    if (item.managerOnly && !isManager) return;
-    const active    = cur === item.href ? ' active' : '';
-    const badgeCnt  = item.badgeKey && badges[item.badgeKey] ? badges[item.badgeKey] : 0;
-    const badgeHTML = badgeCnt ? `<span class="nav-badge">${badgeCnt}</span>` : '';
-    navHTML += `<a href="${item.href}" class="nav-item${active}"><span class="nav-icon"><i class="fas ${item.icon}"></i></span><span>${item.label}</span>${badgeHTML}</a>`;
+function renderTable(){
+  const q=(document.getElementById('searchInput').value||'').toLowerCase();
+  const cat=document.getElementById('filterCat').value;
+  const stk=document.getElementById('filterStock').value;
+  const rows=PARTS.filter(p=>{
+    if(cat&&p.cat!==cat)return false;
+    if(stk==='ok'&&p.stock<=p.min)return false;
+    if(stk==='low'&&!(p.stock>0&&p.stock<=p.min))return false;
+    if(stk==='out'&&p.stock!==0)return false;
+    if(q&&!(p.id+p.name+p.cat).toLowerCase().includes(q))return false;
+    return true;
   });
-
-  return `
-  <aside class="rms-sidebar" id="rmsSidebar">
-    <div class="sidebar-brand">
-      <div class="brand-icon"><i class="fas fa-bolt"></i></div>
-      <div class="brand-text">
-        <div class="brand-name">EWS Enterprise</div>
-        <div class="brand-ver">v4.0</div>
-      </div>
-    </div>
-    <div class="sidebar-user">
-      <div class="user-avatar">${initials}</div>
-      <div class="user-info">
-        <div class="user-name">${displayName}</div>
-        <div class="user-role">${roleName}</div>
-      </div>
-    </div>
-    <nav class="sidebar-nav">${navHTML}</nav>
-    <div class="sidebar-footer">
-      <div class="sidebar-user" style="padding:10px 12px 0;border-bottom:none;margin-bottom:6px">
-        <div class="user-avatar" style="background:rgba(255,255,255,.08);border-radius:8px">
-          <i class="fas fa-right-from-bracket" style="font-size:.65rem;color:rgba(255,255,255,.5)"></i>
-        </div>
-        <div class="user-info">
-          <button onclick="doLogout()" style="background:none;border:none;color:rgba(255,255,255,.5);font-size:.78rem;font-weight:600;cursor:pointer;padding:0;font-family:inherit;text-align:left;transition:color .15s" onmouseover="this.style.color='rgba(248,113,113,.9)'" onmouseout="this.style.color='rgba(255,255,255,.5)'">Sign Out</button>
-        </div>
-      </div>
-    </div>
-  </aside>`;
+  document.getElementById('tBody').innerHTML=rows.map(p=>{
+    const ss=stockStatus(p.stock,p.min);
+    return`<tr>
+      <td class="td-mono" style="font-size:.72rem">${p.id}</td>
+      <td style="font-size:.75rem;max-width:200px;overflow:hidden;text-overflow:ellipsis" title="${p.name}">${p.name}</td>
+      <td><span style="font-size:.65rem;font-weight:600;color:var(--p60);background:var(--cyan10);padding:2px 7px">${p.cat}</span></td>
+      <td style="font-size:.72rem;color:var(--g60)">${p.unit}</td>
+      <td style="font-size:.85rem;font-weight:600;color:${p.stock===0?'var(--red60)':p.stock<=p.min?'var(--orange40)':'var(--green50)'};text-align:right;padding-right:20px">${p.stock}</td>
+      <td style="font-size:.72rem;color:var(--g60);text-align:right;padding-right:20px">${p.min}</td>
+      <td><span class="bs" style="${ss.style}">${ss.label}</span></td>
+      <td style="text-align:right;padding-right:20px">${p.cost.toLocaleString()}</td>
+      <td style="text-align:right;padding-right:20px;font-weight:600">${(p.stock*p.cost).toLocaleString()}</td>
+      <td style="font-size:.7rem;color:var(--g60)">${p.loc}</td>
+      <td style="display:flex;gap:4px">
+        <button onclick="openIssue('${p.id}')" style="background:var(--p60);border:none;color:#fff;font-size:.65rem;padding:4px 8px;cursor:pointer;font-family:var(--font)"><i class="fas fa-right-left"></i></button>
+        <button onclick="openModal('${p.id}')" style="background:none;border:1px solid var(--g20);color:var(--g70);font-size:.65rem;padding:4px 8px;cursor:pointer;font-family:var(--font)"><i class="fas fa-pen"></i></button>
+      </td>
+    </tr>`;
+  }).join('');
+  renderKPIs();
 }
 
-function _buildTopbar(title, actions) {
-  const now = new Date();
-  const dateStr = now.toLocaleDateString('th-TH', { weekday:'short', year:'numeric', month:'short', day:'numeric' });
-  const waitCnt = (typeof _getBadgeCounts === 'function') ? (_getBadgeCounts().approve || 0) : 0;
-  const bellDot = waitCnt > 0 ? `<span class="rms-bell-dot" title="${waitCnt} รายการรออนุมัติ"></span>` : '';
-  return `
-  <header class="rms-topbar" id="rmsTopbar" style="border-top:3px solid var(--primary,#1264A3)">
-    <div class="topbar-breadcrumb" style="flex:1;min-width:0">
-      <div class="page-title">${title}</div>
-      <div class="page-subtitle">${dateStr}</div>
-    </div>
-    <div class="topbar-actions">
-      ${actions ? `<div class="d-flex align-items-center gap-2">${actions}</div>` : ''}
-      <button class="topbar-icon-btn" onclick="window.location.reload()" title="Refresh"><i class="fas fa-sync-alt"></i></button>
-      <button class="topbar-icon-btn rms-bell-btn" title="Approvals" onclick="window.location.href='approvals.html'" style="position:relative">
-        <i class="fas fa-bell"></i>${bellDot}
-      </button>
-      <a href="dashboard.html" class="topbar-icon-btn" title="Dashboard"><i class="fas fa-gauge-high"></i></a>
-    </div>
-  </header>`;
+function openModal(id){
+  const p=id?PARTS.find(x=>x.id===id):null;
+  document.getElementById('modalTitle').textContent=p?'Edit Part':'Add Part';
+  document.getElementById('editId').value=p?p.id:'';
+  document.getElementById('mId').value=p?p.id:'P'+String(PARTS.length+1).padStart(3,'0');
+  document.getElementById('mName').value=p?p.name:'';
+  document.getElementById('mCat').value=p?p.cat:'Bearing';
+  document.getElementById('mUnit').value=p?p.unit:'ชิ้น';
+  document.getElementById('mLoc').value=p?p.loc:'';
+  document.getElementById('mStock').value=p?p.stock:0;
+  document.getElementById('mMin').value=p?p.min:2;
+  document.getElementById('mCost').value=p?p.cost:0;
+  document.getElementById('btnDel').classList.toggle('hidden',!id);
+  document.getElementById('partModal').classList.remove('hidden');
+}
+function closeModal(){document.getElementById('partModal').classList.add('hidden')}
+function savePart(){
+  const eid=document.getElementById('editId').value;
+  const data={name:document.getElementById('mName').value.trim(),cat:document.getElementById('mCat').value,unit:document.getElementById('mUnit').value.trim(),loc:document.getElementById('mLoc').value.trim(),stock:+document.getElementById('mStock').value,min:+document.getElementById('mMin').value,cost:+document.getElementById('mCost').value};
+  if(!data.name){toast('Part name required','danger');return}
+  if(eid){Object.assign(PARTS.find(p=>p.id===eid),data);toast('Part updated','success')}
+  else{PARTS.push({id:'P'+String(PARTS.length+1).padStart(3,'0'),...data});toast('Part added','success')}
+  closeModal();renderTable();
+}
+function deletePart(){
+  const eid=document.getElementById('editId').value;
+  PARTS=PARTS.filter(p=>p.id!==eid);closeModal();renderTable();toast('Part deleted','info');
 }
 
-/* ── MAIN RENDER FUNCTION ───────────────────────────────────── */
-function renderPageShell(title, content, actions) {
-  var _lo=document.getElementById('rms-loader');if(_lo)_lo.remove();
-  const wrapper = document.getElementById('app');
-  if (!wrapper) return;
-
-  // สร้าง sidebar และ main-content ใหม่ทั้งหมด
-  wrapper.innerHTML =
-    _buildSidebar() +
-    '<div class="main-content" id="mainContent"></div>';
-
-  const main = document.getElementById('mainContent');
-  if (!main) return;
-
-  main.innerHTML = _buildTopbar(title, actions || '') +
-    '<div class="page-content">' + (content || '') + '</div>';
-
-  // Toast container
-  if (!document.getElementById('rmsToastContainer')) {
-    const tc = document.createElement('div');
-    tc.id = 'rmsToastContainer';
-    tc.style.cssText = 'position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none;';
-    document.body.appendChild(tc);
+function openIssue(id){
+  _issuePart=PARTS.find(p=>p.id===id);
+  if(!_issuePart)return;
+  document.getElementById('iPartName').value=_issuePart.name+' (Stock: '+_issuePart.stock+')';
+  document.getElementById('iQty').value=1;
+  document.getElementById('iRef').value='';
+  document.getElementById('issueModal').classList.remove('hidden');
+}
+function doIssue(){
+  if(!_issuePart)return;
+  const action=document.getElementById('iAction').value;
+  const qty=+document.getElementById('iQty').value;
+  if(action==='issue'){
+    if(qty>_issuePart.stock){toast('Insufficient stock','danger');return}
+    _issuePart.stock-=qty;toast('Issued '+qty+' '+_issuePart.unit+' of '+_issuePart.name,'success');
+  } else {
+    _issuePart.stock+=qty;toast('Received '+qty+' '+_issuePart.unit+' of '+_issuePart.name,'success');
   }
+  document.getElementById('issueModal').classList.add('hidden');
+  renderTable();
 }
 
-/* ── SIDEBAR TOGGLE ─────────────────────────────────────────── */
-function toggleSidebar() {
-  const sidebar = document.getElementById('rmsSidebar');
-  const main    = document.getElementById('mainContent');
-  const topbar  = document.getElementById('rmsTopbar');
-  if (!sidebar) return;
+renderTable();
 
-  const collapsed = sidebar.classList.toggle('collapsed');
-  const w = collapsed ? 'var(--sidebar-collapsed)' : 'var(--sidebar-width)';
-  sidebar.style.width = w;
-  if (main)   main.style.marginLeft = w;
-  if (topbar) topbar.style.left = w;
+document.getElementById('lastUpdate').textContent=new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
+
+function loadData(){
+  document.getElementById('loadingOverlay').classList.remove('hidden');
+  fetch(GAS_URL+'?action=getParts&token='+encodeURIComponent(_getToken())).then(r=>r.json()).then(res=>{
+    const data=res.data||res||SAMPLE_PARTS_LOCAL;
+    if(Array.isArray(data) && data.length>0){
+      PARTS=data.map(p=>({
+        id:p.Part_ID||p.id,
+        name:p.Part_Name||p.name,
+        cat:p.Category||p.cat,
+        unit:p.Unit||p.unit||'ชิ้น',
+        stock:Number(p.Current_Stock||p.stock||0),
+        min:Number(p.Min_Stock||p.min||0),
+        cost:Number(p.Cost||p.cost||0),
+        loc:p.Location||p.loc||'-'
+      }));
+    }
+  }).catch(()=>({})).finally(()=>{
+    document.getElementById('loadingOverlay').classList.add('hidden');
+    renderTable(); renderKPIs();
+  });
 }
 
-/* ── LOGOUT ─────────────────────────────────────────────────── */
-function doLogout() {
-  try { sessionStorage.removeItem('rms_v3_session'); } catch(e) {}
-  try { localStorage.removeItem('rms_v3_session'); }  catch(e) {}
-  window.location.href = 'login.html';
-}
-
+loadData();
 </script>
-
-<script>
-'use strict';
-
-/* ── STATE ── */
-var _RC = {};
-var _parts = [], _editId = null, _curTab = 'list', _txPartId = null, _txMode = null;
-var _listFilter = { cat: '', q: '' };
-
-/* ── LOG PERSISTENCE ── */
-function _loadLog(key)  { try { var s=localStorage.getItem(key); return s?JSON.parse(s):[]; } catch(e){return[];} }
-function _saveLog(key,arr){ try { localStorage.setItem(key,JSON.stringify(arr)); } catch(e){} }
-var _issLog = _loadLog('rms_iss_log');
-var _rcvLog = _loadLog('rms_rcv_log');
-
-/* ── HELPERS ── */
-function _saveParts() {
-  try { localStorage.setItem('rms_v3_parts', JSON.stringify(_parts)); } catch(e) {}
-  _localParts = [..._parts];
-}
-function _stockColor(cur, min) {
-  if (cur <= 0)   return 'var(--danger)';
-  if (cur <= min) return 'var(--warning)';
-  return 'var(--success)';
-}
-function _stockPct(cur, max) {
-  return Math.min(100, Math.round(parseFloat(cur||0) / Math.max(parseFloat(max||50), 1) * 100));
-}
-function _showModal(id) {
-  var el = document.getElementById(id);
-  if (!el) return;
-  bootstrap.Modal.getOrCreateInstance(el).show();
-}
-function _hideModal(id) {
-  var el = document.getElementById(id);
-  if (!el) return;
-  var m = bootstrap.Modal.getInstance(el);
-  if (m) m.hide();
-}
-// alias for legacy code
-function showModal(id){ _showModal(id); }
-function hideModal(id){ _hideModal(id); }
-
-/* ── INIT ── */
-document.addEventListener('DOMContentLoaded', function() {
-  renderPageShell('คลังอะไหล่',
-    '<div id="pg"></div>',
-    '<button class="btn-primary-rms" onclick="openCreate()"><i class="fas fa-plus me-1"></i>เพิ่มอะไหล่</button>'
-  );
-  loadParts();
-});
-
-/* ── LOAD DATA ── */
-async function loadParts() {
-  var saved = null;
-  try { var raw=localStorage.getItem('rms_v3_parts'); if(raw) saved=JSON.parse(raw); } catch(e){}
-  if (saved && Array.isArray(saved) && saved.length > 0) {
-    _parts = SAMPLE_PARTS.map(function(sp) {
-      var lp = saved.find(function(s){ return s.Part_Code===sp.Part_Code||s.Part_ID===sp.Part_ID; });
-      if (!lp) return Object.assign({}, sp);
-      return Object.assign({}, sp, {
-        Current_Stock: parseFloat(lp.Current_Stock ?? sp.Current_Stock),
-        Cost:          parseFloat(lp.Cost ?? sp.Cost)
-      });
-    });
-  } else {
-    _parts = SAMPLE_PARTS.map(function(sp){ return Object.assign({}, sp); });
-  }
-  _localParts = [..._parts];
-  renderPage();
-}
-
-/* ── PAGE SHELL ── */
-function renderPage() {
-  var pg = document.getElementById('pg');
-  if (!pg) return;
-
-  var low     = _parts.filter(function(p){ return parseFloat(p.Current_Stock||0) > 0 && parseFloat(p.Current_Stock||0) <= parseFloat(p.Min_Stock||0); });
-  var outStock= _parts.filter(function(p){ return parseFloat(p.Current_Stock||0) <= 0; });
-  var val     = _parts.reduce(function(s,p){ return s + parseFloat(p.Cost||0)*parseFloat(p.Current_Stock||0); }, 0);
-  var active  = _parts.filter(function(p){ return (p.Status||'ACTIVE')==='ACTIVE'; }).length;
-  var alertCount = low.length + outStock.length;
-
-  pg.innerHTML =
-    /* ── KPI Strip ── */
-    '<div class="row g-3 mb-4">' +
-      _kpi('fa-boxes',              'primary',   _parts.length,                         'อะไหล่ทั้งหมด',      'รายการ') +
-      _kpi('fa-check-circle',       'success',   active,                                'Active',              'รายการ') +
-      _kpi('fa-coins',              'warning',   '฿'+Math.round(val).toLocaleString('th-TH'), 'มูลค่าคลัง', '') +
-      _kpi('fa-exclamation-triangle','danger',   alertCount,                            'Low / Out Stock',     'รายการ', alertCount > 0) +
-    '</div>' +
-
-    /* ── Low Stock Banner (conditional) ── */
-    (alertCount > 0 ?
-      '<div class="alert alert-danger d-flex align-items-start gap-3 mb-4" style="border-radius:var(--radius-md);border:1px solid rgba(220,38,38,.2)">' +
-        '<i class="fas fa-exclamation-circle mt-1 flex-shrink-0" style="font-size:1rem"></i>' +
-        '<div style="flex:1;min-width:0">' +
-          '<div style="font-weight:700;font-size:.82rem;margin-bottom:6px">⚠ Low Stock Alert — ' + alertCount + ' รายการ</div>' +
-          '<div class="d-flex flex-wrap gap-2">' +
-          [...outStock,...low].slice(0,8).map(function(p){
-            var isOut = parseFloat(p.Current_Stock||0) <= 0;
-            return '<span style="background:rgba(255,255,255,.7);padding:2px 10px;border-radius:20px;font-size:.72rem;font-weight:600;color:'+(isOut?'var(--danger)':'var(--warning)')+';border:1px solid '+(isOut?'rgba(220,38,38,.3)':'rgba(217,119,6,.3)')+'">' +
-              (p.Part_Name||p.Part_Code) + ' ' + (isOut?'(หมด)':'('+p.Current_Stock+')') +
-            '</span>';
-          }).join('') +
-          '</div>' +
-        '</div>' +
-      '</div>'
-    : '') +
-
-    /* ── Tabs ── */
-    '<div class="parts-tabs" id="partsTabBar">' +
-      _tabBtn('list',      'fa-list',      'รายการอะไหล่') +
-      _tabBtn('issue',     'fa-arrow-up',  'เบิกอะไหล่') +
-      _tabBtn('receive',   'fa-arrow-down','รับเข้าคลัง') +
-      _tabBtn('history',   'fa-history',   'ประวัติ') +
-      _tabBtn('dashboard', 'fa-chart-bar', 'วิเคราะห์') +
-    '</div>' +
-
-    '<div id="tabContent"></div>';
-
-  /* Tab click */
-  var tabBar = document.getElementById('partsTabBar');
-  if (tabBar) {
-    tabBar.addEventListener('click', function(e) {
-      var btn = e.target.closest('[data-tab]');
-      if (!btn) return;
-      _curTab = btn.dataset.tab;
-      document.querySelectorAll('.parts-tab').forEach(function(b){ b.classList.toggle('active', b.dataset.tab === _curTab); });
-      renderTab(_curTab);
-    });
-  }
-
-  renderTab(_curTab);
-}
-
-function _kpi(icon, cls, val, label, unit, warn) {
-  return '<div class="col-md-3 col-6">' +
-    '<div class="stat-card" style="' + (warn ? 'border-left:3px solid var(--danger)' : '') + '">' +
-      '<div class="stat-icon ' + cls + '"><i class="fas ' + icon + '"></i></div>' +
-      '<div style="min-width:0">' +
-        '<div class="stat-value" style="' + (warn ? 'color:var(--danger)' : '') + '">' + val + '</div>' +
-        '<div class="stat-label">' + label + (unit ? ' <span style="font-size:.6rem;color:var(--gray-400)">' + unit + '</span>' : '') + '</div>' +
-      '</div>' +
-    '</div>' +
-  '</div>';
-}
-
-function _tabBtn(tab, icon, label) {
-  return '<button class="parts-tab' + (_curTab === tab ? ' active' : '') + '" data-tab="' + tab + '">' +
-    '<i class="fas ' + icon + '"></i>' + label +
-  '</button>';
-}
-
-function renderTab(tab) {
-  var el = document.getElementById('tabContent');
-  if (!el) return;
-  if (tab === 'list')      renderList(el);
-  else if (tab === 'issue')    renderIssueTab(el);
-  else if (tab === 'receive')  renderReceiveTab(el);
-  else if (tab === 'history')  renderHistory(el);
-  else if (tab === 'dashboard') renderDashboard(el);
-}
-
-/* ════════════════════════════════════════
-   TAB: LIST
-════════════════════════════════════════ */
-function renderList(el) {
-  el.innerHTML =
-    '<div class="table-card">' +
-      '<div class="table-header">' +
-        '<div class="table-title"><i class="fas fa-cogs me-2" style="color:var(--secondary)"></i>รายการอะไหล่ <span id="partCount" style="font-size:.68rem;font-weight:600;color:var(--gray-400);background:var(--gray-100);padding:2px 9px;border-radius:20px;margin-left:8px"></span></div>' +
-        '<div class="d-flex gap-2 flex-wrap">' +
-          '<select class="form-select" id="fCat" style="width:140px;height:34px;font-size:.8rem">' +
-            '<option value="">ทุกหมวด</option>' +
-            '<option value="Mechanical">Mechanical</option>' +
-            '<option value="Electronic">Electronic</option>' +
-            '<option value="Consumable">Consumable</option>' +
-            '<option value="Other">Other</option>' +
-          '</select>' +
-          '<div class="input-group" style="width:220px;height:34px">' +
-            '<span class="input-group-text" style="height:34px"><i class="fas fa-search"></i></span>' +
-            '<input type="text" class="form-control" id="fSearch" placeholder="รหัส / ชื่ออะไหล่..." style="height:34px;font-size:.8rem">' +
-          '</div>' +
-          '<button class="btn-primary-rms" onclick="openCreate()" style="height:34px"><i class="fas fa-plus me-1"></i>เพิ่ม</button>' +
-        '</div>' +
-      '</div>' +
-      '<div class="table-responsive">' +
-        '<table class="table table-hover mb-0 align-middle" id="partsTbl" style="min-width:920px">' +
-          '<thead><tr>' +
-            '<th style="padding:10px 14px;width:110px">Part Code</th>' +
-            '<th style="padding:10px 12px;min-width:180px">ชื่ออะไหล่</th>' +
-            '<th style="padding:10px 12px;width:110px">หมวดหมู่</th>' +
-            '<th style="padding:10px 12px;width:60px">Unit</th>' +
-            '<th style="padding:10px 12px;width:90px;text-align:right">ต้นทุน</th>' +
-            '<th style="padding:10px 12px;width:60px;text-align:center">Min</th>' +
-            '<th style="padding:10px 12px;width:130px;text-align:center">Stock คงเหลือ</th>' +
-            '<th style="padding:10px 12px;width:80px">คลัง</th>' +
-            '<th style="padding:10px 12px;width:60px;text-align:center">สถานะ</th>' +
-            '<th style="padding:10px 10px;width:120px;text-align:center">จัดการ</th>' +
-          '</tr></thead>' +
-          '<tbody id="pTbody"><tr><td colspan="10" class="text-center py-4"><div class="spinner-border spinner-border-sm" style="color:var(--secondary)"></div></td></tr></tbody>' +
-        '</table>' +
-      '</div>' +
-    '</div>';
-
-  /* Filter events */
-  var fc = document.getElementById('fCat');
-  var fs = document.getElementById('searchBox2') || document.getElementById('fSearch');
-  if (fc) fc.addEventListener('change', function(){ _listFilter.cat = this.value; drawRows(); });
-  var searchEl = document.getElementById('fSearch');
-  if (searchEl) {
-    var _st = null;
-    searchEl.addEventListener('input', function() {
-      clearTimeout(_st);
-      var q = this.value;
-      _st = setTimeout(function(){ _listFilter.q = q; drawRows(); }, 280);
-    });
-  }
-  drawRows();
-}
-
-function drawRows() {
-  var tb = document.getElementById('pTbody');
-  if (!tb) return;
-  var list = _parts.filter(function(p) {
-    var q   = (_listFilter.q||'').toLowerCase();
-    var cat = _listFilter.cat||'';
-    var matchCat = !cat || p.Category === cat;
-    var matchQ   = !q || (p.Part_Name||'').toLowerCase().includes(q) || (p.Part_Code||'').toLowerCase().includes(q);
-    return matchCat && matchQ;
-  });
-
-  var cnt = document.getElementById('partCount');
-  if (cnt) cnt.textContent = list.length + ' รายการ';
-
-  if (!list.length) {
-    tb.innerHTML = '<tr><td colspan="10"><div class="empty-mini"><i class="fas fa-box-open"></i><p>ไม่พบรายการ</p></div></td></tr>';
-    return;
-  }
-
-  tb.innerHTML = list.map(function(p) {
-    var cur  = parseFloat(p.Current_Stock||0);
-    var min  = parseFloat(p.Min_Stock||0);
-    var max  = parseFloat(p.Max_Stock||50);
-    var isOut = cur <= 0;
-    var isLow = !isOut && cur <= min;
-    var pct  = _stockPct(cur, max);
-    var sColor = _stockColor(cur, min);
-    var catCls = 'cat-' + (p.Category||'Other').replace(/\s+/g,'');
-
-    return '<tr class="' + (isOut?'low-stock-row':'') + '" data-pid="' + p.Part_ID + '">' +
-      '<td style="padding:10px 14px"><span style="font-family:monospace;font-size:.82rem;font-weight:700;color:var(--primary)">' + (p.Part_Code||'—') + '</span></td>' +
-      '<td style="padding:10px 12px">' +
-        '<div style="font-weight:600;font-size:.84rem;color:var(--gray-800)">' + (p.Part_Name||'—') + '</div>' +
-        (isOut ? '<span style="font-size:.62rem;background:rgba(220,38,38,.1);color:var(--danger);padding:1px 6px;border-radius:4px;font-weight:700">หมดสต๊อก</span>' :
-         isLow ? '<span style="font-size:.62rem;background:rgba(217,119,6,.1);color:var(--warning);padding:1px 6px;border-radius:4px;font-weight:700">ใกล้หมด</span>' : '') +
-      '</td>' +
-      '<td style="padding:10px 12px"><span class="cat-badge ' + catCls + '">' + (p.Category||'Other') + '</span></td>' +
-      '<td style="padding:10px 12px;font-size:.8rem;color:var(--gray-500)">' + (p.Unit||'PC') + '</td>' +
-      '<td style="padding:10px 12px;text-align:right;font-size:.82rem;font-weight:600;color:var(--gray-700)">฿' + parseFloat(p.Cost||0).toLocaleString('th-TH') + '</td>' +
-      '<td style="padding:10px 12px;text-align:center;font-size:.8rem;color:var(--gray-400)">' + min + '</td>' +
-      '<td style="padding:10px 12px">' +
-        '<div class="d-flex align-items-center gap-2">' +
-          '<span style="font-size:1rem;font-weight:800;color:' + sColor + ';min-width:24px;text-align:right">' + cur + '</span>' +
-          '<div style="flex:1">' +
-            '<div style="font-size:.65rem;color:var(--gray-400);margin-bottom:2px">' + (p.Unit||'PC') + '</div>' +
-            '<div class="stock-bar"><div class="stock-bar-fill" style="width:' + pct + '%;background:' + sColor + '"></div></div>' +
-          '</div>' +
-        '</div>' +
-      '</td>' +
-      '<td style="padding:10px 12px;font-size:.75rem;color:var(--gray-500)">' + (p.Warehouse_ID||'WH-EWS').replace('WH-','') + '</td>' +
-      '<td style="padding:10px 12px;text-align:center">' +
-        '<span style="display:inline-block;padding:2px 8px;border-radius:20px;font-size:.62rem;font-weight:700;background:' +
-          ((p.Status||'ACTIVE')==='ACTIVE' ? 'rgba(22,163,74,.1);color:var(--success)' : 'rgba(100,116,139,.1);color:var(--gray-500)') +
-        '">' + (p.Status||'ACTIVE') + '</span>' +
-      '</td>' +
-      '<td style="padding:10px 10px;text-align:center">' +
-        '<div class="d-inline-flex gap-1">' +
-          '<button class="quick-btn issue"  data-act="issue"   data-pid="'+p.Part_ID+'" data-name="'+((p.Part_Name||'').replace(/"/g,''))+'" title="เบิก"><i class="fas fa-arrow-up"></i></button>' +
-          '<button class="quick-btn receive" data-act="receive" data-pid="'+p.Part_ID+'" data-name="'+((p.Part_Name||'').replace(/"/g,''))+'" title="รับเข้า"><i class="fas fa-arrow-down"></i></button>' +
-          '<button class="quick-btn edit"   data-act="edit"    data-pid="'+p.Part_ID+'" title="แก้ไข"><i class="fas fa-pen"></i></button>' +
-          '<button class="quick-btn del"    data-act="del"     data-pid="'+p.Part_ID+'" title="ลบ"><i class="fas fa-trash"></i></button>' +
-        '</div>' +
-      '</td>' +
-    '</tr>';
-  }).join('');
-
-  /* Event delegation */
-  var tbl = document.getElementById('partsTbl');
-  if (tbl) {
-    tbl.onclick = function(e) {
-      var btn = e.target.closest('[data-act][data-pid]');
-      if (!btn) return;
-      var act = btn.dataset.act, pid = btn.dataset.pid, name = btn.dataset.name||'';
-      if (act === 'issue')   { e.stopPropagation(); quickIssue(pid, name); }
-      if (act === 'receive') { e.stopPropagation(); quickReceive(pid, name); }
-      if (act === 'edit')    { e.stopPropagation(); openEdit(pid); }
-      if (act === 'del')     { e.stopPropagation(); delPart(pid); }
-    };
-  }
-}
-
-/* ════════════════════════════════════════
-   TAB: ISSUE (เบิกอะไหล่)
-════════════════════════════════════════ */
-function renderIssueTab(el) {
-  var partsActive = _parts.filter(function(p){ return (p.Status||'ACTIVE')==='ACTIVE'; });
-  var opts = partsActive.map(function(p){
-    return '<option value="' + (p.Part_Name||p.Part_Code) + '">' +
-      (p.Part_Name||p.Part_Code) + ' (' + (p.Part_Code||p.Part_ID) + ') — เหลือ ' + (p.Current_Stock||0) + ' ' + (p.Unit||'PC') +
-    '</option>';
-  }).join('');
-  var jOpts = _localJobs
-    .filter(function(j){ return j.JOB_No; })
-    .sort(function(a,b){ return (b.Create_Date||'').localeCompare(a.Create_Date||''); })
-    .slice(0, 50)
-    .map(function(j){ return '<option value="' + j.JOB_No + '">' + j.JOB_No + (j.Equipment_ID?' — '+j.Equipment_ID:'') + '</option>'; })
-    .join('');
-
-  el.innerHTML =
-    '<div class="row g-4">' +
-      '<div class="col-xl-7">' +
-        '<div class="tx-form-card">' +
-          '<div class="tx-form-header">' +
-            '<div style="font-size:.92rem;font-weight:700;display:flex;align-items:center;gap:8px">' +
-              '<i class="fas fa-arrow-up"></i>ฟอร์มเบิกอะไหล่' +
-            '</div>' +
-            '<div style="font-size:.72rem;opacity:.75;margin-top:2px">กรอกข้อมูลและกด "เบิกอะไหล่" เพื่อตัดสต๊อก</div>' +
-          '</div>' +
-          '<div class="tx-form-body">' +
-            '<div class="row g-3">' +
-              '<div class="col-12">' +
-                '<label class="form-label">อะไหล่ <span class="required-star">*</span></label>' +
-                '<input class="form-control" id="iss_p" list="iss_p_list" placeholder="พิมพ์รหัสหรือชื่ออะไหล่..." autocomplete="off">' +
-                '<datalist id="iss_p_list">' + opts + '</datalist>' +
-              '</div>' +
-              '<div class="col-md-4">' +
-                '<label class="form-label">คงเหลือ (ปัจจุบัน)</label>' +
-                '<input type="text" class="form-control" id="iss_disp" readonly style="font-weight:700;color:var(--primary);background:var(--gray-50)">' +
-              '</div>' +
-              '<div class="col-md-4">' +
-                '<label class="form-label">จำนวนที่เบิก <span class="required-star">*</span></label>' +
-                '<input type="number" class="form-control" id="iss_q" value="1" min="1">' +
-              '</div>' +
-              '<div class="col-md-4">' +
-                '<label class="form-label">JOB No (อ้างอิง)</label>' +
-                '<input class="form-control" id="iss_j" list="iss_j_list" placeholder="เลือกหรือพิมพ์ JOB No...">' +
-                '<datalist id="iss_j_list"><option value="">-- ไม่ระบุ --</option>' + jOpts + '</datalist>' +
-              '</div>' +
-              '<div class="col-12">' +
-                '<label class="form-label">หมายเหตุ</label>' +
-                '<input class="form-control" id="iss_rem" placeholder="เหตุผลในการเบิก...">' +
-              '</div>' +
-              '<div class="col-12 d-flex gap-2">' +
-                '<button class="btn-primary-rms" onclick="doIssue()"><i class="fas fa-paper-plane me-1"></i>เบิกอะไหล่</button>' +
-                '<button class="btn-outline-rms" onclick="clearIss()"><i class="fas fa-eraser me-1"></i>ล้างฟอร์ม</button>' +
-              '</div>' +
-            '</div>' +
-          '</div>' +
-        '</div>' +
-      '</div>' +
-
-      '<div class="col-xl-5">' +
-        '<div class="table-card h-100">' +
-          '<div class="table-header">' +
-            '<div class="table-title"><i class="fas fa-history me-2" style="color:var(--secondary)"></i>รายการเบิกล่าสุด</div>' +
-          '</div>' +
-          '<div id="issLogPanel" style="max-height:380px;overflow-y:auto">' + _renderIssLogItems() + '</div>' +
-        '</div>' +
-      '</div>' +
-    '</div>';
-
-  /* Real-time stock display */
-  var issP = document.getElementById('iss_p');
-  if (issP) issP.addEventListener('input', issSelChanged);
-}
-
-function _renderIssLogItems() {
-  if (!_issLog.length) return '<div class="empty-mini"><i class="fas fa-history"></i><p>ยังไม่มีการเบิก</p></div>';
-  return _issLog.slice(0,20).map(function(l) {
-    return '<div class="history-item">' +
-      '<div class="history-type-icon issue"><i class="fas fa-arrow-up"></i></div>' +
-      '<div style="flex:1;min-width:0">' +
-        '<div style="font-size:.82rem;font-weight:600;color:var(--gray-800)">' + (l.name||'—') + '</div>' +
-        (l.jobNo ? '<div style="font-size:.7rem;color:var(--gray-400)"><i class="fas fa-briefcase me-1"></i>JOB: ' + l.jobNo + '</div>' : '') +
-        '<div style="font-size:.68rem;color:var(--gray-400)">' + (l.date||'') + (l.t?' · '+l.t:'') + '</div>' +
-      '</div>' +
-      '<div style="text-align:right;flex-shrink:0">' +
-        '<div style="font-size:.88rem;font-weight:700;color:var(--secondary)">-' + (l.qty||0) + '</div>' +
-        '<div style="font-size:.65rem;color:var(--gray-400)">ชิ้น</div>' +
-      '</div>' +
-    '</div>';
-  }).join('');
-}
-
-function issSelChanged() {
-  var iv = (document.getElementById('iss_p')||{}).value.trim();
-  var pt = _parts.find(function(p){ return (p.Part_Name||'')=== iv||(p.Part_Code||'')=== iv; });
-  var disp = document.getElementById('iss_disp');
-  if (disp) {
-    if (pt) {
-      var cur = parseFloat(pt.Current_Stock||0);
-      disp.value = cur + ' ' + (pt.Unit||'PC');
-      disp.style.color = _stockColor(cur, parseFloat(pt.Min_Stock||0));
-    } else {
-      disp.value = '';
-      disp.style.color = 'var(--primary)';
-    }
-  }
-}
-
-async function doIssue() {
-  try {
-
-  var iv = (document.getElementById('iss_p')||{}).value.trim();
-  var pt = _parts.find(function(p){ return (p.Part_Name||'').toLowerCase()===iv.toLowerCase()||(p.Part_Code||'')===iv; });
-  if (!pt) return UI.toast('กรุณาเลือกอะไหล่ให้ถูกต้อง','warning');
-  var qty = parseInt((document.getElementById('iss_q')||{}).value||'0');
-  if (!qty||qty<1) return UI.toast('กรุณาระบุจำนวน','warning');
-  var cur = parseFloat(pt.Current_Stock||0);
-  if (cur < qty) return UI.toast('สต๊อกไม่พอ (เหลือ '+cur+')','danger');
-
-  var idx = _parts.findIndex(function(p){ return p.Part_ID===pt.Part_ID||p.Part_Code===pt.Part_Code; });
-  _parts[idx].Current_Stock = cur - qty;
-  _saveParts();
-
-  var jobNo = (document.getElementById('iss_j')||{}).value||'';
-  var rem   = (document.getElementById('iss_rem')||{}).value||'';
-  _issLog.unshift({ name:pt.Part_Name, qty:qty, jobNo:jobNo, rem:rem,
-    t:new Date().toLocaleTimeString('th-TH'), date:new Date().toISOString().slice(0,10) });
-  _saveLog('rms_iss_log', _issLog);
-
-  if (RMS.USE_GAS) {
-    DataStore.issuePart({partId:pt.Part_ID||pt.Part_Code, partCode:pt.Part_Code, qty:qty, jobNo:jobNo, remark:rem})
-      .catch(function(e){ console.warn('GAS issuePart:', e); });
-  }
-  UI.toast('เบิก "' + pt.Part_Name + '" ' + qty + ' ' + (pt.Unit||'PC') + ' สำเร็จ','success');
-  if (parseFloat(_parts[idx].Current_Stock||0) <= parseFloat(pt.Min_Stock||0))
-    setTimeout(function(){ UI.toast('⚠ "' + pt.Part_Name + '" สต๊อกต่ำกว่า Min!','warning'); }, 800);
-
-  /* refresh log panel */
-  var lp = document.getElementById('issLogPanel');
-  if (lp) lp.innerHTML = _renderIssLogItems();
-  issSelChanged();
-
-  } catch(err) {
-    console.error("doIssue:", err);
-    UI.toast("เกิดข้อผิดพลาด: " + err.message, "danger");
-  }
-}
-
-function clearIss() {
-  ['iss_p','iss_j','iss_rem'].forEach(function(id){ var e=document.getElementById(id); if(e) e.value=''; });
-  var q=document.getElementById('iss_q'); if(q) q.value='1';
-  var d=document.getElementById('iss_disp'); if(d) d.value='';
-}
-
-/* ════════════════════════════════════════
-   TAB: RECEIVE (รับเข้าคลัง)
-════════════════════════════════════════ */
-function renderReceiveTab(el) {
-  var opts = _parts.map(function(p){
-    return '<option value="' + (p.Part_Name||p.Part_Code) + '">' +
-      (p.Part_Name||p.Part_Code) + ' (' + (p.Part_Code||p.Part_ID) + ') — เหลือ ' + (p.Current_Stock||0) +
-    '</option>';
-  }).join('');
-
-  el.innerHTML =
-    '<div class="row g-4">' +
-      '<div class="col-xl-7">' +
-        '<div class="tx-form-card">' +
-          '<div class="tx-form-header receive">' +
-            '<div style="font-size:.92rem;font-weight:700;display:flex;align-items:center;gap:8px">' +
-              '<i class="fas fa-arrow-down"></i>ฟอร์มรับอะไหล่เข้าคลัง' +
-            '</div>' +
-            '<div style="font-size:.72rem;opacity:.75;margin-top:2px">บันทึกการรับสินค้าเพื่อเพิ่มสต๊อก</div>' +
-          '</div>' +
-          '<div class="tx-form-body">' +
-            '<div class="row g-3">' +
-              '<div class="col-12">' +
-                '<label class="form-label">อะไหล่ <span class="required-star">*</span></label>' +
-                '<input class="form-control" id="rcv_p" list="rcv_p_list" placeholder="พิมพ์รหัสหรือชื่ออะไหล่..." autocomplete="off">' +
-                '<datalist id="rcv_p_list">' + opts + '</datalist>' +
-              '</div>' +
-              '<div class="col-md-4">' +
-                '<label class="form-label">คงเหลือ (ก่อนรับ)</label>' +
-                '<input type="text" class="form-control" id="rcv_disp" readonly style="font-weight:700;color:var(--success);background:var(--gray-50)">' +
-              '</div>' +
-              '<div class="col-md-4">' +
-                '<label class="form-label">จำนวนที่รับ <span class="required-star">*</span></label>' +
-                '<input type="number" class="form-control" id="rcv_q" value="1" min="1">' +
-              '</div>' +
-              '<div class="col-md-4">' +
-                '<label class="form-label">ต้นทุน/หน่วย (฿)</label>' +
-                '<input type="number" class="form-control" id="rcv_c" value="0" min="0">' +
-              '</div>' +
-              '<div class="col-md-4">' +
-                '<label class="form-label">เลขที่ PO</label>' +
-                '<input class="form-control" id="rcv_po" placeholder="PO-2026-001">' +
-              '</div>' +
-              '<div class="col-md-4">' +
-                '<label class="form-label">Supplier</label>' +
-                '<input class="form-control" id="rcv_sup" placeholder="ชื่อ Supplier">' +
-              '</div>' +
-              '<div class="col-md-4">' +
-                '<label class="form-label">หมายเหตุ</label>' +
-                '<input class="form-control" id="rcv_rem" placeholder="หมายเหตุ...">' +
-              '</div>' +
-              '<div class="col-12 d-flex gap-2">' +
-                '<button class="btn-primary-rms" style="background:linear-gradient(135deg,var(--success),#22c55e);box-shadow:0 2px 8px rgba(22,163,74,.3)" onclick="doReceive()"><i class="fas fa-inbox me-1"></i>รับเข้าคลัง</button>' +
-                '<button class="btn-outline-rms" onclick="clearRcv()"><i class="fas fa-eraser me-1"></i>ล้างฟอร์ม</button>' +
-              '</div>' +
-            '</div>' +
-          '</div>' +
-        '</div>' +
-      '</div>' +
-
-      '<div class="col-xl-5">' +
-        '<div class="table-card h-100">' +
-          '<div class="table-header">' +
-            '<div class="table-title"><i class="fas fa-history me-2" style="color:var(--success)"></i>รายการรับล่าสุด</div>' +
-          '</div>' +
-          '<div id="rcvLogPanel" style="max-height:380px;overflow-y:auto">' + _renderRcvLogItems() + '</div>' +
-        '</div>' +
-      '</div>' +
-    '</div>';
-
-  var rcvP = document.getElementById('rcv_p');
-  if (rcvP) rcvP.addEventListener('input', rcvSelChanged);
-}
-
-function _renderRcvLogItems() {
-  if (!_rcvLog.length) return '<div class="empty-mini"><i class="fas fa-history"></i><p>ยังไม่มีการรับ</p></div>';
-  return _rcvLog.slice(0,20).map(function(l) {
-    return '<div class="history-item">' +
-      '<div class="history-type-icon receive"><i class="fas fa-arrow-down"></i></div>' +
-      '<div style="flex:1;min-width:0">' +
-        '<div style="font-size:.82rem;font-weight:600;color:var(--gray-800)">' + (l.name||'—') + '</div>' +
-        (l.unitCost ? '<div style="font-size:.7rem;color:var(--gray-400)">฿' + l.unitCost + '/หน่วย</div>' : '') +
-        '<div style="font-size:.68rem;color:var(--gray-400)">' + (l.date||'') + (l.t?' · '+l.t:'') + '</div>' +
-      '</div>' +
-      '<div style="text-align:right;flex-shrink:0">' +
-        '<div style="font-size:.88rem;font-weight:700;color:var(--success)">+' + (l.qty||0) + '</div>' +
-        '<div style="font-size:.65rem;color:var(--gray-400)">ชิ้น</div>' +
-      '</div>' +
-    '</div>';
-  }).join('');
-}
-
-function rcvSelChanged() {
-  var rv = (document.getElementById('rcv_p')||{}).value.trim();
-  var pt = _parts.find(function(p){ return (p.Part_Name||'').toLowerCase()===rv.toLowerCase()||(p.Part_Code||'')===rv; });
-  var d = document.getElementById('rcv_disp');
-  if (d) d.value = pt ? (parseFloat(pt.Current_Stock||0) + ' ' + (pt.Unit||'PC')) : '';
-}
-
-async function doReceive() {
-  try {
-
-  var rv = (document.getElementById('rcv_p')||{}).value.trim();
-  var pt = _parts.find(function(p){ return (p.Part_Name||'').toLowerCase()===rv.toLowerCase()||(p.Part_Code||'')===rv; });
-  if (!pt) return UI.toast('กรุณาเลือกอะไหล่ให้ถูกต้อง','warning');
-  var qty = parseInt((document.getElementById('rcv_q')||{}).value||'0');
-  if (!qty||qty<1) return UI.toast('กรุณาระบุจำนวน','warning');
-
-  var idx = _parts.findIndex(function(p){ return p.Part_ID===pt.Part_ID||p.Part_Code===pt.Part_Code; });
-  _parts[idx].Current_Stock = parseFloat(_parts[idx].Current_Stock||0) + qty;
-  var uc = parseFloat((document.getElementById('rcv_c')||{}).value||'0');
-  _saveParts();
-
-  _rcvLog.unshift({ name:pt.Part_Name, qty:qty, unitCost:uc,
-    t:new Date().toLocaleTimeString('th-TH'), date:new Date().toISOString().slice(0,10) });
-  _saveLog('rms_rcv_log', _rcvLog);
-
-  if (RMS.USE_GAS) {
-    DataStore.receivePart({partId:pt.Part_ID||pt.Part_Code, qty:qty, unitCost:uc})
-      .catch(function(e){ console.warn('GAS receivePart:', e); });
-  }
-  UI.toast('รับ "' + pt.Part_Name + '" ' + qty + ' ' + (pt.Unit||'PC') + ' สำเร็จ','success');
-
-  var lp = document.getElementById('rcvLogPanel');
-  if (lp) lp.innerHTML = _renderRcvLogItems();
-  rcvSelChanged();
-
-  } catch(err) {
-    console.error("doReceive:", err);
-    UI.toast("เกิดข้อผิดพลาด: " + err.message, "danger");
-  }
-}
-
-function clearRcv() {
-  ['rcv_p','rcv_po','rcv_sup','rcv_rem'].forEach(function(id){ var e=document.getElementById(id); if(e) e.value=''; });
-  var q=document.getElementById('rcv_q'); if(q) q.value='1';
-  var c=document.getElementById('rcv_c'); if(c) c.value='0';
-  var d=document.getElementById('rcv_disp'); if(d) d.value='';
-}
-
-/* ════════════════════════════════════════
-   TAB: HISTORY
-════════════════════════════════════════ */
-function renderHistory(el) {
-  _issLog = _loadLog('rms_iss_log');
-  _rcvLog = _loadLog('rms_rcv_log');
-  var all = [
-    ..._issLog.map(function(l){ return Object.assign({}, l, {type:'I'}); }),
-    ..._rcvLog.map(function(l){ return Object.assign({}, l, {type:'R'}); })
-  ].sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
-
-  el.innerHTML =
-    '<div class="table-card">' +
-      '<div class="table-header">' +
-        '<div class="table-title"><i class="fas fa-history me-2" style="color:var(--secondary)"></i>ประวัติการเบิก-รับ</div>' +
-        '<span style="font-size:.72rem;color:var(--gray-400)">' + all.length + ' รายการ</span>' +
-      '</div>' +
-      (all.length ?
-        '<div>' +
-        all.map(function(l) {
-          var isIss = l.type === 'I';
-          return '<div class="history-item">' +
-            '<div class="history-type-icon ' + (isIss?'issue':'receive') + '">' +
-              '<i class="fas ' + (isIss?'fa-arrow-up':'fa-arrow-down') + '"></i>' +
-            '</div>' +
-            '<div style="flex:1;min-width:0">' +
-              '<div style="display:flex;align-items:center;gap:8px">' +
-                '<span style="font-size:.82rem;font-weight:600;color:var(--gray-800)">' + (l.name||'—') + '</span>' +
-                '<span style="font-size:.62rem;font-weight:700;padding:1px 7px;border-radius:20px;background:' +
-                  (isIss?'rgba(27,154,170,.1);color:var(--secondary)':'rgba(22,163,74,.1);color:var(--success)') + '">' +
-                  (isIss?'เบิก':'รับเข้า') +
-                '</span>' +
-              '</div>' +
-              (l.jobNo ? '<div style="font-size:.72rem;color:var(--gray-400)"><i class="fas fa-briefcase me-1"></i>' + l.jobNo + '</div>' : '') +
-              '<div style="font-size:.68rem;color:var(--gray-400)">' + (l.date||'') + (l.t?' · '+l.t:'') + '</div>' +
-            '</div>' +
-            '<div style="text-align:right;flex-shrink:0">' +
-              '<div style="font-size:.92rem;font-weight:800;color:' + (isIss?'var(--secondary)':'var(--success)') + '">' +
-                (isIss?'-':'+')+l.qty +
-              '</div>' +
-              '<div style="font-size:.65rem;color:var(--gray-400)">ชิ้น</div>' +
-            '</div>' +
-          '</div>';
-        }).join('') +
-        '</div>'
-      :
-        '<div class="empty-mini" style="padding:60px 20px"><i class="fas fa-history"></i><p>ยังไม่มีประวัติการเบิก-รับ</p></div>'
-      ) +
-    '</div>';
-}
-
-/* ════════════════════════════════════════
-   TAB: DASHBOARD / ANALYTICS
-════════════════════════════════════════ */
-function renderDashboard(el) {
-  ['jobIss','trend7','stockPie','stockVsIss'].forEach(function(k){
-    if (_RC[k]) { try{_RC[k].destroy();}catch(e){} _RC[k]=null; }
-  });
-  _issLog = _loadLog('rms_iss_log');
-  _rcvLog = _loadLog('rms_rcv_log');
-
-  var allP    = _parts.length ? _parts : SAMPLE_PARTS;
-  var low     = allP.filter(function(p){ return parseFloat(p.Current_Stock||0)>0&&parseFloat(p.Current_Stock||0)<=parseFloat(p.Min_Stock||0); });
-  var outSt   = allP.filter(function(p){ return parseFloat(p.Current_Stock||0)<=0; });
-  var healthy = allP.filter(function(p){ return parseFloat(p.Current_Stock||0)>parseFloat(p.Min_Stock||0); });
-  var val     = allP.reduce(function(s,p){ return s+parseFloat(p.Cost||0)*parseFloat(p.Current_Stock||0); },0);
-  var issTot  = _issLog.reduce(function(s,l){ return s+(l.qty||0); },0);
-  var rcvTot  = _rcvLog.reduce(function(s,l){ return s+(l.qty||0); },0);
-
-  /* Top issued parts */
-  var issMap = {};
-  _issLog.forEach(function(l){ if(l.name) issMap[l.name]=(issMap[l.name]||0)+(l.qty||0); });
-  var topIss = Object.entries(issMap).sort(function(a,b){return b[1]-a[1];}).slice(0,8);
-
-  /* 7-day trend */
-  var days7 = {}, now = new Date();
-  for (var d2=6;d2>=0;d2--) {
-    var dt=new Date(now); dt.setDate(dt.getDate()-d2);
-    var dk=dt.toISOString().slice(0,10); days7[dk]=0;
-  }
-  _issLog.forEach(function(l){ if(l.date && days7.hasOwnProperty(l.date)) days7[l.date]+=(l.qty||0); });
-
-  /* JOB breakdown */
-  var jobMap = {};
-  _issLog.forEach(function(l){
-    if(!l.jobNo)return;
-    if(!jobMap[l.jobNo]) jobMap[l.jobNo]={jobNo:l.jobNo,items:[],totalQty:0,date:l.date||''};
-    jobMap[l.jobNo].items.push({name:l.name,qty:l.qty||0});
-    jobMap[l.jobNo].totalQty+=(l.qty||0);
-  });
-  var jobArr = Object.values(jobMap).sort(function(a,b){return b.totalQty-a.totalQty;}).slice(0,10);
-
-  el.innerHTML =
-    /* KPI row */
-    '<div class="row g-3 mb-4">' +
-      _dashKpi('fa-boxes',          'primary',   allP.length,                     'รายการทั้งหมด') +
-      _dashKpi('fa-arrow-up',       'warning',   issTot,                          'เบิกรวม (ชิ้น)') +
-      _dashKpi('fa-arrow-down',     'success',   rcvTot,                          'รับเข้ารวม (ชิ้น)') +
-      _dashKpi('fa-exclamation-triangle','danger',low.length+outSt.length,        'Low/Out Stock') +
-      _dashKpi('fa-coins',          'secondary', '฿'+Math.round(val).toLocaleString('th-TH'),'มูลค่าคลัง') +
-    '</div>' +
-
-    /* Charts row 1 */
-    '<div class="row g-3 mb-3">' +
-      '<div class="col-xl-8">' +
-        '<div class="dash-chart-card">' +
-          '<div class="chart-title"><i class="fas fa-chart-bar me-2" style="color:var(--warning)"></i>แนวโน้มการเบิก 7 วัน</div>' +
-          '<div class="chart-sub">จำนวนชิ้นที่เบิกรายวัน</div>' +
-          '<canvas id="trendChart7" height="90"></canvas>' +
-        '</div>' +
-      '</div>' +
-      '<div class="col-xl-4">' +
-        '<div class="dash-chart-card">' +
-          '<div class="chart-title"><i class="fas fa-chart-pie me-2" style="color:var(--secondary)"></i>สถานะ Stock</div>' +
-          '<div class="chart-sub">ภาพรวมสต๊อกทั้งคลัง</div>' +
-          '<canvas id="stockPieChart" height="120"></canvas>' +
-          '<div class="d-flex flex-wrap justify-content-center gap-3 mt-2" style="font-size:.72rem">' +
-            '<span style="display:flex;align-items:center;gap:5px"><span style="width:9px;height:9px;border-radius:50%;background:#16A34A;display:inline-block"></span>ปกติ (' + healthy.length + ')</span>' +
-            '<span style="display:flex;align-items:center;gap:5px"><span style="width:9px;height:9px;border-radius:50%;background:#D97706;display:inline-block"></span>ใกล้หมด (' + low.length + ')</span>' +
-            '<span style="display:flex;align-items:center;gap:5px"><span style="width:9px;height:9px;border-radius:50%;background:#DC2626;display:inline-block"></span>หมด (' + outSt.length + ')</span>' +
-          '</div>' +
-        '</div>' +
-      '</div>' +
-    '</div>' +
-
-    /* Charts row 2 - Top issued */
-    (topIss.length ?
-      '<div class="row g-3 mb-3">' +
-        '<div class="col-12">' +
-          '<div class="dash-chart-card">' +
-            '<div class="chart-title"><i class="fas fa-ranking-star me-2" style="color:var(--primary)"></i>อะไหล่ที่เบิกบ่อยที่สุด (Top ' + topIss.length + ')</div>' +
-            '<div class="chart-sub">เรียงตามจำนวนที่เบิกสะสม</div>' +
-            '<canvas id="topIssChart" height="90"></canvas>' +
-          '</div>' +
-        '</div>' +
-      '</div>'
-    : '') +
-
-    /* JOB breakdown table */
-    (jobArr.length ?
-      '<div class="table-card">' +
-        '<div class="table-header">' +
-          '<div class="table-title"><i class="fas fa-briefcase me-2" style="color:var(--primary)"></i>การเบิกอะไหล่แยกตาม JOB No</div>' +
-        '</div>' +
-        '<div class="table-responsive"><table class="table table-hover mb-0 align-middle" style="font-size:.8rem">' +
-          '<thead><tr>' +
-            '<th style="padding:10px 14px">JOB No</th>' +
-            '<th style="padding:10px 12px;text-align:center">รวมเบิก</th>' +
-            '<th style="padding:10px 12px">อะไหล่ที่เบิก</th>' +
-            '<th style="padding:10px 12px">วันที่</th>' +
-          '</tr></thead>' +
-          '<tbody>' +
-          jobArr.map(function(job) {
-            var itemStr = job.items.map(function(it){
-              var pt2 = allP.find(function(p){ return (p.Part_Name||p.Part_Code)===it.name; });
-              var stk = pt2 ? parseFloat(pt2.Current_Stock||0) : null;
-              var sC  = stk===null?'var(--gray-400)':_stockColor(stk, parseFloat((pt2&&pt2.Min_Stock)||0));
-              return '<span style="display:inline-block;margin:2px;background:rgba(15,76,129,.07);color:var(--primary);border:1px solid rgba(15,76,129,.15);border-radius:20px;padding:2px 9px;font-size:.7rem;white-space:nowrap">' +
-                it.name + ' ×' + it.qty +
-                (stk!==null ? ' <span style="color:'+sC+';font-weight:700">→'+stk+'</span>' : '') +
-              '</span>';
-            }).join('');
-            return '<tr>' +
-              '<td style="padding:10px 14px;font-family:monospace;font-weight:700;color:var(--primary)">' + job.jobNo + '</td>' +
-              '<td style="padding:10px 12px;text-align:center;font-weight:700;color:var(--warning)">' + job.totalQty + ' ชิ้น</td>' +
-              '<td style="padding:10px 12px">' + itemStr + '</td>' +
-              '<td style="padding:10px 12px;font-size:.75rem;color:var(--gray-400)">' + (job.date||'—') + '</td>' +
-            '</tr>';
-          }).join('') +
-          '</tbody></table></div>' +
-      '</div>'
-    : '') +
-
-    /* Low stock table */
-    '<div class="table-card mt-3">' +
-      '<div class="table-header">' +
-        '<div class="table-title"><i class="fas fa-exclamation-circle me-2" style="color:var(--danger)"></i>Low / Out Stock</div>' +
-        '<div class="d-flex gap-2">' +
-          (outSt.length?'<span style="background:rgba(220,38,38,.1);color:var(--danger);font-size:.7rem;font-weight:700;padding:2px 9px;border-radius:20px">หมด ' + outSt.length + '</span>':'') +
-          (low.length?'<span style="background:rgba(217,119,6,.1);color:var(--warning);font-size:.7rem;font-weight:700;padding:2px 9px;border-radius:20px">ใกล้หมด ' + low.length + '</span>':'') +
-        '</div>' +
-      '</div>' +
-      ([...outSt,...low].length ?
-        '<div class="table-responsive"><table class="table table-sm mb-0 align-middle" style="font-size:.8rem">' +
-          '<thead><tr>' +
-            '<th style="padding:9px 14px">Part Code</th>' +
-            '<th style="padding:9px 12px">ชื่ออะไหล่</th>' +
-            '<th style="padding:9px 12px;text-align:center">Stock</th>' +
-            '<th style="padding:9px 12px;text-align:center">Min</th>' +
-            '<th style="padding:9px 12px;width:30%">Progress</th>' +
-            '<th style="padding:9px 12px;text-align:center">สถานะ</th>' +
-          '</tr></thead><tbody>' +
-          [...outSt,...low].slice(0,12).map(function(p) {
-            var cur2=parseFloat(p.Current_Stock||0),mn2=parseFloat(p.Min_Stock||0),mx2=parseFloat(p.Max_Stock||50);
-            var pct2=_stockPct(cur2,mx2);
-            var sC2=_stockColor(cur2,mn2);
-            var isOut2=cur2<=0;
-            return '<tr>' +
-              '<td style="padding:8px 14px;font-family:monospace;font-size:.82rem;color:var(--primary)">' + (p.Part_Code||p.Part_ID) + '</td>' +
-              '<td style="padding:8px 12px;font-weight:600">' + (p.Part_Name||'') + '</td>' +
-              '<td style="padding:8px 12px;text-align:center;font-weight:800;color:'+sC2+';font-size:.92rem">' + cur2 + '</td>' +
-              '<td style="padding:8px 12px;text-align:center;color:var(--gray-400)">' + mn2 + '</td>' +
-              '<td style="padding:8px 12px">' +
-                '<div class="stock-bar"><div class="stock-bar-fill" style="width:'+pct2+'%;background:'+sC2+'"></div></div>' +
-                '<div style="font-size:.65rem;color:var(--gray-400);margin-top:2px">' + pct2 + '% of max</div>' +
-              '</td>' +
-              '<td style="padding:8px 12px;text-align:center">' +
-                '<span style="font-size:.65rem;font-weight:700;padding:2px 8px;border-radius:20px;background:' +
-                  (isOut2?'rgba(220,38,38,.1);color:var(--danger)':'rgba(217,119,6,.1);color:var(--warning)') + '">' +
-                  (isOut2?'หมดสต๊อก':'ใกล้หมด') +
-                '</span>' +
-              '</td>' +
-            '</tr>';
-          }).join('') +
-          '</tbody></table></div>'
-      : '<div class="text-center py-4" style="color:var(--success);font-size:.85rem"><i class="fas fa-check-circle me-2"></i>สต๊อกปกติทั้งหมด</div>') +
-    '</div>';
-
-  /* Render charts */
-  setTimeout(function(){
-    var ctx1 = document.getElementById('trendChart7');
-    if (ctx1 && window.Chart) {
-      if (_RC.trend7) { try{_RC.trend7.destroy();}catch(e){} }
-      _RC.trend7 = new Chart(ctx1, {
-        type:'bar',
-        data:{ labels:Object.keys(days7).map(function(d){return d.slice(5);}),
-               datasets:[{label:'เบิก (ชิ้น)',data:Object.values(days7),
-                 backgroundColor:'rgba(27,154,170,.2)',borderColor:'#1B9AAA',borderWidth:2,borderRadius:6}]},
-        options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-          scales:{y:{beginAtZero:true,ticks:{stepSize:1,font:{size:10}},grid:{color:'rgba(0,0,0,.04)'}},
-                  x:{grid:{display:false},ticks:{font:{size:10}}}}}
-      });
-    }
-    var ctx2 = document.getElementById('stockPieChart');
-    if (ctx2 && window.Chart) {
-      if (_RC.stockPie) { try{_RC.stockPie.destroy();}catch(e){} }
-      _RC.stockPie = new Chart(ctx2, {
-        type:'doughnut',
-        data:{labels:['ปกติ','ใกล้หมด','หมด'],
-              datasets:[{data:[healthy.length,low.length,outSt.length],
-                backgroundColor:['#16A34A','#D97706','#DC2626'],borderWidth:3,borderColor:'#fff',hoverOffset:5}]},
-        options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{display:false}}}
-      });
-    }
-    var ctx3 = document.getElementById('topIssChart');
-    if (ctx3 && window.Chart && topIss.length) {
-      if (_RC.topIss) { try{_RC.topIss.destroy();}catch(e){} }
-      _RC.topIss = new Chart(ctx3, {
-        type:'bar',
-        data:{labels:topIss.map(function(x){return x[0].length>20?x[0].slice(0,19)+'…':x[0];}),
-              datasets:[{label:'ชิ้น',data:topIss.map(function(x){return x[1];}),
-                backgroundColor:topIss.map(function(_,i){return ['#3B82F6','#0F4C81','#1B9AAA','#16A34A','#D97706','#DC2626','#7C3AED','#F59E0B'][i%8]+'cc';}),
-                borderRadius:6,barThickness:20}]},
-        options:{responsive:true,maintainAspectRatio:false,indexAxis:'y',
-          plugins:{legend:{display:false}},
-          scales:{y:{grid:{display:false},ticks:{font:{size:10}}},x:{beginAtZero:true,grid:{color:'rgba(0,0,0,.04)'},ticks:{font:{size:10}}}}}
-      });
-    }
-  }, 50);
-}
-
-function _dashKpi(icon, cls, val, label) {
-  return '<div class="col-md col-6">' +
-    '<div class="stat-card">' +
-      '<div class="stat-icon ' + cls + '"><i class="fas ' + icon + '"></i></div>' +
-      '<div><div class="stat-value">' + val + '</div><div class="stat-label">' + label + '</div></div>' +
-    '</div>' +
-  '</div>';
-}
-
-/* ════════════════════════════════════════
-   QUICK MODALS (from table row)
-════════════════════════════════════════ */
-function quickIssue(id, name) {
-  _txPartId = id; _txMode = 'issue';
-  var p = _parts.find(function(x){ return x.Part_ID===id; });
-  var cur = p ? parseFloat(p.Current_Stock||0) : 0;
-  var unit = p ? (p.Unit||'PC') : 'PC';
-  var title = document.getElementById('txTitle');
-  var body  = document.getElementById('txBody');
-  if (title) title.innerHTML = '<i class="fas fa-arrow-up me-2"></i>เบิกอะไหล่ — ' + name;
-  if (body) body.innerHTML =
-    '<div class="p-3 rounded mb-3" style="background:rgba(27,154,170,.07);border:1px solid rgba(27,154,170,.2)">' +
-      '<span style="font-size:.8rem;color:var(--gray-600)">คงเหลือ: </span>' +
-      '<strong style="font-size:.95rem;color:' + _stockColor(cur, p?parseFloat(p.Min_Stock||0):0) + '">' + cur + ' ' + unit + '</strong>' +
-    '</div>' +
-    '<div class="mb-3"><label class="form-label">JOB No (อ้างอิง)</label>' +
-      '<input class="form-control" id="tx_j" list="tx_j_list" placeholder="เลือกหรือพิมพ์ JOB No...">' +
-      '<datalist id="tx_j_list">' + _localJobs.slice(0,30).map(function(j){ return '<option value="'+j.JOB_No+'">'+j.JOB_No+'</option>'; }).join('') + '</datalist>' +
-    '</div>' +
-    '<div><label class="form-label">จำนวน <span class="required-star">*</span></label>' +
-      '<input type="number" class="form-control" id="tx_q" value="1" min="1" max="' + cur + '">' +
-    '</div>';
-  document.getElementById('txBtn').onclick = confirmTx;
-  _showModal('txModal');
-}
-
-function quickReceive(id, name) {
-  _txPartId = id; _txMode = 'receive';
-  var p = _parts.find(function(x){ return x.Part_ID===id; });
-  var cur = p ? parseFloat(p.Current_Stock||0) : 0;
-  var unit = p ? (p.Unit||'PC') : 'PC';
-  var title = document.getElementById('txTitle');
-  var body  = document.getElementById('txBody');
-  if (title) title.innerHTML = '<i class="fas fa-arrow-down me-2"></i>รับเข้า — ' + name;
-  if (body) body.innerHTML =
-    '<div class="p-3 rounded mb-3" style="background:rgba(22,163,74,.07);border:1px solid rgba(22,163,74,.2)">' +
-      '<span style="font-size:.8rem;color:var(--gray-600)">คงเหลือ: </span>' +
-      '<strong style="font-size:.95rem;color:var(--success)">' + cur + ' ' + unit + '</strong>' +
-    '</div>' +
-    '<div class="mb-3"><label class="form-label">จำนวนที่รับ <span class="required-star">*</span></label>' +
-      '<input type="number" class="form-control" id="tx_q" value="1" min="1">' +
-    '</div>' +
-    '<div><label class="form-label">ต้นทุน/หน่วย (฿)</label>' +
-      '<input type="number" class="form-control" id="tx_c" value="' + (p?parseFloat(p.Cost||0):0) + '" min="0">' +
-    '</div>';
-  document.getElementById('txBtn').onclick = confirmTx;
-  _showModal('txModal');
-}
-
-async function confirmTx() {
-  try {
-
-  var qty = parseInt((document.getElementById('tx_q')||{}).value||'0');
-  if (!qty||qty<1) return UI.toast('กรุณาระบุจำนวน','warning');
-  var p = _parts.find(function(x){ return x.Part_ID===_txPartId; });
-  if (!p) return;
-  var idx = _parts.findIndex(function(x){ return x.Part_ID===_txPartId; });
-
-  if (_txMode === 'issue') {
-    if (parseFloat(p.Current_Stock||0) < qty) return UI.toast('สต๊อกไม่พอ (เหลือ ' + p.Current_Stock + ')','danger');
-    var jn = (document.getElementById('tx_j')||{}).value||'';
-    _parts[idx].Current_Stock = parseFloat(_parts[idx].Current_Stock||0) - qty;
-    _issLog.unshift({name:p.Part_Name,qty:qty,jobNo:jn,t:new Date().toLocaleTimeString('th-TH'),date:new Date().toISOString().slice(0,10)});
-    _saveLog('rms_iss_log',_issLog);
-    UI.toast('เบิก ' + qty + ' ' + (p.Unit||'PC') + ' สำเร็จ','success');
-  } else {
-    var uc = parseFloat((document.getElementById('tx_c')||{}).value||'0');
-    _parts[idx].Current_Stock = parseFloat(_parts[idx].Current_Stock||0) + qty;
-    _rcvLog.unshift({name:p.Part_Name,qty:qty,unitCost:uc,t:new Date().toLocaleTimeString('th-TH'),date:new Date().toISOString().slice(0,10)});
-    _saveLog('rms_rcv_log',_rcvLog);
-    UI.toast('รับเข้า ' + qty + ' ' + (p.Unit||'PC') + ' สำเร็จ','success');
-  }
-  _saveParts();
-  _hideModal('txModal');
-  renderPage();
-
-  } catch(err) {
-    console.error("confirmTx:", err);
-    UI.toast("เกิดข้อผิดพลาด: " + err.message, "danger");
-  }
-}
-
-/* ════════════════════════════════════════
-   PART CRUD
-════════════════════════════════════════ */
-function openCreate() {
-  _editId = null;
-  var title = document.getElementById('partModalTitle');
-  if (title) title.innerHTML = '<i class="fas fa-plus me-2"></i>เพิ่มอะไหล่ใหม่';
-  var ids = ['f_pCode','f_pName','f_pLoc'];
-  ids.forEach(function(id){ var e=document.getElementById(id); if(e) e.value=''; });
-  var defs = {f_pUnit:'PC',f_pCat:'Mechanical',f_pWH:'WH-EWS',f_pStatus:'ACTIVE',f_pCost:'0',f_pMin:'0',f_pStock:'0'};
-  Object.keys(defs).forEach(function(id){ var e=document.getElementById(id); if(e) e.value=defs[id]; });
-  _showModal('partModal');
-}
-
-function openEdit(id) {
-  _editId = id;
-  var p = _parts.find(function(x){ return x.Part_ID===id; });
-  if (!p) return UI.toast('ไม่พบอะไหล่','danger');
-  var title = document.getElementById('partModalTitle');
-  if (title) title.innerHTML = '<i class="fas fa-edit me-2"></i>แก้ไข — ' + p.Part_Name;
-  var map = {f_pCode:p.Part_Code, f_pName:p.Part_Name, f_pCat:p.Category||'Mechanical',
-    f_pUnit:p.Unit||'PC', f_pCost:p.Cost||0, f_pMin:p.Min_Stock||0,
-    f_pStock:p.Current_Stock||0, f_pWH:p.Warehouse_ID||'WH-EWS',
-    f_pLoc:p.Location||'', f_pStatus:p.Status||'ACTIVE'};
-  Object.keys(map).forEach(function(id){ var e=document.getElementById(id); if(e) e.value=map[id]; });
-  _showModal('partModal');
-}
-
-function savePart() {
-  var code = (document.getElementById('f_pCode')||{}).value.trim();
-  var name = (document.getElementById('f_pName')||{}).value.trim();
-  if (!code) return UI.toast('กรุณาระบุ Part Code','warning');
-  if (!name) return UI.toast('กรุณาระบุชื่ออะไหล่','warning');
-  function gv(id){ var e=document.getElementById(id); return e?e.value:''; }
-  var data = {
-    Part_Code: code, Part_Name: name,
-    Category:      gv('f_pCat')||'Mechanical',
-    Unit:          gv('f_pUnit')||'PC',
-    Cost:          parseFloat(gv('f_pCost')||'0'),
-    Min_Stock:     parseFloat(gv('f_pMin')||'0'),
-    Current_Stock: parseFloat(gv('f_pStock')||'0'),
-    Warehouse_ID:  gv('f_pWH')||'WH-EWS',
-    Location:      gv('f_pLoc')||'',
-    Status:        gv('f_pStatus')||'ACTIVE',
-  };
-  if (_editId) {
-    var idx = _parts.findIndex(function(p){ return p.Part_ID===_editId; });
-    if (idx>=0) _parts[idx] = Object.assign({}, _parts[idx], data);
-    UI.toast('แก้ไข "' + name + '" สำเร็จ','success');
-  } else {
-    if (_parts.find(function(p){ return p.Part_Code===code; }))
-      return UI.toast('Part Code "'+code+'" มีอยู่แล้ว','warning');
-    _parts.unshift(Object.assign({ Part_ID: 'P'+Date.now() }, data));
-    UI.toast('เพิ่ม "' + name + '" สำเร็จ','success');
-  }
-  _saveParts();
-  _hideModal('partModal');
-  renderPage();
-  renderTab(_curTab);
-}
-
-function delPart(id) {
-  var p = _parts.find(function(x){ return x.Part_ID===id; });
-  UI.confirm('ลบอะไหล่ "' + (p?p.Part_Name:id) + '"?\nการลบไม่สามารถย้อนกลับได้', function() {
-    _parts = _parts.filter(function(x){ return x.Part_ID!==id; });
-    _saveParts();
-    UI.toast('ลบสำเร็จ','success');
-    renderPage(); renderTab(_curTab);
-  });
-}
-</script>
-
-<!-- ═══ MODALS ═══ -->
-
-<!-- Quick TX Modal -->
-<div class="modal fade" id="txModal" tabindex="-1">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header modal-header-rms">
-        <div class="modal-title" id="txTitle">Transaction</div>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body" id="txBody"></div>
-      <div class="modal-footer">
-        <button class="btn-outline-rms" data-bs-dismiss="modal">ยกเลิก</button>
-        <button class="btn-primary-rms" id="txBtn"><i class="fas fa-check me-1"></i>ยืนยัน</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Part CRUD Modal -->
-<div class="modal fade" id="partModal" tabindex="-1">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header modal-header-rms">
-        <div class="modal-title" id="partModalTitle"><i class="fas fa-cogs me-2"></i>อะไหล่</div>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row g-3">
-          <div class="col-12"><div class="form-section-title"><i class="fas fa-tag me-2"></i>ข้อมูลพื้นฐาน</div></div>
-          <div class="col-md-4"><label class="form-label">Part Code <span class="required-star">*</span></label><input class="form-control" id="f_pCode" placeholder="BLT-001" style="font-family:monospace;font-weight:600"></div>
-          <div class="col-md-8"><label class="form-label">ชื่ออะไหล่ <span class="required-star">*</span></label><input class="form-control" id="f_pName" placeholder="ระบุชื่ออะไหล่..."></div>
-          <div class="col-md-4"><label class="form-label">หมวดหมู่</label>
-            <select class="form-select" id="f_pCat">
-              <option value="Mechanical">Mechanical</option>
-              <option value="Electronic">Electronic</option>
-              <option value="Consumable">Consumable</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-          <div class="col-md-4"><label class="form-label">Unit</label>
-            <select class="form-select" id="f_pUnit">
-              <option value="PC">PC (ชิ้น)</option>
-              <option value="เส้น">เส้น</option>
-              <option value="ตัว">ตัว</option>
-              <option value="อัน">อัน</option>
-              <option value="ลิตร">ลิตร</option>
-              <option value="กล่อง">กล่อง</option>
-              <option value="ชุด">ชุด</option>
-            </select>
-          </div>
-          <div class="col-md-4"><label class="form-label">สถานะ</label>
-            <select class="form-select" id="f_pStatus">
-              <option value="ACTIVE">ACTIVE</option>
-              <option value="INACTIVE">INACTIVE</option>
-            </select>
-          </div>
-          <div class="col-12"><div class="form-section-title mt-1"><i class="fas fa-layer-group me-2"></i>สต๊อกและราคา</div></div>
-          <div class="col-md-3"><label class="form-label">ต้นทุน/หน่วย (฿)</label><input type="number" class="form-control" id="f_pCost" value="0" min="0"></div>
-          <div class="col-md-3"><label class="form-label">Min Stock</label><input type="number" class="form-control" id="f_pMin" value="0" min="0"></div>
-          <div class="col-md-3"><label class="form-label">Stock ปัจจุบัน</label><input type="number" class="form-control" id="f_pStock" value="0" min="0"></div>
-          <div class="col-md-3"><label class="form-label">คลังสินค้า</label>
-            <select class="form-select" id="f_pWH">
-              <option value="WH-EWS">คลัง EWS</option>
-              <option value="WH-ERA1">คลัง EARAONE 1</option>
-              <option value="WH-ERA2">คลัง EARAONE 2</option>
-            </select>
-          </div>
-          <div class="col-12"><label class="form-label">ตำแหน่งที่จัดเก็บ</label><input class="form-control" id="f_pLoc" placeholder="เช่น A-01, Shelf B-3..."></div>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn-outline-rms" data-bs-dismiss="modal"><i class="fas fa-times me-1"></i>ยกเลิก</button>
-        <button class="btn-primary-rms" onclick="savePart()"><i class="fas fa-save me-1"></i>บันทึก</button>
-      </div>
-    </div>
-  </div>
-</div>
-
 </body>
 </html>

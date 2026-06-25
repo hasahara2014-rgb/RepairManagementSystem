@@ -2,7 +2,7 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
 <title>EWS Enterprise — Work Orders</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
@@ -196,6 +196,75 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .pg-btn.active{background:var(--p60);color:#fff;border-color:var(--p60)}
 .pg-btn:disabled{opacity:.4;cursor:not-allowed}
 .pg-info{font-size:.7rem;color:var(--g60);margin-left:8px}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — TABLET & MOBILE
+   ══════════════════════════════════════════ */
+
+/* Sidebar overlay (mobile) */
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:199;backdrop-filter:blur(2px)}
+.sidebar-overlay.active{display:block}
+
+/* ── TABLET ≤1024px ── */
+@media(max-width:1024px){
+  .mxm-sidebar{position:fixed;z-index:200;height:100%;transform:translateX(-240px);transition:transform .22s cubic-bezier(.4,0,.2,1);box-shadow:none}
+  .mxm-sidebar.mobile-open{transform:translateX(0);box-shadow:4px 0 24px rgba(0,0,0,.25)}
+  .mxm-main{margin-left:0!important;width:100%!important}
+  .mxm-topbar{padding-left:12px}
+  .tb-menu-btn{display:flex!important}
+  .tb-plant-select{max-width:140px}
+  .tb-date-range{display:none}
+  .kpi-row{grid-template-columns:repeat(4,1fr)!important}
+  .chart-row-3,.chart-row-4{grid-template-columns:1fr 1fr!important}
+  .chart-row-222{grid-template-columns:1fr 1fr!important}
+  .chart-row-42,.chart-row-24{grid-template-columns:1fr!important}
+  .grid-3{grid-template-columns:1fr 1fr!important}
+  .settings-grid{grid-template-columns:180px 1fr!important}
+}
+
+/* ── MOBILE ≤767px ── */
+@media(max-width:767px){
+  .mxm-topbar{padding:0 10px;gap:6px}
+  .tb-title-sub,.ccard-sub{display:none}
+  .tb-title{font-size:.8rem}
+  .tb-plant-select{display:none}
+  .tb-icon-btn{width:32px;height:32px}
+  .kpi-row{grid-template-columns:repeat(2,1fr)!important}
+  .chart-row-3,.chart-row-4,.chart-row-222,.chart-row-42,.chart-row-24,.chart-row-2{grid-template-columns:1fr!important}
+  .grid-2,.grid-3{grid-template-columns:1fr!important}
+  .mxm-content{padding:8px!important}
+  .mxm-qbar{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:0 8px;gap:6px;justify-content:flex-start}
+  .qbar-btn{white-space:nowrap;flex-shrink:0;font-size:.68rem;padding:0 10px}
+  .filter-bar{flex-wrap:wrap;gap:6px;padding:8px 10px}
+  .fb-input{width:100%;min-width:0;flex:1 1 100%}
+  .fb-select{flex:1 1 calc(50% - 6px);min-width:0}
+  .fb-btn{width:100%}
+  .data-table{font-size:.72rem}
+  .data-table th,.data-table td{padding:7px 8px;white-space:nowrap}
+  .ccard{padding:10px}
+  .modal-panel{width:100vw!important;max-width:100vw!important;border-radius:0}
+  .modal-overlay{align-items:flex-end!important}
+  .modal-panel{height:92vh!important;border-radius:12px 12px 0 0!important}
+  .form-row{flex-direction:column!important;gap:8px!important}
+  .settings-grid{grid-template-columns:1fr!important;gap:0}
+  .settings-nav{display:flex;flex-wrap:wrap;border-right:none;border-bottom:1px solid var(--g20)}
+  .sn-item{flex:1 1 auto;text-align:center;padding:8px 6px;font-size:.7rem}
+  .sn-item i{display:block;margin-bottom:2px;font-size:.85rem}
+  .tab-btn{font-size:.7rem;padding:10px 10px}
+  .pager{flex-direction:column;gap:6px;align-items:flex-start;padding:8px 10px}
+  .pg-btn{padding:4px 10px;font-size:.72rem}
+  .kpi-value{font-size:1.25rem}
+  .kpi-label{font-size:.58rem}
+  td.td-long{max-width:120px}
+}
+
+/* ── SMALL MOBILE ≤480px ── */
+@media(max-width:480px){
+  .kpi-row{grid-template-columns:repeat(2,1fr)!important}
+  .kpi-value{font-size:1.1rem}
+  .mxm-topbar{min-height:44px;height:44px}
+  .tb-title{display:none}
+}
 </style>
 </head>
 <body>
@@ -253,7 +322,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
       <button class="tb-icon-btn" onclick="loadJobs()"><i class="fas fa-sync-alt"></i></button>
       <button class="tb-icon-btn"><i class="fas fa-bell"></i><span class="tb-bell-badge" id="tbBellCnt">0</span></button>
       <a href="dashboard.html" class="tb-icon-btn" title="Dashboard"><i class="fas fa-gauge-high"></i></a>
-      <div class="tb-user" id="tbUser">
+      <div class="tb-user" id="tbUser" onclick="logout()" title="Click to logout" style="cursor:pointer">
         <div class="tb-avatar" id="tbAvatar">—</div>
         <span class="tb-username" id="tbUsername">—</span>
       </div>
@@ -313,7 +382,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 
   <!-- TABLE -->
   <div class="tbl-wrap">
-    <table class="data-table">
+    <table class="data-table" style="min-width:600px">
       <thead>
         <tr>
           <th onclick="sortBy('JOB_No')">Job No. <i class="fas fa-sort sort-icon"></i></th>
@@ -490,6 +559,13 @@ let SAMPLE_JOBS=[
 let _jobs=[], _filtered=[], _sortKey='Create_Date', _sortDir=-1, _page=1, _pageSize=20;
 
 /* ── Toast ── */
+
+function logout(){
+  sessionStorage.removeItem('rms_v3_session');
+  localStorage.removeItem('rms_v3_session');
+  location.href='login.html';
+}
+
 function toast(msg,type='info'){
   const c=document.getElementById('toastContainer');
   const t=document.createElement('div');
@@ -509,7 +585,7 @@ function getVendorName(id){return VENDORS[id]||id||'—'}
 
 /* ── Load ── */
 function loadJobs(){
-  fetch(GAS_URL+'?action=getJobs')
+  fetch(GAS_URL+'?action=getJobs&token='+encodeURIComponent(_getToken()))
     .then(r=>r.json())
     .then(res=>{
       const d=res.data||res;
@@ -671,23 +747,27 @@ async function saveJob(){
     const idx=_jobs.findIndex(j=>j.JOB_No===editNo);
     if(idx>=0) _jobs[idx]={..._jobs[idx],...jobData};
     // Try GAS
-    try{await fetch(GAS_URL,{method:'POST',body:JSON.stringify({action:'updateJob',JOB_No:editNo,...jobData})})}catch(e){}
+    try{await fetch(GAS_URL,{method:'POST',body:JSON.stringify({action:'updateJob',token:_getToken(),JOB_No:editNo,...jobData})})}catch(e){}
     toast('Work order updated','success');
   } else {
     // Create new
     const newNo=document.getElementById('mJobNo').value||('JOB-'+String(_jobs.length+1).padStart(4,'0'));
     const newJob={JOB_No:newNo,...jobData};
     _jobs.unshift(newJob);
-    try{await fetch(GAS_URL,{method:'POST',body:JSON.stringify({action:'createJob',...newJob})})}catch(e){}
+    try{await fetch(GAS_URL,{method:'POST',body:JSON.stringify({action:'createJob',token:_getToken(),...newJob})})}catch(e){}
     toast('Work order created','success');
   }
   closeModal();
   renderAll();
 }
 
-function deleteJob(){
+async function deleteJob(){
   if(!confirm('Delete this work order?'))return;
   const editNo=document.getElementById('editJobNo').value;
+  try{
+    await fetch(GAS_URL,{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({action:'deleteJob',token:_getToken(),JOB_No:editNo})});
+  }catch(e){}
   _jobs=_jobs.filter(j=>j.JOB_No!==editNo);
   closeModal();
   renderAll();
@@ -707,10 +787,9 @@ function exportCSV(){
 }
 
 /* ── UI ── */
-function toggleSidebar(){document.getElementById('mxmSidebar').classList.toggle('collapsed')}
-
-/* ── Init ── */
-loadJobs();
-</script>
-</body>
-</html>
+function toggleSidebar(){
+  const sb=document.getElementById('mxmSidebar');
+  const ov=document.getElementById('sidebarOverlay');
+  if(window.innerWidth<=1024){
+    sb.classList.toggle('mobile-open');
+   

@@ -2,7 +2,7 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
 <title>EWS Enterprise — Sign In</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
@@ -129,6 +129,101 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
 .demo-sep{color:var(--g40);font-size:.7rem;align-self:center}
 
 .rp-footer{position:absolute;bottom:24px;left:0;right:0;text-align:center;color:var(--g50);font-size:.65rem}
+
+/* ══════════════════════════════════════════
+   RESPONSIVE — TABLET & MOBILE
+   ══════════════════════════════════════════ */
+
+/* Sidebar overlay (mobile) */
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:199;backdrop-filter:blur(2px)}
+.sidebar-overlay.active{display:block}
+
+/* ── TABLET ≤1024px ── */
+@media(max-width:1024px){
+  .mxm-sidebar{position:fixed;z-index:200;height:100%;transform:translateX(-240px);transition:transform .22s cubic-bezier(.4,0,.2,1);box-shadow:none}
+  .mxm-sidebar.mobile-open{transform:translateX(0);box-shadow:4px 0 24px rgba(0,0,0,.25)}
+  .mxm-main{margin-left:0!important;width:100%!important}
+  .mxm-topbar{padding-left:12px}
+  .tb-menu-btn{display:flex!important}
+  .tb-plant-select{max-width:140px}
+  .tb-date-range{display:none}
+  .kpi-row{grid-template-columns:repeat(4,1fr)!important}
+  .chart-row-3,.chart-row-4{grid-template-columns:1fr 1fr!important}
+  .chart-row-222{grid-template-columns:1fr 1fr!important}
+  .chart-row-42,.chart-row-24{grid-template-columns:1fr!important}
+  .grid-3{grid-template-columns:1fr 1fr!important}
+  .settings-grid{grid-template-columns:180px 1fr!important}
+}
+
+/* ── MOBILE ≤767px ── */
+@media(max-width:767px){
+  .mxm-topbar{padding:0 10px;gap:6px}
+  .tb-title-sub,.ccard-sub{display:none}
+  .tb-title{font-size:.8rem}
+  .tb-plant-select{display:none}
+  .tb-icon-btn{width:32px;height:32px}
+  .kpi-row{grid-template-columns:repeat(2,1fr)!important}
+  .chart-row-3,.chart-row-4,.chart-row-222,.chart-row-42,.chart-row-24,.chart-row-2{grid-template-columns:1fr!important}
+  .grid-2,.grid-3{grid-template-columns:1fr!important}
+  .mxm-content{padding:8px!important}
+  .mxm-qbar{overflow-x:auto;-webkit-overflow-scrolling:touch;padding:0 8px;gap:6px;justify-content:flex-start}
+  .qbar-btn{white-space:nowrap;flex-shrink:0;font-size:.68rem;padding:0 10px}
+  .filter-bar{flex-wrap:wrap;gap:6px;padding:8px 10px}
+  .fb-input{width:100%;min-width:0;flex:1 1 100%}
+  .fb-select{flex:1 1 calc(50% - 6px);min-width:0}
+  .fb-btn{width:100%}
+  .data-table{font-size:.72rem}
+  .data-table th,.data-table td{padding:7px 8px;white-space:nowrap}
+  .ccard{padding:10px}
+  .modal-panel{width:100vw!important;max-width:100vw!important;border-radius:0}
+  .modal-overlay{align-items:flex-end!important}
+  .modal-panel{height:92vh!important;border-radius:12px 12px 0 0!important}
+  .form-row{flex-direction:column!important;gap:8px!important}
+  .settings-grid{grid-template-columns:1fr!important;gap:0}
+  .settings-nav{display:flex;flex-wrap:wrap;border-right:none;border-bottom:1px solid var(--g20)}
+  .sn-item{flex:1 1 auto;text-align:center;padding:8px 6px;font-size:.7rem}
+  .sn-item i{display:block;margin-bottom:2px;font-size:.85rem}
+  .tab-btn{font-size:.7rem;padding:10px 10px}
+  .pager{flex-direction:column;gap:6px;align-items:flex-start;padding:8px 10px}
+  .pg-btn{padding:4px 10px;font-size:.72rem}
+  .kpi-value{font-size:1.25rem}
+  .kpi-label{font-size:.58rem}
+  td.td-long{max-width:120px}
+}
+
+/* ── SMALL MOBILE ≤480px ── */
+@media(max-width:480px){
+  .kpi-row{grid-template-columns:repeat(2,1fr)!important}
+  .kpi-value{font-size:1.1rem}
+  .mxm-topbar{min-height:44px;height:44px}
+  .tb-title{display:none}
+}
+
+/* ── Login Responsive ── */
+@media(max-width:1024px){
+  .login-shell{grid-template-columns:1fr 1.2fr}
+  .lp{padding:32px 28px}
+  .rp{padding:32px 28px}
+}
+@media(max-width:767px){
+  .login-shell{grid-template-columns:1fr;grid-template-rows:auto 1fr}
+  .lp{padding:20px 20px 16px;min-height:auto}
+  .lp-features,.lp-footer{display:none}
+  .lp-tagline{font-size:.8rem;margin-top:4px}
+  .lp-brand-name{font-size:1rem}
+  .rp{padding:24px 20px;overflow-y:auto}
+  .rp-title{font-size:1.2rem}
+  .rp-subtitle{font-size:.78rem}
+  .login-form{margin-top:16px}
+  .demo-accounts{flex-direction:column;gap:6px}
+  .demo-btn{width:100%}
+}
+@media(max-width:480px){
+  .lp{padding:14px 16px 10px}
+  .rp{padding:20px 16px}
+  .rp-title{font-size:1rem}
+  .login-shell{min-height:100svh}
+}
 </style>
 </head>
 <body>
@@ -303,7 +398,7 @@ async function doLogin(e){
     const res=await fetch(GAS_URL+'?action=login&username='+encodeURIComponent(u)+'&password='+encodeURIComponent(p));
     const data=await res.json();
     if(data.success||data.status==='success'){
-      createSession(u,data.role||'viewer',data.displayName||u);
+      createSession(u,data.user?.role||data.role||'viewer',data.user?.name||data.displayName||u,data.token||'');
       return;
     }
   }catch(err){ /* fallback to demo */ }
@@ -320,8 +415,8 @@ async function doLogin(e){
   btn.innerHTML='<i class="fas fa-right-to-bracket"></i> Sign In';
 }
 
-function createSession(username,role,displayName){
-  const session={username,role,displayName,loginTime:Date.now()};
+function createSession(username,role,displayName,token){
+  const session={username,role,displayName,token:token||'',loginTime:Date.now()};
   sessionStorage.setItem('rms_v3_session',JSON.stringify(session));
   localStorage.setItem('rms_v3_session',JSON.stringify(session));
   window.location.href='dashboard.html';
