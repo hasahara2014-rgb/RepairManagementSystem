@@ -792,4 +792,18 @@ function exportCSV(){
 
 /* ── UI ── */
 function toggleSidebar(){
-  const sb=document
+  const sb=document.getElementById('mxmSidebar');
+  const ov=document.getElementById('sidebarOverlay');
+  if(window.innerWidth<=1024){
+    sb.classList.toggle('mobile-open');
+    if(ov)ov.classList.toggle('active',sb.classList.contains('mobile-open'));
+  } else {
+    sb.classList.toggle('collapsed');
+  }
+}
+
+/* ── Init ── */
+loadJobs();
+</script>
+</body>
+</html>
