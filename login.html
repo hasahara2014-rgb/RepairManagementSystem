@@ -1,334 +1,331 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>EWS Enterprise — Sign In</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sarabun:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --primary:#1264A3;--primary-d:#0C4F84;--primary-l:#1976C8;
-  --secondary:#0E8A8A;--success:#107C10;--danger:#A4262C;
-  --gray-50:#F9FAFB;--gray-100:#F3F4F6;--gray-200:#E5E7EB;
-  --gray-400:#9CA3AF;--gray-500:#6B7280;--gray-700:#374151;--gray-800:#1F2937;--gray-900:#111827;
-  --font:'Inter','Sarabun',system-ui,sans-serif;
-  --ease:cubic-bezier(.16,1,.3,1);
+  --p60:#0F62FE;--p70:#0043CE;--p50:#4589FF;
+  --g100:#161616;--g90:#262626;--g80:#393939;--g70:#525252;
+  --g60:#6F6F6F;--g50:#8D8D8D;--g40:#A8A8A8;--g30:#C6C6C6;
+  --g20:#E0E0E0;--g10:#F4F4F4;
+  --green50:#198038;--red60:#DA1E28;
+  --font:'IBM Plex Sans',system-ui,sans-serif;
 }
-html,body{height:100%;font-family:var(--font);-webkit-font-smoothing:antialiased;}
-body{display:grid;grid-template-columns:1fr 460px;min-height:100vh;overflow:hidden;}
+html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(--g100);overflow:hidden}
 
-/* ── LEFT BRAND PANEL ── */
+.login-shell{display:flex;height:100vh}
+
+/* ── LEFT PANEL ── */
 .lp{
-  background:linear-gradient(155deg,#060F1F 0%,#0C1E3D 40%,#1264A3 75%,#0E8A8A 100%);
-  display:flex;flex-direction:column;justify-content:center;padding:64px 60px;
+  width:55%;background:var(--g90);
+  display:flex;flex-direction:column;
   position:relative;overflow:hidden;
+  padding:48px 56px;
 }
+/* Grid pattern */
 .lp::before{
   content:'';position:absolute;inset:0;
-  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-  background-size:48px 48px;pointer-events:none;
-}
-.lp::after{
-  content:'';position:absolute;bottom:-200px;right:-120px;
-  width:560px;height:560px;border-radius:50%;
-  background:radial-gradient(circle,rgba(14,138,138,.2) 0%,transparent 70%);
+  background-image:
+    linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+  background-size:40px 40px;
   pointer-events:none;
 }
-.lp-inner{position:relative;z-index:1;}
-.lp-logo{
-  width:56px;height:56px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
-  border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:32px;
-  backdrop-filter:blur(8px);
-}
-.lp-logo i{font-size:1.5rem;color:#fff;}
-.lp-headline{
-  font-size:2.4rem;font-weight:800;color:#fff;line-height:1.2;
-  letter-spacing:-1px;margin-bottom:16px;
-}
-.lp-headline span{
-  background:linear-gradient(90deg,#7DD3FA,#5EEAD4);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.lp-sub{font-size:1rem;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:48px;font-weight:400;}
-.lp-features{display:flex;flex-direction:column;gap:14px;}
-.lp-feat{display:flex;align-items:center;gap:14px;}
-.lp-feat-icon{
-  width:38px;height:38px;border-radius:10px;
-  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
-.lp-feat-icon i{font-size:.9rem;color:rgba(255,255,255,.85);}
-.lp-feat-text{font-size:.9rem;color:rgba(255,255,255,.75);font-weight:400;}
-.lp-bottom{position:absolute;bottom:28px;left:60px;right:60px;z-index:1;
-  display:flex;align-items:center;justify-content:space-between;}
-.lp-copy{font-size:.72rem;color:rgba(255,255,255,.28);}
-.lp-version{
-  font-size:.68rem;font-weight:700;color:rgba(255,255,255,.35);
-  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);
-  padding:3px 10px;border-radius:20px;letter-spacing:.5px;text-transform:uppercase;
-}
+/* Blue accent line */
+.lp::after{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--p60)}
 
-/* ── RIGHT LOGIN PANEL ── */
+.lp-brand{display:flex;align-items:center;gap:14px;margin-bottom:64px;position:relative;z-index:1}
+.lp-logo{width:40px;height:40px;background:var(--p60);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.lp-logo span{color:#fff;font-weight:700;font-size:1rem;letter-spacing:-.5px}
+.lp-brand-name{color:#fff;font-size:1rem;font-weight:600;line-height:1.2}
+.lp-brand-sub{color:var(--g50);font-size:.72rem;margin-top:2px}
+
+.lp-headline{position:relative;z-index:1;margin-bottom:48px}
+.lp-headline h1{color:#fff;font-size:2rem;font-weight:300;line-height:1.3;margin-bottom:12px}
+.lp-headline h1 strong{font-weight:600;color:var(--p50)}
+.lp-headline p{color:var(--g40);font-size:.82rem;line-height:1.6;max-width:380px}
+
+.lp-features{position:relative;z-index:1;flex:1}
+.feature-item{display:flex;align-items:flex-start;gap:14px;margin-bottom:24px}
+.feature-icon{width:32px;height:32px;background:rgba(15,98,254,.2);border:1px solid rgba(15,98,254,.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.feature-icon i{color:var(--p50);font-size:.85rem}
+.feature-title{color:#fff;font-size:.8rem;font-weight:600;margin-bottom:3px}
+.feature-desc{color:var(--g50);font-size:.72rem;line-height:1.4}
+
+.lp-footer{position:relative;z-index:1;margin-top:auto;padding-top:24px;border-top:1px solid var(--g80)}
+.lp-footer-text{color:var(--g60);font-size:.68rem;line-height:1.5}
+.lp-version{display:inline-block;background:rgba(15,98,254,.2);color:var(--p50);font-size:.62rem;font-weight:600;padding:2px 10px;margin-top:6px;border:1px solid rgba(15,98,254,.3)}
+
+/* ── RIGHT PANEL ── */
 .rp{
-  background:#fff;display:flex;flex-direction:column;
-  justify-content:center;padding:60px 52px;position:relative;
-  border-left:1px solid #E5E7EB;
+  flex:1;background:var(--g10);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:48px 56px;
+  position:relative;
 }
-.rp-top{position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--primary),var(--secondary));}
-.rp-logo{display:flex;align-items:center;gap:10px;margin-bottom:40px;}
-.rp-logo-icon{
-  width:36px;height:36px;background:linear-gradient(135deg,var(--primary),var(--secondary));
-  border-radius:10px;display:flex;align-items:center;justify-content:center;
+.rp-inner{width:100%;max-width:380px}
+
+.rp-logo-sm{display:none}
+.rp-title{font-size:1.4rem;font-weight:300;color:var(--g100);margin-bottom:4px}
+.rp-title strong{font-weight:600}
+.rp-sub{font-size:.75rem;color:var(--g60);margin-bottom:32px}
+
+/* Form */
+.form-group{margin-bottom:20px}
+.form-label{display:block;font-size:.72rem;font-weight:600;color:var(--g70);margin-bottom:6px;letter-spacing:.2px}
+.form-input-wrap{position:relative}
+.form-input{
+  width:100%;
+  background:var(--white,#fff);border:1px solid var(--g30);
+  font-family:var(--font);font-size:.85rem;color:var(--g100);
+  padding:11px 40px 11px 14px;
+  outline:none;border-radius:0;
+  transition:border-color .12s;
 }
-.rp-logo-icon i{color:#fff;font-size:.9rem;}
-.rp-logo-name{font-size:.9rem;font-weight:700;color:var(--gray-900);letter-spacing:-.1px;}
-.rp-welcome{font-size:1.6rem;font-weight:800;color:var(--gray-900);letter-spacing:-.5px;margin-bottom:6px;}
-.rp-welcome-sub{font-size:.88rem;color:var(--gray-500);margin-bottom:36px;font-weight:400;}
-.field{margin-bottom:18px;}
-.field-label{font-size:.75rem;font-weight:600;color:var(--gray-700);margin-bottom:6px;display:flex;align-items:center;justify-content:space-between;}
-.field-input{
-  width:100%;font-size:.88rem;border:1.5px solid var(--gray-200);border-radius:10px;
-  padding:11px 14px;color:var(--gray-900);background:var(--gray-50);
-  transition:border-color .15s,box-shadow .15s,background .15s;
-  font-family:var(--font);outline:none;
-}
-.field-input:focus{border-color:var(--primary);background:#fff;box-shadow:0 0 0 3px rgba(18,100,163,.1);}
-.field-input::placeholder{color:var(--gray-400);}
-.field-input.has-icon{padding-right:42px;}
-.field-wrap{position:relative;}
-.field-icon{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--gray-400);font-size:.8rem;cursor:pointer;padding:4px;border:none;background:none;}
-.field-icon:hover{color:var(--gray-600);}
-.field-input.error-state{border-color:var(--danger);background:rgba(164,38,44,.03);}
-.field-error{font-size:.73rem;color:var(--danger);margin-top:5px;display:none;align-items:center;gap:4px;}
-.field-error.show{display:flex;}
-.row-opts{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;}
-.check-row{display:flex;align-items:center;gap:8px;cursor:pointer;}
-.check-row input[type=checkbox]{
-  width:16px;height:16px;border:1.5px solid var(--gray-300);border-radius:4px;
-  cursor:pointer;accent-color:var(--primary);
-}
-.check-label{font-size:.8rem;color:var(--gray-600);font-weight:500;cursor:pointer;}
-.btn-login{
-  width:100%;padding:13px;background:var(--primary);color:#fff;
-  border:none;border-radius:10px;font-size:.9rem;font-weight:700;
-  cursor:pointer;letter-spacing:.1px;font-family:var(--font);
-  transition:background .15s,box-shadow .15s,transform .1s;
-  box-shadow:0 2px 8px rgba(18,100,163,.3);margin-bottom:20px;
+.form-input:focus{border-color:var(--p60);box-shadow:inset 0 0 0 1px var(--p60)}
+.form-input::placeholder{color:var(--g40)}
+.input-icon{position:absolute;right:14px;top:50%;transform:translateY(-50%);color:var(--g50);font-size:.85rem;cursor:pointer}
+.input-icon:hover{color:var(--g100)}
+
+/* Remember */
+.remember-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+.checkbox-wrap{display:flex;align-items:center;gap:8px;cursor:pointer}
+.checkbox-wrap input[type=checkbox]{accent-color:var(--p60);width:14px;height:14px}
+.checkbox-label{font-size:.75rem;color:var(--g70)}
+.forgot-link{font-size:.72rem;color:var(--p60);text-decoration:none}
+.forgot-link:hover{text-decoration:underline}
+
+/* Sign in button */
+.btn-signin{
+  width:100%;background:var(--p60);border:none;color:#fff;
+  font-family:var(--font);font-size:.85rem;font-weight:600;
+  padding:13px;cursor:pointer;letter-spacing:.2px;
   display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:background .12s;
 }
-.btn-login:hover{background:var(--primary-d);box-shadow:0 6px 20px rgba(18,100,163,.35);transform:translateY(-1px);}
-.btn-login:active{transform:none;box-shadow:0 2px 6px rgba(18,100,163,.25);}
-.btn-login:disabled{opacity:.65;cursor:not-allowed;transform:none;}
-.btn-login .spin{display:none;}
-.btn-login.loading .spin{display:block;animation:_spin .7s linear infinite;}
-.btn-login.loading .btn-text{display:none;}
-@keyframes _spin{to{transform:rotate(360deg)}}
-.err-banner{
-  background:rgba(164,38,44,.07);border:1px solid rgba(164,38,44,.2);
-  border-radius:10px;padding:12px 14px;font-size:.82rem;color:var(--danger);
-  font-weight:500;display:none;align-items:center;gap:9px;margin-bottom:18px;
+.btn-signin:hover{background:var(--p70)}
+.btn-signin:disabled{background:var(--g40);cursor:not-allowed}
+
+/* Error */
+.form-error{
+  display:flex;align-items:center;gap:8px;
+  background:#FFF1F1;border:1px solid #FCCFCF;
+  color:var(--red60);font-size:.75rem;padding:10px 12px;
+  margin-bottom:20px;
 }
-.err-banner.show{display:flex;}
-.divider{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
-.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--gray-200);}
-.divider-text{font-size:.72rem;color:var(--gray-400);font-weight:500;white-space:nowrap;}
-.info-box{
-  background:var(--gray-50);border:1px solid var(--gray-200);border-radius:10px;
-  padding:12px 14px;font-size:.78rem;color:var(--gray-600);
-  display:flex;flex-direction:column;gap:5px;
-}
-.info-box strong{color:var(--gray-800);font-size:.76rem;}
-.info-row{display:flex;justify-content:space-between;align-items:center;font-family:monospace;font-size:.75rem;}
-.info-tag{font-size:.62rem;padding:1px 7px;border-radius:20px;font-weight:700;font-family:var(--font);}
-.tag-admin{background:rgba(18,100,163,.1);color:var(--primary);}
-.tag-tech{background:rgba(14,138,138,.1);color:var(--secondary);}
-.tag-viewer{background:rgba(107,114,128,.1);color:var(--gray-600);}
-@media(max-width:900px){
-  body{grid-template-columns:1fr;}
-  .lp{display:none;}
-  .rp{padding:40px 28px;}
-}
+.form-error.hidden{display:none}
+
+/* Demo accounts */
+.demo-box{margin-top:28px;padding:14px;background:#EDF5FF;border:1px solid #C9DBFF}
+.demo-title{font-size:.68rem;font-weight:600;color:var(--p70);margin-bottom:8px;text-transform:uppercase;letter-spacing:.4px}
+.demo-row{display:flex;gap:8px;margin-bottom:4px}
+.demo-tag{background:rgba(15,98,254,.1);color:var(--p60);font-size:.65rem;font-weight:600;padding:3px 8px;border-radius:2px;cursor:pointer;white-space:nowrap;border:none;font-family:var(--font)}
+.demo-tag:hover{background:rgba(15,98,254,.2)}
+.demo-sep{color:var(--g40);font-size:.7rem;align-self:center}
+
+.rp-footer{position:absolute;bottom:24px;left:0;right:0;text-align:center;color:var(--g50);font-size:.65rem}
 </style>
 </head>
 <body>
+<div class="login-shell">
 
-<!-- LEFT BRAND PANEL -->
-<div class="lp">
-  <div class="lp-inner">
-    <div class="lp-logo"><i class="fas fa-bolt"></i></div>
-    <div class="lp-headline">ระบบบริหาร<br><span>งานซ่อมบำรุง</span></div>
-    <div class="lp-sub">EWS Enterprise Repair Management System<br>ติดตาม · วิเคราะห์ · บริหารงานซ่อมในองค์กร</div>
+  <!-- LEFT -->
+  <div class="lp">
+    <div class="lp-brand">
+      <div class="lp-logo"><span>EWS</span></div>
+      <div>
+        <div class="lp-brand-name">EWS Enterprise</div>
+        <div class="lp-brand-sub">Repair Management System</div>
+      </div>
+    </div>
+
+    <div class="lp-headline">
+      <h1>Maintenance &amp;<br><strong>Repair Management</strong></h1>
+      <p>ระบบบริหารจัดการงานซ่อมบำรุงแบบครบวงจร สำหรับองค์กรระดับ Enterprise ที่ต้องการควบคุมคุณภาพและประสิทธิภาพ</p>
+    </div>
+
     <div class="lp-features">
-      <div class="lp-feat">
-        <div class="lp-feat-icon"><i class="fas fa-gauge-high"></i></div>
-        <div class="lp-feat-text">Dashboard วิเคราะห์ข้อมูลแบบ Real-time</div>
+      <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-gauge-high"></i></div>
+        <div>
+          <div class="feature-title">Real-time Dashboard</div>
+          <div class="feature-desc">ติดตาม KPI สำคัญ — MTTR, MTBF, Repair Yield และ Equipment Availability แบบ Real-time</div>
+        </div>
       </div>
-      <div class="lp-feat">
-        <div class="lp-feat-icon"><i class="fas fa-wrench"></i></div>
-        <div class="lp-feat-text">บริหารงานซ่อม Work Order ครบวงจร</div>
+      <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-clipboard-list"></i></div>
+        <div>
+          <div class="feature-title">Work Order Management</div>
+          <div class="feature-desc">สร้าง ติดตาม และปิดงานซ่อมได้อย่างมีประสิทธิภาพ พร้อม Approval Workflow</div>
+        </div>
       </div>
-      <div class="lp-feat">
-        <div class="lp-feat-icon"><i class="fas fa-cubes"></i></div>
-        <div class="lp-feat-text">ควบคุมสต๊อกอะไหล่และคลังสินค้า</div>
+      <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+        <div>
+          <div class="feature-title">Analytics &amp; Reports</div>
+          <div class="feature-desc">วิเคราะห์แนวโน้มการซ่อม Pareto Analysis และ Vendor Performance</div>
+        </div>
       </div>
-      <div class="lp-feat">
-        <div class="lp-feat-icon"><i class="fas fa-chart-line"></i></div>
-        <div class="lp-feat-text">รายงาน KPI และวิเคราะห์แนวโน้ม</div>
+      <div class="feature-item">
+        <div class="feature-icon"><i class="fas fa-shield-halved"></i></div>
+        <div>
+          <div class="feature-title">Role-based Access Control</div>
+          <div class="feature-desc">ควบคุมสิทธิ์การเข้าถึงตาม Role: Admin, Manager, Technician, Viewer</div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="lp-bottom">
-    <span class="lp-copy">© 2026 EWS Enterprise · All rights reserved</span>
-    <span class="lp-version">v4.0</span>
-  </div>
-</div>
 
-<!-- RIGHT LOGIN PANEL -->
-<div class="rp">
-  <div class="rp-top"></div>
-
-  <div class="rp-logo">
-    <div class="rp-logo-icon"><i class="fas fa-bolt"></i></div>
-    <span class="rp-logo-name">EWS Enterprise</span>
-  </div>
-
-  <div class="rp-welcome">ยินดีต้อนรับ</div>
-  <div class="rp-welcome-sub">กรุณาเข้าสู่ระบบเพื่อดำเนินการต่อ</div>
-
-  <div class="err-banner" id="errBanner">
-    <i class="fas fa-triangle-exclamation"></i>
-    <span id="errMsg">ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง</span>
-  </div>
-
-  <div class="field">
-    <label class="field-label" for="inpUser">ชื่อผู้ใช้ / Username</label>
-    <div class="field-wrap">
-      <input class="field-input" id="inpUser" type="text" placeholder="กรอกชื่อผู้ใช้..." autocomplete="username">
+    <div class="lp-footer">
+      <div class="lp-footer-text">EWS Enterprise Repair Management System<br>Powered by Google Apps Script &amp; GitHub Pages</div>
+      <div class="lp-version">v5.0 Design System — IBM Carbon Inspired</div>
     </div>
   </div>
 
-  <div class="field">
-    <label class="field-label" for="inpPass">
-      <span>รหัสผ่าน / Password</span>
-    </label>
-    <div class="field-wrap">
-      <input class="field-input has-icon" id="inpPass" type="password" placeholder="กรอกรหัสผ่าน..." autocomplete="current-password">
-      <button class="field-icon" type="button" id="togglePwd" tabindex="-1"><i class="fas fa-eye-slash" id="eyeIcon"></i></button>
+  <!-- RIGHT -->
+  <div class="rp">
+    <div class="rp-inner">
+      <div class="rp-title">Sign in to <strong>EWS Enterprise</strong></div>
+      <div class="rp-sub">เข้าสู่ระบบด้วยบัญชีที่ได้รับมอบหมาย</div>
+
+      <div class="form-error hidden" id="loginError">
+        <i class="fas fa-circle-exclamation"></i>
+        <span id="loginErrorMsg">Username หรือ Password ไม่ถูกต้อง</span>
+      </div>
+
+      <form id="loginForm" onsubmit="doLogin(event)">
+        <div class="form-group">
+          <label class="form-label" for="username">Username</label>
+          <div class="form-input-wrap">
+            <input class="form-input" type="text" id="username" name="username" placeholder="Enter your username" autocomplete="username" required>
+            <i class="fas fa-user input-icon"></i>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="password">Password</label>
+          <div class="form-input-wrap">
+            <input class="form-input" type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
+            <i class="fas fa-eye input-icon" id="pwToggle" onclick="togglePw()"></i>
+          </div>
+        </div>
+        <div class="remember-row">
+          <label class="checkbox-wrap">
+            <input type="checkbox" id="rememberMe">
+            <span class="checkbox-label">Remember username</span>
+          </label>
+          <a class="forgot-link" href="#">Forgot password?</a>
+        </div>
+        <button class="btn-signin" type="submit" id="signinBtn">
+          <i class="fas fa-right-to-bracket"></i> Sign In
+        </button>
+      </form>
+
+      <div class="demo-box">
+        <div class="demo-title"><i class="fas fa-circle-info" style="margin-right:4px"></i>Demo Accounts</div>
+        <div class="demo-row">
+          <button class="demo-tag" onclick="fillDemo('admin','admin1234')">admin / admin1234</button>
+          <span class="demo-sep">•</span>
+          <span style="font-size:.65rem;color:var(--g60)">Administrator</span>
+        </div>
+        <div class="demo-row">
+          <button class="demo-tag" onclick="fillDemo('tech','tech1234')">tech / tech1234</button>
+          <span class="demo-sep">•</span>
+          <span style="font-size:.65rem;color:var(--g60)">Technician</span>
+        </div>
+        <div class="demo-row">
+          <button class="demo-tag" onclick="fillDemo('viewer','view1234')">viewer / view1234</button>
+          <span class="demo-sep">•</span>
+          <span style="font-size:.65rem;color:var(--g60)">Viewer</span>
+        </div>
+      </div>
     </div>
+
+    <div class="rp-footer">© 2025 EWS Enterprise. All rights reserved.</div>
   </div>
 
-  <div class="row-opts">
-    <label class="check-row">
-      <input type="checkbox" id="chkRemember">
-      <span class="check-label">จดจำชื่อผู้ใช้</span>
-    </label>
-  </div>
-
-  <button class="btn-login" id="btnLogin" type="button">
-    <i class="fas fa-spinner spin"></i>
-    <span class="btn-text"><i class="fas fa-right-to-bracket me-1"></i>เข้าสู่ระบบ</span>
-  </button>
-
-  <div class="divider"><span class="divider-text">ข้อมูลทดสอบระบบ</span></div>
-
-  <div class="info-box">
-    <strong>Demo Accounts</strong>
-    <div class="info-row"><span>admin / admin1234</span><span class="info-tag tag-admin">Admin</span></div>
-    <div class="info-row"><span>tech / tech1234</span><span class="info-tag tag-tech">Technician</span></div>
-    <div class="info-row"><span>viewer / view1234</span><span class="info-tag tag-viewer">Viewer</span></div>
-  </div>
 </div>
 
 <script>
-'use strict';
-const GAS_URL_DEFAULT = 'https://script.google.com/macros/s/AKfycbxo3RTi8R1hJMJ49r9TSaQAfCVIWD-ibgS9xhxMWdxO-3JqzSf8nbbrW04ffxzggdurhw/exec';
-const GAS_URL_STORAGE = 'rms_gas_url';
-const SESSION_KEY = 'rms_v3_session';
-function getGasUrl(){ try{return localStorage.getItem(GAS_URL_STORAGE)||GAS_URL_DEFAULT;}catch(e){return GAS_URL_DEFAULT;} }
+const GAS_URL = localStorage.getItem('rms_gas_url') ||
+  'https://script.google.com/macros/s/AKfycbxo3RTi8R1hJMJ49r9TSaQAfCVIWD-ibgS9xhxMWdxO-3JqzSf8nbbrW04ffxzggdurhw/exec';
 
-/* bootstrap public config */
-(async()=>{
-  try{
-    const r=await fetch(GAS_URL_DEFAULT+'?action=getPublicConfig',{redirect:'follow'});
-    const d=(await r.json());
-    if(d&&d.success&&d.gasUrl) try{localStorage.setItem(GAS_URL_STORAGE,d.gasUrl);}catch(e){}
-  }catch(e){}
-})();
+const DEMO_ACCOUNTS = {
+  admin:  {password:'admin1234',role:'admin',displayName:'Admin User'},
+  tech:   {password:'tech1234', role:'tech', displayName:'Technician'},
+  viewer: {password:'view1234', role:'viewer',displayName:'Viewer'},
+};
 
-/* restore remember */
-try{
-  const rem=JSON.parse(localStorage.getItem('rms_remember')||'null');
-  if(rem&&rem.u){document.getElementById('inpUser').value=rem.u;document.getElementById('chkRemember').checked=true;}
-}catch(e){}
-
-/* check existing session */
-(function(){
-  try{
-    const s=JSON.parse(sessionStorage.getItem(SESSION_KEY)||localStorage.getItem(SESSION_KEY)||'null');
-    if(s&&s.loginTime&&Date.now()-s.loginTime<8*3600*1000) location.href='dashboard.html';
-  }catch(e){}
-})();
-
-/* toggle password */
-document.getElementById('togglePwd').addEventListener('click',()=>{
-  const i=document.getElementById('inpPass');
-  const ic=document.getElementById('eyeIcon');
-  i.type=i.type==='password'?'text':'password';
-  ic.className=i.type==='password'?'fas fa-eye-slash':'fas fa-eye';
+// Pre-fill remembered username
+window.addEventListener('DOMContentLoaded',()=>{
+  const saved = localStorage.getItem('rms_remembered_user');
+  if(saved){ document.getElementById('username').value=saved; document.getElementById('rememberMe').checked=true; }
 });
 
-/* login */
-async function doLogin(){
-  const u=document.getElementById('inpUser').value.trim();
-  const p=document.getElementById('inpPass').value;
-  const btn=document.getElementById('btnLogin');
-  const err=document.getElementById('errBanner');
-  const errMsg=document.getElementById('errMsg');
-  if(!u){document.getElementById('inpUser').focus();return;}
-  if(!p){document.getElementById('inpPass').focus();return;}
-  err.classList.remove('show');
-  btn.disabled=true;btn.classList.add('loading');
-  let data=null;
-  /* 1. try GAS */
-  try{
-    const r=await fetch(getGasUrl()+'?action=login&username='+encodeURIComponent(u)+'&password='+encodeURIComponent(p),{redirect:'follow'});
-    data=await r.json();
-  }catch(e){}
-  /* 2. fallback demo accounts */
-  if(!data||!data.success){
-    const DEMO=[{u:'admin',p:'admin1234',role:'admin',name:'Administrator'},{u:'tech',p:'tech1234',role:'technician',name:'Technician'},{u:'viewer',p:'view1234',role:'viewer',name:'Viewer'}];
-    const m=DEMO.find(d=>d.u===u&&d.p===p);
-    if(m) data={success:true,user:{username:m.u,role:m.role,name:m.name}};
-  }
-  if(data&&data.success&&data.user){
-    const payload=JSON.stringify({...data.user,loginTime:Date.now()});
-    try{sessionStorage.setItem(SESSION_KEY,payload);}catch(e){}
-    try{localStorage.setItem(SESSION_KEY,payload);}catch(e){}
-    if(document.getElementById('chkRemember').checked){
-      try{localStorage.setItem('rms_remember',JSON.stringify({u}));}catch(e){}
-    } else {
-      try{localStorage.removeItem('rms_remember');}catch(e){}
-    }
-    location.href='dashboard.html';
-  } else {
-    errMsg.textContent=(data&&data.error)||'ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง';
-    err.classList.add('show');
-    document.getElementById('inpPass').value='';
-    document.getElementById('inpPass').focus();
-    btn.disabled=false;btn.classList.remove('loading');
-  }
+function togglePw(){
+  const pw=document.getElementById('password');
+  const ic=document.getElementById('pwToggle');
+  if(pw.type==='password'){pw.type='text';ic.className='fas fa-eye-slash input-icon';}
+  else{pw.type='password';ic.className='fas fa-eye input-icon';}
 }
-document.getElementById('btnLogin').addEventListener('click',doLogin);
-document.getElementById('inpPass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
-document.getElementById('inpUser').addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('inpPass').focus();});
+
+function fillDemo(u,p){
+  document.getElementById('username').value=u;
+  document.getElementById('password').value=p;
+  document.getElementById('username').focus();
+}
+
+function showError(msg){
+  const el=document.getElementById('loginError');
+  document.getElementById('loginErrorMsg').textContent=msg;
+  el.classList.remove('hidden');
+}
+function hideError(){ document.getElementById('loginError').classList.add('hidden'); }
+
+async function doLogin(e){
+  e.preventDefault();
+  hideError();
+  const u=document.getElementById('username').value.trim();
+  const p=document.getElementById('password').value;
+  const btn=document.getElementById('signinBtn');
+  btn.disabled=true;
+  btn.innerHTML='<i class="fas fa-circle-notch fa-spin"></i> Signing in...';
+
+  // Remember username
+  if(document.getElementById('rememberMe').checked) localStorage.setItem('rms_remembered_user',u);
+  else localStorage.removeItem('rms_remembered_user');
+
+  // Try GAS first
+  try{
+    const res=await fetch(GAS_URL+'?action=login&username='+encodeURIComponent(u)+'&password='+encodeURIComponent(p));
+    const data=await res.json();
+    if(data.success||data.status==='success'){
+      createSession(u,data.role||'viewer',data.displayName||u);
+      return;
+    }
+  }catch(err){ /* fallback to demo */ }
+
+  // Demo account fallback
+  const demo=DEMO_ACCOUNTS[u.toLowerCase()];
+  if(demo&&demo.password===p){
+    createSession(u,demo.role,demo.displayName);
+    return;
+  }
+
+  showError('Username หรือ Password ไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง');
+  btn.disabled=false;
+  btn.innerHTML='<i class="fas fa-right-to-bracket"></i> Sign In';
+}
+
+function createSession(username,role,displayName){
+  const session={username,role,displayName,loginTime:Date.now()};
+  sessionStorage.setItem('rms_v3_session',JSON.stringify(session));
+  localStorage.setItem('rms_v3_session',JSON.stringify(session));
+  window.location.href='dashboard.html';
+}
 </script>
 </body>
 </html>
