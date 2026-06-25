@@ -12,7 +12,7 @@
 /* ── CONFIG ─────────────────────────────────────────────── */
 // GAS_URL_DEFAULT คือ fallback สำรอง — เปลี่ยนได้โดยไม่กระทบ runtime
 // เมื่อ bootstrap() ทำงานสำเร็จ จะเขียน URL ล่าสุดลง localStorage แทน
-const GAS_URL_DEFAULT = 'https://script.google.com/macros/s/AKfycbxo3RTi8R1hJMJ49r9TSaQAfCVIWD-ibgS9xhxMWdxO-3JqzSf8nbbrW04ffxzggdurhw/exec';
+const GAS_URL_DEFAULT = 'https://script.google.com/macros/s/AKfycbys3dgS7s6rUtWqxk1jaSTpjeHcHEAE6NUcDeyRIJ9vna8Gl2SEZodMUAvlQvW9P-jWww/exec';
 const GAS_URL_STORAGE = 'rms_gas_url';
 
 function _resolveGasUrl() {

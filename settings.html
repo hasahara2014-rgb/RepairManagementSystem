@@ -329,7 +329,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
     <div class="setting-section" id="s-connection">
       <div class="ccard"><div class="ccard-title" style="margin-bottom:12px">Google Apps Script Connection</div>
         <label class="form-label">GAS Deployment URL</label>
-        <input class="form-ctrl" id="gasUrl" style="width:100%;margin:8px 0 12px;font-size:.72rem;font-family:monospace" value="https://script.google.com/macros/s/AKfycbxo3RTi8R1hJMJ49r9TSaQAfCVIWD-ibgS9xhxMWdxO-3JqzSf8nbbrW04ffxzggdurhw/exec">
+        <input class="form-ctrl" id="gasUrl" style="width:100%;margin:8px 0 12px;font-size:.72rem;font-family:monospace" value="https://script.google.com/macros/s/AKfycbys3dgS7s6rUtWqxk1jaSTpjeHcHEAE6NUcDeyRIJ9vna8Gl2SEZodMUAvlQvW9P-jWww/exec">
         <div style="display:flex;gap:8px">
           <button class="btn-primary" onclick="testGas()"><i class="fas fa-plug"></i> Test Connection</button>
           <button class="btn-ghost" onclick="saveGasUrl()"><i class="fas fa-save"></i> Save URL</button>
@@ -411,7 +411,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 </div>
 </div>
 <script>
-const GAS_URL=localStorage.getItem('rms_gas_url')||'https://script.google.com/macros/s/AKfycbxo3RTi8R1hJMJ49r9TSaQAfCVIWD-ibgS9xhxMWdxO-3JqzSf8nbbrW04ffxzggdurhw/exec';
+const GAS_URL=localStorage.getItem('rms_gas_url')||'https://script.google.com/macros/s/AKfycbys3dgS7s6rUtWqxk1jaSTpjeHcHEAE6NUcDeyRIJ9vna8Gl2SEZodMUAvlQvW9P-jWww/exec';
 
 function _getToken(){
   const s=JSON.parse(sessionStorage.getItem('rms_v3_session')||localStorage.getItem('rms_v3_session')||'null');
@@ -468,7 +468,7 @@ function testGas(){
   const url=document.getElementById('gasUrl').value.trim();
   const res=document.getElementById('gasResult');
   res.innerHTML='<span style="color:var(--g50)"><i class="fas fa-spinner fa-spin"></i> Testing…</span>';
-  fetch(url+'?action=ping').then(r=>r.ok?r.text():Promise.reject(r.status))
+  fetch(url+'?action=ping&token='+encodeURIComponent(_getToken())).then(r=>r.ok?r.text():Promise.reject(r.status))
     .then(t=>{res.innerHTML='<span style="color:var(--green50)"><i class="fas fa-circle-check"></i> Connected — '+t.substring(0,60)+'</span>';})
     .catch(e=>{res.innerHTML='<span style="color:var(--orange40)"><i class="fas fa-triangle-exclamation"></i> Could not reach endpoint (CORS or offline). URL saved.</span>';});
 }
@@ -488,7 +488,4 @@ function setPrimary(color){
 const savedUrl=localStorage.getItem('rms_gas_url');
 if(savedUrl)document.getElementById('gasUrl').value=savedUrl;
 
-document.getElementById('lastUpdate').textContent=new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
-</script>
-</body>
-</html>
+document.getElementById('lastUpdate').textContent=new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute

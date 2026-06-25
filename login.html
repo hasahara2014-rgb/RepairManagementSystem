@@ -346,7 +346,7 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
 
 <script>
 const GAS_URL = localStorage.getItem('rms_gas_url') ||
-  'https://script.google.com/macros/s/AKfycbxo3RTi8R1hJMJ49r9TSaQAfCVIWD-ibgS9xhxMWdxO-3JqzSf8nbbrW04ffxzggdurhw/exec';
+  'https://script.google.com/macros/s/AKfycbys3dgS7s6rUtWqxk1jaSTpjeHcHEAE6NUcDeyRIJ9vna8Gl2SEZodMUAvlQvW9P-jWww/exec';
 
 const DEMO_ACCOUNTS = {
   admin:  {password:'admin1234',role:'admin',displayName:'Admin User'},
@@ -395,7 +395,7 @@ async function doLogin(e){
 
   // Try GAS first
   try{
-    const res=await fetch(GAS_URL+'?action=login&username='+encodeURIComponent(u)+'&password='+encodeURIComponent(p));
+    const res=await fetch(GAS_URL+'?action=login&payload='+encodeURIComponent(JSON.stringify({username:u,password:p})));
     const data=await res.json();
     if(data.success||data.status==='success'){
       createSession(u,data.user?.role||data.role||'viewer',data.user?.name||data.displayName||u,data.token||'');
@@ -423,4 +423,4 @@ function createSession(username,role,displayName,token){
 }
 </script>
 </body>
-</html>
+</html

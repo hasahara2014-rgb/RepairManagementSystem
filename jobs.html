@@ -498,9 +498,13 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 
 <script>
 const GAS_URL = localStorage.getItem('rms_gas_url') ||
-  'https://script.google.com/macros/s/AKfycbxo3RTi8R1hJMJ49r9TSaQAfCVIWD-ibgS9xhxMWdxO-3JqzSf8nbbrW04ffxzggdurhw/exec';
+  'https://script.google.com/macros/s/AKfycbys3dgS7s6rUtWqxk1jaSTpjeHcHEAE6NUcDeyRIJ9vna8Gl2SEZodMUAvlQvW9P-jWww/exec';
 
 /* ── Auth ── */
+function _getToken(){
+  const s=JSON.parse(sessionStorage.getItem('rms_v3_session')||localStorage.getItem('rms_v3_session')||'null');
+  return s?.token||'';
+}
 (function(){
   const s=JSON.parse(sessionStorage.getItem('rms_v3_session')||localStorage.getItem('rms_v3_session')||'null');
   if(!s||(Date.now()-s.loginTime>28800000)){location.href='login.html';return}
@@ -788,8 +792,4 @@ function exportCSV(){
 
 /* ── UI ── */
 function toggleSidebar(){
-  const sb=document.getElementById('mxmSidebar');
-  const ov=document.getElementById('sidebarOverlay');
-  if(window.innerWidth<=1024){
-    sb.classList.toggle('mobile-open');
-   
+  const sb=document

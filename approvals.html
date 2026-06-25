@@ -355,7 +355,7 @@ function statusBadge(s){const st=(s||'OPEN').replace(/ /g,'_').toUpperCase();con
 function priBadge(p){const pr=(p||'MEDIUM').toUpperCase();const lbl={CRITICAL:'Critical',HIGH:'High',MEDIUM:'Medium',LOW:'Low'};return`<span class="pri pri-${pr}"><span class="pri-dot"></span>${lbl[pr]||pr}</span>`}
 
 
-const GAS_URL=localStorage.getItem('rms_gas_url')||'https://script.google.com/macros/s/AKfycbxo3RTi8R1hJMJ49r9TSaQAfCVIWD-ibgS9xhxMWdxO-3JqzSf8nbbrW04ffxzggdurhw/exec';
+const GAS_URL=localStorage.getItem('rms_gas_url')||'https://script.google.com/macros/s/AKfycbys3dgS7s6rUtWqxk1jaSTpjeHcHEAE6NUcDeyRIJ9vna8Gl2SEZodMUAvlQvW9P-jWww/exec';
 
 function _getToken(){
   const s=JSON.parse(sessionStorage.getItem('rms_v3_session')||localStorage.getItem('rms_v3_session')||'null');
