@@ -43,7 +43,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .nav-item:hover{background:var(--g90);color:#fff}
 .nav-item.active{background:var(--g90);color:#fff;border-left-color:var(--p60)}
 .nav-icon{font-size:.85rem;width:16px;text-align:center;flex-shrink:0}
-.nav-badge{background:var(--p60);color:#fff;font-size:.6rem;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:auto}.nav-item-group{position:relative}.nav-item-parent{cursor:pointer;user-select:none}.nav-submenu-arrow{margin-left:auto;font-size:.6rem;transition:transform .25s;opacity:.7}.nav-item-group.open .nav-submenu-arrow{transform:rotate(180deg)}.nav-submenu{overflow:hidden;max-height:0;transition:max-height .25s ease}.nav-submenu.open{max-height:300px}.nav-item.nav-sub{padding-left:34px;font-size:.74rem}.mxm-sidebar.collapsed .nav-submenu{display:none}
+.nav-badge{background:var(--p60);color:#fff;font-size:.6rem;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:auto}.nav-item-group{position:relative}.nav-item-parent{cursor:pointer;user-select:none}.nav-submenu-arrow{margin-left:auto;font-size:.6rem;transition:transform .25s;opacity:.7}.nav-item-group.open .nav-submenu-arrow{transform:rotate(180deg)}.nav-submenu{overflow:hidden;max-height:0;transition:max-height .25s ease}.nav-submenu.open{max-height:300px}.nav-item.nav-sub{padding-left:34px;font-size:.74rem}.mxm-sidebar.collapsed .nav-submenu{display:none}.wo-link{color:inherit;text-decoration:none;display:flex;align-items:center;gap:12px;flex:1;min-width:0;overflow:hidden}
 .sys-info{padding:12px 14px;border-top:1px solid var(--g80);flex-shrink:0}
 .sys-title{color:var(--g40);font-size:.63rem;font-weight:600;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px}
 .sys-status-row{display:flex;align-items:center;gap:6px;margin-bottom:4px}
@@ -246,9 +246,9 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   </div>
   <nav class="sidebar-nav"><a class="nav-item" href="dashboard.html"><i class="nav-icon fas fa-gauge-high"></i><span class="nav-label">Dashboards</span></a>
 <div class="nav-item-group" id="woGroup">
-  <div class="nav-item nav-item-parent" onclick="toggleWO()"><i class="nav-icon fas fa-clipboard-list"></i><span class="nav-label">Work Orders</span><i class="nav-submenu-arrow fas fa-chevron-down nav-label"></i></div>
+  <div class="nav-item nav-item-parent"><a href="workorders.html" class="wo-link"><i class="nav-icon fas fa-clipboard-list"></i><span class="nav-label">Work Orders</span></a><i class="nav-submenu-arrow fas fa-chevron-down nav-label" onclick="toggleWO(event)"></i></div>
   <div class="nav-submenu" id="woSub">
-    <a class="nav-item nav-sub" href="jobs.html?sys=EWS"><i class="nav-icon fas fa-circle-dot"></i><span class="nav-label">EWS - Enterprise</span></a>
+    <a class="nav-item nav-sub" href="jobs.html"><i class="nav-icon fas fa-circle-dot"></i><span class="nav-label">EWS - Enterprise</span></a>
     <a class="nav-item nav-sub" href="jobs.html?sys=AFC"><i class="nav-icon fas fa-circle-dot"></i><span class="nav-label">AFC - SYSTEMP</span></a>
     <a class="nav-item nav-sub" href="jobs.html?sys=COM"><i class="nav-icon fas fa-circle-dot"></i><span class="nav-label">COM - SYSTEMP</span></a>
   </div>
@@ -530,6 +530,6 @@ document.getElementById('lastUpdate').textContent=new Date().toLocaleTimeString(
 }
 loadData();
 </script>
-<script>function toggleWO(){var g=document.getElementById('woGroup'),s=document.getElementById('woSub');if(g)g.classList.toggle('open');if(s)s.classList.toggle('open');}</script>
+<script>function toggleWO(e){if(e)e.stopPropagation();var g=document.getElementById('woGroup'),s=document.getElementById('woSub');if(g)g.classList.toggle('open');if(s)s.classList.toggle('open');}</script>
 </body>
 </html>
