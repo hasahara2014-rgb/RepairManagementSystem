@@ -460,9 +460,6 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
           <label class="mf-label">Vendor</label>
           <select class="mf-select" id="mVendor">
             <option value="">— Select Vendor —</option>
-            <option value="V001">เทคโนมาสเตอร์</option>
-            <option value="V002">อินดัสเทรียลพาร์ท</option>
-            <option value="V003">ออโตเมชั่นโปร</option>
           </select>
         </div>
         <div class="mf-group">
@@ -515,7 +512,22 @@ function _getToken(){
 })();
 
 /* ── Sample Data ── */
-const VENDORS={V001:'เทคโนมาสเตอร์',V002:'อินดัสเทรียลพาร์ท',V003:'ออโตเมชั่นโปร'};
+let VENDORS={};
+async function loadVendors(){
+  try{
+    const r=await fetch(`${GAS_URL}?action=getVendors&token=${_getToken()}`).then(x=>x.json());
+    if(r.success&&Array.isArray(r.data)&&r.data.length>0){
+      const sel=document.getElementById('mVendor');
+      sel.innerHTML='<option value="">— Select Vendor —</option>';
+      r.data.forEach(v=>{
+        const id=v.Vendor_ID||v.id||'';
+        const name=v.Vendor_Name||v.name||id;
+        VENDORS[id]=name;
+        sel.insertAdjacentHTML('beforeend',`<option value="${id}">${name}</option>`);
+      });
+    }
+  }catch(e){console.warn('loadVendors error',e);}
+}
 function mkj(n,eq,d,a,v,st,cr,cl,pri){return{JOB_No:'JOB-'+String(n).padStart(4,'0'),Equipment_ID:eq,Damage_Code:d,Repair_Action:a,Vendor_ID:v,Status:st,Create_Date:cr,Close_Date:cl||'',Priority:pri||'MEDIUM'}}
 let SAMPLE_JOBS=[
   mkj(1,'EQ-001','ระบบไฮดรอลิกรั่ว','เปลี่ยน Seal Kit','V001','CLOSED','2025-11-05','2025-11-18','HIGH'),
@@ -803,7 +815,7 @@ function toggleSidebar(){
 }
 
 /* ── Init ── */
-loadJobs();
+loadVendors().then(() => loadJobs());
 </script>
 </body>
 </html>
