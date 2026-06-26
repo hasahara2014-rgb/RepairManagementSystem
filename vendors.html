@@ -463,13 +463,17 @@ function loadData(){
     if(Array.isArray(data)&&data.length>0){
       VENDORS=data.map(v=>({
         id:v.Vendor_ID||v.id,
-        name:v.Vendor_Name||v.name||'-',
+        name:v.Name||v.Vendor_Name||v.name||'-',
         contact:v.Contact||v.contact||'-',
         phone:v.Phone||v.phone||'-',
         email:v.Email||v.email||'-',
         cat:v.Category||v.cat||'-',
         rating:Number(v.Rating||v.rating||0),
-        status:v.Status||v.status||'ACTIVE'
+        status:v.Status||v.status||'ACTIVE',
+        spec:v.Specialty||v.spec||'-',
+        total:v.Total_Jobs||v.total||0,
+        closed:v.Completed||v.closed||0,
+        avgTat:v.Avg_TAT||v.avgTat||0
       }));
     }
   }).catch(()=>{}).finally(()=>{

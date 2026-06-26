@@ -521,7 +521,7 @@ async function loadVendors(){
       sel.innerHTML='<option value="">— Select Vendor —</option>';
       r.data.forEach(v=>{
         const id=v.Vendor_ID||v.id||'';
-        const name=v.Vendor_Name||v.name||id;
+        const name=v.Name||v.Vendor_Name||v.name||id;
         VENDORS[id]=name;
         sel.insertAdjacentHTML('beforeend',`<option value="${id}">${name}</option>`);
       });
