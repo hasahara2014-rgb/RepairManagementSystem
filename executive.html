@@ -435,7 +435,7 @@ const monthClosed=prefixes.map(p=>_jobs.filter(j=>j.Create_Date?.startsWith(p)&&
 // KPI color logic
 function kpiColor(val,good,warn){return val>=good?'var(--green50)':val>=warn?'var(--yellow30)':'var(--red60)'}
 
-const root=
+const root=document.getElementById('execRoot');
 
 function loadData(){
   document.getElementById('loadingOverlay').classList.remove('hidden');
@@ -458,8 +458,7 @@ function loadData(){
 
 function renderAll(jobs){
   const _jobs=jobs;
-  document.getElementById('execRoot');
-root.innerHTML=`
+  root.innerHTML=`
 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin-bottom:2px">
   ${[
     {label:'TOTAL WORK ORDERS',val:total,sub:'All time jobs','color':'var(--p60)'},
