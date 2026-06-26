@@ -265,7 +265,23 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   .mxm-topbar{min-height:44px;height:44px}
   .tb-title{display:none}
 }
+/* -- Dashboard Sys Header -- */
+.sys-hdr{display:flex;align-items:center;gap:10px;padding:7px 16px;background:#fff;border-bottom:1px solid var(--g20);flex-shrink:0}
+.sys-hdr-badge{font-size:.6rem;font-weight:700;padding:2px 8px;color:#fff;flex-shrink:0}
+.sys-hdr-name{font-size:.82rem;font-weight:600}
+.sys-hdr-conn{margin-left:auto;font-size:.68rem;display:flex;align-items:center;gap:5px}
+.dash-row{display:grid;grid-template-columns:repeat(3,1fr);background:#fff;border-bottom:2px solid var(--g20);flex-shrink:0}
+.dash-cell{padding:10px 14px;border-right:1px solid var(--g20);height:170px;display:flex;flex-direction:column}
+.dash-cell:last-child{border-right:none}
+.dash-cell-title{font-size:.62rem;font-weight:600;color:var(--g50);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;flex-shrink:0}
+.dash-canvas-wrap{flex:1;min-height:0;position:relative}
+.dash-noconn{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:8px;text-align:center}
+.dash-noconn i{font-size:1.4rem;color:var(--g30)}
+.dash-noconn-title{font-size:.78rem;font-weight:600;color:var(--g60)}
+.dash-noconn-sub{font-size:.68rem;color:var(--g50)}
+@media(max-width:768px){.dash-row{grid-template-columns:1fr}.dash-cell{height:140px;border-right:none;border-bottom:1px solid var(--g20)}}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 </head>
 <body>
 <div class="toast-container" id="toastContainer"></div>
@@ -385,6 +401,29 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
     <div class="ks-card ksc-t"><div class="ks-label">Returned</div><div class="ks-value" id="ksReturned">—</div></div>
     <div class="ks-card ksc-o"><div class="ks-label">Avg TAT (Days)</div><div class="ks-value" id="ksAvgTAT">—</div></div>
   </div>
+  </div>
+
+  <!-- SYS HEADER -->
+  <div class="sys-hdr" id="sysHdr">
+    <span class="sys-hdr-badge" id="sysHdrBadge" style="background:#0F62FE">EWS</span>
+    <span class="sys-hdr-name" id="sysHdrName">EWS - Enterprise</span>
+    <span class="sys-hdr-conn" id="sysHdrConn"><i class="fas fa-circle" style="font-size:.45rem;color:#198038"></i>&nbsp;Connected to GAS</span>
+  </div>
+
+  <!-- DASH CHARTS -->
+  <div class="dash-row" id="dashRow">
+    <div class="dash-cell">
+      <div class="dash-cell-title">Status Distribution</div>
+      <div class="dash-canvas-wrap"><canvas id="dashStatusChart"></canvas></div>
+    </div>
+    <div class="dash-cell">
+      <div class="dash-cell-title">Priority Breakdown</div>
+      <div class="dash-canvas-wrap"><canvas id="dashPriChart"></canvas></div>
+    </div>
+    <div class="dash-cell">
+      <div class="dash-cell-title">Jobs by Vendor</div>
+      <div class="dash-canvas-wrap"><canvas id="dashVendorChart"></canvas></div>
+    </div>
   </div>
 
   <!-- TABLE -->
@@ -578,6 +617,83 @@ let SAMPLE_JOBS=[
   mkj(39,'EQ-017','PCB เสีย','เปลี่ยน PCB','V003','OPEN','2026-06-15','','CRITICAL'),
 ];
 
+/* -- System Detection -- */
+var SYS=new URLSearchParams(location.search).get('sys')||'EWS';
+var SYS_CFG={
+  EWS:{name:'EWS - Enterprise',badge:'EWS',color:'#0F62FE',connected:true},
+  AFC:{name:'AFC - SYSTEMP',badge:'AFC',color:'#009D9A',connected:false},
+  COM:{name:'COM - SYSTEMP',badge:'COM',color:'#8A3FFC',connected:false}
+};
+var _sc=SYS_CFG[SYS]||SYS_CFG.EWS;
+
+function _initSysUI(){
+  var hb=document.getElementById('sysHdrBadge');
+  var hn=document.getElementById('sysHdrName');
+  if(hb){hb.textContent=_sc.badge;hb.style.background=_sc.color;}
+  if(hn) hn.textContent=_sc.name;
+  var t=document.querySelector('.tb-title'),s=document.querySelector('.tb-sub');
+  if(t) t.textContent=_sc.name;
+  if(s) s.textContent='Work Orders — '+_sc.badge+' System';
+  if(!_sc.connected){
+    var hc=document.getElementById('sysHdrConn');
+    if(hc) hc.innerHTML='<i class="fas fa-circle" style="font-size:.45rem;color:var(--g40)"></i>&nbsp;<span style="color:var(--g50)">Not Connected</span>';
+    var nc='<div class="dash-noconn"><i class="fas fa-plug-circle-exclamation"></i>'
+      +'<div class="dash-noconn-title">'+_sc.name+'</div>'
+      +'<div class="dash-noconn-sub">System not connected</div></div>';
+    ['dashStatusChart','dashPriChart','dashVendorChart'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el){var w=el.closest('.dash-canvas-wrap');if(w)w.innerHTML=nc;}
+    });
+    var tb=document.getElementById('jobsTableBody');
+    if(tb) tb.innerHTML='<tr><td colspan="11" style="text-align:center;padding:36px;color:var(--g40)">'
+      +'<i class="fas fa-plug" style="font-size:1.5rem;display:block;margin-bottom:8px"></i>'
+      +'ไม่มีข้อมูล — '+_sc.name+' ยังไม่เชื่อมต่อ</td></tr>';
+    ['ksTotal','ksOpen','ksWIP','ksClosed','ksReturned'].forEach(function(id){
+      var el=document.getElementById(id);if(el)el.textContent='0';
+    });
+    var at=document.getElementById('ksAvgTAT');if(at)at.textContent='—';
+  }
+}
+
+var _dcS=null,_dcP=null,_dcV=null;
+function _renderDashCharts(jobs){
+  if(!jobs||!jobs.length||!_sc.connected)return;
+  var sCnt={OPEN:0,SEND_REPAIR:0,WAIT_APPROVAL:0,WAIT_SPARE_PART:0,CLOSED:0,RETURNED:0};
+  jobs.forEach(function(j){var s=j.Status||'OPEN';if(sCnt[s]!==undefined)sCnt[s]++;});
+  var pCnt={CRITICAL:0,HIGH:0,MEDIUM:0,LOW:0};
+  jobs.forEach(function(j){var p=(j.Priority||'MEDIUM').toUpperCase();if(pCnt[p]!==undefined)pCnt[p]++;});
+  var vCnt={};
+  jobs.forEach(function(j){var v=getVendorName(j.Vendor_ID)||'Unknown';vCnt[v]=(vCnt[v]||0)+1;});
+  var topV=Object.entries(vCnt).sort(function(a,b){return b[1]-a[1];}).slice(0,5);
+  var bOpts={responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false}},
+    scales:{x:{grid:{display:false},ticks:{font:{size:9},color:'#6F6F6F'}},
+            y:{grid:{display:false},ticks:{font:{size:9},color:'#6F6F6F'}}}};
+  var c1=document.getElementById('dashStatusChart');
+  if(c1){if(_dcS)_dcS.destroy();
+    _dcS=new Chart(c1,{type:'bar',
+      data:{labels:['Open','In Repair','Wait Appr','Wait Parts','Closed','Returned'],
+        datasets:[{data:[sCnt.OPEN,sCnt.SEND_REPAIR,sCnt.WAIT_APPROVAL,sCnt.WAIT_SPARE_PART,sCnt.CLOSED,sCnt.RETURNED],
+          backgroundColor:['#4589FF','#FF832B','#F1C21B','#FFD97D','#198038','#8D8D8D'],
+          borderWidth:0,borderRadius:2}]},
+      options:Object.assign({},bOpts,{indexAxis:'y'})});}
+  var c2=document.getElementById('dashPriChart');
+  if(c2){if(_dcP)_dcP.destroy();
+    _dcP=new Chart(c2,{type:'doughnut',
+      data:{labels:['Critical','High','Medium','Low'],
+        datasets:[{data:[pCnt.CRITICAL,pCnt.HIGH,pCnt.MEDIUM,pCnt.LOW],
+          backgroundColor:['#DA1E28','#FF832B','#F1C21B','#198038'],borderWidth:0}]},
+      options:{responsive:true,maintainAspectRatio:false,cutout:'62%',
+        plugins:{legend:{position:'right',labels:{boxWidth:8,font:{size:9},color:'#525252'}}}}});}
+  var c3=document.getElementById('dashVendorChart');
+  if(c3){if(_dcV)_dcV.destroy();
+    _dcV=new Chart(c3,{type:'bar',
+      data:{labels:topV.map(function(v){return v[0].length>16?v[0].substring(0,15)+'…':v[0];}),
+        datasets:[{data:topV.map(function(v){return v[1];}),
+          backgroundColor:_sc.color,borderWidth:0,borderRadius:2}]},
+      options:Object.assign({},bOpts,{indexAxis:'y'})});}
+}
+
 /* ── State ── */
 let _jobs=[], _filtered=[], _sortKey='Create_Date', _sortDir=-1, _page=1, _pageSize=20;
 
@@ -628,6 +744,7 @@ function loadJobs(){
 function renderAll(){
   applyFilters();
   renderKPIStrip();
+  _renderDashCharts(_jobs);
 }
 
 function renderKPIStrip(){
@@ -822,7 +939,8 @@ function toggleSidebar(){
 }
 
 /* ── Init ── */
-loadVendors().then(() => loadJobs());
+_initSysUI();
+if(_sc.connected) loadVendors().then(() => loadJobs());
 </script>
 <script>function toggleWO(e){if(e)e.stopPropagation();var g=document.getElementById('woGroup'),s=document.getElementById('woSub');if(g)g.classList.toggle('open');if(s)s.classList.toggle('open');}</script>
 </body>

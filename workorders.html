@@ -52,6 +52,17 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .nav-submenu.open{max-height:300px}
 .nav-item.nav-sub{padding-left:34px;font-size:.74rem}
 .mxm-sidebar.collapsed .nav-submenu{display:none}
+/* -- WO Dashboard -- */
+.wo-sum-strip{display:flex;gap:2px;flex-shrink:0;padding:12px 16px 0;background:var(--g10)}
+.wo-sum-card{flex:1;background:#fff;border:1px solid var(--g20);padding:12px 14px;text-align:center}
+.wo-sum-val{font-size:1.4rem;font-weight:700;color:var(--g100);line-height:1}
+.wo-sum-lbl{font-size:.63rem;color:var(--g50);margin-top:3px}
+.wo-charts-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding:12px 16px}
+.wo-chart-card{background:#fff;border:1px solid var(--g20);padding:12px 14px}
+.wo-chart-title{font-size:.63rem;font-weight:600;color:var(--g50);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
+.wo-chart-canvas{height:155px;position:relative}
+@media(max-width:768px){.wo-charts-row{grid-template-columns:1fr}.wo-sum-strip{flex-wrap:wrap}.wo-sum-card{flex:1 1 calc(50% - 2px)}}
+
 .wo-link{color:inherit;text-decoration:none;display:flex;align-items:center;gap:12px;flex:1;min-width:0;overflow:hidden}
 .sys-info{padding:12px 14px;border-top:1px solid var(--g80);flex-shrink:0}
 .sys-title{color:var(--g40);font-size:.63rem;font-weight:600;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px}
@@ -155,6 +166,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   .wo-sys-grid{grid-template-columns:1fr}
 }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 </head>
 <body>
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
@@ -291,6 +303,22 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
           <div class="sys-no-data"><i class="fas fa-plug-circle-exclamation"></i> Not Connected — COM System</div>
         </div>
 
+      </div>
+
+      <!-- SUMMARY KPI STRIP -->
+      <div class="wo-sum-strip">
+        <div class="wo-sum-card"><div class="wo-sum-val" id="sumTotal">—</div><div class="wo-sum-lbl">Total (EWS)</div></div>
+        <div class="wo-sum-card"><div class="wo-sum-val" style="color:var(--p60)" id="sumOpen">—</div><div class="wo-sum-lbl">Open / WIP</div></div>
+        <div class="wo-sum-card"><div class="wo-sum-val" style="color:var(--orange40)" id="sumRepair">—</div><div class="wo-sum-lbl">In Repair</div></div>
+        <div class="wo-sum-card"><div class="wo-sum-val" style="color:var(--green50)" id="sumClosed">—</div><div class="wo-sum-lbl">Closed</div></div>
+        <div class="wo-sum-card"><div class="wo-sum-val" style="color:var(--teal50)" id="sumAvgTAT">—</div><div class="wo-sum-lbl">Avg TAT (days)</div></div>
+      </div>
+
+      <!-- WO CHARTS ROW -->
+      <div class="wo-charts-row">
+        <div class="wo-chart-card"><div class="wo-chart-title">Status Distribution</div><div class="wo-chart-canvas"><canvas id="woStatusChart"></canvas></div></div>
+        <div class="wo-chart-card"><div class="wo-chart-title">Priority Breakdown</div><div class="wo-chart-canvas"><canvas id="woPriChart"></canvas></div></div>
+        <div class="wo-chart-card"><div class="wo-chart-title">Monthly Trend (EWS)</div><div class="wo-chart-canvas"><canvas id="woTrendChart"></canvas></div></div>
       </div>
 
       <!-- Combined Recent Table -->
@@ -448,6 +476,24 @@ async function loadEWS(){
     // Combined table (show up to 50 rows)
     renderTable(jobs.slice(0,50));
 
+    // Summary KPI strip
+    (function(){
+      function el(id){return document.getElementById(id);}
+      if(el('sumTotal'))  el('sumTotal').textContent=total;
+      if(el('sumOpen'))   el('sumOpen').textContent=open;
+      if(el('sumRepair')) el('sumRepair').textContent=repair;
+      if(el('sumClosed')) el('sumClosed').textContent=closed;
+      var cj=jobs.filter(function(j){return j.Status==='CLOSED'&&j.Create_Date&&j.Close_Date;});
+      if(cj.length&&el('sumAvgTAT')){
+        var avg=(cj.reduce(function(s,j){
+          var d=(new Date(j.Close_Date)-new Date(j.Create_Date))/86400000;
+          return s+(d>0?d:0);
+        },0)/cj.length).toFixed(1);
+        el('sumAvgTAT').textContent=avg;
+      }
+    })();
+    _renderWOCharts(jobs);
+
   }catch(e){
     console.warn('loadEWS error', e);
     document.getElementById('wctBody').innerHTML='<tr><td colspan="9" style="text-align:center;padding:24px;color:var(--red60)">Error loading data</td></tr>';
@@ -475,6 +521,56 @@ function renderTable(jobs){
     </tr>
   `).join('');
   document.getElementById('wctCount').textContent = jobs.length + (jobs.length===50?' (latest 50)':' records');
+}
+
+var _woS=null,_woP=null,_woT=null;
+function _renderWOCharts(jobs){
+  if(!jobs||!jobs.length)return;
+  var sCnt={OPEN:0,SEND_REPAIR:0,WAIT_APPROVAL:0,WAIT_SPARE_PART:0,CLOSED:0,RETURNED:0};
+  jobs.forEach(function(j){var s=j.Status||'OPEN';if(sCnt[s]!==undefined)sCnt[s]++;});
+  var pCnt={CRITICAL:0,HIGH:0,MEDIUM:0,LOW:0};
+  jobs.forEach(function(j){
+    var p=(j.Priority||'MEDIUM').toUpperCase();
+    if(pCnt[p]!==undefined)pCnt[p]++;
+  });
+  var mMap={};
+  jobs.forEach(function(j){
+    if(!j.Create_Date)return;
+    try{
+      var d=new Date(j.Create_Date);if(isNaN(d))return;
+      var k=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2);
+      mMap[k]=(mMap[k]||0)+1;
+    }catch(e){}
+  });
+  var mKeys=Object.keys(mMap).sort().slice(-6);
+  var mVals=mKeys.map(function(k){return mMap[k];});
+  var mLabels=mKeys.map(function(k){var p=k.split('-');return p[1]+'/'+p[0].slice(-2);});
+  var bOpt={responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:false}},
+    scales:{x:{grid:{display:false},ticks:{font:{size:9},color:'#6F6F6F'}},
+            y:{grid:{color:'#E0E0E0'},ticks:{font:{size:9},color:'#6F6F6F'}}}};
+  var c1=document.getElementById('woStatusChart');
+  if(c1){if(_woS)_woS.destroy();
+    _woS=new Chart(c1,{type:'bar',
+      data:{labels:['Open','In Repair','Wait Appr','Wait Parts','Closed','Returned'],
+        datasets:[{data:[sCnt.OPEN,sCnt.SEND_REPAIR,sCnt.WAIT_APPROVAL,sCnt.WAIT_SPARE_PART,sCnt.CLOSED,sCnt.RETURNED],
+          backgroundColor:['#4589FF','#FF832B','#F1C21B','#FFD97D','#198038','#8D8D8D'],
+          borderWidth:0,borderRadius:2}]},
+      options:Object.assign({},bOpt,{indexAxis:'y'})});}
+  var c2=document.getElementById('woPriChart');
+  if(c2){if(_woP)_woP.destroy();
+    _woP=new Chart(c2,{type:'doughnut',
+      data:{labels:['Critical','High','Medium','Low'],
+        datasets:[{data:[pCnt.CRITICAL,pCnt.HIGH,pCnt.MEDIUM,pCnt.LOW],
+          backgroundColor:['#DA1E28','#FF832B','#F1C21B','#198038'],borderWidth:0}]},
+      options:{responsive:true,maintainAspectRatio:false,cutout:'60%',
+        plugins:{legend:{position:'right',labels:{boxWidth:8,font:{size:9},color:'#525252'}}}}});}
+  var c3=document.getElementById('woTrendChart');
+  if(c3){if(_woT)_woT.destroy();
+    _woT=new Chart(c3,{type:'bar',
+      data:{labels:mLabels,
+        datasets:[{data:mVals,backgroundColor:'#0F62FE',borderWidth:0,borderRadius:3}]},
+      options:bOpt});}
 }
 
 function loadAll(){
