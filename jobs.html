@@ -774,14 +774,14 @@ function renderKPIStrip(){
 }
 function _repeatEquipSet(jobs){
   var cnt={};
-  (jobs||_jobs).forEach(function(j){var eq=j.Equipment_ID||'';if(eq)cnt[eq]=(cnt[eq]||0)+1;});
+  (jobs||_jobs).forEach(function(j){var eq=String(j.Equipment_ID||'');if(eq)cnt[eq]=(cnt[eq]||0)+1;});
   var s=new Set();
   Object.keys(cnt).forEach(function(k){if(cnt[k]>1)s.add(k);});
   return s;
 }
 function _repeatJobCount(jobs){
   var s=_repeatEquipSet(jobs);
-  return (jobs||_jobs).filter(function(j){return s.has(j.Equipment_ID||'');}).length;
+  return (jobs||_jobs).filter(function(j){return s.has(String(j.Equipment_ID||''));}).length;
 }
 
 /* Ã¢ÂÂÃ¢ÂÂ KPI click filter Ã¢ÂÂÃ¢ÂÂ */
@@ -814,7 +814,7 @@ function applyFilters(){
   const ven=document.getElementById('filterVendor').value;
   var _repEqs=(st==='REPEAT')?_repeatEquipSet(_jobs):null;
   _filtered=_jobs.filter(j=>{
-    if(st==='REPEAT'){if(!_repEqs.has(j.Equipment_ID||''))return false;}
+    if(st==='REPEAT'){if(!_repEqs.has(String(j.Equipment_ID||'')))return false;}
     else if(st&&j.Status!==st)return false;
     if(pri&&(j.Priority||'MEDIUM').toUpperCase()!==pri)return false;
     if(ven&&j.Vendor_ID!==ven)return false;
