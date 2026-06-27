@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
-<title>EWS Enterprise — Work Orders Overview</title>
+<title>EWS Enterprise â Work Orders Overview</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <style>
@@ -216,7 +216,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   <div class="sys-info">
     <div class="sys-title">System Status</div>
     <div class="sys-status-row"><div class="sys-dot"></div><div class="sys-online">Online</div></div>
-    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">—</span></div>
+    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">â</span></div>
   </div>
 </aside>
 
@@ -227,7 +227,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
     <div class="tb-brand">
       <div class="tb-title-block">
         <div class="tb-title">Work Orders</div>
-        <div class="tb-sub">Overview — All Systems</div>
+        <div class="tb-sub">Overview â All Systems</div>
       </div>
     </div>
     <div class="tb-right">
@@ -235,8 +235,8 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
       <button class="tb-icon-btn"><i class="fas fa-bell"></i><span class="tb-bell-badge" id="tbBellCnt">0</span></button>
       <a href="dashboard.html" class="tb-icon-btn" title="Dashboard"><i class="fas fa-gauge-high"></i></a>
       <div class="tb-user" id="tbUser" onclick="logout()" title="Click to logout">
-        <div class="tb-avatar" id="tbAvatar">—</div>
-        <span class="tb-username" id="tbUsername">—</span>
+        <div class="tb-avatar" id="tbAvatar">â</div>
+        <span class="tb-username" id="tbUsername">â</span>
       </div>
     </div>
   </header>
@@ -254,14 +254,14 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
             <a class="sys-card-link" href="jobs.html">View All <i class="fas fa-arrow-right"></i></a>
           </div>
           <div class="sys-kpis">
-            <div class="sys-kpi" onclick="location.href='jobs.html'"><div class="sys-kpi-val" id="ewsTotal">—</div><div class="sys-kpi-lbl">Total</div></div>
-            <div class="sys-kpi" onclick="location.href='jobs.html?status=OPEN'"><div class="sys-kpi-val clr-open" id="ewsOpen">—</div><div class="sys-kpi-lbl">Open</div></div>
-            <div class="sys-kpi" onclick="location.href='jobs.html?status=SEND_REPAIR'"><div class="sys-kpi-val clr-repair" id="ewsRepair">—</div><div class="sys-kpi-lbl">In Repair</div></div>
-            <div class="sys-kpi" onclick="location.href='jobs.html?status=WAIT_SPARE_PART'"><div class="sys-kpi-val clr-waitpart" id="ewsWaitPart">—</div><div class="sys-kpi-lbl">Wait Parts</div></div>
-            <div class="sys-kpi" onclick="location.href='jobs.html?status=WAIT_APPROVAL'"><div class="sys-kpi-val clr-waitapp" id="ewsWaitApp">—</div><div class="sys-kpi-lbl">Wait Approv.</div></div>
-            <div class="sys-kpi" onclick="location.href='jobs.html?status=CLOSED'"><div class="sys-kpi-val clr-closed" id="ewsClosed">—</div><div class="sys-kpi-lbl">Closed</div></div>
-            <div class="sys-kpi" onclick="location.href='jobs.html?status=RETURNED'"><div class="sys-kpi-val clr-cancel" id="ewsCancel">—</div><div class="sys-kpi-lbl">Cancelled</div></div>
-            <div class="sys-kpi" onclick="location.href='jobs.html?status=REPEAT'"><div class="sys-kpi-val clr-repeat" id="ewsRepeat">—</div><div class="sys-kpi-lbl">Repeat</div></div>
+            <div class="sys-kpi" onclick="location.href='jobs.html'"><div class="sys-kpi-val" id="ewsTotal">â</div><div class="sys-kpi-lbl">Total</div></div>
+            <div class="sys-kpi" onclick="location.href='jobs.html?status=OPEN'"><div class="sys-kpi-val clr-open" id="ewsOpen">â</div><div class="sys-kpi-lbl">Open</div></div>
+            <div class="sys-kpi" onclick="location.href='jobs.html?status=SEND_REPAIR'"><div class="sys-kpi-val clr-repair" id="ewsRepair">â</div><div class="sys-kpi-lbl">In Repair</div></div>
+            <div class="sys-kpi" onclick="location.href='jobs.html?status=WAIT_SPARE_PART'"><div class="sys-kpi-val clr-waitpart" id="ewsWaitPart">â</div><div class="sys-kpi-lbl">Wait Parts</div></div>
+            <div class="sys-kpi" onclick="location.href='jobs.html?status=WAIT_APPROVAL'"><div class="sys-kpi-val clr-waitapp" id="ewsWaitApp">â</div><div class="sys-kpi-lbl">Wait Approv.</div></div>
+            <div class="sys-kpi" onclick="location.href='jobs.html?status=CLOSED'"><div class="sys-kpi-val clr-closed" id="ewsClosed">â</div><div class="sys-kpi-lbl">Closed</div></div>
+            <div class="sys-kpi" onclick="location.href='jobs.html?status=RETURNED'"><div class="sys-kpi-val clr-cancel" id="ewsCancel">â</div><div class="sys-kpi-lbl">Cancelled</div></div>
+            <div class="sys-kpi" onclick="location.href='jobs.html?status=REPEAT'"><div class="sys-kpi-val clr-repeat" id="ewsRepeat">â</div><div class="sys-kpi-lbl">Repeat</div></div>
           </div>
           <div class="sys-sbar-wrap">
             <div class="sys-sbar-title">Status Distribution</div>
@@ -309,8 +309,8 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
               <div class="sys-sbar-fill sf-ret"     id="afcBarRet"    style="width:0%"></div>
             </div>
           </div>
-          <div class="sys-no-data" id="afcNoData" style="display:none"><i class="fas fa-plug-circle-exclamation"></i> Not Connected — AFC System</div>
-          <div class="sys-no-data" id="afcLoading"><i class="fas fa-spinner fa-spin"></i> Loading AFC data…</div>
+          <div class="sys-no-data" id="afcNoData" style="display:none"><i class="fas fa-plug-circle-exclamation"></i> Not Connected â AFC System</div>
+          <div class="sys-no-data" id="afcLoading"><i class="fas fa-spinner fa-spin"></i> Loading AFC dataâ¦</div>
         </div>
 
         <!-- COM -->
@@ -340,23 +340,23 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
               <div class="sys-sbar-fill sf-ret"     id="comBarRet"    style="width:0%"></div>
             </div>
           </div>
-          <div class="sys-no-data" id="comNoData" style="display:none"><i class="fas fa-plug-circle-exclamation"></i> Not Connected — COM System</div>
-          <div class="sys-no-data" id="comLoading"><i class="fas fa-spinner fa-spin"></i> Loading COM data…</div>
+          <div class="sys-no-data" id="comNoData" style="display:none"><i class="fas fa-plug-circle-exclamation"></i> Not Connected â COM System</div>
+          <div class="sys-no-data" id="comLoading"><i class="fas fa-spinner fa-spin"></i> Loading COM dataâ¦</div>
         </div>
 
       </div>
 
       <!-- SUMMARY KPI STRIP -->
       <div class="wo-sum-strip">
-        <div class="wo-sum-card" onclick="location.href='jobs.html'"><div class="wo-sum-val" id="sumTotal">—</div><div class="wo-sum-lbl">Total (All)</div></div>
-        <div class="wo-sum-card" onclick="location.href='jobs.html?status=OPEN'"><div class="wo-sum-val" style="color:var(--cyan50)" id="sumOpen">—</div><div class="wo-sum-lbl">Open</div></div>
-        <div class="wo-sum-card" onclick="location.href='jobs.html?status=SEND_REPAIR'"><div class="wo-sum-val" style="color:var(--orange40)" id="sumRepair">—</div><div class="wo-sum-lbl">In Repair</div></div>
-        <div class="wo-sum-card" onclick="location.href='jobs.html?status=WAIT_SPARE_PART'"><div class="wo-sum-val" style="color:#7d6300" id="sumWaitPart">—</div><div class="wo-sum-lbl">Wait Parts</div></div>
-        <div class="wo-sum-card" onclick="location.href='jobs.html?status=WAIT_APPROVAL'"><div class="wo-sum-val" style="color:var(--teal50)" id="sumWaitApp">—</div><div class="wo-sum-lbl">Wait Approval</div></div>
-        <div class="wo-sum-card" onclick="location.href='jobs.html?status=CLOSED'"><div class="wo-sum-val" style="color:var(--green50)" id="sumClosed">—</div><div class="wo-sum-lbl">Closed</div></div>
-        <div class="wo-sum-card" onclick="location.href='jobs.html?status=RETURNED'"><div class="wo-sum-val" style="color:var(--g60)" id="sumCancel">—</div><div class="wo-sum-lbl">Cancelled</div></div>
-        <div class="wo-sum-card" onclick="location.href='jobs.html?status=REPEAT'"><div class="wo-sum-val" style="color:var(--purple50)" id="sumRepeat">—</div><div class="wo-sum-lbl">Repeat Repair</div></div>
-        <div class="wo-sum-card"><div class="wo-sum-val" style="color:var(--teal50)" id="sumAvgTAT">—</div><div class="wo-sum-lbl">Avg TAT (days)</div></div>
+        <div class="wo-sum-card" onclick="location.href='jobs.html'"><div class="wo-sum-val" id="sumTotal">â</div><div class="wo-sum-lbl">Total (All)</div></div>
+        <div class="wo-sum-card" onclick="location.href='jobs.html?status=OPEN'"><div class="wo-sum-val" style="color:var(--cyan50)" id="sumOpen">â</div><div class="wo-sum-lbl">Open</div></div>
+        <div class="wo-sum-card" onclick="location.href='jobs.html?status=SEND_REPAIR'"><div class="wo-sum-val" style="color:var(--orange40)" id="sumRepair">â</div><div class="wo-sum-lbl">In Repair</div></div>
+        <div class="wo-sum-card" onclick="location.href='jobs.html?status=WAIT_SPARE_PART'"><div class="wo-sum-val" style="color:#7d6300" id="sumWaitPart">â</div><div class="wo-sum-lbl">Wait Parts</div></div>
+        <div class="wo-sum-card" onclick="location.href='jobs.html?status=WAIT_APPROVAL'"><div class="wo-sum-val" style="color:var(--teal50)" id="sumWaitApp">â</div><div class="wo-sum-lbl">Wait Approval</div></div>
+        <div class="wo-sum-card" onclick="location.href='jobs.html?status=CLOSED'"><div class="wo-sum-val" style="color:var(--green50)" id="sumClosed">â</div><div class="wo-sum-lbl">Closed</div></div>
+        <div class="wo-sum-card" onclick="location.href='jobs.html?status=RETURNED'"><div class="wo-sum-val" style="color:var(--g60)" id="sumCancel">â</div><div class="wo-sum-lbl">Cancelled</div></div>
+        <div class="wo-sum-card" onclick="location.href='jobs.html?status=REPEAT'"><div class="wo-sum-val" style="color:var(--purple50)" id="sumRepeat">â</div><div class="wo-sum-lbl">Repeat Repair</div></div>
+        <div class="wo-sum-card"><div class="wo-sum-val" style="color:var(--teal50)" id="sumAvgTAT">â</div><div class="wo-sum-lbl">Avg TAT (days)</div></div>
       </div>
 
       <!-- WO CHARTS ROW -->
@@ -370,7 +370,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
       <div class="wo-table-section" style="margin:0 -16px;padding:0 16px">
         <div class="wt-card">
           <div class="wt-hdr">
-            <span class="wt-title">Recent Work Orders — All Systems</span>
+            <span class="wt-title">Recent Work Orders â All Systems</span>
             <span class="wt-count" id="wctCount">Loading...</span>
           </div>
           <div style="overflow-x:auto">
@@ -409,11 +409,11 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 </div>
 
 <script>
-// ── Config ──
+// ââ Config ââ
 const GAS_URL = localStorage.getItem('rms_gas_url') ||
-  'https://script.google.com/macros/s/AKfycbys3dgS7s6rUtWqxk1jaSTpjeHcHEAE6NUcDeyRIJ9vna8Gl2SEZodMUAvlQvW9P-jWww/exec';
+  'https://script.google.com/macros/s/AKfycbyf0GUfEleoJv1RHZT9nT3Z5JmktyQMEHkviWFs10eNHKkGUbm_pr-lbpj9R4rVVIWVCw/exec';
 
-// ── Auth ──
+// ââ Auth ââ
 function _getSession(){
   try{
     return JSON.parse(sessionStorage.getItem('rms_v3_session')||localStorage.getItem('rms_v3_session')||'null');
@@ -438,7 +438,7 @@ function initAuth(){
   if(un) un.textContent=name;
 }
 
-// ── Sidebar toggle ──
+// ââ Sidebar toggle ââ
 function toggleSidebar(){
   const sb=document.getElementById('mxmSidebar');
   const ov=document.getElementById('sidebarOverlay');
@@ -456,10 +456,10 @@ function toggleWO(e){
   if(s) s.classList.toggle('open');
 }
 
-// ── Status / Priority helpers ──
+// ââ Status / Priority helpers ââ
 function statusLabel(s){
   const m={OPEN:'Open',SEND_REPAIR:'In Repair',WAIT_APPROVAL:'Wait Approval',WAIT_SPARE_PART:'Wait Parts',CLOSED:'Closed',RETURNED:'Returned'};
-  return m[s]||s||'—';
+  return m[s]||s||'â';
 }
 function statusCls(s){
   const m={OPEN:'sc-open',SEND_REPAIR:'sc-repair',WAIT_APPROVAL:'sc-waitapp',WAIT_SPARE_PART:'sc-waitpart',CLOSED:'sc-closed',RETURNED:'sc-returned'};
@@ -470,7 +470,7 @@ function priCls(p){
   return 'pc '+(m[p]||'');
 }
 function fmtDate(d){
-  if(!d) return '—';
+  if(!d) return 'â';
   try{
     const dt=new Date(d);
     if(isNaN(dt)) return d;
@@ -478,7 +478,7 @@ function fmtDate(d){
   }catch(e){return d;}
 }
 
-// ── Shared state for aggregation ──
+// ââ Shared state for aggregation ââ
 var _sysData = {ews: null, afc: null, com: null};
 
 function _calcStats(jobs){
@@ -520,7 +520,7 @@ function _updateAllSummary(){
   }
 }
 
-// ── Load EWS data ──
+// ââ Load EWS data ââ
 async function loadEWS(){
   try{
     const url = GAS_URL+'?action=getJobs&token='+encodeURIComponent(_getToken());
@@ -622,7 +622,7 @@ function renderTable(jobs){
   document.getElementById('wctCount').textContent=jobs.length+(jobs.length===50?' (latest 50)':' records');
 }
 
-// ── Merge all systems into Recent Work Orders table ──
+// ââ Merge all systems into Recent Work Orders table ââ
 function _mergeTable(){
   var all=[];
   if(_sysData.ews&&_sysData.ews.jobs) all=all.concat(_sysData.ews.jobs);
@@ -634,7 +634,7 @@ function _mergeTable(){
   renderTable(all.slice(0,50));
 }
 
-// ── Load AFC data ──
+// ââ Load AFC data ââ
 async function loadAFC(){
   var elLoad=document.getElementById('afcLoading'),
       elSbar=document.getElementById('afcSbar'),
@@ -675,7 +675,7 @@ async function loadAFC(){
   }
 }
 
-// ── Load COM data ──
+// ââ Load COM data ââ
 async function loadCOM(){
   var elLoad=document.getElementById('comLoading'),
       elSbar=document.getElementById('comSbar'),
@@ -774,7 +774,7 @@ function loadAll(){
   loadCOM();
 }
 
-// ── Init ──
+// ââ Init ââ
 initAuth();
 loadAll();
 </script>
