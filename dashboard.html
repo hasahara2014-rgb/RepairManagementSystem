@@ -663,9 +663,11 @@ function _getToken(){
 
 /* Ã¢ÂÂÃ¢ÂÂ Sample Data Ã¢ÂÂÃ¢ÂÂ */
 const SAMPLE_VENDORS=[
-  {Vendor_ID:'V001',Vendor_Name:'Ã Â¹ÂÃ Â¸ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â¡Ã Â¸Â²Ã Â¸ÂªÃ Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹Â Ã Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â±Ã Â¸Â'},
-  {Vendor_ID:'V002',Vendor_Name:'Ã Â¸Â­Ã Â¸Â´Ã Â¸ÂÃ Â¸ÂÃ Â¸Â±Ã Â¸ÂªÃ Â¹ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸ÂµÃ Â¸Â¢Ã Â¸Â¥Ã Â¸ÂÃ Â¸Â²Ã Â¸Â£Ã Â¹ÂÃ Â¸Â Ã Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â±Ã Â¸Â'},
-  {Vendor_ID:'V003',Vendor_Name:'Ã Â¸Â­Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â¡Ã Â¸ÂÃ Â¸Â±Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â£ Ã Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â±Ã Â¸Â'},
+  {Vendor_ID:'V001',Vendor_Name:'Technomaster Co.'},
+  {Vendor_ID:'V002',Vendor_Name:'IndustrialPart Co.'},
+  {Vendor_ID:'V003',Vendor_Name:'AutomationPro Co.'},
+  {Vendor_ID:'V004',Vendor_Name:'PrecisionTech Co.'},
+  {Vendor_ID:'V005',Vendor_Name:'GlobalService Co.'},
 ];
 const SAMPLE_PARTS=[
   {Part_ID:'P001',Part_Name:'Motor Bearing 6205',Category:'Bearing',Current_Stock:12,Min_Stock:5,Cost:350},
@@ -747,7 +749,7 @@ function _tagJobs(jobs,sys){return(Array.isArray(jobs)?jobs:[]).map(j=>Object.as
 function loadData(){
   document.getElementById('loadingOverlay').classList.remove('hidden');
   const tok=_getToken();
-  const b=GAS_URL+'?tok='+encodeURIComponent(tok);
+  const b=GAS_URL+'?token='+encodeURIComponent(tok);
   const mkUrl=function(act,pl){return b+'&action='+act+(pl?'&payload='+encodeURIComponent(JSON.stringify(pl)):'');};
   Promise.all([
     fetch(mkUrl('getJobs')).then(r=>r.json()).catch(()=>({success:false,data:[]})),
