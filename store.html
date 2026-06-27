@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
-<title>EWS Enterprise — Store / Receiving</title>
+<title>EWS Enterprise â Store / Receiving</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
@@ -159,15 +159,15 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 
 
 
-/* ══════════════════════════════════════════
-   RESPONSIVE — TABLET & MOBILE
-   ══════════════════════════════════════════ */
+/* ââââââââââââââââââââââââââââââââââââââââââ
+   RESPONSIVE â TABLET & MOBILE
+   ââââââââââââââââââââââââââââââââââââââââââ */
 
 /* Sidebar overlay (mobile) */
 .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:199;backdrop-filter:blur(2px)}
 .sidebar-overlay.active{display:block}
 
-/* ── TABLET ≤1024px ── */
+/* ââ TABLET â¤1024px ââ */
 @media(max-width:1024px){
   .mxm-sidebar{position:fixed;z-index:200;height:100%;transform:translateX(-240px);transition:transform .22s cubic-bezier(.4,0,.2,1);box-shadow:none}
   .mxm-sidebar.mobile-open{transform:translateX(0);box-shadow:4px 0 24px rgba(0,0,0,.25)}
@@ -184,7 +184,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   .settings-grid{grid-template-columns:180px 1fr!important}
 }
 
-/* ── MOBILE ≤767px ── */
+/* ââ MOBILE â¤767px ââ */
 @media(max-width:767px){
   .mxm-topbar{padding:0 10px;gap:6px}
   .tb-title-sub,.ccard-sub{display:none}
@@ -220,7 +220,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   td.td-long{max-width:120px}
 }
 
-/* ── SMALL MOBILE ≤480px ── */
+/* ââ SMALL MOBILE â¤480px ââ */
 @media(max-width:480px){
   .kpi-row{grid-template-columns:repeat(2,1fr)!important}
   .kpi-value{font-size:1.1rem}
@@ -271,7 +271,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   <div class="sys-info">
     <div class="sys-title">System Status</div>
     <div class="sys-status-row"><div class="sys-dot"></div><div class="sys-online">Online</div></div>
-    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">—</span></div>
+    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">â</span></div>
   </div>
 </aside>
 <div class="mxm-main">
@@ -289,8 +289,8 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
     <button class="tb-icon-btn"><i class="fas fa-bell"></i></button>
     <a href="dashboard.html" class="tb-icon-btn" title="Dashboard"><i class="fas fa-gauge-high"></i></a>
     <div class="tb-user" onclick="logout()" title="Logout" style="cursor:pointer">
-      <div class="tb-avatar" id="tbAvatar">—</div>
-      <span class="tb-username" id="tbUsername">—</span>
+      <div class="tb-avatar" id="tbAvatar">â</div>
+      <span class="tb-username" id="tbUsername">â</span>
     </div>
   </div>
 </header>
@@ -305,10 +305,10 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   <button class="tb-btn-ghost" onclick="openModal('ISSUE')"><i class="fas fa-arrow-up"></i> Issue</button>
 </div>
 <div class="ks-strip" style="grid-template-columns:repeat(4,1fr);display:grid;gap:2px;flex-shrink:0">
-  <div class="ks-card ksc-g"><div class="ks-label">Total Received (month)</div><div class="ks-value" id="ksRec">—</div></div>
-  <div class="ks-card ksc-o"><div class="ks-label">Total Issued (month)</div><div class="ks-value" id="ksIss">—</div></div>
-  <div class="ks-card ksc-r"><div class="ks-label">Pending Requests</div><div class="ks-value" id="ksPend">—</div></div>
-  <div class="ks-card ksc-p"><div class="ks-label">Transactions Today</div><div class="ks-value" id="ksToday">—</div></div>
+  <div class="ks-card ksc-g"><div class="ks-label">Total Received (month)</div><div class="ks-value" id="ksRec">â</div></div>
+  <div class="ks-card ksc-o"><div class="ks-label">Total Issued (month)</div><div class="ks-value" id="ksIss">â</div></div>
+  <div class="ks-card ksc-r"><div class="ks-label">Pending Requests</div><div class="ks-value" id="ksPend">â</div></div>
+  <div class="ks-card ksc-p"><div class="ks-label">Transactions Today</div><div class="ks-value" id="ksToday">â</div></div>
 </div>
 <div class="tbl-wrap">
 <table class="data-table" style="min-width:600px"><thead><tr>
@@ -327,7 +327,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
       </div>
       <div class="mf-row">
         <div class="mf-group"><label class="mf-label">Quantity *</label><input class="mf-input" type="number" id="mQty" value="1" min="1"></div>
-        <div class="mf-group"><label class="mf-label">Unit</label><input class="mf-input" id="mUnit" value="ชิ้น"></div>
+        <div class="mf-group"><label class="mf-label">Unit</label><input class="mf-input" id="mUnit" value="à¸à¸´à¹à¸"></div>
       </div>
       <div class="mf-group"><label class="mf-label">Reference (Job No. / PO No.)</label><input class="mf-input" id="mRef" placeholder="e.g. JOB-0032"></div>
       <div class="mf-group"><label class="mf-label">Remarks</label><textarea class="mf-textarea" id="mRemarks" placeholder="Additional notes..." style="height:60px"></textarea></div>
@@ -343,7 +343,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 </div>
 </div>
 <script>
-const GAS_URL=localStorage.getItem('rms_gas_url')||'https://script.google.com/macros/s/AKfycbys3dgS7s6rUtWqxk1jaSTpjeHcHEAE6NUcDeyRIJ9vna8Gl2SEZodMUAvlQvW9P-jWww/exec';
+const GAS_URL=localStorage.getItem('rms_gas_url')||'https://script.google.com/macros/s/AKfycbyf0GUfEleoJv1RHZT9nT3Z5JmktyQMEHkviWFs10eNHKkGUbm_pr-lbpj9R4rVVIWVCw/exec';
 
 function _getToken(){
   const s=JSON.parse(sessionStorage.getItem('rms_v3_session')||localStorage.getItem('rms_v3_session')||'null');
@@ -383,22 +383,22 @@ function toggleSidebar(){
     sb.classList.toggle('collapsed');
   }
 }
-function fmtDate(d){if(!d)return'—';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'2-digit'})}
+function fmtDate(d){if(!d)return'â';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'2-digit'})}
 function statusBadge(s){const st=(s||'OPEN').replace(/ /g,'_').toUpperCase();const lbl={OPEN:'Open',SEND_REPAIR:'In Repair',RETURNED:'Returned',WAIT_APPROVAL:'Wait Approval',WAIT_SPARE_PART:'Wait Parts',CLOSED:'Closed'};return`<span class="bs bs-${st}">${lbl[st]||st}</span>`}
 function priBadge(p){const pr=(p||'MEDIUM').toUpperCase();const lbl={CRITICAL:'Critical',HIGH:'High',MEDIUM:'Medium',LOW:'Low'};return`<span class="pri pri-${pr}"><span class="pri-dot"></span>${lbl[pr]||pr}</span>`}
 
 
 let TRANS=[
-  {id:'TR-0001',date:'2026-06-20',type:'RECEIVE',partId:'P001',name:'Motor Bearing 6205',qty:10,unit:'ชิ้น',ref:'PO-2026-042',by:'สมชาย',remarks:''},
-  {id:'TR-0002',date:'2026-06-20',type:'ISSUE',partId:'P002',name:'Hydraulic Seal Kit',qty:2,unit:'ชุด',ref:'JOB-0030',by:'สุชาติ',remarks:'งานซ่อม EQ-008'},
-  {id:'TR-0003',date:'2026-06-19',type:'RECEIVE',partId:'P007',name:'Oil Filter OF-320',qty:12,unit:'ชิ้น',ref:'PO-2026-041',by:'สมชาย',remarks:''},
-  {id:'TR-0004',date:'2026-06-19',type:'ISSUE',partId:'P004',name:'V-Belt A45',qty:2,unit:'เส้น',ref:'PM-005',by:'วิชัย',remarks:'งาน PM'},
-  {id:'TR-0005',date:'2026-06-18',type:'ISSUE',partId:'P006',name:'Contactor LC1-D25',qty:1,unit:'ชิ้น',ref:'JOB-0033',by:'สมหมาย',remarks:''},
-  {id:'TR-0006',date:'2026-06-17',type:'RECEIVE',partId:'P009',name:'O-Ring Kit',qty:5,unit:'ชุด',ref:'PO-2026-040',by:'สมชาย',remarks:''},
-  {id:'TR-0007',date:'2026-06-16',type:'RETURN',partId:'P004',name:'V-Belt A45',qty:1,unit:'เส้น',ref:'JOB-0028',by:'วิชัย',remarks:'ของเก่าคืน'},
-  {id:'TR-0008',date:'2026-06-15',type:'ISSUE',partId:'P001',name:'Motor Bearing 6205',qty:2,unit:'ชิ้น',ref:'JOB-0031',by:'สุชาติ',remarks:''},
-  {id:'TR-0009',date:'2026-06-14',type:'RECEIVE',partId:'P011',name:'PLC Input Card',qty:1,unit:'แผ่น',ref:'PO-2026-039',by:'สมชาย',remarks:''},
-  {id:'TR-0010',date:'2026-06-13',type:'ISSUE',partId:'P003',name:'Control Board PCB',qty:1,unit:'แผ่น',ref:'JOB-0034',by:'สมหมาย',remarks:''},
+  {id:'TR-0001',date:'2026-06-20',type:'RECEIVE',partId:'P001',name:'Motor Bearing 6205',qty:10,unit:'à¸à¸´à¹à¸',ref:'PO-2026-042',by:'à¸ªà¸¡à¸à¸²à¸¢',remarks:''},
+  {id:'TR-0002',date:'2026-06-20',type:'ISSUE',partId:'P002',name:'Hydraulic Seal Kit',qty:2,unit:'à¸à¸¸à¸',ref:'JOB-0030',by:'à¸ªà¸¸à¸à¸²à¸à¸´',remarks:'à¸à¸²à¸à¸à¹à¸­à¸¡ EQ-008'},
+  {id:'TR-0003',date:'2026-06-19',type:'RECEIVE',partId:'P007',name:'Oil Filter OF-320',qty:12,unit:'à¸à¸´à¹à¸',ref:'PO-2026-041',by:'à¸ªà¸¡à¸à¸²à¸¢',remarks:''},
+  {id:'TR-0004',date:'2026-06-19',type:'ISSUE',partId:'P004',name:'V-Belt A45',qty:2,unit:'à¹à¸ªà¹à¸',ref:'PM-005',by:'à¸§à¸´à¸à¸±à¸¢',remarks:'à¸à¸²à¸ PM'},
+  {id:'TR-0005',date:'2026-06-18',type:'ISSUE',partId:'P006',name:'Contactor LC1-D25',qty:1,unit:'à¸à¸´à¹à¸',ref:'JOB-0033',by:'à¸ªà¸¡à¸«à¸¡à¸²à¸¢',remarks:''},
+  {id:'TR-0006',date:'2026-06-17',type:'RECEIVE',partId:'P009',name:'O-Ring Kit',qty:5,unit:'à¸à¸¸à¸',ref:'PO-2026-040',by:'à¸ªà¸¡à¸à¸²à¸¢',remarks:''},
+  {id:'TR-0007',date:'2026-06-16',type:'RETURN',partId:'P004',name:'V-Belt A45',qty:1,unit:'à¹à¸ªà¹à¸',ref:'JOB-0028',by:'à¸§à¸´à¸à¸±à¸¢',remarks:'à¸à¸­à¸à¹à¸à¹à¸²à¸à¸·à¸'},
+  {id:'TR-0008',date:'2026-06-15',type:'ISSUE',partId:'P001',name:'Motor Bearing 6205',qty:2,unit:'à¸à¸´à¹à¸',ref:'JOB-0031',by:'à¸ªà¸¸à¸à¸²à¸à¸´',remarks:''},
+  {id:'TR-0009',date:'2026-06-14',type:'RECEIVE',partId:'P011',name:'PLC Input Card',qty:1,unit:'à¹à¸à¹à¸',ref:'PO-2026-039',by:'à¸ªà¸¡à¸à¸²à¸¢',remarks:''},
+  {id:'TR-0010',date:'2026-06-13',type:'ISSUE',partId:'P003',name:'Control Board PCB',qty:1,unit:'à¹à¸à¹à¸',ref:'JOB-0034',by:'à¸ªà¸¡à¸«à¸¡à¸²à¸¢',remarks:''},
 ];
 
 const typeColors={RECEIVE:'background:var(--green10);color:var(--green50)',ISSUE:'background:var(--red10);color:var(--red60)',RETURN:'background:var(--cyan10);color:var(--cyan50)'};
@@ -427,7 +427,7 @@ function renderTable(){
       <td style="font-size:.72rem;color:var(--g60)">${t.unit}</td>
       <td style="font-size:.72rem;color:var(--p60)">${t.ref}</td>
       <td style="font-size:.72rem;color:var(--g60)">${t.by}</td>
-      <td style="font-size:.7rem;color:var(--g50);max-width:120px;overflow:hidden;text-overflow:ellipsis">${t.remarks||'—'}</td>
+      <td style="font-size:.7rem;color:var(--g50);max-width:120px;overflow:hidden;text-overflow:ellipsis">${t.remarks||'â'}</td>
     </tr>`).join('');
   renderKPIs();
 }
@@ -436,7 +436,7 @@ function openModal(type){
   document.getElementById('mType').value=type||'RECEIVE';
   document.getElementById('modalTitle').textContent=type==='RECEIVE'?'Receive Parts':type==='ISSUE'?'Issue Parts':'Return Parts';
   document.getElementById('mPartId').value='';document.getElementById('mPartName').value='';
-  document.getElementById('mQty').value=1;document.getElementById('mUnit').value='ชิ้น';
+  document.getElementById('mQty').value=1;document.getElementById('mUnit').value='à¸à¸´à¹à¸';
   document.getElementById('mRef').value='';document.getElementById('mRemarks').value='';
   document.getElementById('storeModal').classList.remove('hidden');
 }
