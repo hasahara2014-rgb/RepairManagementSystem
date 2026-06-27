@@ -917,6 +917,18 @@ function openEditModal(jobNo){
 }
 function closeModal(){document.getElementById('jobModal').classList.add('hidden')}
 
+async function _gasPost(payload){
+  const r=await fetch(GAS_URL,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(payload)
+  });
+  if(!r.ok) throw new Error('HTTP '+r.status);
+  const j=await r.json();
+  if(j.success===false) throw new Error(j.error||'GAS error');
+  return j;
+}
+
 async function saveJob(){
   const eq=document.getElementById('mEquipID').value.trim();
   const dmg=document.getElementById('mDamage').value.trim();
@@ -929,38 +941,46 @@ async function saveJob(){
     Status:document.getElementById('mStatus').value,
     Priority:document.getElementById('mPriority').value,
     Create_Date:document.getElementById('mCreateDate').value,
+    Actual_Close:document.getElementById('mCloseDate').value,
     Close_Date:document.getElementById('mCloseDate').value,
   };
-  if(editNo){
-    // Edit existing
-    const idx=_jobs.findIndex(j=>j.JOB_No===editNo);
-    if(idx>=0) _jobs[idx]={..._jobs[idx],...jobData};
-    // Try GAS
-    try{await fetch(GAS_URL,{method:'POST',body:JSON.stringify({action:'updateJob',token:_getToken(),JOB_No:editNo,...jobData})})}catch(e){}
-    toast('Work order updated','success');
-  } else {
-    // Create new
-    const newNo=document.getElementById('mJobNo').value||('JOB-'+String(_jobs.length+1).padStart(4,'0'));
-    const newJob={JOB_No:newNo,...jobData};
-    _jobs.unshift(newJob);
-    try{await fetch(GAS_URL,{method:'POST',body:JSON.stringify({action:'createJob',token:_getToken(),...newJob})})}catch(e){}
-    toast('Work order created','success');
+  const btn=document.querySelector('#jobModal .btn-prim');
+  const orig=btn?btn.innerHTML:'';
+  if(btn){btn.disabled=true;btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> Saving...';}
+  try{
+    if(editNo){
+      await _gasPost({action:'updateJob',token:_getToken(),jobNo:editNo,data:jobData});
+      const idx=_jobs.findIndex(j=>j.JOB_No===editNo);
+      if(idx>=0) _jobs[idx]={..._jobs[idx],...jobData};
+      toast('Work order '+editNo+' updated','success');
+    } else {
+      const newNo=document.getElementById('mJobNo').value||('JOB-'+String(_jobs.length+1).padStart(4,'0'));
+      const newJob={JOB_No:newNo,...jobData};
+      await _gasPost({action:'createJob',token:_getToken(),data:newJob});
+      _jobs.unshift(newJob);
+      toast('Work order '+newNo+' created','success');
+    }
+    closeModal();
+    renderAll();
+  } catch(err){
+    toast('Save failed: '+err.message,'danger');
+  } finally {
+    if(btn){btn.disabled=false;btn.innerHTML=orig;}
   }
-  closeModal();
-  renderAll();
 }
 
 async function deleteJob(){
   if(!confirm('Delete this work order?'))return;
   const editNo=document.getElementById('editJobNo').value;
+  if(!editNo)return;
   try{
-    await fetch(GAS_URL,{method:'POST',headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({action:'deleteJob',token:_getToken(),JOB_No:editNo})});
-  }catch(e){}
-  _jobs=_jobs.filter(j=>j.JOB_No!==editNo);
-  closeModal();
-  renderAll();
-  toast('Work order deleted','info');
+    await _gasPost({action:'deleteJob',token:_getToken(),jobNo:editNo});
+    _jobs=_jobs.filter(j=>j.JOB_No!==editNo);
+    closeModal();renderAll();
+    toast('Work order '+editNo+' deleted','info');
+  } catch(err){
+    toast('Delete failed: '+err.message,'danger');
+  }
 }
 
 /* Ã¢ÂÂÃ¢ÂÂ Export Ã¢ÂÂÃ¢ÂÂ */
