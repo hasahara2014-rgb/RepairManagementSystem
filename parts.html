@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
-<title>EWS Enterprise — Inventory — Spare Parts</title>
+<title>EWS Enterprise â Inventory â Spare Parts</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
@@ -159,15 +159,15 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 
 
 
-/* ══════════════════════════════════════════
-   RESPONSIVE — TABLET & MOBILE
-   ══════════════════════════════════════════ */
+/* ââââââââââââââââââââââââââââââââââââââââââ
+   RESPONSIVE â TABLET & MOBILE
+   ââââââââââââââââââââââââââââââââââââââââââ */
 
 /* Sidebar overlay (mobile) */
 .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:199;backdrop-filter:blur(2px)}
 .sidebar-overlay.active{display:block}
 
-/* ── TABLET ≤1024px ── */
+/* ââ TABLET â¤1024px ââ */
 @media(max-width:1024px){
   .mxm-sidebar{position:fixed;z-index:200;height:100%;transform:translateX(-240px);transition:transform .22s cubic-bezier(.4,0,.2,1);box-shadow:none}
   .mxm-sidebar.mobile-open{transform:translateX(0);box-shadow:4px 0 24px rgba(0,0,0,.25)}
@@ -184,7 +184,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   .settings-grid{grid-template-columns:180px 1fr!important}
 }
 
-/* ── MOBILE ≤767px ── */
+/* ââ MOBILE â¤767px ââ */
 @media(max-width:767px){
   .mxm-topbar{padding:0 10px;gap:6px}
   .tb-title-sub,.ccard-sub{display:none}
@@ -220,7 +220,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   td.td-long{max-width:120px}
 }
 
-/* ── SMALL MOBILE ≤480px ── */
+/* ââ SMALL MOBILE â¤480px ââ */
 @media(max-width:480px){
   .kpi-row{grid-template-columns:repeat(2,1fr)!important}
   .kpi-value{font-size:1.1rem}
@@ -271,7 +271,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   <div class="sys-info">
     <div class="sys-title">System Status</div>
     <div class="sys-status-row"><div class="sys-dot"></div><div class="sys-online">Online</div></div>
-    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">—</span></div>
+    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">â</span></div>
   </div>
 </aside>
 <div class="mxm-main">
@@ -289,8 +289,8 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
     <button class="tb-icon-btn"><i class="fas fa-bell"></i></button>
     <a href="dashboard.html" class="tb-icon-btn" title="Dashboard"><i class="fas fa-gauge-high"></i></a>
     <div class="tb-user" onclick="logout()" title="Logout" style="cursor:pointer">
-      <div class="tb-avatar" id="tbAvatar">—</div>
-      <span class="tb-username" id="tbUsername">—</span>
+      <div class="tb-avatar" id="tbAvatar">â</div>
+      <span class="tb-username" id="tbUsername">â</span>
     </div>
   </div>
 </header>
@@ -310,16 +310,16 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   <button class="tb-btn-primary" onclick="openModal()"><i class="fas fa-plus"></i> Add Part</button>
 </div>
 <div class="ks-strip" style="grid-template-columns:repeat(5,1fr);display:grid;gap:2px;flex-shrink:0">
-  <div class="ks-card ksc-p"><div class="ks-label">Total Parts</div><div class="ks-value" id="ksTotal">—</div></div>
-  <div class="ks-card ksc-g"><div class="ks-label">In Stock Items</div><div class="ks-value" id="ksInStock">—</div></div>
-  <div class="ks-card ksc-y"><div class="ks-label">Low Stock</div><div class="ks-value" id="ksLow">—</div></div>
-  <div class="ks-card ksc-r"><div class="ks-label">Out of Stock</div><div class="ks-value" id="ksOut">—</div></div>
-  <div class="ks-card ksc-t"><div class="ks-label">Inventory Value (฿)</div><div class="ks-value" id="ksValue">—</div></div>
+  <div class="ks-card ksc-p"><div class="ks-label">Total Parts</div><div class="ks-value" id="ksTotal">â</div></div>
+  <div class="ks-card ksc-g"><div class="ks-label">In Stock Items</div><div class="ks-value" id="ksInStock">â</div></div>
+  <div class="ks-card ksc-y"><div class="ks-label">Low Stock</div><div class="ks-value" id="ksLow">â</div></div>
+  <div class="ks-card ksc-r"><div class="ks-label">Out of Stock</div><div class="ks-value" id="ksOut">â</div></div>
+  <div class="ks-card ksc-t"><div class="ks-label">Inventory Value (à¸¿)</div><div class="ks-value" id="ksValue">â</div></div>
 </div>
 <div class="tbl-wrap">
 <table class="data-table" style="min-width:600px"><thead><tr>
   <th>Part ID</th><th>Part Name</th><th>Category</th><th>Unit</th>
-  <th>Current Stock</th><th>Min Stock</th><th>Stock Status</th><th>Unit Cost (฿)</th><th>Total Value (฿)</th><th>Location</th><th>Actions</th>
+  <th>Current Stock</th><th>Min Stock</th><th>Stock Status</th><th>Unit Cost (à¸¿)</th><th>Total Value (à¸¿)</th><th>Location</th><th>Actions</th>
 </tr></thead><tbody id="tBody"></tbody></table>
 </div>
 <div class="modal-overlay hidden" id="partModal">
@@ -333,14 +333,14 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
       </div>
       <div class="mf-group"><label class="mf-label">Part Name *</label><input class="mf-input" id="mName" placeholder="Full part name..."></div>
       <div class="mf-row">
-        <div class="mf-group"><label class="mf-label">Unit</label><input class="mf-input" id="mUnit" value="ชิ้น"></div>
+        <div class="mf-group"><label class="mf-label">Unit</label><input class="mf-input" id="mUnit" value="à¸à¸´à¹à¸"></div>
         <div class="mf-group"><label class="mf-label">Location</label><input class="mf-input" id="mLoc" placeholder="e.g. A-01-03"></div>
       </div>
       <div class="mf-row">
         <div class="mf-group"><label class="mf-label">Current Stock</label><input class="mf-input" type="number" id="mStock" value="0" min="0"></div>
         <div class="mf-group"><label class="mf-label">Min Stock</label><input class="mf-input" type="number" id="mMin" value="2" min="0"></div>
       </div>
-      <div class="mf-group"><label class="mf-label">Unit Cost (฿)</label><input class="mf-input" type="number" id="mCost" value="0" min="0"></div>
+      <div class="mf-group"><label class="mf-label">Unit Cost (à¸¿)</label><input class="mf-input" type="number" id="mCost" value="0" min="0"></div>
     </div>
     <div class="modal-footer">
       <button class="btn-danger hidden" id="btnDel" onclick="deletePart()"><i class="fas fa-trash"></i> Delete</button>
@@ -405,26 +405,26 @@ function toggleSidebar(){
     sb.classList.toggle('collapsed');
   }
 }
-function fmtDate(d){if(!d)return'—';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'2-digit'})}
+function fmtDate(d){if(!d)return'â';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'2-digit'})}
 function statusBadge(s){const st=(s||'OPEN').replace(/ /g,'_').toUpperCase();const lbl={OPEN:'Open',SEND_REPAIR:'In Repair',RETURNED:'Returned',WAIT_APPROVAL:'Wait Approval',WAIT_SPARE_PART:'Wait Parts',CLOSED:'Closed'};return`<span class="bs bs-${st}">${lbl[st]||st}</span>`}
 function priBadge(p){const pr=(p||'MEDIUM').toUpperCase();const lbl={CRITICAL:'Critical',HIGH:'High',MEDIUM:'Medium',LOW:'Low'};return`<span class="pri pri-${pr}"><span class="pri-dot"></span>${lbl[pr]||pr}</span>`}
 
 
-const GAS_URL=localStorage.getItem('rms_gas_url')||'https://script.google.com/macros/s/AKfycbys3dgS7s6rUtWqxk1jaSTpjeHcHEAE6NUcDeyRIJ9vna8Gl2SEZodMUAvlQvW9P-jWww/exec';
+const GAS_URL=localStorage.getItem('rms_gas_url')||'https://script.google.com/macros/s/AKfycbyf0GUfEleoJv1RHZT9nT3Z5JmktyQMEHkviWFs10eNHKkGUbm_pr-lbpj9R4rVVIWVCw/exec';
 
 function _getToken(){
   const s=JSON.parse(sessionStorage.getItem('rms_v3_session')||localStorage.getItem('rms_v3_session')||'null');
   return s?.token||'';
 }
 const SAMPLE_PARTS_LOCAL=[
-  {id:'P001',name:'Motor Bearing 6205',cat:'Bearing',unit:'ชิ้น',stock:12,min:5,cost:350,loc:'A-01-01'},
-  {id:'P002',name:'Hydraulic Seal Kit 50mm',cat:'Seal',unit:'ชุด',stock:3,min:5,cost:890,loc:'A-02-03'},
-  {id:'P003',name:'Drive Belt B-Type',cat:'Belt',unit:'เส้น',stock:8,min:3,cost:220,loc:'B-01-02'},
-  {id:'P004',name:'Relay 24VDC',cat:'Electrical',unit:'ชิ้น',stock:15,min:5,cost:180,loc:'C-03-01'},
-  {id:'P005',name:'Oil Filter HF200',cat:'Filter',unit:'ชิ้น',stock:6,min:4,cost:450,loc:'B-02-01'},
-  {id:'P006',name:'Pressure Gauge 0-16bar',cat:'Instrument',unit:'ชิ้น',stock:4,min:2,cost:680,loc:'C-01-04'},
-  {id:'P007',name:'Contactor LC1-D09',cat:'Electrical',unit:'ชิ้น',stock:7,min:3,cost:520,loc:'C-03-02'},
-  {id:'P008',name:'Gear Oil VG220 (20L)',cat:'Lubricant',unit:'ถัง',stock:5,min:2,cost:1200,loc:'D-01-01'},
+  {id:'P001',name:'Motor Bearing 6205',cat:'Bearing',unit:'à¸à¸´à¹à¸',stock:12,min:5,cost:350,loc:'A-01-01'},
+  {id:'P002',name:'Hydraulic Seal Kit 50mm',cat:'Seal',unit:'à¸à¸¸à¸',stock:3,min:5,cost:890,loc:'A-02-03'},
+  {id:'P003',name:'Drive Belt B-Type',cat:'Belt',unit:'à¹à¸ªà¹à¸',stock:8,min:3,cost:220,loc:'B-01-02'},
+  {id:'P004',name:'Relay 24VDC',cat:'Electrical',unit:'à¸à¸´à¹à¸',stock:15,min:5,cost:180,loc:'C-03-01'},
+  {id:'P005',name:'Oil Filter HF200',cat:'Filter',unit:'à¸à¸´à¹à¸',stock:6,min:4,cost:450,loc:'B-02-01'},
+  {id:'P006',name:'Pressure Gauge 0-16bar',cat:'Instrument',unit:'à¸à¸´à¹à¸',stock:4,min:2,cost:680,loc:'C-01-04'},
+  {id:'P007',name:'Contactor LC1-D09',cat:'Electrical',unit:'à¸à¸´à¹à¸',stock:7,min:3,cost:520,loc:'C-03-02'},
+  {id:'P008',name:'Gear Oil VG220 (20L)',cat:'Lubricant',unit:'à¸à¸±à¸',stock:5,min:2,cost:1200,loc:'D-01-01'},
 ];
 let PARTS=[...SAMPLE_PARTS_LOCAL];
 
@@ -491,7 +491,7 @@ function openModal(id){
   document.getElementById('mId').value=p?p.id:'P'+String(PARTS.length+1).padStart(3,'0');
   document.getElementById('mName').value=p?p.name:'';
   document.getElementById('mCat').value=p?p.cat:'Bearing';
-  document.getElementById('mUnit').value=p?p.unit:'ชิ้น';
+  document.getElementById('mUnit').value=p?p.unit:'à¸à¸´à¹à¸';
   document.getElementById('mLoc').value=p?p.loc:'';
   document.getElementById('mStock').value=p?p.stock:0;
   document.getElementById('mMin').value=p?p.min:2;
@@ -548,7 +548,7 @@ function loadData(){
         id:p.Part_ID||p.id,
         name:p.Part_Name||p.name,
         cat:p.Category||p.cat,
-        unit:p.Unit||p.unit||'ชิ้น',
+        unit:p.Unit||p.unit||'à¸à¸´à¹à¸',
         stock:Number(p.Current_Stock||p.stock||0),
         min:Number(p.Min_Stock||p.min||0),
         cost:Number(p.Cost||p.cost||0),
