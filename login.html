@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
-<title>EWS Enterprise Ã¢ÂÂ Sign In</title>
+<title>EWS Enterprise — Sign In</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <style>
@@ -20,7 +20,7 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
 
 .login-shell{display:flex;height:100vh}
 
-/* Ã¢ÂÂÃ¢ÂÂ LEFT PANEL Ã¢ÂÂÃ¢ÂÂ */
+/* ── LEFT PANEL ── */
 .lp{
   width:55%;background:var(--g90);
   display:flex;flex-direction:column;
@@ -61,7 +61,7 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
 .lp-footer-text{color:var(--g60);font-size:.68rem;line-height:1.5}
 .lp-version{display:inline-block;background:rgba(15,98,254,.2);color:var(--p50);font-size:.62rem;font-weight:600;padding:2px 10px;margin-top:6px;border:1px solid rgba(15,98,254,.3)}
 
-/* Ã¢ÂÂÃ¢ÂÂ RIGHT PANEL Ã¢ÂÂÃ¢ÂÂ */
+/* ── RIGHT PANEL ── */
 .rp{
   flex:1;background:var(--g10);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -130,15 +130,15 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
 
 .rp-footer{position:absolute;bottom:24px;left:0;right:0;text-align:center;color:var(--g50);font-size:.65rem}
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
-   RESPONSIVE Ã¢ÂÂ TABLET & MOBILE
-   Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════════════════════════════════
+   RESPONSIVE — TABLET & MOBILE
+  #══════════════════════════════════════════ */
 
 /* Sidebar overlay (mobile) */
 .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:199;backdrop-filter:blur(2px)}
 .sidebar-overlay.active{display:block}
 
-/* Ã¢ÂÂÃ¢ÂÂ TABLET Ã¢ÂÂ¤1024px Ã¢ÂÂÃ¢ÂÂ */
+/* ── TABLET ≤1024px ── */
 @media(max-width:1024px){
   .mxm-sidebar{position:fixed;z-index:200;height:100%;transform:translateX(-240px);transition:transform .22s cubic-bezier(.4,0,.2,1);box-shadow:none}
   .mxm-sidebar.mobile-open{transform:translateX(0);box-shadow:4px 0 24px rgba(0,0,0,.25)}
@@ -155,7 +155,7 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
   .settings-grid{grid-template-columns:180px 1fr!important}
 }
 
-/* Ã¢ÂÂÃ¢ÂÂ MOBILE Ã¢ÂÂ¤767px Ã¢ÂÂÃ¢ÂÂ */
+/* ── MOBILE ≤767px ── */
 @media(max-width:767px){
   .mxm-topbar{padding:0 10px;gap:6px}
   .tb-title-sub,.ccard-sub{display:none}
@@ -191,7 +191,7 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
   td.td-long{max-width:120px}
 }
 
-/* Ã¢ÂÂÃ¢ÂÂ SMALL MOBILE Ã¢ÂÂ¤480px Ã¢ÂÂÃ¢ÂÂ */
+/* ── SMALL MOBILE ≤480px ── */
 @media(max-width:480px){
   .kpi-row{grid-template-columns:repeat(2,1fr)!important}
   .kpi-value{font-size:1.1rem}
@@ -199,7 +199,7 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
   .tb-title{display:none}
 }
 
-/* Ã¢ÂÂÃ¢ÂÂ Login Responsive Ã¢ÂÂÃ¢ÂÂ */
+/* ── Login Responsive ── */
 @media(max-width:1024px){
   .login-shell{grid-template-columns:1fr 1.2fr}
   .lp{padding:32px 28px}
@@ -241,7 +241,7 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
 
     <div class="lp-headline">
       <h1>Maintenance &amp;<br><strong>Repair Management</strong></h1>
-      <p>Ã Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â´Ã Â¸Â«Ã Â¸Â²Ã Â¸Â£Ã Â¸ÂÃ Â¸Â±Ã Â¸ÂÃ Â¸ÂÃ Â¸Â²Ã Â¸Â£Ã Â¸ÂÃ Â¸Â²Ã Â¸ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡Ã Â¸ÂÃ Â¸Â³Ã Â¸Â£Ã Â¸Â¸Ã Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸ÂÃ Â¸Â§Ã Â¸ÂÃ Â¸ÂÃ Â¸Â£ Ã Â¸ÂªÃ Â¸Â³Ã Â¸Â«Ã Â¸Â£Ã Â¸Â±Ã Â¸ÂÃ Â¸Â­Ã Â¸ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸Â±Ã Â¸Â Enterprise Ã Â¸ÂÃ Â¸ÂµÃ Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸ÂÃ Â¸ÂÃ Â¸Â²Ã Â¸Â£Ã Â¸ÂÃ Â¸Â§Ã Â¸ÂÃ Â¸ÂÃ Â¸Â¸Ã Â¸Â¡Ã Â¸ÂÃ Â¸Â¸Ã Â¸ÂÃ Â¸Â Ã Â¸Â²Ã Â¸ÂÃ Â¹ÂÃ Â¸Â¥Ã Â¸Â°Ã Â¸ÂÃ Â¸Â£Ã Â¸Â°Ã Â¸ÂªÃ Â¸Â´Ã Â¸ÂÃ Â¸ÂÃ Â¸Â´Ã Â¸Â Ã Â¸Â²Ã Â¸Â</p>
+      <p>ระบบบริหารจัดการงานซ่อมบำรุงแบบครบวงจร สำหรับองค์กรระดับ Enterprise ที่ต้องการควบคุมคุณภาพและประสิทธิภาพ</p>
     </div>
 
     <div class="lp-features">
@@ -249,35 +249,35 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
         <div class="feature-icon"><i class="fas fa-gauge-high"></i></div>
         <div>
           <div class="feature-title">Real-time Dashboard</div>
-          <div class="feature-desc">Ã Â¸ÂÃ Â¸Â´Ã Â¸ÂÃ Â¸ÂÃ Â¸Â²Ã Â¸Â¡ KPI Ã Â¸ÂªÃ Â¸Â³Ã Â¸ÂÃ Â¸Â±Ã Â¸Â Ã¢ÂÂ MTTR, MTBF, Repair Yield Ã Â¹ÂÃ Â¸Â¥Ã Â¸Â° Equipment Availability Ã Â¹ÂÃ Â¸ÂÃ Â¸Â Real-time</div>
+          <div class="feature-desc">ติดตาม KPI สำคัญ — MTTR, MTBF, Repair Yield และ Equipment Availability แบบ Real-time</div>
         </div>
       </div>
       <div class="feature-item">
         <div class="feature-icon"><i class="fas fa-clipboard-list"></i></div>
         <div>
           <div class="feature-title">Work Order Management</div>
-          <div class="feature-desc">Ã Â¸ÂªÃ Â¸Â£Ã Â¹ÂÃ Â¸Â²Ã Â¸Â Ã Â¸ÂÃ Â¸Â´Ã Â¸ÂÃ Â¸ÂÃ Â¸Â²Ã Â¸Â¡ Ã Â¹ÂÃ Â¸Â¥Ã Â¸Â°Ã Â¸ÂÃ Â¸Â´Ã Â¸ÂÃ Â¸ÂÃ Â¸Â²Ã Â¸ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¢Ã Â¹ÂÃ Â¸Â²Ã Â¸ÂÃ Â¸Â¡Ã Â¸ÂµÃ Â¸ÂÃ Â¸Â£Ã Â¸Â°Ã Â¸ÂªÃ Â¸Â´Ã Â¸ÂÃ Â¸ÂÃ Â¸Â´Ã Â¸Â Ã Â¸Â²Ã Â¸Â Ã Â¸ÂÃ Â¸Â£Ã Â¹ÂÃ Â¸Â­Ã Â¸Â¡ Approval Workflow</div>
+          <div class="feature-desc">สร้าง ติดตาม และปิดงานซ่อมได้อย่างมีประสิทธิภาพ พร้อม Approval Workflow</div>
         </div>
       </div>
       <div class="feature-item">
         <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
         <div>
           <div class="feature-title">Analytics &amp; Reports</div>
-          <div class="feature-desc">Ã Â¸Â§Ã Â¸Â´Ã Â¹ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â²Ã Â¸Â°Ã Â¸Â«Ã Â¹ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â§Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â¡Ã Â¸ÂÃ Â¸Â²Ã Â¸Â£Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡ Pareto Analysis Ã Â¹ÂÃ Â¸Â¥Ã Â¸Â° Vendor Performance</div>
+          <div class="feature-desc">วิเคราะห์แนวโน้มการซ่อม Pareto Analysis และ Vendor Performance</div>
         </div>
       </div>
       <div class="feature-item">
         <div class="feature-icon"><i class="fas fa-shield-halved"></i></div>
         <div>
           <div class="feature-title">Role-based Access Control</div>
-          <div class="feature-desc">Ã Â¸ÂÃ Â¸Â§Ã Â¸ÂÃ Â¸ÂÃ Â¸Â¸Ã Â¸Â¡Ã Â¸ÂªÃ Â¸Â´Ã Â¸ÂÃ Â¸ÂÃ Â¸Â´Ã Â¹ÂÃ Â¸ÂÃ Â¸Â²Ã Â¸Â£Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â²Ã Â¸ÂÃ Â¸Â¶Ã Â¸ÂÃ Â¸ÂÃ Â¸Â²Ã Â¸Â¡ Role: Admin, Manager, Technician, Viewer</div>
+          <div class="feature-desc">ควบคุมสิทธิ์การเข้าถึงตาม Role: Admin, Manager, Technician, Viewer</div>
         </div>
       </div>
     </div>
 
     <div class="lp-footer">
       <div class="lp-footer-text">EWS Enterprise Repair Management System<br>Powered by Google Apps Script &amp; GitHub Pages</div>
-      <div class="lp-version">v5.0 Design System Ã¢ÂÂ IBM Carbon Inspired</div>
+      <div class="lp-version">v5.0 Design System — IBM Carbon Inspired</div>
     </div>
   </div>
 
@@ -285,11 +285,11 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
   <div class="rp">
     <div class="rp-inner">
       <div class="rp-title">Sign in to <strong>EWS Enterprise</strong></div>
-      <div class="rp-sub">Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â²Ã Â¸ÂªÃ Â¸Â¹Ã Â¹ÂÃ Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â§Ã Â¸Â¢Ã Â¸ÂÃ Â¸Â±Ã Â¸ÂÃ Â¸ÂÃ Â¸ÂµÃ Â¸ÂÃ Â¸ÂµÃ Â¹ÂÃ Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â£Ã Â¸Â±Ã Â¸ÂÃ Â¸Â¡Ã Â¸Â­Ã Â¸ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¸Â²Ã Â¸Â¢</div>
+      <div class="rp-sub">เข้าสู่ระบบด้วยบัญชีที่ได้รับมอบหมาย</div>
 
       <div class="form-error hidden" id="loginError">
         <i class="fas fa-circle-exclamation"></i>
-        <span id="loginErrorMsg">Username Ã Â¸Â«Ã Â¸Â£Ã Â¸Â·Ã Â¸Â­ Password Ã Â¹ÂÃ Â¸Â¡Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¹Ã Â¸ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â</span>
+        <span id="loginErrorMsg">Username หรือ Password ไม่ถูกต้อง</span>
       </div>
 
       <form id="loginForm" onsubmit="doLogin(event)">
@@ -323,23 +323,23 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
         <div class="demo-title"><i class="fas fa-circle-info" style="margin-right:4px"></i>Demo Accounts</div>
         <div class="demo-row">
           <button class="demo-tag" onclick="fillDemo('admin','admin1234')">admin / admin1234</button>
-          <span class="demo-sep">Ã¢ÂÂ¢</span>
+          <span class="demo-sep">•</span>
           <span style="font-size:.65rem;color:var(--g60)">Administrator</span>
         </div>
         <div class="demo-row">
           <button class="demo-tag" onclick="fillDemo('tech','tech1234')">tech / tech1234</button>
-          <span class="demo-sep">Ã¢ÂÂ¢</span>
+          <span class="demo-sep">•</span>
           <span style="font-size:.65rem;color:var(--g60)">Technician</span>
         </div>
         <div class="demo-row">
           <button class="demo-tag" onclick="fillDemo('viewer','view1234')">viewer / view1234</button>
-          <span class="demo-sep">Ã¢ÂÂ¢</span>
+          <span class="demo-sep">•</span>
           <span style="font-size:.65rem;color:var(--g60)">Viewer</span>
         </div>
       </div>
     </div>
 
-    <div class="rp-footer">ÃÂ© 2025 EWS Enterprise. All rights reserved.</div>
+    <div class="rp-footer">© 2025 EWS Enterprise. All rights reserved.</div>
   </div>
 
 </div>
@@ -406,11 +406,12 @@ async function doLogin(e){
   // Demo account fallback
   const demo=DEMO_ACCOUNTS[u.toLowerCase()];
   if(demo&&demo.password===p){
-    createSession(u,demo.role,demo.displayName);
+    const localToken='demo_'+Math.random().toString(36).slice(2)+Date.now().toString(36);
+    createSession(u,demo.role,demo.displayName,localToken);
     return;
   }
 
-  showError('Username Ã Â¸Â«Ã Â¸Â£Ã Â¸Â·Ã Â¸Â­ Password Ã Â¹ÂÃ Â¸Â¡Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¹Ã Â¸ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â Ã Â¸ÂÃ Â¸Â£Ã Â¸Â¸Ã Â¸ÂÃ Â¸Â²Ã Â¸Â¥Ã Â¸Â­Ã Â¸ÂÃ Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹ÂÃ Â¸Â­Ã Â¸ÂµÃ Â¸ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â');
+  showError('Username หรือ Password ไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง');
   btn.disabled=false;
   btn.innerHTML='<i class="fas fa-right-to-bracket"></i> Sign In';
 }
@@ -418,9 +419,4 @@ async function doLogin(e){
 function createSession(username,role,displayName,token){
   const session={username,role,displayName,token:token||'',loginTime:Date.now()};
   sessionStorage.setItem('rms_v3_session',JSON.stringify(session));
-  localStorage.setItem('rms_v3_session',JSON.stringify(session));
-  window.location.href='dashboard.html';
-}
-</script>
-</body>
-</html
+  localStorage.setItem('rms_v3_s
