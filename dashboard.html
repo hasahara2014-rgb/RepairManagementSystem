@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
-<title>EWS Enterprise Ã¢ÂÂ Maintenance &amp; Repair Dashboard</title>
+<title>EWS Enterprise &mdash; Maintenance &amp; Repair Dashboard</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 /* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
-   EWS Design System v5.0  Ã¢ÂÂ  IBM Carbon / Maximo Inspired
+   EWS Design System v5.0  &mdash;  IBM Carbon / Maximo Inspired
 Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -326,7 +326,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .nowrap{white-space:nowrap}
 
 /* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
-   RESPONSIVE Ã¢ÂÂ TABLET & MOBILE
+   RESPONSIVE &mdash; TABLET & MOBILE
    Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 
 /* Sidebar overlay (mobile) */
@@ -420,7 +420,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   <nav class="sidebar-nav">
     <a class="nav-item active" href="dashboard.html"><i class="nav-icon fas fa-gauge-high"></i><span class="nav-label">Dashboards</span></a>
     <div class="nav-item-group" id="woGroup">
-  <div class="nav-item nav-item-parent" onclick="toggleWO()"><i class="nav-icon fas fa-clipboard-list"></i><span class="nav-label">Work Orders</span><span class="nav-badge" id="navBadgeJobs">Ã¢ÂÂ</span><i class="nav-submenu-arrow fas fa-chevron-down nav-label"></i></div>
+  <div class="nav-item nav-item-parent" onclick="toggleWO()"><i class="nav-icon fas fa-clipboard-list"></i><span class="nav-label">Work Orders</span><span class="nav-badge" id="navBadgeJobs">&mdash;</span><i class="nav-submenu-arrow fas fa-chevron-down nav-label"></i></div>
   <div class="nav-submenu" id="woSub">
     <a class="nav-item nav-sub" href="jobs.html"><i class="nav-icon fas fa-circle-dot"></i><span class="nav-label">EWS - Enterprise</span></a>
     <a class="nav-item nav-sub" href="jobs.html?sys=AFC"><i class="nav-icon fas fa-circle-dot"></i><span class="nav-label">AFC - SYSTEMP</span></a>
@@ -454,7 +454,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   <div class="sys-info">
     <div class="sys-title">System Status</div>
     <div class="sys-status-row"><div class="sys-dot"></div><div class="sys-online">Online</div></div>
-    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">Ã¢ÂÂ</span></div>
+    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">&mdash;</span></div>
   </div>
 </aside>
 
@@ -499,7 +499,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
       <!-- Job Trend -->
       <div class="ccard">
         <div class="ccard-head">
-          <div><div class="ccard-title">JOB TREND <span class="ccard-badge badge-p">(No. of Jobs)</span></div><div class="ccard-sub">Monthly job volume Ã¢ÂÂ last 6 months</div></div>
+          <div><div class="ccard-title">JOB TREND <span class="ccard-badge badge-p">(No. of Jobs)</span></div><div class="ccard-sub">Monthly job volume &mdash; last 6 months</div></div>
           <select class="ccard-selector" id="trendSelector"><option value="monthly">Monthly</option><option value="weekly">Weekly</option></select>
         </div>
         <div class="chart-area" style="height:120px"><canvas id="chartJobTrend"></canvas></div>
@@ -508,7 +508,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
       <!-- Completion Trend -->
       <div class="ccard">
         <div class="ccard-head">
-          <div><div class="ccard-title">REPAIR COMPLETION TREND <span class="ccard-badge badge-p">(No. of Jobs Closed)</span></div><div class="ccard-sub">Monthly closed jobs Ã¢ÂÂ last 6 months</div></div>
+          <div><div class="ccard-title">REPAIR COMPLETION TREND <span class="ccard-badge badge-p">(No. of Jobs Closed)</span></div><div class="ccard-sub">Monthly closed jobs &mdash; last 6 months</div></div>
           <select class="ccard-selector"><option>Monthly</option></select>
         </div>
         <div class="chart-area" style="height:120px"><canvas id="chartClosedTrend"></canvas></div>
@@ -517,13 +517,13 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
       <!-- Vendor Cost Summary -->
       <div class="ccard">
         <div class="ccard-head">
-          <div><div class="ccard-title">VENDOR JOB DISTRIBUTION</div><div class="ccard-sub">Jobs by vendor Ã¢ÂÂ current period</div></div>
+          <div><div class="ccard-title">VENDOR JOB DISTRIBUTION</div><div class="ccard-sub">Jobs by vendor &mdash; current period</div></div>
           <select class="ccard-selector"><option>This Month</option></select>
         </div>
         <div class="donut-layout" style="padding:6px 0">
           <div class="donut-chart-wrap">
             <canvas id="chartVendorDonut" width="110" height="110"></canvas>
-            <div class="donut-center"><div class="donut-center-label">Total</div><div class="donut-center-val" id="vendorDonutTotal">Ã¢ÂÂ</div></div>
+            <div class="donut-center"><div class="donut-center-label">Total</div><div class="donut-center-val" id="vendorDonutTotal">&mdash;</div></div>
           </div>
           <div class="legend-list" id="vendorLegend"></div>
         </div>
@@ -538,7 +538,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
         <div class="donut-layout">
           <div class="donut-chart-wrap">
             <canvas id="chartStatusDonut" width="100" height="100"></canvas>
-            <div class="donut-center"><div class="donut-center-label">Total</div><div class="donut-center-val" id="statusDonutTotal">Ã¢ÂÂ</div></div>
+            <div class="donut-center"><div class="donut-center-label">Total</div><div class="donut-center-val" id="statusDonutTotal">&mdash;</div></div>
           </div>
           <div class="legend-list" id="statusLegend"></div>
         </div>
@@ -550,7 +550,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
         <div class="donut-layout">
           <div class="donut-chart-wrap">
             <canvas id="chartPriorityDonut" width="100" height="100"></canvas>
-            <div class="donut-center"><div class="donut-center-label">Total</div><div class="donut-center-val" id="priorityDonutTotal">Ã¢ÂÂ</div></div>
+            <div class="donut-center"><div class="donut-center-label">Total</div><div class="donut-center-val" id="priorityDonutTotal">&mdash;</div></div>
           </div>
           <div class="legend-list" id="priorityLegend"></div>
         </div>
@@ -561,7 +561,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
         <div class="ccard-head"><div><div class="ccard-title">PM COMPLIANCE</div></div></div>
         <div class="gauge-wrap">
           <canvas id="chartPMGauge" width="130" height="80"></canvas>
-          <div class="gauge-pct" id="gaugeValue">Ã¢ÂÂ</div>
+          <div class="gauge-pct" id="gaugeValue">&mdash;</div>
           <div class="gauge-label">Compliance Rate</div>
           <div class="gauge-target">Target: 95%</div>
         </div>
@@ -573,7 +573,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
           <div>
             <div class="ccard-title">OVERDUE WORK ORDERS</div>
             <div style="display:flex;align-items:center;gap:8px;margin-top:4px">
-              <div class="overdue-big" id="overdueCount">Ã¢ÂÂ</div>
+              <div class="overdue-big" id="overdueCount">&mdash;</div>
               <i class="fas fa-triangle-exclamation overdue-icon"></i>
             </div>
             <div class="overdue-label">Overdue Work Orders</div>
@@ -588,7 +588,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
     <div class="chart-row chart-row-4">
       <!-- Top Equipment -->
       <div class="ccard">
-        <div class="ccard-head"><div><div class="ccard-title">TOP 10 EQUIPMENT Ã¢ÂÂ BY JOB COUNT</div><div class="ccard-sub">Most repaired equipment (all time)</div></div></div>
+        <div class="ccard-head"><div><div class="ccard-title">TOP 10 EQUIPMENT &mdash; BY JOB COUNT</div><div class="ccard-sub">Most repaired equipment (all time)</div></div></div>
         <div id="topEquipTable"></div>
         <div class="link-row"><a class="view-link" href="master.html">View All Equipment <i class="fas fa-arrow-right"></i></a></div>
       </div>
@@ -597,7 +597,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
         <div class="ccard-head"><div><div class="ccard-title">EQUIPMENT HEALTH INDEX</div><div class="ccard-sub">Based on repair frequency &amp; recency</div></div></div>
         <div class="donut-layout" style="flex-direction:column;align-items:center;gap:4px">
           <div class="health-grade" id="healthGrade">A</div>
-          <div class="health-score" id="healthScore">Ã¢ÂÂ / 100</div>
+          <div class="health-score" id="healthScore">&mdash; / 100</div>
           <canvas id="chartHealthDonut" width="120" height="120"></canvas>
         </div>
         <div class="link-row"><a class="view-link" href="master.html">View Asset Health <i class="fas fa-arrow-right"></i></a></div>
@@ -642,7 +642,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 
 <script>
 /* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
-   EWS DASHBOARD v5.0  Ã¢ÂÂ  IBM Maximo Style
+   EWS DASHBOARD v5.0  &mdash;  IBM Maximo Style
 Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 const GAS_URL = localStorage.getItem('rms_gas_url') ||
   'https://script.google.com/macros/s/AKfycbyf0GUfEIeoJv1RHZT9nT3Z5JmktyQMEHkviWFs10eNHKkGUbm_pr-lbpj9R4rVVIWVCw/exec';
@@ -737,10 +737,10 @@ const SAMPLE_JOBS=[
 let _jobs=[], _parts=[], _charts={};
 
 /* Ã¢ÂÂÃ¢ÂÂ Utils Ã¢ÂÂÃ¢ÂÂ */
-function fmtDate(d){if(!d)return'Ã¢ÂÂ';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'numeric'})}
+function fmtDate(d){if(!d)return'&mdash;';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'numeric'})}
 function pct(n,t){return t?Math.round(n/t*100):0}
 function destroyChart(id){if(_charts[id]){_charts[id].destroy();delete _charts[id]}}
-function getVendorName(id){return(SAMPLE_VENDORS.find(v=>v.Vendor_ID===id)||{}).Vendor_Name?.replace('Ã Â¸ÂÃ Â¸Â£Ã Â¸Â´Ã Â¸Â©Ã Â¸Â±Ã Â¸Â ','').replace(' Ã Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â±Ã Â¸Â','')||id||'Ã¢ÂÂ'}
+function getVendorName(id){return(SAMPLE_VENDORS.find(v=>v.Vendor_ID===id)||{}).Vendor_Name?.replace('Ã Â¸ÂÃ Â¸Â£Ã Â¸Â´Ã Â¸Â©Ã Â¸Â±Ã Â¸Â ','').replace(' Ã Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â±Ã Â¸Â','')||id||'&mdash;'}
 
 /* Ã¢ÂÂÃ¢ÂÂ Load Data Ã¢ÂÂÃ¢ÂÂ */
 function loadData(){
