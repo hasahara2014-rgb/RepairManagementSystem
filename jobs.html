@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
-<title>EWS Enterprise Ã¢ÂÂ Work Orders</title>
+<title>EWS Enterprise &mdash; Work Orders</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <style>
@@ -202,7 +202,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .pg-info{font-size:.7rem;color:var(--g60);margin-left:8px}
 
 /* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
-   RESPONSIVE Ã¢ÂÂ TABLET & MOBILE
+   RESPONSIVE &mdash; TABLET & MOBILE
    Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 
 /* Sidebar overlay (mobile) */
@@ -328,7 +328,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   <div class="sys-info">
     <div class="sys-title">System Status</div>
     <div class="sys-status-row"><div class="sys-dot"></div><div class="sys-online">Online</div></div>
-    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">Ã¢ÂÂ</span></div>
+    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">&mdash;</span></div>
   </div>
 </aside>
 
@@ -339,8 +339,8 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
     <button class="tb-menu-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
     <div class="tb-brand">
       <div class="tb-title-block">
-        <div class="tb-title">EWS Ã¢ÂÂ Enterprise</div>
-        <div class="tb-sub">Work Orders Ã¢ÂÂ EWS System</div>
+        <div class="tb-title">EWS &mdash; Enterprise</div>
+        <div class="tb-sub">Work Orders &mdash; EWS System</div>
       </div>
     </div>
     <div class="tb-right">
@@ -350,8 +350,8 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
       <button class="tb-icon-btn"><i class="fas fa-bell"></i><span class="tb-bell-badge" id="tbBellCnt">0</span></button>
       <a href="dashboard.html" class="tb-icon-btn" title="Dashboard"><i class="fas fa-gauge-high"></i></a>
       <div class="tb-user" id="tbUser" onclick="logout()" title="Click to logout" style="cursor:pointer">
-        <div class="tb-avatar" id="tbAvatar">Ã¢ÂÂ</div>
-        <span class="tb-username" id="tbUsername">Ã¢ÂÂ</span>
+        <div class="tb-avatar" id="tbAvatar">&mdash;</div>
+        <span class="tb-username" id="tbUsername">&mdash;</span>
       </div>
     </div>
   </header>
@@ -392,21 +392,21 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
       </select>
     </div>
     <div class="toolbar-spacer"></div>
-    <div class="stat-pill"><span class="stat-pill-val" id="statTotal">Ã¢ÂÂ</span><span class="stat-pill-lbl">Total</span></div>
-    <div class="stat-pill"><span class="stat-pill-val" id="statFiltered" style="color:var(--p60)">Ã¢ÂÂ</span><span class="stat-pill-lbl">Showing</span></div>
+    <div class="stat-pill"><span class="stat-pill-val" id="statTotal">&mdash;</span><span class="stat-pill-lbl">Total</span></div>
+    <div class="stat-pill"><span class="stat-pill-val" id="statFiltered" style="color:var(--p60)">&mdash;</span><span class="stat-pill-lbl">Showing</span></div>
   </div>
 
   <!-- KPI STRIP -->
   <div style="padding:2px 0 0;flex-shrink:0">
   <div class="kpi-strip" id="kpiStrip">
-    <div class="ks-card ksc-p" data-status="" onclick="filterByStatus('')"><div class="ks-label">Total</div><div class="ks-value" id="ksTotal">Ã¢ÂÂ</div></div>
-    <div class="ks-card ksc-cy" data-status="OPEN" onclick="filterByStatus('OPEN')"><div class="ks-label">Open</div><div class="ks-value" style="color:var(--cyan50)" id="ksOpen">Ã¢ÂÂ</div></div>
-    <div class="ks-card ksc-o" data-status="SEND_REPAIR" onclick="filterByStatus('SEND_REPAIR')"><div class="ks-label">In Repair</div><div class="ks-value" style="color:var(--orange40)" id="ksWIP">Ã¢ÂÂ</div></div>
-    <div class="ks-card ksc-y" data-status="WAIT_SPARE_PART" onclick="filterByStatus('WAIT_SPARE_PART')"><div class="ks-label">Wait Parts</div><div class="ks-value" style="color:#7d6300" id="ksWaitPart">Ã¢ÂÂ</div></div>
-    <div class="ks-card ksc-t" data-status="WAIT_APPROVAL" onclick="filterByStatus('WAIT_APPROVAL')"><div class="ks-label">Wait Approval</div><div class="ks-value" style="color:var(--teal50)" id="ksWaitApp">Ã¢ÂÂ</div></div>
-    <div class="ks-card ksc-g" data-status="CLOSED" onclick="filterByStatus('CLOSED')"><div class="ks-label">Closed</div><div class="ks-value" style="color:var(--green50)" id="ksClosed">Ã¢ÂÂ</div></div>
-    <div class="ks-card ksc-r" data-status="RETURNED" onclick="filterByStatus('RETURNED')"><div class="ks-label">Cancelled</div><div class="ks-value" style="color:var(--g60)" id="ksCancel">Ã¢ÂÂ</div></div>
-    <div class="ks-card ksc-pur" data-status="REPEAT" onclick="filterByStatus('REPEAT')"><div class="ks-label">Repeat Repair</div><div class="ks-value" style="color:var(--purple50)" id="ksRepeat">Ã¢ÂÂ</div></div>
+    <div class="ks-card ksc-p" data-status="" onclick="filterByStatus('')"><div class="ks-label">Total</div><div class="ks-value" id="ksTotal">&mdash;</div></div>
+    <div class="ks-card ksc-cy" data-status="OPEN" onclick="filterByStatus('OPEN')"><div class="ks-label">Open</div><div class="ks-value" style="color:var(--cyan50)" id="ksOpen">&mdash;</div></div>
+    <div class="ks-card ksc-o" data-status="SEND_REPAIR" onclick="filterByStatus('SEND_REPAIR')"><div class="ks-label">In Repair</div><div class="ks-value" style="color:var(--orange40)" id="ksWIP">&mdash;</div></div>
+    <div class="ks-card ksc-y" data-status="WAIT_SPARE_PART" onclick="filterByStatus('WAIT_SPARE_PART')"><div class="ks-label">Wait Parts</div><div class="ks-value" style="color:#7d6300" id="ksWaitPart">&mdash;</div></div>
+    <div class="ks-card ksc-t" data-status="WAIT_APPROVAL" onclick="filterByStatus('WAIT_APPROVAL')"><div class="ks-label">Wait Approval</div><div class="ks-value" style="color:var(--teal50)" id="ksWaitApp">&mdash;</div></div>
+    <div class="ks-card ksc-g" data-status="CLOSED" onclick="filterByStatus('CLOSED')"><div class="ks-label">Closed</div><div class="ks-value" style="color:var(--green50)" id="ksClosed">&mdash;</div></div>
+    <div class="ks-card ksc-r" data-status="RETURNED" onclick="filterByStatus('RETURNED')"><div class="ks-label">Cancelled</div><div class="ks-value" style="color:var(--g60)" id="ksCancel">&mdash;</div></div>
+    <div class="ks-card ksc-pur" data-status="REPEAT" onclick="filterByStatus('REPEAT')"><div class="ks-label">Repeat Repair</div><div class="ks-value" style="color:var(--purple50)" id="ksRepeat">&mdash;</div></div>
   </div>
   </div>
 
@@ -512,7 +512,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
         <div class="mf-group">
           <label class="mf-label">Vendor</label>
           <select class="mf-select" id="mVendor">
-            <option value="">Ã¢ÂÂ Select Vendor Ã¢ÂÂ</option>
+            <option value="">&mdash; Select Vendor &mdash;</option>
           </select>
         </div>
         <div class="mf-group">
@@ -571,7 +571,7 @@ async function loadVendors(){
     const r=await fetch(`${GAS_URL}?action=getVendors&token=${_getToken()}`).then(x=>x.json());
     if(r.success&&Array.isArray(r.data)&&r.data.length>0){
       const sel=document.getElementById('mVendor');
-      sel.innerHTML='<option value="">Ã¢ÂÂ Select Vendor Ã¢ÂÂ</option>';
+      sel.innerHTML='<option value="">&mdash; Select Vendor &mdash;</option>';
       r.data.forEach(v=>{
         const id=v.Vendor_ID||v.id||'';
         const name=v.Name||v.Vendor_Name||v.name||id;
@@ -640,7 +640,7 @@ function _initSysUI(){
   if(hn) hn.textContent=_sc.name;
   var t=document.querySelector('.tb-title'),s=document.querySelector('.tb-sub');
   if(t) t.textContent=_sc.name;
-  if(s) s.textContent='Work Orders Ã¢ÂÂ '+_sc.badge+' System';
+  if(s) s.textContent='Work Orders &mdash; '+_sc.badge+' System';
   if(!_sc.connected){
     var hc=document.getElementById('sysHdrConn');
     if(hc) hc.innerHTML='<i class="fas fa-circle" style="font-size:.45rem;color:var(--g40)"></i>&nbsp;<span style="color:var(--g50)">Not Connected</span>';
@@ -654,11 +654,11 @@ function _initSysUI(){
     var tb=document.getElementById('jobsTableBody');
     if(tb) tb.innerHTML='<tr><td colspan="11" style="text-align:center;padding:36px;color:var(--g40)">'
       +'<i class="fas fa-plug" style="font-size:1.5rem;display:block;margin-bottom:8px"></i>'
-      +'Ã Â¹ÂÃ Â¸Â¡Ã Â¹ÂÃ Â¸Â¡Ã Â¸ÂµÃ Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡Ã Â¸Â¹Ã Â¸Â¥ Ã¢ÂÂ '+_sc.name+' Ã Â¸Â¢Ã Â¸Â±Ã Â¸ÂÃ Â¹ÂÃ Â¸Â¡Ã Â¹ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â·Ã Â¹ÂÃ Â¸Â­Ã Â¸Â¡Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­</td></tr>';
+      +'Ã Â¹ÂÃ Â¸Â¡Ã Â¹ÂÃ Â¸Â¡Ã Â¸ÂµÃ Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡Ã Â¸Â¹Ã Â¸Â¥ &mdash; '+_sc.name+' Ã Â¸Â¢Ã Â¸Â±Ã Â¸ÂÃ Â¹ÂÃ Â¸Â¡Ã Â¹ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â·Ã Â¹ÂÃ Â¸Â­Ã Â¸Â¡Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­</td></tr>';
     ['ksTotal','ksOpen','ksWIP','ksClosed','ksReturned'].forEach(function(id){
       var el=document.getElementById(id);if(el)el.textContent='0';
     });
-    var at=document.getElementById('ksAvgTAT');if(at)at.textContent='Ã¢ÂÂ';
+    var at=document.getElementById('ksAvgTAT');if(at)at.textContent='&mdash;';
   }
 }
 
@@ -723,11 +723,11 @@ function toast(msg,type='info'){
 }
 
 /* Ã¢ÂÂÃ¢ÂÂ Utils Ã¢ÂÂÃ¢ÂÂ */
-function fmtDate(d){if(!d)return'Ã¢ÂÂ';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'2-digit'})}
+function fmtDate(d){if(!d)return'&mdash;';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'2-digit'})}
 function calcTAT(cr,cl){if(!cr||!cl)return null;const d=(new Date(cl)-new Date(cr))/86400000;return d<0?null:Math.round(d)}
 function statusBadge(s){const st=(s||'OPEN').replace(/ /g,'_').toUpperCase();const lbl={OPEN:'Open',SEND_REPAIR:'In Repair',RETURNED:'Returned',WAIT_APPROVAL:'Wait Approval',WAIT_SPARE_PART:'Wait Parts',CLOSED:'Closed'};return`<span class="bs bs-${st}">${lbl[st]||st}</span>`}
 function priBadge(p){const pr=(p||'MEDIUM').toUpperCase();const lbl={CRITICAL:'Critical',HIGH:'High',MEDIUM:'Medium',LOW:'Low'};return`<span class="pri pri-${pr}"><span class="pri-dot"></span>${lbl[pr]||pr}</span>`}
-function getVendorName(id){return VENDORS[id]||id||'Ã¢ÂÂ'}
+function getVendorName(id){return VENDORS[id]||id||'&mdash;'}
 
 /* Ã¢ÂÂÃ¢ÂÂ Load Ã¢ÂÂÃ¢ÂÂ */
 function loadJobs(){
@@ -846,18 +846,18 @@ function renderTable(){
   if(!pageData.length){tbody.innerHTML=`<tr><td colspan="11" style="text-align:center;padding:40px;color:var(--g50)"><i class="fas fa-inbox" style="font-size:1.5rem;margin-bottom:8px;display:block"></i>No work orders found</td></tr>`;renderPagination();return}
   tbody.innerHTML=pageData.map(j=>{
     const tat=calcTAT(j.Create_Date,j.Close_Date);
-    const tatStr=tat!==null?tat+'d':'Ã¢ÂÂ';
+    const tatStr=tat!==null?tat+'d':'&mdash;';
     const tatColor=tat>30?'var(--red60)':tat>14?'var(--orange40)':'var(--g70)';
     return`<tr onclick="openEditModal('${j.JOB_No}')">
-      <td class="td-job">${j.JOB_No||'Ã¢ÂÂ'}</td>
-      <td><span class="td-eq">${j.Equipment_ID||'Ã¢ÂÂ'}</span></td>
-      <td class="td-long" title="${j.Damage_Code||''}">${j.Damage_Code||'Ã¢ÂÂ'}</td>
-      <td class="td-long" title="${j.Repair_Action||''}">${j.Repair_Action||'Ã¢ÂÂ'}</td>
+      <td class="td-job">${j.JOB_No||'&mdash;'}</td>
+      <td><span class="td-eq">${j.Equipment_ID||'&mdash;'}</span></td>
+      <td class="td-long" title="${j.Damage_Code||''}">${j.Damage_Code||'&mdash;'}</td>
+      <td class="td-long" title="${j.Repair_Action||''}">${j.Repair_Action||'&mdash;'}</td>
       <td style="font-size:.72rem;max-width:120px;overflow:hidden;text-overflow:ellipsis">${getVendorName(j.Vendor_ID)}</td>
       <td>${priBadge(j.Priority)}</td>
       <td>${statusBadge(j.Status)}</td>
       <td style="color:var(--g60)">${fmtDate(j.Create_Date)}</td>
-      <td style="color:var(--g60)">${j.Close_Date?fmtDate(j.Close_Date):'Ã¢ÂÂ'}</td>
+      <td style="color:var(--g60)">${j.Close_Date?fmtDate(j.Close_Date):'&mdash;'}</td>
       <td><span style="font-weight:600;font-size:.72rem;color:${tatColor}">${tatStr}</span></td>
       <td onclick="event.stopPropagation()">
         <button onclick="openEditModal('${j.JOB_No}')" style="background:none;border:none;color:var(--p60);cursor:pointer;font-size:.75rem;padding:2px 6px" title="Edit"><i class="fas fa-pen"></i></button>
@@ -901,7 +901,7 @@ function openCreateModal(){
 function openEditModal(jobNo){
   const j=_jobs.find(x=>x.JOB_No===jobNo);
   if(!j)return;
-  document.getElementById('modalTitle').textContent='Edit Work Order Ã¢ÂÂ '+jobNo;
+  document.getElementById('modalTitle').textContent='Edit Work Order &mdash; '+jobNo;
   document.getElementById('editJobNo').value=jobNo;
   document.getElementById('mJobNo').value=jobNo;
   document.getElementById('mEquipID').value=j.Equipment_ID||'';
