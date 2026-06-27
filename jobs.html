@@ -734,6 +734,12 @@ function loadJobs(){
   fetch(GAS_URL+'?action=getJobs&token='+encodeURIComponent(_getToken()))
     .then(r=>r.json())
     .then(res=>{
+      if(res.success===false){
+        sessionStorage.removeItem('rms_v3_session');
+        localStorage.removeItem('rms_v3_session');
+        location.href='login.html';
+        return;
+      }
       const d=res.data||res;
       _jobs=Array.isArray(d)?d:SAMPLE_JOBS;
     }).catch(()=>{_jobs=SAMPLE_JOBS})
