@@ -108,6 +108,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .ks-card.ksc-y{border-top-color:var(--yellow30)}
 .ks-card.ksc-t{border-top-color:var(--teal50)}
 .ks-card.ksc-o{border-top-color:var(--orange40)}
+.ks-card.ksc-pur{border-top-color:var(--purple50)}
 .ks-label{font-size:.6rem;font-weight:600;color:var(--g60);text-transform:uppercase;letter-spacing:.4px;margin-bottom:2px}
 .ks-value{font-size:1.3rem;font-weight:300;color:var(--g100);line-height:1}
 .ks-sub{font-size:.62rem;color:var(--g50);margin-top:2px}
@@ -371,6 +372,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
         <option value="WAIT_SPARE_PART">Wait Parts</option>
         <option value="CLOSED">Closed</option>
         <option value="RETURNED">Returned</option>
+        <option value="REPEAT">Repeat Repair</option>
       </select>
     </div>
     <div class="filter-group">
@@ -404,6 +406,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
     <div class="ks-card ksc-t" data-status="WAIT_APPROVAL" onclick="filterByStatus('WAIT_APPROVAL')"><div class="ks-label">Wait Approval</div><div class="ks-value" style="color:var(--teal50)" id="ksWaitApp">—</div></div>
     <div class="ks-card ksc-g" data-status="CLOSED" onclick="filterByStatus('CLOSED')"><div class="ks-label">Closed</div><div class="ks-value" style="color:var(--green50)" id="ksClosed">—</div></div>
     <div class="ks-card ksc-r" data-status="RETURNED" onclick="filterByStatus('RETURNED')"><div class="ks-label">Cancelled</div><div class="ks-value" style="color:var(--g60)" id="ksCancel">—</div></div>
+    <div class="ks-card ksc-pur" data-status="REPEAT" onclick="filterByStatus('REPEAT')"><div class="ks-label">Repeat Repair</div><div class="ks-value" style="color:var(--purple50)" id="ksRepeat">—</div></div>
   </div>
   </div>
 
@@ -761,6 +764,18 @@ function renderKPIStrip(){
   if(e('ksWaitApp'))  e('ksWaitApp').textContent=_jobs.filter(j=>j.Status==='WAIT_APPROVAL').length;
   if(e('ksClosed'))   e('ksClosed').textContent=_jobs.filter(j=>j.Status==='CLOSED').length;
   if(e('ksCancel'))   e('ksCancel').textContent=_jobs.filter(j=>j.Status==='RETURNED').length;
+  if(e('ksRepeat'))   e('ksRepeat').textContent=_repeatJobCount(_jobs);
+}
+function _repeatEquipSet(jobs){
+  var cnt={};
+  (jobs||_jobs).forEach(function(j){var eq=j.Equipment_ID||'';if(eq)cnt[eq]=(cnt[eq]||0)+1;});
+  var s=new Set();
+  Object.keys(cnt).forEach(function(k){if(cnt[k]>1)s.add(k);});
+  return s;
+}
+function _repeatJobCount(jobs){
+  var s=_repeatEquipSet(jobs);
+  return (jobs||_jobs).filter(function(j){return s.has(j.Equipment_ID||'');}).length;
 }
 
 /* ── KPI click filter ── */
@@ -791,8 +806,10 @@ function applyFilters(){
   const st=document.getElementById('filterStatus').value;
   const pri=document.getElementById('filterPriority').value;
   const ven=document.getElementById('filterVendor').value;
+  var _repEqs=(st==='REPEAT')?_repeatEquipSet(_jobs):null;
   _filtered=_jobs.filter(j=>{
-    if(st&&j.Status!==st)return false;
+    if(st==='REPEAT'){if(!_repEqs.has(j.Equipment_ID||''))return false;}
+    else if(st&&j.Status!==st)return false;
     if(pri&&(j.Priority||'MEDIUM').toUpperCase()!==pri)return false;
     if(ven&&j.Vendor_ID!==ven)return false;
     if(q&&!((j.JOB_No||'').toLowerCase().includes(q)||(j.Equipment_ID||'').toLowerCase().includes(q)||(j.Damage_Code||'').toLowerCase().includes(q)||(j.Repair_Action||'').toLowerCase().includes(q)))return false;

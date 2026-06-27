@@ -104,7 +104,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .sys-card-name{font-weight:600;font-size:.82rem;flex:1}
 .sys-card-link{font-size:.72rem;color:var(--p60);text-decoration:none;white-space:nowrap;flex-shrink:0}
 .sys-card-link:hover{text-decoration:underline}
-.sys-kpis{display:grid;grid-template-columns:repeat(7,1fr);gap:0;border-bottom:1px solid var(--g20)}
+.sys-kpis{display:grid;grid-template-columns:repeat(8,1fr);gap:0;border-bottom:1px solid var(--g20)}
 .sys-kpi{padding:8px 4px;text-align:center;border-right:1px solid var(--g20);cursor:pointer;transition:background .12s}
 .sys-kpi:hover{background:var(--g10)}
 .sys-kpi:last-child{border-right:none}
@@ -115,6 +115,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .sys-kpi-val.clr-waitapp{color:var(--teal50)}
 .sys-kpi-val.clr-closed{color:var(--green50)}
 .sys-kpi-val.clr-cancel{color:var(--g60)}
+.sys-kpi-val.clr-repeat{color:var(--purple50)}
 .sys-kpi-lbl{font-size:.58rem;color:var(--g50);margin-top:3px}
 /* Status bar */
 .sys-sbar-wrap{padding:12px 16px 8px}
@@ -260,6 +261,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
             <div class="sys-kpi" onclick="location.href='jobs.html?status=WAIT_APPROVAL'"><div class="sys-kpi-val clr-waitapp" id="ewsWaitApp">—</div><div class="sys-kpi-lbl">Wait Approv.</div></div>
             <div class="sys-kpi" onclick="location.href='jobs.html?status=CLOSED'"><div class="sys-kpi-val clr-closed" id="ewsClosed">—</div><div class="sys-kpi-lbl">Closed</div></div>
             <div class="sys-kpi" onclick="location.href='jobs.html?status=RETURNED'"><div class="sys-kpi-val clr-cancel" id="ewsCancel">—</div><div class="sys-kpi-lbl">Cancelled</div></div>
+            <div class="sys-kpi" onclick="location.href='jobs.html?status=REPEAT'"><div class="sys-kpi-val clr-repeat" id="ewsRepeat">—</div><div class="sys-kpi-lbl">Repeat</div></div>
           </div>
           <div class="sys-sbar-wrap">
             <div class="sys-sbar-title">Status Distribution</div>
@@ -295,6 +297,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
             <div class="sys-kpi"><div class="sys-kpi-val clr-waitapp" id="afcWaitApp">0</div><div class="sys-kpi-lbl">Wait Approv.</div></div>
             <div class="sys-kpi"><div class="sys-kpi-val clr-closed" id="afcClosed">0</div><div class="sys-kpi-lbl">Closed</div></div>
             <div class="sys-kpi"><div class="sys-kpi-val clr-cancel" id="afcCancel">0</div><div class="sys-kpi-lbl">Cancelled</div></div>
+            <div class="sys-kpi"><div class="sys-kpi-val clr-repeat" id="afcRepeat">0</div><div class="sys-kpi-lbl">Repeat</div></div>
           </div>
           <div class="sys-no-data"><i class="fas fa-plug-circle-exclamation"></i> Not Connected — AFC System</div>
         </div>
@@ -314,6 +317,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
             <div class="sys-kpi"><div class="sys-kpi-val clr-waitapp" id="comWaitApp">0</div><div class="sys-kpi-lbl">Wait Approv.</div></div>
             <div class="sys-kpi"><div class="sys-kpi-val clr-closed" id="comClosed">0</div><div class="sys-kpi-lbl">Closed</div></div>
             <div class="sys-kpi"><div class="sys-kpi-val clr-cancel" id="comCancel">0</div><div class="sys-kpi-lbl">Cancelled</div></div>
+            <div class="sys-kpi"><div class="sys-kpi-val clr-repeat" id="comRepeat">0</div><div class="sys-kpi-lbl">Repeat</div></div>
           </div>
           <div class="sys-no-data"><i class="fas fa-plug-circle-exclamation"></i> Not Connected — COM System</div>
         </div>
@@ -329,6 +333,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
         <div class="wo-sum-card" onclick="location.href='jobs.html?status=WAIT_APPROVAL'"><div class="wo-sum-val" style="color:var(--teal50)" id="sumWaitApp">—</div><div class="wo-sum-lbl">Wait Approval</div></div>
         <div class="wo-sum-card" onclick="location.href='jobs.html?status=CLOSED'"><div class="wo-sum-val" style="color:var(--green50)" id="sumClosed">—</div><div class="wo-sum-lbl">Closed</div></div>
         <div class="wo-sum-card" onclick="location.href='jobs.html?status=RETURNED'"><div class="wo-sum-val" style="color:var(--g60)" id="sumCancel">—</div><div class="wo-sum-lbl">Cancelled</div></div>
+        <div class="wo-sum-card" onclick="location.href='jobs.html?status=REPEAT'"><div class="wo-sum-val" style="color:var(--purple50)" id="sumRepeat">—</div><div class="wo-sum-lbl">Repeat Repair</div></div>
         <div class="wo-sum-card"><div class="wo-sum-val" style="color:var(--teal50)" id="sumAvgTAT">—</div><div class="wo-sum-lbl">Avg TAT (days)</div></div>
       </div>
 
@@ -480,6 +485,8 @@ async function loadEWS(){
     document.getElementById('ewsWaitApp').textContent  = waitApp;
     document.getElementById('ewsClosed').textContent   = closed;
     document.getElementById('ewsCancel').textContent   = cancel;
+    var _rCnt=(function(){var c={};jobs.forEach(function(j){var e=j.Equipment_ID||'';if(e)c[e]=(c[e]||0)+1;});return jobs.filter(function(j){return c[j.Equipment_ID||'']>1;}).length;})();
+    document.getElementById('ewsRepeat').textContent   = _rCnt;
 
     // Status bar
     if(total>0){
@@ -512,6 +519,7 @@ async function loadEWS(){
       if(el('sumWaitApp')) el('sumWaitApp').textContent=waitApp;
       if(el('sumClosed'))  el('sumClosed').textContent=closed;
       if(el('sumCancel'))  el('sumCancel').textContent=cancel;
+      if(el('sumRepeat'))  el('sumRepeat').textContent=_rCnt;
       var cj=jobs.filter(function(j){return j.Status==='CLOSED'&&j.Create_Date&&j.Close_Date;});
       if(cj.length&&el('sumAvgTAT')){
         var avg=(cj.reduce(function(s,j){
