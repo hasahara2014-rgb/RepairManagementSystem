@@ -472,7 +472,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
       <button class="tb-brand-star" title="Bookmark"><i class="far fa-star"></i></button>
     </div>
     <div class="tb-right">
-      <div class="tb-plant"><i class="fas fa-industry" style="font-size:.7rem;color:var(--g50)"></i>&nbsp;Plant:&nbsp;<strong>EWS Main Site</strong>&nbsp;<i class="fas fa-chevron-down" style="font-size:.6rem;color:var(--g50)"></i></div>
+      <div class="tb-plant"><i class="fas fa-industry" style="font-size:.7rem;color:var(--g50)"></i>&nbsp;Plant:&nbsp;<strong>All Systems</strong>&nbsp;<i class="fas fa-chevron-down" style="font-size:.6rem;color:var(--g50)"></i></div>
       <div class="tb-daterange"><i class="far fa-calendar" style="font-size:.75rem"></i>&nbsp;<span id="tbDateLabel">Loading...</span></div>
       <button class="tb-btn-refresh" onclick="refreshData()"><i class="fas fa-sync-alt"></i> Refresh</button>
       <button class="tb-btn-settings"><i class="fas fa-gear"></i> Settings</button>
@@ -743,21 +743,34 @@ function destroyChart(id){if(_charts[id]){_charts[id].destroy();delete _charts[i
 function getVendorName(id){return(SAMPLE_VENDORS.find(v=>v.Vendor_ID===id)||{}).Vendor_Name?.replace('Ã Â¸ÂÃ Â¸Â£Ã Â¸Â´Ã Â¸Â©Ã Â¸Â±Ã Â¸Â ','').replace(' Ã Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â±Ã Â¸Â','')||id||'&mdash;'}
 
 /* Ã¢ÂÂÃ¢ÂÂ Load Data Ã¢ÂÂÃ¢ÂÂ */
+function _tagJobs(jobs,sys){return(Array.isArray(jobs)?jobs:[]).map(j=>Object.assign({},j,{_sys:sys}));}
 function loadData(){
   document.getElementById('loadingOverlay').classList.remove('hidden');
+  const tok=_getToken();
+  const b=GAS_URL+'?tok='+encodeURIComponent(tok);
+  const mkUrl=function(act,pl){return b+'&action='+act+(pl?'&payload='+encodeURIComponent(JSON.stringify(pl)):'');};
   Promise.all([
-    fetch(GAS_URL+'?action=getJobs&token='+encodeURIComponent(_getToken())).then(r=>r.json()).catch(()=>({data:[],source:'error'})),
-    fetch(GAS_URL+'?action=getParts&token='+encodeURIComponent(_getToken())).then(r=>r.json()).catch(()=>({data:[],source:'error'})),
-  ]).then(([jRes,pRes])=>{
-    _jobs = (jRes.data||jRes||SAMPLE_JOBS);
-    _parts = (pRes.data||pRes||SAMPLE_PARTS);
-    if(!Array.isArray(_jobs)) _jobs=[];
-    if(!Array.isArray(_parts)) _parts=[];
+    fetch(mkUrl('getJobs')).then(r=>r.json()).catch(()=>({success:false,data:[]})),
+    fetch(mkUrl('getJobs',{sys:'AFC'})).then(r=>r.json()).catch(()=>({success:false,data:[]})),
+    fetch(mkUrl('getJobs',{sys:'COM'})).then(r=>r.json()).catch(()=>({success:false,data:[]})),
+    fetch(mkUrl('getParts')).then(r=>r.json()).catch(()=>({success:false,data:[]})),
+    fetch(mkUrl('getVendors')).then(r=>r.json()).catch(()=>({success:false,data:[]})),
+  ]).then(function(rs){
+    var ewsR=rs[0],afcR=rs[1],comR=rs[2],pRes=rs[3],vRes=rs[4];
+    var ewsJ=_tagJobs(ewsR.success&&Array.isArray(ewsR.data)?ewsR.data:SAMPLE_JOBS,'EWS');
+    var afcJ=_tagJobs(afcR.success&&Array.isArray(afcR.data)?afcR.data:[],'AFC');
+    var comJ=_tagJobs(comR.success&&Array.isArray(comR.data)?comR.data:[],'COM');
+    _jobs=ewsJ.concat(afcJ).concat(comJ);
+    _parts=pRes.success&&Array.isArray(pRes.data)?pRes.data:SAMPLE_PARTS;
+    if(vRes.success&&Array.isArray(vRes.data)&&vRes.data.length>0){
+      window._vendorMap={};
+      vRes.data.forEach(function(v){if(v.Vendor_ID)window._vendorMap[v.Vendor_ID]=v.Vendor_Name||v.Name||v.Vendor_ID;});
+    }
+    window._sysCounts={EWS:ewsJ.length,AFC:afcJ.length,COM:comJ.length};
     renderDashboard();
-  }).catch(()=>{
-    _jobs=[]; _parts=[];
-    renderDashboard();
-  }).finally(()=>{
+  }).catch(function(){
+    _jobs=_tagJobs(SAMPLE_JOBS,'EWS');_parts=SAMPLE_PARTS;renderDashboard();
+  }).finally(function(){
     document.getElementById('loadingOverlay').classList.add('hidden');
     document.getElementById('lastUpdate').textContent=new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
   });
@@ -868,6 +881,7 @@ function calcKPIs(jobs){
 /* Ã¢ÂÂÃ¢ÂÂ Render Dashboard Ã¢ÂÂÃ¢ÂÂ */
 function renderDashboard(){
   const kpi=calcKPIs(_jobs);
+  renderSysBreakdown();
   renderKPIRow(kpi);
   renderCharts(kpi);
   renderWidgets(kpi);
