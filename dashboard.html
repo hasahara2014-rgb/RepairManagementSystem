@@ -882,6 +882,27 @@ function calcKPIs(jobs){
 }
 
 /* Ã¢ÂÂÃ¢ÂÂ Render Dashboard Ã¢ÂÂÃ¢ÂÂ */
+function renderSysBreakdown(){
+  var sc=window._sysCounts||{EWS:_jobs.length,AFC:0,COM:0};
+  var total=sc.EWS+sc.AFC+sc.COM||1;
+  var sysArr=[
+    {key:'EWS',label:'EWS Enterprise',color:'#0F62FE',ico:'fa-bolt'},
+    {key:'AFC',label:'AFC Enterprise',color:'#198038',ico:'fa-wind'},
+    {key:'COM',label:'COM Enterprise',color:'#8A3FFC',ico:'fa-tower-broadcast'}
+  ];
+  var el=document.getElementById('sysBreakdown');if(!el)return;
+  el.innerHTML=sysArr.map(function(s){
+    var cnt=sc[s.key]||0;var p=Math.round(cnt/total*100);
+    return'<div style="flex:1;background:var(--ui01);border:1px solid var(--ui03);padding:8px 12px;border-radius:2px;min-width:0">'+
+      '<div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">'+
+      '<i class="fas '+s.ico+'" style="color:'+s.color+';font-size:.7rem"></i>'+
+      '<span style="font-size:.65rem;font-weight:600;color:var(--text02)">'+s.label+'</span>'+
+      '<span style="margin-left:auto;font-size:.8rem;font-weight:700;color:var(--text01)">'+cnt+'</span>'+
+      '<span style="font-size:.65rem;color:var(--g40)">('+p+'%)</span></div>'+
+      '<div style="height:4px;background:var(--ui03);border-radius:2px">'+
+      '<div style="height:4px;width:'+p+'%;background:'+s.color+';border-radius:2px;transition:width .4s"></div></div></div>';
+  }).join('');
+}
 function renderDashboard(){
   const kpi=calcKPIs(_jobs);
   renderSysBreakdown();
