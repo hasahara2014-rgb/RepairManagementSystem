@@ -62,7 +62,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .wo-charts-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding:12px 16px}
 .wo-chart-card{background:#fff;border:1px solid var(--g20);padding:12px 14px}
 .wo-chart-title{font-size:.63rem;font-weight:600;color:var(--g50);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
-.wo-chart-canvas{height:155px;position:relative}
+.wo-chart-canvas{height:175px;position:relative}
 @media(max-width:768px){.wo-charts-row{grid-template-columns:1fr}.wo-sum-strip{flex-wrap:wrap}.wo-sum-card{flex:1 1 calc(50% - 2px)}}
 
 .wo-link{color:inherit;text-decoration:none;display:flex;align-items:center;gap:12px;flex:1;min-width:0;overflow:hidden}
@@ -377,7 +377,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
       <div class="wo-charts-row">
         <div class="wo-chart-card"><div class="wo-chart-title">Status Distribution</div><div class="wo-chart-canvas"><canvas id="woStatusChart"></canvas></div></div>
         <div class="wo-chart-card"><div class="wo-chart-title">Priority Breakdown</div><div class="wo-chart-canvas"><canvas id="woPriChart"></canvas></div></div>
-        <div class="wo-chart-card"><div class="wo-chart-title">Monthly Trend (EWS)</div><div class="wo-chart-canvas"><canvas id="woTrendChart"></canvas></div></div>
+        <div class="wo-chart-card"><div class="wo-chart-title">Monthly Trend &mdash; All Systems</div><div class="wo-chart-canvas"><canvas id="woTrendChart"></canvas></div></div>
       </div>
 
       <!-- Combined Recent Table -->
@@ -589,9 +589,9 @@ async function loadEWS(){
     _sysData.ews.jobs = jobs;
     _mergeTable();
 
-    // Update combined summary (jobs already stored above)
+    // Update combined summary and charts
     _updateAllSummary();
-    _renderWOCharts(jobs);
+    _renderWOCharts();
 
   }catch(e){
     console.warn('loadEWS error', e);
@@ -706,6 +706,7 @@ async function loadAFC(){
     _sysData.afc=s;
     _updateAllSummary();
     _mergeTable();
+    _renderWOCharts();
   }catch(e){
     console.warn('loadAFC error',e);
     if(elLoad)elLoad.style.display='none';
@@ -718,7 +719,7 @@ async function loadAFC(){
     document.getElementById('afcClosed').textContent=s.closed;
     document.getElementById('afcCancel').textContent=s.cancel;
     document.getElementById('afcRepeat').textContent=s.repeat;
-    _sysData.afc=s;_updateAllSummary();_mergeTable();
+    _sysData.afc=s;_updateAllSummary();_mergeTable();_renderWOCharts();
   }
 }
 
@@ -761,6 +762,7 @@ async function loadCOM(){
     _sysData.com=s;
     _updateAllSummary();
     _mergeTable();
+    _renderWOCharts();
   }catch(e){
     console.warn('loadCOM error',e);
     if(elLoad)elLoad.style.display='none';
@@ -773,13 +775,38 @@ async function loadCOM(){
     document.getElementById('comClosed').textContent=s.closed;
     document.getElementById('comCancel').textContent=s.cancel;
     document.getElementById('comRepeat').textContent=s.repeat;
-    _sysData.com=s;_updateAllSummary();_mergeTable();
+    _sysData.com=s;_updateAllSummary();_mergeTable();_renderWOCharts();
   }
 }
 
-// ─── Render WO Charts (stub) ───
-function _renderWOCharts(jobs){}
-
+// ─── Render WO Charts ───
+var _charts = {};
+function _renderWOCharts(){
+  var all = [];
+  if(_sysData.ews&&_sysData.ews.jobs) all=all.concat(_sysData.ews.jobs);
+  if(_sysData.afc&&_sysData.afc.jobs) all=all.concat(_sysData.afc.jobs);
+  if(_sysData.com&&_sysData.com.jobs) all=all.concat(_sysData.com.jobs);
+  if(!all.length) return;
+  Object.keys(_charts).forEach(function(k){try{_charts[k].destroy();}catch(e){}});
+  _charts={};
+  // Chart 1: Status Distribution
+  var sCount={OPEN:0,SEND_REPAIR:0,WAIT_SPARE_PART:0,WAIT_APPROVAL:0,CLOSED:0,RETURNED:0};
+  all.forEach(function(j){var s=j.Status||j.status||'';if(sCount[s]!==undefined)sCount[s]++;});
+  var ctx1=document.getElementById('woStatusChart');
+  if(ctx1) _charts.status=new Chart(ctx1,{type:'doughnut',data:{labels:['Open','In Repair','Wait Parts','Wait Approval','Closed','Cancelled'],datasets:[{data:[sCount.OPEN,sCount.SEND_REPAIR,sCount.WAIT_SPARE_PART,sCount.WAIT_APPROVAL,sCount.CLOSED,sCount.RETURNED],backgroundColor:['#1192E8','#FF832B','#F1C21B','#009D9A','#198038','#A8A8A8'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:10},boxWidth:10,padding:6}}}}});
+  // Chart 2: Priority by System
+  function countPri(jobs){var r={CRITICAL:0,HIGH:0,MEDIUM:0,LOW:0};(jobs||[]).forEach(function(j){var p=j.Priority||'';if(r[p]!==undefined)r[p]++;});return r;}
+  var ep=countPri(_sysData.ews&&_sysData.ews.jobs),ap=countPri(_sysData.afc&&_sysData.afc.jobs),cp=countPri(_sysData.com&&_sysData.com.jobs);
+  var ctx2=document.getElementById('woPriChart');
+  if(ctx2) _charts.pri=new Chart(ctx2,{type:'bar',data:{labels:['EWS','AFC','COM'],datasets:[{label:'Critical',data:[ep.CRITICAL,ap.CRITICAL,cp.CRITICAL],backgroundColor:'#DA1E28',borderWidth:0},{label:'High',data:[ep.HIGH,ap.HIGH,cp.HIGH],backgroundColor:'#FF832B',borderWidth:0},{label:'Medium',data:[ep.MEDIUM,ap.MEDIUM,cp.MEDIUM],backgroundColor:'#F1C21B',borderWidth:0},{label:'Low',data:[ep.LOW,ap.LOW,cp.LOW],backgroundColor:'#198038',borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10},boxWidth:10,padding:5}}},scales:{x:{stacked:true,ticks:{font:{size:10}},grid:{display:false}},y:{stacked:true,ticks:{font:{size:10}},grid:{color:'#E0E0E0'},beginAtZero:true}}}});
+  // Chart 3: Monthly Trend
+  var months=[],now=new Date();
+  for(var i=5;i>=0;i--){var d=new Date(now.getFullYear(),now.getMonth()-i,1);months.push({key:d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'),label:d.toLocaleDateString('en-GB',{month:'short',year:'2-digit'})});}
+  function monthCounts(jobs){var c={};months.forEach(function(m){c[m.key]=0;});(jobs||[]).forEach(function(j){var raw=j.Create_Date||j.createDate||'';if(raw){var k=String(raw).substring(0,7);if(c[k]!==undefined)c[k]++;}});return months.map(function(m){return c[m.key];});}
+  var ctx3=document.getElementById('woTrendChart');
+  if(ctx3) _charts.trend=new Chart(ctx3,{type:'line',data:{labels:months.map(function(m){return m.label;}),datasets:[{label:'EWS',data:monthCounts(_sysData.ews&&_sysData.ews.jobs),borderColor:'#0F62FE',backgroundColor:'rgba(15,98,254,.1)',tension:.3,fill:true,pointRadius:3,borderWidth:2},{label:'AFC',data:monthCounts(_sysData.afc&&_sysData.afc.jobs),borderColor:'#009D9A',backgroundColor:'rgba(0,157,154,.1)',tension:.3,fill:true,pointRadius:3,borderWidth:2},{label:'COM',data:monthCounts(_sysData.com&&_sysData.com.jobs),borderColor:'#8A3FFC',backgroundColor:'rgba(138,63,252,.1)',tension:.3,fill:true,pointRadius:3,borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10},boxWidth:10,padding:5}}},scales:{x:{ticks:{font:{size:10}},grid:{display:false}},y:{ticks:{font:{size:10}},grid:{color:'#E0E0E0'},beginAtZero:true}}}});
+}
+function loadAll(){loadEWS();loadAFC();loadCOM();}
 window.addEventListener('DOMContentLoaded',function(){
   initAuth();
   loadEWS();
