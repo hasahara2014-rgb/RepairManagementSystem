@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
-<title>EWS Enterprise â Work Orders</title>
+<title>EWS Enterprise Ã¢ÂÂ Work Orders</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <style>
@@ -27,7 +27,7 @@
 html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g10);color:var(--g100);overflow:hidden}
 .mxm-shell{display:flex;height:100vh;overflow:hidden}
 
-/* ââ SIDEBAR (shared) ââ */
+/* Ã¢ÂÂÃ¢ÂÂ SIDEBAR (shared) Ã¢ÂÂÃ¢ÂÂ */
 .mxm-sidebar{width:var(--sidebar-w);min-width:var(--sidebar-w);background:var(--g100);display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;z-index:100;flex-shrink:0;transition:width .2s,min-width .2s;scrollbar-width:thin;scrollbar-color:var(--g80) transparent}
 .mxm-sidebar.collapsed{width:48px;min-width:48px}
 .mxm-sidebar.collapsed .nav-label,.mxm-sidebar.collapsed .sidebar-section-label,.mxm-sidebar.collapsed .qf-panel,.mxm-sidebar.collapsed .sys-info,.mxm-sidebar.collapsed .sb-brand-text{display:none}
@@ -54,7 +54,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .sys-online{color:var(--g30);font-size:.72rem}
 .sys-update{color:var(--g50);font-size:.63rem;line-height:1.5}
 
-/* ââ MAIN ââ */
+/* Ã¢ÂÂÃ¢ÂÂ MAIN Ã¢ÂÂÃ¢ÂÂ */
 .mxm-main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
 .mxm-topbar{height:var(--topbar-h);min-height:var(--topbar-h);background:#fff;border-bottom:1px solid var(--g20);display:flex;align-items:center;padding:0 16px;gap:12px;z-index:50;flex-shrink:0}
 .tb-menu-btn{background:none;border:none;color:var(--g70);width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center}
@@ -75,7 +75,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .tb-avatar{width:28px;height:28px;background:var(--p60);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;flex-shrink:0}
 .tb-username{font-size:.72rem;font-weight:500;color:var(--g100);white-space:nowrap}
 
-/* ââ CONTENT ââ */
+/* Ã¢ÂÂÃ¢ÂÂ CONTENT Ã¢ÂÂÃ¢ÂÂ */
 .mxm-content{flex:1;overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column}
 .page-toolbar{background:#fff;border-bottom:1px solid var(--g20);padding:10px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;flex-shrink:0}
 .filter-group{display:flex;align-items:center;gap:6px}
@@ -157,7 +157,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .qbar-btn:hover{background:var(--g80);color:#fff}
 .qbar-sep{width:1px;height:24px;background:var(--g80);flex-shrink:0;margin:0 4px}
 
-/* ââ MODAL ââ */
+/* Ã¢ÂÂÃ¢ÂÂ MODAL Ã¢ÂÂÃ¢ÂÂ */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:500;display:flex;align-items:flex-start;justify-content:flex-end}
 .modal-overlay.hidden{display:none}
 .modal-panel{width:480px;height:100%;background:#fff;display:flex;flex-direction:column;overflow:hidden;animation:slideIn .2s ease}
@@ -201,15 +201,15 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .pg-btn:disabled{opacity:.4;cursor:not-allowed}
 .pg-info{font-size:.7rem;color:var(--g60);margin-left:8px}
 
-/* ââââââââââââââââââââââââââââââââââââââââââ
-   RESPONSIVE â TABLET & MOBILE
-   ââââââââââââââââââââââââââââââââââââââââââ */
+/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+   RESPONSIVE Ã¢ÂÂ TABLET & MOBILE
+   Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 
 /* Sidebar overlay (mobile) */
 .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:199;backdrop-filter:blur(2px)}
 .sidebar-overlay.active{display:block}
 
-/* ââ TABLET â¤1024px ââ */
+/* Ã¢ÂÂÃ¢ÂÂ TABLET Ã¢ÂÂ¤1024px Ã¢ÂÂÃ¢ÂÂ */
 @media(max-width:1024px){
   .mxm-sidebar{position:fixed;z-index:200;height:100%;transform:translateX(-240px);transition:transform .22s cubic-bezier(.4,0,.2,1);box-shadow:none}
   .mxm-sidebar.mobile-open{transform:translateX(0);box-shadow:4px 0 24px rgba(0,0,0,.25)}
@@ -226,7 +226,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   .settings-grid{grid-template-columns:180px 1fr!important}
 }
 
-/* ââ MOBILE â¤767px ââ */
+/* Ã¢ÂÂÃ¢ÂÂ MOBILE Ã¢ÂÂ¤767px Ã¢ÂÂÃ¢ÂÂ */
 @media(max-width:767px){
   .mxm-topbar{padding:0 10px;gap:6px}
   .tb-title-sub,.ccard-sub{display:none}
@@ -262,7 +262,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   td.td-long{max-width:120px}
 }
 
-/* ââ SMALL MOBILE â¤480px ââ */
+/* Ã¢ÂÂÃ¢ÂÂ SMALL MOBILE Ã¢ÂÂ¤480px Ã¢ÂÂÃ¢ÂÂ */
 @media(max-width:480px){
   .kpi-row{grid-template-columns:repeat(2,1fr)!important}
   .kpi-value{font-size:1.1rem}
@@ -291,7 +291,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 <div class="toast-container" id="toastContainer"></div>
 
 <div class="mxm-shell">
-<!-- ââ SIDEBAR ââ -->
+<!-- Ã¢ÂÂÃ¢ÂÂ SIDEBAR Ã¢ÂÂÃ¢ÂÂ -->
 <aside class="mxm-sidebar" id="mxmSidebar">
   <div class="sb-brand">
     <div class="sb-logo-box"><span>EWS</span></div>
@@ -328,19 +328,19 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   <div class="sys-info">
     <div class="sys-title">System Status</div>
     <div class="sys-status-row"><div class="sys-dot"></div><div class="sys-online">Online</div></div>
-    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">â</span></div>
+    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">Ã¢ÂÂ</span></div>
   </div>
 </aside>
 
-<!-- ââ MAIN ââ -->
+<!-- Ã¢ÂÂÃ¢ÂÂ MAIN Ã¢ÂÂÃ¢ÂÂ -->
 <div class="mxm-main">
   <!-- TOPBAR -->
   <header class="mxm-topbar">
     <button class="tb-menu-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></button>
     <div class="tb-brand">
       <div class="tb-title-block">
-        <div class="tb-title">EWS â Enterprise</div>
-        <div class="tb-sub">Work Orders â EWS System</div>
+        <div class="tb-title">EWS Ã¢ÂÂ Enterprise</div>
+        <div class="tb-sub">Work Orders Ã¢ÂÂ EWS System</div>
       </div>
     </div>
     <div class="tb-right">
@@ -350,8 +350,8 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
       <button class="tb-icon-btn"><i class="fas fa-bell"></i><span class="tb-bell-badge" id="tbBellCnt">0</span></button>
       <a href="dashboard.html" class="tb-icon-btn" title="Dashboard"><i class="fas fa-gauge-high"></i></a>
       <div class="tb-user" id="tbUser" onclick="logout()" title="Click to logout" style="cursor:pointer">
-        <div class="tb-avatar" id="tbAvatar">â</div>
-        <span class="tb-username" id="tbUsername">â</span>
+        <div class="tb-avatar" id="tbAvatar">Ã¢ÂÂ</div>
+        <span class="tb-username" id="tbUsername">Ã¢ÂÂ</span>
       </div>
     </div>
   </header>
@@ -392,21 +392,21 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
       </select>
     </div>
     <div class="toolbar-spacer"></div>
-    <div class="stat-pill"><span class="stat-pill-val" id="statTotal">â</span><span class="stat-pill-lbl">Total</span></div>
-    <div class="stat-pill"><span class="stat-pill-val" id="statFiltered" style="color:var(--p60)">â</span><span class="stat-pill-lbl">Showing</span></div>
+    <div class="stat-pill"><span class="stat-pill-val" id="statTotal">Ã¢ÂÂ</span><span class="stat-pill-lbl">Total</span></div>
+    <div class="stat-pill"><span class="stat-pill-val" id="statFiltered" style="color:var(--p60)">Ã¢ÂÂ</span><span class="stat-pill-lbl">Showing</span></div>
   </div>
 
   <!-- KPI STRIP -->
   <div style="padding:2px 0 0;flex-shrink:0">
   <div class="kpi-strip" id="kpiStrip">
-    <div class="ks-card ksc-p" data-status="" onclick="filterByStatus('')"><div class="ks-label">Total</div><div class="ks-value" id="ksTotal">â</div></div>
-    <div class="ks-card ksc-cy" data-status="OPEN" onclick="filterByStatus('OPEN')"><div class="ks-label">Open</div><div class="ks-value" style="color:var(--cyan50)" id="ksOpen">â</div></div>
-    <div class="ks-card ksc-o" data-status="SEND_REPAIR" onclick="filterByStatus('SEND_REPAIR')"><div class="ks-label">In Repair</div><div class="ks-value" style="color:var(--orange40)" id="ksWIP">â</div></div>
-    <div class="ks-card ksc-y" data-status="WAIT_SPARE_PART" onclick="filterByStatus('WAIT_SPARE_PART')"><div class="ks-label">Wait Parts</div><div class="ks-value" style="color:#7d6300" id="ksWaitPart">â</div></div>
-    <div class="ks-card ksc-t" data-status="WAIT_APPROVAL" onclick="filterByStatus('WAIT_APPROVAL')"><div class="ks-label">Wait Approval</div><div class="ks-value" style="color:var(--teal50)" id="ksWaitApp">â</div></div>
-    <div class="ks-card ksc-g" data-status="CLOSED" onclick="filterByStatus('CLOSED')"><div class="ks-label">Closed</div><div class="ks-value" style="color:var(--green50)" id="ksClosed">â</div></div>
-    <div class="ks-card ksc-r" data-status="RETURNED" onclick="filterByStatus('RETURNED')"><div class="ks-label">Cancelled</div><div class="ks-value" style="color:var(--g60)" id="ksCancel">â</div></div>
-    <div class="ks-card ksc-pur" data-status="REPEAT" onclick="filterByStatus('REPEAT')"><div class="ks-label">Repeat Repair</div><div class="ks-value" style="color:var(--purple50)" id="ksRepeat">â</div></div>
+    <div class="ks-card ksc-p" data-status="" onclick="filterByStatus('')"><div class="ks-label">Total</div><div class="ks-value" id="ksTotal">Ã¢ÂÂ</div></div>
+    <div class="ks-card ksc-cy" data-status="OPEN" onclick="filterByStatus('OPEN')"><div class="ks-label">Open</div><div class="ks-value" style="color:var(--cyan50)" id="ksOpen">Ã¢ÂÂ</div></div>
+    <div class="ks-card ksc-o" data-status="SEND_REPAIR" onclick="filterByStatus('SEND_REPAIR')"><div class="ks-label">In Repair</div><div class="ks-value" style="color:var(--orange40)" id="ksWIP">Ã¢ÂÂ</div></div>
+    <div class="ks-card ksc-y" data-status="WAIT_SPARE_PART" onclick="filterByStatus('WAIT_SPARE_PART')"><div class="ks-label">Wait Parts</div><div class="ks-value" style="color:#7d6300" id="ksWaitPart">Ã¢ÂÂ</div></div>
+    <div class="ks-card ksc-t" data-status="WAIT_APPROVAL" onclick="filterByStatus('WAIT_APPROVAL')"><div class="ks-label">Wait Approval</div><div class="ks-value" style="color:var(--teal50)" id="ksWaitApp">Ã¢ÂÂ</div></div>
+    <div class="ks-card ksc-g" data-status="CLOSED" onclick="filterByStatus('CLOSED')"><div class="ks-label">Closed</div><div class="ks-value" style="color:var(--green50)" id="ksClosed">Ã¢ÂÂ</div></div>
+    <div class="ks-card ksc-r" data-status="RETURNED" onclick="filterByStatus('RETURNED')"><div class="ks-label">Cancelled</div><div class="ks-value" style="color:var(--g60)" id="ksCancel">Ã¢ÂÂ</div></div>
+    <div class="ks-card ksc-pur" data-status="REPEAT" onclick="filterByStatus('REPEAT')"><div class="ks-label">Repeat Repair</div><div class="ks-value" style="color:var(--purple50)" id="ksRepeat">Ã¢ÂÂ</div></div>
   </div>
   </div>
 
@@ -472,7 +472,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 </div>
 </div>
 
-<!-- ââ CREATE/EDIT MODAL ââ -->
+<!-- Ã¢ÂÂÃ¢ÂÂ CREATE/EDIT MODAL Ã¢ÂÂÃ¢ÂÂ -->
 <div class="modal-overlay hidden" id="jobModal">
   <div class="modal-panel">
     <div class="modal-header">
@@ -512,7 +512,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
         <div class="mf-group">
           <label class="mf-label">Vendor</label>
           <select class="mf-select" id="mVendor">
-            <option value="">â Select Vendor â</option>
+            <option value="">Ã¢ÂÂ Select Vendor Ã¢ÂÂ</option>
           </select>
         </div>
         <div class="mf-group">
@@ -548,9 +548,9 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 
 <script>
 const GAS_URL = localStorage.getItem('rms_gas_url') ||
-  'https://script.google.com/macros/s/AKfycbyf0GUfEleoJv1RHZT9nT3Z5JmktyQMEHkviWFs10eNHKkGUbm_pr-lbpj9R4rVVIWVCw/exec';
+  'https://script.google.com/macros/s/AKfycbyf0GUfEIeoJv1RHZT9nT3Z5JmktyQMEHkviWFs10eNHKkGUbm_pr-lbpj9R4rVVIWVCw/exec';
 
-/* ââ Auth ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Auth Ã¢ÂÂÃ¢ÂÂ */
 function _getToken(){
   const s=JSON.parse(sessionStorage.getItem('rms_v3_session')||localStorage.getItem('rms_v3_session')||'null');
   return s?.token||'';
@@ -564,14 +564,14 @@ function _getToken(){
   if(s.role==='viewer') document.getElementById('btnDelete')?.remove();
 })();
 
-/* ââ Sample Data ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Sample Data Ã¢ÂÂÃ¢ÂÂ */
 let VENDORS={};
 async function loadVendors(){
   try{
     const r=await fetch(`${GAS_URL}?action=getVendors&token=${_getToken()}`).then(x=>x.json());
     if(r.success&&Array.isArray(r.data)&&r.data.length>0){
       const sel=document.getElementById('mVendor');
-      sel.innerHTML='<option value="">â Select Vendor â</option>';
+      sel.innerHTML='<option value="">Ã¢ÂÂ Select Vendor Ã¢ÂÂ</option>';
       r.data.forEach(v=>{
         const id=v.Vendor_ID||v.id||'';
         const name=v.Name||v.Vendor_Name||v.name||id;
@@ -583,45 +583,45 @@ async function loadVendors(){
 }
 function mkj(n,eq,d,a,v,st,cr,cl,pri){return{JOB_No:'JOB-'+String(n).padStart(4,'0'),Equipment_ID:eq,Damage_Code:d,Repair_Action:a,Vendor_ID:v,Status:st,Create_Date:cr,Close_Date:cl||'',Priority:pri||'MEDIUM'}}
 let SAMPLE_JOBS=[
-  mkj(1,'EQ-001','à¸£à¸°à¸à¸à¹à¸®à¸à¸£à¸­à¸¥à¸´à¸à¸£à¸±à¹à¸§','à¹à¸à¸¥à¸µà¹à¸¢à¸ Seal Kit','V001','CLOSED','2025-11-05','2025-11-18','HIGH'),
-  mkj(2,'EQ-002','à¸¡à¸­à¹à¸à¸­à¸£à¹à¹à¸«à¸¡à¹','à¹à¸à¸¥à¸µà¹à¸¢à¸à¸¡à¸­à¹à¸à¸­à¸£à¹à¹à¸«à¸¡à¹','V002','CLOSED','2025-11-08','2025-11-22','CRITICAL'),
-  mkj(3,'EQ-003','à¹à¸à¸£à¸´à¹à¸à¹à¸ªà¸µà¸¢à¸','à¹à¸à¸¥à¸µà¹à¸¢à¸ Bearing','V001','CLOSED','2025-11-10','2025-11-19','MEDIUM'),
-  mkj(4,'EQ-004','PCB à¹à¸ªà¸µà¸¢','à¸à¹à¸­à¸¡ PCB','V003','CLOSED','2025-11-12','2025-11-28','HIGH'),
-  mkj(5,'EQ-005','à¸ªà¸²à¸¢à¸à¸²à¸à¸à¸²à¸','à¹à¸à¸¥à¸µà¹à¸¢à¸à¸ªà¸²à¸¢à¸à¸²à¸','V001','CLOSED','2025-11-14','2025-11-20','LOW'),
-  mkj(6,'EQ-006','à¸¡à¸­à¹à¸à¸­à¸£à¹à¸£à¹à¸­à¸','à¸à¸³à¸à¸§à¸²à¸¡à¸ªà¸°à¸­à¸²à¸+à¸à¸£à¸§à¸','V002','CLOSED','2025-12-03','2025-12-12','MEDIUM'),
-  mkj(7,'EQ-007','Valve à¸à¸´à¸','à¸à¹à¸­à¸¡ Valve','V003','CLOSED','2025-12-05','2025-12-16','LOW'),
-  mkj(8,'EQ-002','à¸¡à¸­à¹à¸à¸­à¸£à¹à¸ªà¸±à¹à¸','à¸à¸£à¸§à¸à¸ªà¸­à¸ Coupling','V002','CLOSED','2025-12-08','2025-12-20','HIGH'),
-  mkj(9,'EQ-008','à¸à¸±à¹à¸¡à¹à¸¡à¹à¸à¸¹à¸','à¹à¸à¸¥à¸µà¹à¸¢à¸ Impeller','V001','CLOSED','2025-12-10','2025-12-24','CRITICAL'),
-  mkj(10,'EQ-009','à¹à¸à¹à¸à¹à¸à¸­à¸£à¹à¸à¸´à¸à¸à¸¥à¸²à¸','à¸à¸£à¸±à¸ Calibrate','V003','CLOSED','2025-12-12','2025-12-22','MEDIUM'),
-  mkj(11,'EQ-010','Compressor à¸à¸´à¸à¸à¸à¸à¸´','Overhaul','V002','CLOSED','2025-12-15','2026-01-05','HIGH'),
-  mkj(12,'EQ-003','à¹à¸à¸£à¸´à¹à¸à¹à¸ªà¸·à¹à¸­à¸¡','à¹à¸à¸¥à¸µà¹à¸¢à¸ Bearing à¸à¸¸à¸à¹à¸«à¸¡à¹','V001','CLOSED','2026-01-05','2026-01-14','MEDIUM'),
-  mkj(13,'EQ-011','PCB Controller à¹à¸ªà¸µà¸¢','à¹à¸à¸¥à¸µà¹à¸¢à¸ PCB','V003','CLOSED','2026-01-08','2026-01-20','HIGH'),
-  mkj(14,'EQ-004','à¸à¸­à¸£à¹à¸à¹à¸à¸à¹à¸²à¹à¸ªà¸µà¸¢','à¸à¹à¸­à¸¡à¸§à¸à¸à¸£','V003','CLOSED','2026-01-10','2026-01-25','HIGH'),
-  mkj(15,'EQ-012','à¸à¸£à¸°à¸à¸­à¸à¹à¸®à¸à¸£à¸­à¸¥à¸´à¸à¸£à¸±à¹à¸§','à¹à¸à¸¥à¸µà¹à¸¢à¸ Seal','V001','CLOSED','2026-01-12','2026-01-22','MEDIUM'),
-  mkj(16,'EQ-005','à¸ªà¸²à¸¢à¸à¸²à¸à¸«à¸¥à¸¸à¸','à¸à¸£à¸±à¸à¹à¸à¸§à¸ªà¸²à¸¢à¸à¸²à¸','V001','CLOSED','2026-01-15','2026-01-18','LOW'),
-  mkj(17,'EQ-013','à¸à¸±à¹à¸¡à¸à¹à¸³à¸¡à¸±à¸à¸£à¸±à¹à¸§','à¹à¸à¸¥à¸µà¹à¸¢à¸à¸à¸µà¸¥à¸à¸±à¹à¸¡','V001','CLOSED','2026-01-18','2026-01-28','HIGH'),
-  mkj(18,'EQ-006','à¸¡à¸­à¹à¸à¸­à¸£à¹à¸«à¸¢à¸¸à¸à¸à¸³à¸à¸²à¸','à¹à¸à¸¥à¸µà¹à¸¢à¸à¸¡à¸­à¹à¸à¸­à¸£à¹','V002','CLOSED','2026-01-20','2026-02-03','CRITICAL'),
-  mkj(19,'EQ-014','à¸«à¸±à¸§à¸à¸µà¸à¸­à¸¸à¸à¸à¸±à¸','à¸¥à¹à¸²à¸à¸à¸³à¸à¸§à¸²à¸¡à¸ªà¸°à¸­à¸²à¸','V002','CLOSED','2026-01-22','2026-01-30','MEDIUM'),
-  mkj(20,'EQ-001','à¹à¸®à¸à¸£à¸­à¸¥à¸´à¸à¸£à¸±à¹à¸§à¸à¹à¸³','à¹à¸à¸¥à¸µà¹à¸¢à¸ Cylinder','V001','CLOSED','2026-02-02','2026-02-14','HIGH'),
-  mkj(21,'EQ-015','Belt Drive à¹à¸ªà¸µà¸¢','à¹à¸à¸¥à¸µà¹à¸¢à¸ Belt Set','V001','CLOSED','2026-02-04','2026-02-12','MEDIUM'),
-  mkj(22,'EQ-007','Valve à¸­à¸¸à¸à¸à¸±à¸','à¸à¸­à¸à¸¥à¹à¸²à¸à¸à¸£à¸°à¸à¸­à¸','V003','CLOSED','2026-02-06','2026-02-18','LOW'),
-  mkj(23,'EQ-002','à¸¡à¸­à¹à¸à¸­à¸£à¹à¸£à¹à¸­à¸à¸¡à¸²à¸','à¹à¸à¸¥à¸µà¹à¸¢à¸ Cooling Fan','V002','CLOSED','2026-02-08','2026-02-20','HIGH'),
-  mkj(24,'EQ-016','Gear Box à¹à¸ªà¸µà¸¢à¸','à¹à¸à¸¥à¸µà¹à¸¢à¸ Gear Oil+à¸à¸£à¸§à¸','V002','CLOSED','2026-02-10','2026-02-22','MEDIUM'),
-  mkj(25,'EQ-008','à¸à¸±à¹à¸¡à¸ªà¸±à¹à¸','Balance Impeller','V001','CLOSED','2026-02-12','2026-02-24','MEDIUM'),
-  mkj(26,'EQ-001','à¸à¸µà¸¥à¸£à¸±à¹à¸§à¸à¸£à¸±à¹à¸à¸à¸µà¹ 3','à¹à¸à¸¥à¸µà¹à¸¢à¸ O-Ring à¸à¸¸à¸','V001','RETURNED','2026-04-01','2026-04-12','HIGH'),
-  mkj(27,'EQ-002','Rotor à¹à¸ªà¸·à¹à¸­à¸¡','Rewind Motor','V002','RETURNED','2026-04-03','2026-04-18','CRITICAL'),
-  mkj(28,'EQ-005','à¸ªà¸²à¸¢à¸à¸²à¸à¹à¸à¸','à¹à¸à¸¥à¸µà¹à¸¢à¸à¸ªà¸²à¸¢à¸à¸²à¸à¸à¸¸à¸','V001','RETURNED','2026-04-05','2026-04-14','MEDIUM'),
-  mkj(29,'EQ-006','à¸¡à¸­à¹à¸à¸­à¸£à¹à¹à¸«à¸¡à¹à¸­à¸µà¸à¸à¸£à¸±à¹à¸','à¹à¸à¸¥à¸µà¹à¸¢à¸à¸¡à¸­à¹à¸à¸­à¸£à¹à¹à¸«à¸¡à¹','V002','RETURNED','2026-04-08','2026-04-22','CRITICAL'),
-  mkj(30,'EQ-008','à¸à¸±à¹à¸¡à¸£à¸±à¹à¸§','à¹à¸à¸¥à¸µà¹à¸¢à¸ Mechanical Seal','V001','SEND_REPAIR','2026-05-02','','HIGH'),
-  mkj(31,'EQ-009','à¸£à¸°à¸à¸ Error','à¸§à¸´à¹à¸à¸£à¸²à¸°à¸«à¹+à¸à¹à¸­à¸¡à¸à¸­à¸£à¹à¸','V003','SEND_REPAIR','2026-05-05','','MEDIUM'),
-  mkj(32,'EQ-010','Compressor à¹à¸ªà¸µà¸¢à¸«à¸à¸±à¸','Major Overhaul','V002','SEND_REPAIR','2026-05-08','','CRITICAL'),
-  mkj(33,'EQ-011','PCB Inverter à¹à¸ªà¸µà¸¢','à¹à¸à¸¥à¸µà¹à¸¢à¸ Inverter','V003','SEND_REPAIR','2026-05-10','','HIGH'),
-  mkj(34,'EQ-012','Bearing à¸à¸¸à¸à¸¥à¹à¸²à¸','à¹à¸à¸¥à¸µà¹à¸¢à¸ Bearing Lower','V001','WAIT_SPARE_PART','2026-05-12','','MEDIUM'),
-  mkj(35,'EQ-013','à¸£à¸°à¸à¸à¹à¸®à¸à¸£à¸­à¸¥à¸´à¸à¸£à¸±à¹à¸§','à¸£à¸­ Seal Kit','V001','WAIT_APPROVAL','2026-05-15','','HIGH'),
-  mkj(36,'EQ-014','à¸¡à¸­à¹à¸à¸­à¸£à¹à¹à¸ªà¸µà¸¢à¸','à¸à¸£à¸§à¸ Alignment','V002','OPEN','2026-06-01','','LOW'),
-  mkj(37,'EQ-015','à¹à¸à¹à¸à¹à¸à¸­à¸£à¹à¸à¸´à¸','à¹à¸à¸¥à¸µà¹à¸¢à¸ Sensor','V003','OPEN','2026-06-05','','MEDIUM'),
-  mkj(38,'EQ-016','Valve à¸£à¸±à¹à¸§','à¸à¹à¸­à¸¡ Valve','V001','OPEN','2026-06-10','','HIGH'),
-  mkj(39,'EQ-017','PCB à¹à¸ªà¸µà¸¢','à¹à¸à¸¥à¸µà¹à¸¢à¸ PCB','V003','OPEN','2026-06-15','','CRITICAL'),
+  mkj(1,'EQ-001','Ã Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â®Ã Â¸ÂÃ Â¸Â£Ã Â¸Â­Ã Â¸Â¥Ã Â¸Â´Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Seal Kit','V001','CLOSED','2025-11-05','2025-11-18','HIGH'),
+  mkj(2,'EQ-002','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸ÂÃ Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹Â','V002','CLOSED','2025-11-08','2025-11-22','CRITICAL'),
+  mkj(3,'EQ-003','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â´Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Bearing','V001','CLOSED','2025-11-10','2025-11-19','MEDIUM'),
+  mkj(4,'EQ-004','PCB Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡ PCB','V003','CLOSED','2025-11-12','2025-11-28','HIGH'),
+  mkj(5,'EQ-005','Ã Â¸ÂªÃ Â¸Â²Ã Â¸Â¢Ã Â¸ÂÃ Â¸Â²Ã Â¸ÂÃ Â¸ÂÃ Â¸Â²Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸ÂÃ Â¸ÂªÃ Â¸Â²Ã Â¸Â¢Ã Â¸ÂÃ Â¸Â²Ã Â¸Â','V001','CLOSED','2025-11-14','2025-11-20','LOW'),
+  mkj(6,'EQ-006','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸Â£Ã Â¹ÂÃ Â¸Â­Ã Â¸Â','Ã Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â§Ã Â¸Â²Ã Â¸Â¡Ã Â¸ÂªÃ Â¸Â°Ã Â¸Â­Ã Â¸Â²Ã Â¸Â+Ã Â¸ÂÃ Â¸Â£Ã Â¸Â§Ã Â¸Â','V002','CLOSED','2025-12-03','2025-12-12','MEDIUM'),
+  mkj(7,'EQ-007','Valve Ã Â¸ÂÃ Â¸Â´Ã Â¸Â','Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡ Valve','V003','CLOSED','2025-12-05','2025-12-16','LOW'),
+  mkj(8,'EQ-002','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸ÂªÃ Â¸Â±Ã Â¹ÂÃ Â¸Â','Ã Â¸ÂÃ Â¸Â£Ã Â¸Â§Ã Â¸ÂÃ Â¸ÂªÃ Â¸Â­Ã Â¸Â Coupling','V002','CLOSED','2025-12-08','2025-12-20','HIGH'),
+  mkj(9,'EQ-008','Ã Â¸ÂÃ Â¸Â±Ã Â¹ÂÃ Â¸Â¡Ã Â¹ÂÃ Â¸Â¡Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¹Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Impeller','V001','CLOSED','2025-12-10','2025-12-24','CRITICAL'),
+  mkj(10,'EQ-009','Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸ÂÃ Â¸Â´Ã Â¸ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸Â²Ã Â¸Â','Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¸Â Calibrate','V003','CLOSED','2025-12-12','2025-12-22','MEDIUM'),
+  mkj(11,'EQ-010','Compressor Ã Â¸ÂÃ Â¸Â´Ã Â¸ÂÃ Â¸ÂÃ Â¸ÂÃ Â¸ÂÃ Â¸Â´','Overhaul','V002','CLOSED','2025-12-15','2026-01-05','HIGH'),
+  mkj(12,'EQ-003','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â´Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂªÃ Â¸Â·Ã Â¹ÂÃ Â¸Â­Ã Â¸Â¡','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Bearing Ã Â¸ÂÃ Â¸Â¸Ã Â¸ÂÃ Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹Â','V001','CLOSED','2026-01-05','2026-01-14','MEDIUM'),
+  mkj(13,'EQ-011','PCB Controller Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â PCB','V003','CLOSED','2026-01-08','2026-01-20','HIGH'),
+  mkj(14,'EQ-004','Ã Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â²Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡Ã Â¸Â§Ã Â¸ÂÃ Â¸ÂÃ Â¸Â£','V003','CLOSED','2026-01-10','2026-01-25','HIGH'),
+  mkj(15,'EQ-012','Ã Â¸ÂÃ Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸Â­Ã Â¸ÂÃ Â¹ÂÃ Â¸Â®Ã Â¸ÂÃ Â¸Â£Ã Â¸Â­Ã Â¸Â¥Ã Â¸Â´Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Seal','V001','CLOSED','2026-01-12','2026-01-22','MEDIUM'),
+  mkj(16,'EQ-005','Ã Â¸ÂªÃ Â¸Â²Ã Â¸Â¢Ã Â¸ÂÃ Â¸Â²Ã Â¸ÂÃ Â¸Â«Ã Â¸Â¥Ã Â¸Â¸Ã Â¸Â','Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â§Ã Â¸ÂªÃ Â¸Â²Ã Â¸Â¢Ã Â¸ÂÃ Â¸Â²Ã Â¸Â','V001','CLOSED','2026-01-15','2026-01-18','LOW'),
+  mkj(17,'EQ-013','Ã Â¸ÂÃ Â¸Â±Ã Â¹ÂÃ Â¸Â¡Ã Â¸ÂÃ Â¹ÂÃ Â¸Â³Ã Â¸Â¡Ã Â¸Â±Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸ÂÃ Â¸ÂÃ Â¸ÂµÃ Â¸Â¥Ã Â¸ÂÃ Â¸Â±Ã Â¹ÂÃ Â¸Â¡','V001','CLOSED','2026-01-18','2026-01-28','HIGH'),
+  mkj(18,'EQ-006','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸Â«Ã Â¸Â¢Ã Â¸Â¸Ã Â¸ÂÃ Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â²Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸ÂÃ Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹Â','V002','CLOSED','2026-01-20','2026-02-03','CRITICAL'),
+  mkj(19,'EQ-014','Ã Â¸Â«Ã Â¸Â±Ã Â¸Â§Ã Â¸ÂÃ Â¸ÂµÃ Â¸ÂÃ Â¸Â­Ã Â¸Â¸Ã Â¸ÂÃ Â¸ÂÃ Â¸Â±Ã Â¸Â','Ã Â¸Â¥Ã Â¹ÂÃ Â¸Â²Ã Â¸ÂÃ Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â§Ã Â¸Â²Ã Â¸Â¡Ã Â¸ÂªÃ Â¸Â°Ã Â¸Â­Ã Â¸Â²Ã Â¸Â','V002','CLOSED','2026-01-22','2026-01-30','MEDIUM'),
+  mkj(20,'EQ-001','Ã Â¹ÂÃ Â¸Â®Ã Â¸ÂÃ Â¸Â£Ã Â¸Â­Ã Â¸Â¥Ã Â¸Â´Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§Ã Â¸ÂÃ Â¹ÂÃ Â¸Â³','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Cylinder','V001','CLOSED','2026-02-02','2026-02-14','HIGH'),
+  mkj(21,'EQ-015','Belt Drive Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Belt Set','V001','CLOSED','2026-02-04','2026-02-12','MEDIUM'),
+  mkj(22,'EQ-007','Valve Ã Â¸Â­Ã Â¸Â¸Ã Â¸ÂÃ Â¸ÂÃ Â¸Â±Ã Â¸Â','Ã Â¸ÂÃ Â¸Â­Ã Â¸ÂÃ Â¸Â¥Ã Â¹ÂÃ Â¸Â²Ã Â¸ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸Â­Ã Â¸Â','V003','CLOSED','2026-02-06','2026-02-18','LOW'),
+  mkj(23,'EQ-002','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸Â£Ã Â¹ÂÃ Â¸Â­Ã Â¸ÂÃ Â¸Â¡Ã Â¸Â²Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Cooling Fan','V002','CLOSED','2026-02-08','2026-02-20','HIGH'),
+  mkj(24,'EQ-016','Gear Box Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Gear Oil+Ã Â¸ÂÃ Â¸Â£Ã Â¸Â§Ã Â¸Â','V002','CLOSED','2026-02-10','2026-02-22','MEDIUM'),
+  mkj(25,'EQ-008','Ã Â¸ÂÃ Â¸Â±Ã Â¹ÂÃ Â¸Â¡Ã Â¸ÂªÃ Â¸Â±Ã Â¹ÂÃ Â¸Â','Balance Impeller','V001','CLOSED','2026-02-12','2026-02-24','MEDIUM'),
+  mkj(26,'EQ-001','Ã Â¸ÂÃ Â¸ÂµÃ Â¸Â¥Ã Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸ÂÃ Â¸ÂÃ Â¸ÂµÃ Â¹Â 3','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â O-Ring Ã Â¸ÂÃ Â¸Â¸Ã Â¸Â','V001','RETURNED','2026-04-01','2026-04-12','HIGH'),
+  mkj(27,'EQ-002','Rotor Ã Â¹ÂÃ Â¸ÂªÃ Â¸Â·Ã Â¹ÂÃ Â¸Â­Ã Â¸Â¡','Rewind Motor','V002','RETURNED','2026-04-03','2026-04-18','CRITICAL'),
+  mkj(28,'EQ-005','Ã Â¸ÂªÃ Â¸Â²Ã Â¸Â¢Ã Â¸ÂÃ Â¸Â²Ã Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸ÂÃ Â¸ÂªÃ Â¸Â²Ã Â¸Â¢Ã Â¸ÂÃ Â¸Â²Ã Â¸ÂÃ Â¸ÂÃ Â¸Â¸Ã Â¸Â','V001','RETURNED','2026-04-05','2026-04-14','MEDIUM'),
+  mkj(29,'EQ-006','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹ÂÃ Â¸Â­Ã Â¸ÂµÃ Â¸ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸ÂÃ Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹Â','V002','RETURNED','2026-04-08','2026-04-22','CRITICAL'),
+  mkj(30,'EQ-008','Ã Â¸ÂÃ Â¸Â±Ã Â¹ÂÃ Â¸Â¡Ã Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Mechanical Seal','V001','SEND_REPAIR','2026-05-02','','HIGH'),
+  mkj(31,'EQ-009','Ã Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸Â Error','Ã Â¸Â§Ã Â¸Â´Ã Â¹ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â²Ã Â¸Â°Ã Â¸Â«Ã Â¹Â+Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡Ã Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸Â','V003','SEND_REPAIR','2026-05-05','','MEDIUM'),
+  mkj(32,'EQ-010','Compressor Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢Ã Â¸Â«Ã Â¸ÂÃ Â¸Â±Ã Â¸Â','Major Overhaul','V002','SEND_REPAIR','2026-05-08','','CRITICAL'),
+  mkj(33,'EQ-011','PCB Inverter Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Inverter','V003','SEND_REPAIR','2026-05-10','','HIGH'),
+  mkj(34,'EQ-012','Bearing Ã Â¸ÂÃ Â¸Â¸Ã Â¸ÂÃ Â¸Â¥Ã Â¹ÂÃ Â¸Â²Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Bearing Lower','V001','WAIT_SPARE_PART','2026-05-12','','MEDIUM'),
+  mkj(35,'EQ-013','Ã Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â®Ã Â¸ÂÃ Â¸Â£Ã Â¸Â­Ã Â¸Â¥Ã Â¸Â´Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§','Ã Â¸Â£Ã Â¸Â­ Seal Kit','V001','WAIT_APPROVAL','2026-05-15','','HIGH'),
+  mkj(36,'EQ-014','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢Ã Â¸Â','Ã Â¸ÂÃ Â¸Â£Ã Â¸Â§Ã Â¸Â Alignment','V002','OPEN','2026-06-01','','LOW'),
+  mkj(37,'EQ-015','Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸ÂÃ Â¸Â´Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Sensor','V003','OPEN','2026-06-05','','MEDIUM'),
+  mkj(38,'EQ-016','Valve Ã Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§','Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡ Valve','V001','OPEN','2026-06-10','','HIGH'),
+  mkj(39,'EQ-017','PCB Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â PCB','V003','OPEN','2026-06-15','','CRITICAL'),
 ];
 
 /* -- System Detection -- */
@@ -640,7 +640,7 @@ function _initSysUI(){
   if(hn) hn.textContent=_sc.name;
   var t=document.querySelector('.tb-title'),s=document.querySelector('.tb-sub');
   if(t) t.textContent=_sc.name;
-  if(s) s.textContent='Work Orders â '+_sc.badge+' System';
+  if(s) s.textContent='Work Orders Ã¢ÂÂ '+_sc.badge+' System';
   if(!_sc.connected){
     var hc=document.getElementById('sysHdrConn');
     if(hc) hc.innerHTML='<i class="fas fa-circle" style="font-size:.45rem;color:var(--g40)"></i>&nbsp;<span style="color:var(--g50)">Not Connected</span>';
@@ -654,11 +654,11 @@ function _initSysUI(){
     var tb=document.getElementById('jobsTableBody');
     if(tb) tb.innerHTML='<tr><td colspan="11" style="text-align:center;padding:36px;color:var(--g40)">'
       +'<i class="fas fa-plug" style="font-size:1.5rem;display:block;margin-bottom:8px"></i>'
-      +'à¹à¸¡à¹à¸¡à¸µà¸à¹à¸­à¸¡à¸¹à¸¥ â '+_sc.name+' à¸¢à¸±à¸à¹à¸¡à¹à¹à¸à¸·à¹à¸­à¸¡à¸à¹à¸­</td></tr>';
+      +'Ã Â¹ÂÃ Â¸Â¡Ã Â¹ÂÃ Â¸Â¡Ã Â¸ÂµÃ Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡Ã Â¸Â¹Ã Â¸Â¥ Ã¢ÂÂ '+_sc.name+' Ã Â¸Â¢Ã Â¸Â±Ã Â¸ÂÃ Â¹ÂÃ Â¸Â¡Ã Â¹ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â·Ã Â¹ÂÃ Â¸Â­Ã Â¸Â¡Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­</td></tr>';
     ['ksTotal','ksOpen','ksWIP','ksClosed','ksReturned'].forEach(function(id){
       var el=document.getElementById(id);if(el)el.textContent='0';
     });
-    var at=document.getElementById('ksAvgTAT');if(at)at.textContent='â';
+    var at=document.getElementById('ksAvgTAT');if(at)at.textContent='Ã¢ÂÂ';
   }
 }
 
@@ -695,16 +695,16 @@ function _renderDashCharts(jobs){
   var c3=document.getElementById('dashVendorChart');
   if(c3){if(_dcV)_dcV.destroy();
     _dcV=new Chart(c3,{type:'bar',
-      data:{labels:topV.map(function(v){return v[0].length>16?v[0].substring(0,15)+'â¦':v[0];}),
+      data:{labels:topV.map(function(v){return v[0].length>16?v[0].substring(0,15)+'Ã¢ÂÂ¦':v[0];}),
         datasets:[{data:topV.map(function(v){return v[1];}),
           backgroundColor:_sc.color,borderWidth:0,borderRadius:2}]},
       options:Object.assign({},bOpts,{indexAxis:'y'})});}
 }
 
-/* ââ State ââ */
+/* Ã¢ÂÂÃ¢ÂÂ State Ã¢ÂÂÃ¢ÂÂ */
 let _jobs=[], _filtered=[], _sortKey='Create_Date', _sortDir=-1, _page=1, _pageSize=20;
 
-/* ââ Toast ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Toast Ã¢ÂÂÃ¢ÂÂ */
 
 function logout(){
   sessionStorage.removeItem('rms_v3_session');
@@ -722,14 +722,14 @@ function toast(msg,type='info'){
   setTimeout(()=>{t.classList.add('out');setTimeout(()=>t.remove(),250)},3000);
 }
 
-/* ââ Utils ââ */
-function fmtDate(d){if(!d)return'â';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'2-digit'})}
+/* Ã¢ÂÂÃ¢ÂÂ Utils Ã¢ÂÂÃ¢ÂÂ */
+function fmtDate(d){if(!d)return'Ã¢ÂÂ';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'2-digit'})}
 function calcTAT(cr,cl){if(!cr||!cl)return null;const d=(new Date(cl)-new Date(cr))/86400000;return d<0?null:Math.round(d)}
 function statusBadge(s){const st=(s||'OPEN').replace(/ /g,'_').toUpperCase();const lbl={OPEN:'Open',SEND_REPAIR:'In Repair',RETURNED:'Returned',WAIT_APPROVAL:'Wait Approval',WAIT_SPARE_PART:'Wait Parts',CLOSED:'Closed'};return`<span class="bs bs-${st}">${lbl[st]||st}</span>`}
 function priBadge(p){const pr=(p||'MEDIUM').toUpperCase();const lbl={CRITICAL:'Critical',HIGH:'High',MEDIUM:'Medium',LOW:'Low'};return`<span class="pri pri-${pr}"><span class="pri-dot"></span>${lbl[pr]||pr}</span>`}
-function getVendorName(id){return VENDORS[id]||id||'â'}
+function getVendorName(id){return VENDORS[id]||id||'Ã¢ÂÂ'}
 
-/* ââ Load ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Load Ã¢ÂÂÃ¢ÂÂ */
 function loadJobs(){
   fetch(GAS_URL+'?action=getJobs&token='+encodeURIComponent(_getToken()))
     .then(r=>r.json())
@@ -778,7 +778,7 @@ function _repeatJobCount(jobs){
   return (jobs||_jobs).filter(function(j){return s.has(j.Equipment_ID||'');}).length;
 }
 
-/* ââ KPI click filter ââ */
+/* Ã¢ÂÂÃ¢ÂÂ KPI click filter Ã¢ÂÂÃ¢ÂÂ */
 function filterByStatus(st){
   var sel=document.getElementById('filterStatus');
   if(sel) sel.value=st;
@@ -800,7 +800,7 @@ function _applyUrlStatus(){
   applyFilters();
 }
 
-/* ââ Filters ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Filters Ã¢ÂÂÃ¢ÂÂ */
 function applyFilters(){
   const q=(document.getElementById('searchInput').value||'').toLowerCase();
   const st=document.getElementById('filterStatus').value;
@@ -832,7 +832,7 @@ function sortBy(key){
   applyFilters();
 }
 
-/* ââ Table ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Table Ã¢ÂÂÃ¢ÂÂ */
 function renderTable(){
   const start=(_page-1)*_pageSize;
   const pageData=_filtered.slice(start,start+_pageSize);
@@ -840,18 +840,18 @@ function renderTable(){
   if(!pageData.length){tbody.innerHTML=`<tr><td colspan="11" style="text-align:center;padding:40px;color:var(--g50)"><i class="fas fa-inbox" style="font-size:1.5rem;margin-bottom:8px;display:block"></i>No work orders found</td></tr>`;renderPagination();return}
   tbody.innerHTML=pageData.map(j=>{
     const tat=calcTAT(j.Create_Date,j.Close_Date);
-    const tatStr=tat!==null?tat+'d':'â';
+    const tatStr=tat!==null?tat+'d':'Ã¢ÂÂ';
     const tatColor=tat>30?'var(--red60)':tat>14?'var(--orange40)':'var(--g70)';
     return`<tr onclick="openEditModal('${j.JOB_No}')">
-      <td class="td-job">${j.JOB_No||'â'}</td>
-      <td><span class="td-eq">${j.Equipment_ID||'â'}</span></td>
-      <td class="td-long" title="${j.Damage_Code||''}">${j.Damage_Code||'â'}</td>
-      <td class="td-long" title="${j.Repair_Action||''}">${j.Repair_Action||'â'}</td>
+      <td class="td-job">${j.JOB_No||'Ã¢ÂÂ'}</td>
+      <td><span class="td-eq">${j.Equipment_ID||'Ã¢ÂÂ'}</span></td>
+      <td class="td-long" title="${j.Damage_Code||''}">${j.Damage_Code||'Ã¢ÂÂ'}</td>
+      <td class="td-long" title="${j.Repair_Action||''}">${j.Repair_Action||'Ã¢ÂÂ'}</td>
       <td style="font-size:.72rem;max-width:120px;overflow:hidden;text-overflow:ellipsis">${getVendorName(j.Vendor_ID)}</td>
       <td>${priBadge(j.Priority)}</td>
       <td>${statusBadge(j.Status)}</td>
       <td style="color:var(--g60)">${fmtDate(j.Create_Date)}</td>
-      <td style="color:var(--g60)">${j.Close_Date?fmtDate(j.Close_Date):'â'}</td>
+      <td style="color:var(--g60)">${j.Close_Date?fmtDate(j.Close_Date):'Ã¢ÂÂ'}</td>
       <td><span style="font-weight:600;font-size:.72rem;color:${tatColor}">${tatStr}</span></td>
       <td onclick="event.stopPropagation()">
         <button onclick="openEditModal('${j.JOB_No}')" style="background:none;border:none;color:var(--p60);cursor:pointer;font-size:.75rem;padding:2px 6px" title="Edit"><i class="fas fa-pen"></i></button>
@@ -867,16 +867,16 @@ function renderPagination(){
   const pg=document.getElementById('pagination');
   let html=`<button class="pg-btn" onclick="goPage(${_page-1})" ${_page<=1?'disabled':''}>&#8249;</button>`;
   for(let i=1;i<=pages;i++){
-    if(pages>7&&(i>2&&i<_page-1)||(i>_page+1&&i<pages-1)){if(i===3||i===pages-2)html+='<span style="padding:0 4px;color:var(--g50)">â¦</span>';continue}
+    if(pages>7&&(i>2&&i<_page-1)||(i>_page+1&&i<pages-1)){if(i===3||i===pages-2)html+='<span style="padding:0 4px;color:var(--g50)">Ã¢ÂÂ¦</span>';continue}
     html+=`<button class="pg-btn ${i===_page?'active':''}" onclick="goPage(${i})">${i}</button>`;
   }
   html+=`<button class="pg-btn" onclick="goPage(${_page+1})" ${_page>=pages?'disabled':''}>&#8250;</button>`;
-  html+=`<span class="pg-info">${(_page-1)*_pageSize+1}â${Math.min(_page*_pageSize,total)} of ${total}</span>`;
+  html+=`<span class="pg-info">${(_page-1)*_pageSize+1}Ã¢ÂÂ${Math.min(_page*_pageSize,total)} of ${total}</span>`;
   pg.innerHTML=html;
 }
 function goPage(p){if(p<1||p>Math.ceil(_filtered.length/_pageSize))return;_page=p;renderTable()}
 
-/* ââ Modals ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Modals Ã¢ÂÂÃ¢ÂÂ */
 function openCreateModal(){
   document.getElementById('modalTitle').textContent='Create Work Order';
   document.getElementById('editJobNo').value='';
@@ -895,7 +895,7 @@ function openCreateModal(){
 function openEditModal(jobNo){
   const j=_jobs.find(x=>x.JOB_No===jobNo);
   if(!j)return;
-  document.getElementById('modalTitle').textContent='Edit Work Order â '+jobNo;
+  document.getElementById('modalTitle').textContent='Edit Work Order Ã¢ÂÂ '+jobNo;
   document.getElementById('editJobNo').value=jobNo;
   document.getElementById('mJobNo').value=jobNo;
   document.getElementById('mEquipID').value=j.Equipment_ID||'';
@@ -957,19 +957,19 @@ async function deleteJob(){
   toast('Work order deleted','info');
 }
 
-/* ââ Export ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Export Ã¢ÂÂÃ¢ÂÂ */
 function exportCSV(){
   const header='Job No.,Equipment ID,Damage,Repair Action,Vendor,Priority,Status,Created,Closed,TAT(d)';
   const rows=_filtered.map(j=>[j.JOB_No,j.Equipment_ID,`"${j.Damage_Code||''}"`,`"${j.Repair_Action||''}"`,getVendorName(j.Vendor_ID),j.Priority,j.Status,j.Create_Date,j.Close_Date||'',calcTAT(j.Create_Date,j.Close_Date)||''].join(','));
   const csv=[header,...rows].join('\n');
   const a=document.createElement('a');
-  a.href='data:text/csv;charset=utf-8,ï»¿'+encodeURIComponent(csv);
+  a.href='data:text/csv;charset=utf-8,Ã¯Â»Â¿'+encodeURIComponent(csv);
   a.download='work_orders_'+new Date().toISOString().split('T')[0]+'.csv';
   a.click();
   toast('CSV exported','success');
 }
 
-/* ââ UI ââ */
+/* Ã¢ÂÂÃ¢ÂÂ UI Ã¢ÂÂÃ¢ÂÂ */
 function toggleSidebar(){
   const sb=document.getElementById('mxmSidebar');
   const ov=document.getElementById('sidebarOverlay');
@@ -981,7 +981,7 @@ function toggleSidebar(){
   }
 }
 
-/* ââ Init ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Init Ã¢ÂÂÃ¢ÂÂ */
 _initSysUI();
 if(_sc.connected) loadVendors().then(() => loadJobs());
 </script>
