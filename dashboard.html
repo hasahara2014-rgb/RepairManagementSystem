@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
-<title>EWS Enterprise â Maintenance &amp; Repair Dashboard</title>
+<title>EWS Enterprise Ã¢ÂÂ Maintenance &amp; Repair Dashboard</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
-/* ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
-   EWS Design System v5.0  â  IBM Carbon / Maximo Inspired
-ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+   EWS Design System v5.0  Ã¢ÂÂ  IBM Carbon / Maximo Inspired
+Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --p60:#0F62FE; --p70:#0043CE; --p50:#4589FF; --p40:#78A9FF;
@@ -32,10 +32,10 @@
 
 html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g10);color:var(--g100);overflow:hidden}
 
-/* ââ SHELL ââ */
+/* Ã¢ÂÂÃ¢ÂÂ SHELL Ã¢ÂÂÃ¢ÂÂ */
 .mxm-shell{display:flex;height:100vh;overflow:hidden}
 
-/* ââ SIDEBAR ââ */
+/* Ã¢ÂÂÃ¢ÂÂ SIDEBAR Ã¢ÂÂÃ¢ÂÂ */
 .mxm-sidebar{
   width:var(--sidebar-w);min-width:var(--sidebar-w);
   background:var(--g100);
@@ -101,10 +101,10 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .sys-online{color:var(--g30);font-size:.72rem}
 .sys-update{color:var(--g50);font-size:.63rem;line-height:1.5}
 
-/* ââ MAIN ââ */
+/* Ã¢ÂÂÃ¢ÂÂ MAIN Ã¢ÂÂÃ¢ÂÂ */
 .mxm-main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
 
-/* ââ TOPBAR ââ */
+/* Ã¢ÂÂÃ¢ÂÂ TOPBAR Ã¢ÂÂÃ¢ÂÂ */
 .mxm-topbar{
   height:var(--topbar-h);min-height:var(--topbar-h);
   background:var(--white);
@@ -175,12 +175,12 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 }
 .tb-username{font-size:.72rem;font-weight:500;color:var(--g100);white-space:nowrap}
 
-/* ââ CONTENT ââ */
+/* Ã¢ÂÂÃ¢ÂÂ CONTENT Ã¢ÂÂÃ¢ÂÂ */
 .mxm-content{flex:1;overflow-y:auto;overflow-x:hidden;padding:14px 16px;scrollbar-width:thin;scrollbar-color:var(--g20) transparent}
 .mxm-content::-webkit-scrollbar{width:6px}
 .mxm-content::-webkit-scrollbar-thumb{background:var(--g20);border-radius:3px}
 
-/* ââ KPI ROW ââ */
+/* Ã¢ÂÂÃ¢ÂÂ KPI ROW Ã¢ÂÂÃ¢ÂÂ */
 .kpi-row{display:grid;grid-template-columns:repeat(8,1fr);gap:2px;margin-bottom:14px}
 .kpi-card{background:var(--white);padding:12px 14px;border-top:3px solid transparent;cursor:default;position:relative;overflow:hidden}
 .kpi-card:hover{box-shadow:0 2px 8px rgba(0,0,0,.1)}
@@ -203,7 +203,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .kpi-trend .dn{color:var(--red60)}
 .kpi-sparkline{height:30px;width:100%;overflow:hidden}
 
-/* ââ CHART CARDS ââ */
+/* Ã¢ÂÂÃ¢ÂÂ CHART CARDS Ã¢ÂÂÃ¢ÂÂ */
 .chart-row{display:grid;gap:2px;margin-bottom:2px}
 .chart-row-3{grid-template-columns:1fr 1fr 1fr}
 .chart-row-4{grid-template-columns:1fr 1fr 1fr 1fr}
@@ -279,7 +279,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .alert-text{font-size:.7rem;color:var(--g70);flex:1;line-height:1.4}
 .alert-cnt{font-size:.68rem;font-weight:700;color:var(--g100);white-space:nowrap;margin-left:auto}
 
-/* ââ QUICK ACTIONS BAR ââ */
+/* Ã¢ÂÂÃ¢ÂÂ QUICK ACTIONS BAR Ã¢ÂÂÃ¢ÂÂ */
 .mxm-qbar{
   height:var(--qbar-h);min-height:var(--qbar-h);
   background:var(--g90);
@@ -299,7 +299,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .qbar-btn i{font-size:.8rem}
 .qbar-sep{width:1px;height:24px;background:var(--g80);flex-shrink:0;margin:0 4px}
 
-/* ââ STATUS BADGES ââ */
+/* Ã¢ÂÂÃ¢ÂÂ STATUS BADGES Ã¢ÂÂÃ¢ÂÂ */
 .badge-status{display:inline-block;font-size:.62rem;font-weight:600;padding:2px 8px;letter-spacing:.3px}
 .bs-OPEN{background:#EDF5FF;color:#0043CE}
 .bs-SEND_REPAIR{background:var(--yellow10);color:#8B6900}
@@ -325,15 +325,15 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .g30{color:var(--g30)}
 .nowrap{white-space:nowrap}
 
-/* ââââââââââââââââââââââââââââââââââââââââââ
-   RESPONSIVE â TABLET & MOBILE
-   ââââââââââââââââââââââââââââââââââââââââââ */
+/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+   RESPONSIVE Ã¢ÂÂ TABLET & MOBILE
+   Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 
 /* Sidebar overlay (mobile) */
 .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:199;backdrop-filter:blur(2px)}
 .sidebar-overlay.active{display:block}
 
-/* ââ TABLET â¤1024px ââ */
+/* Ã¢ÂÂÃ¢ÂÂ TABLET Ã¢ÂÂ¤1024px Ã¢ÂÂÃ¢ÂÂ */
 @media(max-width:1024px){
   .mxm-sidebar{position:fixed;z-index:200;height:100%;transform:translateX(-240px);transition:transform .22s cubic-bezier(.4,0,.2,1);box-shadow:none}
   .mxm-sidebar.mobile-open{transform:translateX(0);box-shadow:4px 0 24px rgba(0,0,0,.25)}
@@ -350,7 +350,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   .settings-grid{grid-template-columns:180px 1fr!important}
 }
 
-/* ââ MOBILE â¤767px ââ */
+/* Ã¢ÂÂÃ¢ÂÂ MOBILE Ã¢ÂÂ¤767px Ã¢ÂÂÃ¢ÂÂ */
 @media(max-width:767px){
   .mxm-topbar{padding:0 10px;gap:6px}
   .tb-title-sub,.ccard-sub{display:none}
@@ -386,7 +386,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   td.td-long{max-width:120px}
 }
 
-/* ââ SMALL MOBILE â¤480px ââ */
+/* Ã¢ÂÂÃ¢ÂÂ SMALL MOBILE Ã¢ÂÂ¤480px Ã¢ÂÂÃ¢ÂÂ */
 @media(max-width:480px){
   .kpi-row{grid-template-columns:repeat(2,1fr)!important}
   .kpi-value{font-size:1.1rem}
@@ -402,12 +402,12 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 <!-- Loading -->
 <div class="mxm-loading" id="loadingOverlay">
   <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-  <div class="loading-text">à¸à¸³à¸¥à¸±à¸à¹à¸«à¸¥à¸à¸à¹à¸­à¸¡à¸¹à¸¥...</div>
+  <div class="loading-text">Ã Â¸ÂÃ Â¸Â³Ã Â¸Â¥Ã Â¸Â±Ã Â¸ÂÃ Â¹ÂÃ Â¸Â«Ã Â¸Â¥Ã Â¸ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡Ã Â¸Â¹Ã Â¸Â¥...</div>
 </div>
 
 <div class="mxm-shell">
 
-<!-- ââââ SIDEBAR ââââ -->
+<!-- Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ SIDEBAR Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ -->
 <aside class="mxm-sidebar" id="mxmSidebar">
   <div class="sb-brand">
     <div class="sb-logo-box"><span>EWS</span></div>
@@ -420,7 +420,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   <nav class="sidebar-nav">
     <a class="nav-item active" href="dashboard.html"><i class="nav-icon fas fa-gauge-high"></i><span class="nav-label">Dashboards</span></a>
     <div class="nav-item-group" id="woGroup">
-  <div class="nav-item nav-item-parent" onclick="toggleWO()"><i class="nav-icon fas fa-clipboard-list"></i><span class="nav-label">Work Orders</span><span class="nav-badge" id="navBadgeJobs">â</span><i class="nav-submenu-arrow fas fa-chevron-down nav-label"></i></div>
+  <div class="nav-item nav-item-parent" onclick="toggleWO()"><i class="nav-icon fas fa-clipboard-list"></i><span class="nav-label">Work Orders</span><span class="nav-badge" id="navBadgeJobs">Ã¢ÂÂ</span><i class="nav-submenu-arrow fas fa-chevron-down nav-label"></i></div>
   <div class="nav-submenu" id="woSub">
     <a class="nav-item nav-sub" href="jobs.html"><i class="nav-icon fas fa-circle-dot"></i><span class="nav-label">EWS - Enterprise</span></a>
     <a class="nav-item nav-sub" href="jobs.html?sys=AFC"><i class="nav-icon fas fa-circle-dot"></i><span class="nav-label">AFC - SYSTEMP</span></a>
@@ -454,11 +454,11 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   <div class="sys-info">
     <div class="sys-title">System Status</div>
     <div class="sys-status-row"><div class="sys-dot"></div><div class="sys-online">Online</div></div>
-    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">â</span></div>
+    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">Ã¢ÂÂ</span></div>
   </div>
 </aside>
 
-<!-- ââââ MAIN ââââ -->
+<!-- Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ MAIN Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ -->
 <div class="mxm-main">
 
   <!-- TOPBAR -->
@@ -489,17 +489,17 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   <!-- CONTENT -->
   <main class="mxm-content" id="mainContent">
 
-    <!-- ââ KPI ROW ââ -->
+    <!-- Ã¢ÂÂÃ¢ÂÂ KPI ROW Ã¢ÂÂÃ¢ÂÂ -->
     <div class="kpi-row" id="kpiRow">
       <!-- 8 KPI cards rendered by JS -->
     </div>
 
-    <!-- ââ ROW 1: Trend charts ââ -->
+    <!-- Ã¢ÂÂÃ¢ÂÂ ROW 1: Trend charts Ã¢ÂÂÃ¢ÂÂ -->
     <div class="chart-row chart-row-3" style="margin-bottom:2px">
       <!-- Job Trend -->
       <div class="ccard">
         <div class="ccard-head">
-          <div><div class="ccard-title">JOB TREND <span class="ccard-badge badge-p">(No. of Jobs)</span></div><div class="ccard-sub">Monthly job volume â last 6 months</div></div>
+          <div><div class="ccard-title">JOB TREND <span class="ccard-badge badge-p">(No. of Jobs)</span></div><div class="ccard-sub">Monthly job volume Ã¢ÂÂ last 6 months</div></div>
           <select class="ccard-selector" id="trendSelector"><option value="monthly">Monthly</option><option value="weekly">Weekly</option></select>
         </div>
         <div class="chart-area" style="height:120px"><canvas id="chartJobTrend"></canvas></div>
@@ -508,7 +508,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
       <!-- Completion Trend -->
       <div class="ccard">
         <div class="ccard-head">
-          <div><div class="ccard-title">REPAIR COMPLETION TREND <span class="ccard-badge badge-p">(No. of Jobs Closed)</span></div><div class="ccard-sub">Monthly closed jobs â last 6 months</div></div>
+          <div><div class="ccard-title">REPAIR COMPLETION TREND <span class="ccard-badge badge-p">(No. of Jobs Closed)</span></div><div class="ccard-sub">Monthly closed jobs Ã¢ÂÂ last 6 months</div></div>
           <select class="ccard-selector"><option>Monthly</option></select>
         </div>
         <div class="chart-area" style="height:120px"><canvas id="chartClosedTrend"></canvas></div>
@@ -517,20 +517,20 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
       <!-- Vendor Cost Summary -->
       <div class="ccard">
         <div class="ccard-head">
-          <div><div class="ccard-title">VENDOR JOB DISTRIBUTION</div><div class="ccard-sub">Jobs by vendor â current period</div></div>
+          <div><div class="ccard-title">VENDOR JOB DISTRIBUTION</div><div class="ccard-sub">Jobs by vendor Ã¢ÂÂ current period</div></div>
           <select class="ccard-selector"><option>This Month</option></select>
         </div>
         <div class="donut-layout" style="padding:6px 0">
           <div class="donut-chart-wrap">
             <canvas id="chartVendorDonut" width="110" height="110"></canvas>
-            <div class="donut-center"><div class="donut-center-label">Total</div><div class="donut-center-val" id="vendorDonutTotal">â</div></div>
+            <div class="donut-center"><div class="donut-center-label">Total</div><div class="donut-center-val" id="vendorDonutTotal">Ã¢ÂÂ</div></div>
           </div>
           <div class="legend-list" id="vendorLegend"></div>
         </div>
       </div>
     </div>
 
-    <!-- ââ ROW 2: Status / Priority / PM / Overdue ââ -->
+    <!-- Ã¢ÂÂÃ¢ÂÂ ROW 2: Status / Priority / PM / Overdue Ã¢ÂÂÃ¢ÂÂ -->
     <div class="chart-row chart-row-4" style="margin-bottom:2px">
       <!-- WO by Status -->
       <div class="ccard">
@@ -538,7 +538,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
         <div class="donut-layout">
           <div class="donut-chart-wrap">
             <canvas id="chartStatusDonut" width="100" height="100"></canvas>
-            <div class="donut-center"><div class="donut-center-label">Total</div><div class="donut-center-val" id="statusDonutTotal">â</div></div>
+            <div class="donut-center"><div class="donut-center-label">Total</div><div class="donut-center-val" id="statusDonutTotal">Ã¢ÂÂ</div></div>
           </div>
           <div class="legend-list" id="statusLegend"></div>
         </div>
@@ -550,7 +550,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
         <div class="donut-layout">
           <div class="donut-chart-wrap">
             <canvas id="chartPriorityDonut" width="100" height="100"></canvas>
-            <div class="donut-center"><div class="donut-center-label">Total</div><div class="donut-center-val" id="priorityDonutTotal">â</div></div>
+            <div class="donut-center"><div class="donut-center-label">Total</div><div class="donut-center-val" id="priorityDonutTotal">Ã¢ÂÂ</div></div>
           </div>
           <div class="legend-list" id="priorityLegend"></div>
         </div>
@@ -561,7 +561,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
         <div class="ccard-head"><div><div class="ccard-title">PM COMPLIANCE</div></div></div>
         <div class="gauge-wrap">
           <canvas id="chartPMGauge" width="130" height="80"></canvas>
-          <div class="gauge-pct" id="gaugeValue">â</div>
+          <div class="gauge-pct" id="gaugeValue">Ã¢ÂÂ</div>
           <div class="gauge-label">Compliance Rate</div>
           <div class="gauge-target">Target: 95%</div>
         </div>
@@ -573,7 +573,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
           <div>
             <div class="ccard-title">OVERDUE WORK ORDERS</div>
             <div style="display:flex;align-items:center;gap:8px;margin-top:4px">
-              <div class="overdue-big" id="overdueCount">â</div>
+              <div class="overdue-big" id="overdueCount">Ã¢ÂÂ</div>
               <i class="fas fa-triangle-exclamation overdue-icon"></i>
             </div>
             <div class="overdue-label">Overdue Work Orders</div>
@@ -584,11 +584,11 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
       </div>
     </div>
 
-    <!-- ââ ROW 3: Top Equipment / Health / Reliability / Alerts ââ -->
+    <!-- Ã¢ÂÂÃ¢ÂÂ ROW 3: Top Equipment / Health / Reliability / Alerts Ã¢ÂÂÃ¢ÂÂ -->
     <div class="chart-row chart-row-4">
       <!-- Top Equipment -->
       <div class="ccard">
-        <div class="ccard-head"><div><div class="ccard-title">TOP 10 EQUIPMENT â BY JOB COUNT</div><div class="ccard-sub">Most repaired equipment (all time)</div></div></div>
+        <div class="ccard-head"><div><div class="ccard-title">TOP 10 EQUIPMENT Ã¢ÂÂ BY JOB COUNT</div><div class="ccard-sub">Most repaired equipment (all time)</div></div></div>
         <div id="topEquipTable"></div>
         <div class="link-row"><a class="view-link" href="master.html">View All Equipment <i class="fas fa-arrow-right"></i></a></div>
       </div>
@@ -597,7 +597,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
         <div class="ccard-head"><div><div class="ccard-title">EQUIPMENT HEALTH INDEX</div><div class="ccard-sub">Based on repair frequency &amp; recency</div></div></div>
         <div class="donut-layout" style="flex-direction:column;align-items:center;gap:4px">
           <div class="health-grade" id="healthGrade">A</div>
-          <div class="health-score" id="healthScore">â / 100</div>
+          <div class="health-score" id="healthScore">Ã¢ÂÂ / 100</div>
           <canvas id="chartHealthDonut" width="120" height="120"></canvas>
         </div>
         <div class="link-row"><a class="view-link" href="master.html">View Asset Health <i class="fas fa-arrow-right"></i></a></div>
@@ -641,18 +641,18 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 </div><!-- /mxm-shell -->
 
 <script>
-/* ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
-   EWS DASHBOARD v5.0  â  IBM Maximo Style
-ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
+   EWS DASHBOARD v5.0  Ã¢ÂÂ  IBM Maximo Style
+Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 const GAS_URL = localStorage.getItem('rms_gas_url') ||
-  'https://script.google.com/macros/s/AKfycbyf0GUfEleoJv1RHZT9nT3Z5JmktyQMEHkviWFs10eNHKkGUbm_pr-lbpj9R4rVVIWVCw/exec';
+  'https://script.google.com/macros/s/AKfycbyf0GUfEIeoJv1RHZT9nT3Z5JmktyQMEHkviWFs10eNHKkGUbm_pr-lbpj9R4rVVIWVCw/exec';
 
 function _getToken(){
   const s=JSON.parse(sessionStorage.getItem('rms_v3_session')||localStorage.getItem('rms_v3_session')||'null');
   return s?.token||'';
 }
 
-/* ââ Auth ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Auth Ã¢ÂÂÃ¢ÂÂ */
 (function(){
   const s = JSON.parse(sessionStorage.getItem('rms_v3_session')||localStorage.getItem('rms_v3_session')||'null');
   if(!s||(Date.now()-s.loginTime>28800000)){location.href='login.html';return}
@@ -661,11 +661,11 @@ function _getToken(){
   document.getElementById('tbUsername').textContent=s.displayName||s.username||'User';
 })();
 
-/* ââ Sample Data ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Sample Data Ã¢ÂÂÃ¢ÂÂ */
 const SAMPLE_VENDORS=[
-  {Vendor_ID:'V001',Vendor_Name:'à¹à¸à¸à¹à¸à¸¡à¸²à¸ªà¹à¸à¸­à¸£à¹ à¸à¸³à¸à¸±à¸'},
-  {Vendor_ID:'V002',Vendor_Name:'à¸­à¸´à¸à¸à¸±à¸ªà¹à¸à¸£à¸µà¸¢à¸¥à¸à¸²à¸£à¹à¸ à¸à¸³à¸à¸±à¸'},
-  {Vendor_ID:'V003',Vendor_Name:'à¸­à¸­à¹à¸à¹à¸¡à¸à¸±à¹à¸à¹à¸à¸£ à¸à¸³à¸à¸±à¸'},
+  {Vendor_ID:'V001',Vendor_Name:'Ã Â¹ÂÃ Â¸ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â¡Ã Â¸Â²Ã Â¸ÂªÃ Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹Â Ã Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â±Ã Â¸Â'},
+  {Vendor_ID:'V002',Vendor_Name:'Ã Â¸Â­Ã Â¸Â´Ã Â¸ÂÃ Â¸ÂÃ Â¸Â±Ã Â¸ÂªÃ Â¹ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸ÂµÃ Â¸Â¢Ã Â¸Â¥Ã Â¸ÂÃ Â¸Â²Ã Â¸Â£Ã Â¹ÂÃ Â¸Â Ã Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â±Ã Â¸Â'},
+  {Vendor_ID:'V003',Vendor_Name:'Ã Â¸Â­Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â¡Ã Â¸ÂÃ Â¸Â±Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â£ Ã Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â±Ã Â¸Â'},
 ];
 const SAMPLE_PARTS=[
   {Part_ID:'P001',Part_Name:'Motor Bearing 6205',Category:'Bearing',Current_Stock:12,Min_Stock:5,Cost:350},
@@ -681,68 +681,68 @@ function _mkJob(n,eq,dmg,act,ven,st,cr,cl,pri){
   return{JOB_No:'JOB-'+String(n).padStart(4,'0'),Equipment_ID:eq,Damage_Code:dmg,Repair_Action:act,Vendor_ID:ven,Status:st,Create_Date:cr,Close_Date:cl||'',Priority:pri||'MEDIUM'};
 }
 const SAMPLE_JOBS=[
-  _mkJob(1,'EQ-001','à¸£à¸°à¸à¸à¹à¸®à¸à¸£à¸­à¸¥à¸´à¸à¸£à¸±à¹à¸§','à¹à¸à¸¥à¸µà¹à¸¢à¸ Seal Kit','V001','CLOSED','2025-11-05','2025-11-18','HIGH'),
-  _mkJob(2,'EQ-002','à¸¡à¸­à¹à¸à¸­à¸£à¹à¹à¸«à¸¡à¹','à¹à¸à¸¥à¸µà¹à¸¢à¸à¸¡à¸­à¹à¸à¸­à¸£à¹à¹à¸«à¸¡à¹','V002','CLOSED','2025-11-08','2025-11-22','CRITICAL'),
-  _mkJob(3,'EQ-003','à¹à¸à¸£à¸´à¹à¸à¹à¸ªà¸µà¸¢à¸','à¹à¸à¸¥à¸µà¹à¸¢à¸ Bearing','V001','CLOSED','2025-11-10','2025-11-19','MEDIUM'),
-  _mkJob(4,'EQ-004','PCB à¹à¸ªà¸µà¸¢','à¸à¹à¸­à¸¡ PCB','V003','CLOSED','2025-11-12','2025-11-28','HIGH'),
-  _mkJob(5,'EQ-005','à¸ªà¸²à¸¢à¸à¸²à¸à¸à¸²à¸','à¹à¸à¸¥à¸µà¹à¸¢à¸à¸ªà¸²à¸¢à¸à¸²à¸','V001','CLOSED','2025-11-14','2025-11-20','LOW'),
-  _mkJob(6,'EQ-001','à¹à¸®à¸à¸£à¸­à¸¥à¸´à¸à¸£à¸±à¹à¸§à¸à¹à¸³','à¹à¸à¸¥à¸µà¹à¸¢à¸ Seal','V001','CLOSED','2025-12-01','2025-12-10','HIGH'),
-  _mkJob(7,'EQ-006','à¸¡à¸­à¹à¸à¸­à¸£à¹à¸£à¹à¸­à¸','à¸à¸³à¸à¸§à¸²à¸¡à¸ªà¸°à¸­à¸²à¸+à¸à¸£à¸§à¸','V002','CLOSED','2025-12-03','2025-12-12','MEDIUM'),
-  _mkJob(8,'EQ-007','Valve à¸à¸´à¸','à¸à¹à¸­à¸¡ Valve','V003','CLOSED','2025-12-05','2025-12-16','LOW'),
-  _mkJob(9,'EQ-002','à¸¡à¸­à¹à¸à¸­à¸£à¹à¸ªà¸±à¹à¸','à¸à¸£à¸§à¸à¸ªà¸­à¸ Coupling','V002','CLOSED','2025-12-08','2025-12-20','HIGH'),
-  _mkJob(10,'EQ-008','à¸à¸±à¹à¸¡à¹à¸¡à¹à¸à¸¹à¸','à¹à¸à¸¥à¸µà¹à¸¢à¸ Impeller','V001','CLOSED','2025-12-10','2025-12-24','CRITICAL'),
-  _mkJob(11,'EQ-009','à¹à¸à¹à¸à¹à¸à¸­à¸£à¹à¸à¸´à¸à¸à¸¥à¸²à¸','à¸à¸£à¸±à¸ Calibrate','V003','CLOSED','2025-12-12','2025-12-22','MEDIUM'),
-  _mkJob(12,'EQ-010','Compressor à¸à¸´à¸à¸à¸à¸à¸´','Overhaul','V002','CLOSED','2025-12-15','2026-01-05','HIGH'),
-  _mkJob(13,'EQ-003','à¹à¸à¸£à¸´à¹à¸à¹à¸ªà¸·à¹à¸­à¸¡','à¹à¸à¸¥à¸µà¹à¸¢à¸ Bearing à¸à¸¸à¸à¹à¸«à¸¡à¹','V001','CLOSED','2026-01-05','2026-01-14','MEDIUM'),
-  _mkJob(14,'EQ-011','PCB Controller à¹à¸ªà¸µà¸¢','à¹à¸à¸¥à¸µà¹à¸¢à¸ PCB','V003','CLOSED','2026-01-08','2026-01-20','HIGH'),
-  _mkJob(15,'EQ-004','à¸à¸­à¸£à¹à¸à¹à¸à¸à¹à¸²à¹à¸ªà¸µà¸¢','à¸à¹à¸­à¸¡à¸§à¸à¸à¸£','V003','CLOSED','2026-01-10','2026-01-25','HIGH'),
-  _mkJob(16,'EQ-012','à¸à¸£à¸°à¸à¸­à¸à¹à¸®à¸à¸£à¸­à¸¥à¸´à¸à¸£à¸±à¹à¸§','à¹à¸à¸¥à¸µà¹à¸¢à¸ Seal','V001','CLOSED','2026-01-12','2026-01-22','MEDIUM'),
-  _mkJob(17,'EQ-005','à¸ªà¸²à¸¢à¸à¸²à¸à¸«à¸¥à¸¸à¸','à¸à¸£à¸±à¸à¹à¸à¸§à¸ªà¸²à¸¢à¸à¸²à¸','V001','CLOSED','2026-01-15','2026-01-18','LOW'),
-  _mkJob(18,'EQ-013','à¸à¸±à¹à¸¡à¸à¹à¸³à¸¡à¸±à¸à¸£à¸±à¹à¸§','à¹à¸à¸¥à¸µà¹à¸¢à¸à¸à¸µà¸¥à¸à¸±à¹à¸¡','V001','CLOSED','2026-01-18','2026-01-28','HIGH'),
-  _mkJob(19,'EQ-006','à¸¡à¸­à¹à¸à¸­à¸£à¹à¸«à¸¢à¸¸à¸à¸à¸³à¸à¸²à¸','à¹à¸à¸¥à¸µà¹à¸¢à¸à¸¡à¸­à¹à¸à¸­à¸£à¹','V002','CLOSED','2026-01-20','2026-02-03','CRITICAL'),
-  _mkJob(20,'EQ-014','à¸«à¸±à¸§à¸à¸µà¸à¸­à¸¸à¸à¸à¸±à¸','à¸¥à¹à¸²à¸à¸à¸³à¸à¸§à¸²à¸¡à¸ªà¸°à¸­à¸²à¸','V002','CLOSED','2026-01-22','2026-01-30','MEDIUM'),
-  _mkJob(21,'EQ-001','à¹à¸®à¸à¸£à¸­à¸¥à¸´à¸à¸£à¸±à¹à¸§à¸à¸£à¸±à¹à¸à¸à¸µà¹ 3','à¹à¸à¸¥à¸µà¹à¸¢à¸ Cylinder','V001','CLOSED','2026-02-02','2026-02-14','HIGH'),
-  _mkJob(22,'EQ-015','Belt Drive à¹à¸ªà¸µà¸¢','à¹à¸à¸¥à¸µà¹à¸¢à¸ Belt Set','V001','CLOSED','2026-02-04','2026-02-12','MEDIUM'),
-  _mkJob(23,'EQ-007','Valve à¸­à¸¸à¸à¸à¸±à¸','à¸à¸­à¸à¸¥à¹à¸²à¸à¸à¸£à¸°à¸à¸­à¸','V003','CLOSED','2026-02-06','2026-02-18','LOW'),
-  _mkJob(24,'EQ-002','à¸¡à¸­à¹à¸à¸­à¸£à¹à¸£à¹à¸­à¸à¸¡à¸²à¸','à¹à¸à¸¥à¸µà¹à¸¢à¸ Cooling Fan','V002','CLOSED','2026-02-08','2026-02-20','HIGH'),
-  _mkJob(25,'EQ-016','Gear Box à¹à¸ªà¸µà¸¢à¸','à¹à¸à¸¥à¸µà¹à¸¢à¸ Gear Oil+à¸à¸£à¸§à¸','V002','CLOSED','2026-02-10','2026-02-22','MEDIUM'),
-  _mkJob(26,'EQ-008','à¸à¸±à¹à¸¡à¸ªà¸±à¹à¸','Balance Impeller','V001','CLOSED','2026-02-12','2026-02-24','MEDIUM'),
-  _mkJob(27,'EQ-017','Sensor à¸à¸²à¸','à¹à¸à¸¥à¸µà¹à¸¢à¸ Sensor à¹à¸«à¸¡à¹','V003','CLOSED','2026-02-15','2026-02-24','LOW'),
+  _mkJob(1,'EQ-001','Ã Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â®Ã Â¸ÂÃ Â¸Â£Ã Â¸Â­Ã Â¸Â¥Ã Â¸Â´Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Seal Kit','V001','CLOSED','2025-11-05','2025-11-18','HIGH'),
+  _mkJob(2,'EQ-002','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸ÂÃ Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹Â','V002','CLOSED','2025-11-08','2025-11-22','CRITICAL'),
+  _mkJob(3,'EQ-003','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â´Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Bearing','V001','CLOSED','2025-11-10','2025-11-19','MEDIUM'),
+  _mkJob(4,'EQ-004','PCB Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡ PCB','V003','CLOSED','2025-11-12','2025-11-28','HIGH'),
+  _mkJob(5,'EQ-005','Ã Â¸ÂªÃ Â¸Â²Ã Â¸Â¢Ã Â¸ÂÃ Â¸Â²Ã Â¸ÂÃ Â¸ÂÃ Â¸Â²Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸ÂÃ Â¸ÂªÃ Â¸Â²Ã Â¸Â¢Ã Â¸ÂÃ Â¸Â²Ã Â¸Â','V001','CLOSED','2025-11-14','2025-11-20','LOW'),
+  _mkJob(6,'EQ-001','Ã Â¹ÂÃ Â¸Â®Ã Â¸ÂÃ Â¸Â£Ã Â¸Â­Ã Â¸Â¥Ã Â¸Â´Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§Ã Â¸ÂÃ Â¹ÂÃ Â¸Â³','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Seal','V001','CLOSED','2025-12-01','2025-12-10','HIGH'),
+  _mkJob(7,'EQ-006','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸Â£Ã Â¹ÂÃ Â¸Â­Ã Â¸Â','Ã Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â§Ã Â¸Â²Ã Â¸Â¡Ã Â¸ÂªÃ Â¸Â°Ã Â¸Â­Ã Â¸Â²Ã Â¸Â+Ã Â¸ÂÃ Â¸Â£Ã Â¸Â§Ã Â¸Â','V002','CLOSED','2025-12-03','2025-12-12','MEDIUM'),
+  _mkJob(8,'EQ-007','Valve Ã Â¸ÂÃ Â¸Â´Ã Â¸Â','Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡ Valve','V003','CLOSED','2025-12-05','2025-12-16','LOW'),
+  _mkJob(9,'EQ-002','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸ÂªÃ Â¸Â±Ã Â¹ÂÃ Â¸Â','Ã Â¸ÂÃ Â¸Â£Ã Â¸Â§Ã Â¸ÂÃ Â¸ÂªÃ Â¸Â­Ã Â¸Â Coupling','V002','CLOSED','2025-12-08','2025-12-20','HIGH'),
+  _mkJob(10,'EQ-008','Ã Â¸ÂÃ Â¸Â±Ã Â¹ÂÃ Â¸Â¡Ã Â¹ÂÃ Â¸Â¡Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¹Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Impeller','V001','CLOSED','2025-12-10','2025-12-24','CRITICAL'),
+  _mkJob(11,'EQ-009','Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸ÂÃ Â¸Â´Ã Â¸ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸Â²Ã Â¸Â','Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¸Â Calibrate','V003','CLOSED','2025-12-12','2025-12-22','MEDIUM'),
+  _mkJob(12,'EQ-010','Compressor Ã Â¸ÂÃ Â¸Â´Ã Â¸ÂÃ Â¸ÂÃ Â¸ÂÃ Â¸ÂÃ Â¸Â´','Overhaul','V002','CLOSED','2025-12-15','2026-01-05','HIGH'),
+  _mkJob(13,'EQ-003','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â´Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂªÃ Â¸Â·Ã Â¹ÂÃ Â¸Â­Ã Â¸Â¡','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Bearing Ã Â¸ÂÃ Â¸Â¸Ã Â¸ÂÃ Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹Â','V001','CLOSED','2026-01-05','2026-01-14','MEDIUM'),
+  _mkJob(14,'EQ-011','PCB Controller Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â PCB','V003','CLOSED','2026-01-08','2026-01-20','HIGH'),
+  _mkJob(15,'EQ-004','Ã Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â²Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡Ã Â¸Â§Ã Â¸ÂÃ Â¸ÂÃ Â¸Â£','V003','CLOSED','2026-01-10','2026-01-25','HIGH'),
+  _mkJob(16,'EQ-012','Ã Â¸ÂÃ Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸Â­Ã Â¸ÂÃ Â¹ÂÃ Â¸Â®Ã Â¸ÂÃ Â¸Â£Ã Â¸Â­Ã Â¸Â¥Ã Â¸Â´Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Seal','V001','CLOSED','2026-01-12','2026-01-22','MEDIUM'),
+  _mkJob(17,'EQ-005','Ã Â¸ÂªÃ Â¸Â²Ã Â¸Â¢Ã Â¸ÂÃ Â¸Â²Ã Â¸ÂÃ Â¸Â«Ã Â¸Â¥Ã Â¸Â¸Ã Â¸Â','Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â§Ã Â¸ÂªÃ Â¸Â²Ã Â¸Â¢Ã Â¸ÂÃ Â¸Â²Ã Â¸Â','V001','CLOSED','2026-01-15','2026-01-18','LOW'),
+  _mkJob(18,'EQ-013','Ã Â¸ÂÃ Â¸Â±Ã Â¹ÂÃ Â¸Â¡Ã Â¸ÂÃ Â¹ÂÃ Â¸Â³Ã Â¸Â¡Ã Â¸Â±Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸ÂÃ Â¸ÂÃ Â¸ÂµÃ Â¸Â¥Ã Â¸ÂÃ Â¸Â±Ã Â¹ÂÃ Â¸Â¡','V001','CLOSED','2026-01-18','2026-01-28','HIGH'),
+  _mkJob(19,'EQ-006','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸Â«Ã Â¸Â¢Ã Â¸Â¸Ã Â¸ÂÃ Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â²Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸ÂÃ Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹Â','V002','CLOSED','2026-01-20','2026-02-03','CRITICAL'),
+  _mkJob(20,'EQ-014','Ã Â¸Â«Ã Â¸Â±Ã Â¸Â§Ã Â¸ÂÃ Â¸ÂµÃ Â¸ÂÃ Â¸Â­Ã Â¸Â¸Ã Â¸ÂÃ Â¸ÂÃ Â¸Â±Ã Â¸Â','Ã Â¸Â¥Ã Â¹ÂÃ Â¸Â²Ã Â¸ÂÃ Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â§Ã Â¸Â²Ã Â¸Â¡Ã Â¸ÂªÃ Â¸Â°Ã Â¸Â­Ã Â¸Â²Ã Â¸Â','V002','CLOSED','2026-01-22','2026-01-30','MEDIUM'),
+  _mkJob(21,'EQ-001','Ã Â¹ÂÃ Â¸Â®Ã Â¸ÂÃ Â¸Â£Ã Â¸Â­Ã Â¸Â¥Ã Â¸Â´Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸ÂÃ Â¸ÂÃ Â¸ÂµÃ Â¹Â 3','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Cylinder','V001','CLOSED','2026-02-02','2026-02-14','HIGH'),
+  _mkJob(22,'EQ-015','Belt Drive Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Belt Set','V001','CLOSED','2026-02-04','2026-02-12','MEDIUM'),
+  _mkJob(23,'EQ-007','Valve Ã Â¸Â­Ã Â¸Â¸Ã Â¸ÂÃ Â¸ÂÃ Â¸Â±Ã Â¸Â','Ã Â¸ÂÃ Â¸Â­Ã Â¸ÂÃ Â¸Â¥Ã Â¹ÂÃ Â¸Â²Ã Â¸ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸Â­Ã Â¸Â','V003','CLOSED','2026-02-06','2026-02-18','LOW'),
+  _mkJob(24,'EQ-002','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸Â£Ã Â¹ÂÃ Â¸Â­Ã Â¸ÂÃ Â¸Â¡Ã Â¸Â²Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Cooling Fan','V002','CLOSED','2026-02-08','2026-02-20','HIGH'),
+  _mkJob(25,'EQ-016','Gear Box Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Gear Oil+Ã Â¸ÂÃ Â¸Â£Ã Â¸Â§Ã Â¸Â','V002','CLOSED','2026-02-10','2026-02-22','MEDIUM'),
+  _mkJob(26,'EQ-008','Ã Â¸ÂÃ Â¸Â±Ã Â¹ÂÃ Â¸Â¡Ã Â¸ÂªÃ Â¸Â±Ã Â¹ÂÃ Â¸Â','Balance Impeller','V001','CLOSED','2026-02-12','2026-02-24','MEDIUM'),
+  _mkJob(27,'EQ-017','Sensor Ã Â¸ÂÃ Â¸Â²Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Sensor Ã Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹Â','V003','CLOSED','2026-02-15','2026-02-24','LOW'),
   _mkJob(28,'EQ-009','Display Error','Reset+Update Firmware','V003','CLOSED','2026-02-18','2026-03-01','MEDIUM'),
-  _mkJob(29,'EQ-010','Compressor à¸à¸±à¸','à¹à¸à¸¥à¸µà¹à¸¢à¸ Piston Ring','V002','CLOSED','2026-02-20','2026-03-05','HIGH'),
-  _mkJob(30,'EQ-018','Transformer à¸£à¹à¸­à¸','à¸à¸£à¸§à¸ Load+à¸£à¸°à¸à¸²à¸¢','V003','CLOSED','2026-02-22','2026-03-04','HIGH'),
-  _mkJob(31,'EQ-003','à¹à¸à¸£à¸´à¹à¸à¸à¸¸à¸à¸à¸','à¹à¸à¸¥à¸µà¹à¸¢à¸ Bearing','V001','CLOSED','2026-03-01','2026-03-12','MEDIUM'),
-  _mkJob(32,'EQ-019','Pump Shaft à¹à¸ªà¸µà¸¢','à¹à¸à¸¥à¸µà¹à¸¢à¸ Shaft+à¸à¸µà¸¥','V001','CLOSED','2026-03-03','2026-03-16','HIGH'),
-  _mkJob(33,'EQ-011','à¸à¸­à¸£à¹à¸ Logic à¹à¸ªà¸µà¸¢','à¹à¸à¸¥à¸µà¹à¸¢à¸ Logic Board','V003','CLOSED','2026-03-05','2026-03-18','HIGH'),
-  _mkJob(34,'EQ-004','Inverter Error','à¸à¹à¸­à¸¡ Inverter Board','V003','CLOSED','2026-03-08','2026-03-22','CRITICAL'),
-  _mkJob(35,'EQ-020','Filter à¸­à¸¸à¸à¸à¸±à¸','à¹à¸à¸¥à¸µà¹à¸¢à¸ Filter à¸à¸¸à¸','V002','CLOSED','2026-03-10','2026-03-18','LOW'),
-  _mkJob(36,'EQ-001','à¸à¸µà¸¥à¸£à¸±à¹à¸§à¸à¸£à¸±à¹à¸à¸à¸µà¹ 4','à¹à¸à¸¥à¸µà¹à¸¢à¸ O-Ring à¸à¸¸à¸','V001','RETURNED','2026-04-01','2026-04-12','HIGH'),
-  _mkJob(37,'EQ-002','Rotor à¹à¸ªà¸·à¹à¸­à¸¡','Rewind Motor','V002','RETURNED','2026-04-03','2026-04-18','CRITICAL'),
-  _mkJob(38,'EQ-005','à¸ªà¸²à¸¢à¸à¸²à¸à¹à¸à¸','à¹à¸à¸¥à¸µà¹à¸¢à¸à¸ªà¸²à¸¢à¸à¸²à¸à¸à¸¸à¸','V001','RETURNED','2026-04-05','2026-04-14','MEDIUM'),
-  _mkJob(39,'EQ-006','à¸¡à¸­à¹à¸à¸­à¸£à¹à¹à¸«à¸¡à¹à¸­à¸µà¸à¸à¸£à¸±à¹à¸','à¹à¸à¸¥à¸µà¹à¸¢à¸à¸¡à¸­à¹à¸à¸­à¸£à¹à¹à¸«à¸¡à¹','V002','RETURNED','2026-04-08','2026-04-22','CRITICAL'),
-  _mkJob(40,'EQ-007','Valve à¹à¸ªà¸µà¸¢à¸«à¸²à¸¢','à¹à¸à¸¥à¸µà¹à¸¢à¸ Valve à¹à¸«à¸¡à¹','V003','RETURNED','2026-04-10','2026-04-20','LOW'),
-  _mkJob(41,'EQ-008','à¸à¸±à¹à¸¡à¸£à¸±à¹à¸§','à¹à¸à¸¥à¸µà¹à¸¢à¸ Mechanical Seal','V001','SEND_REPAIR','2026-05-02',null,'HIGH'),
-  _mkJob(42,'EQ-009','à¸£à¸°à¸à¸ Error','à¸§à¸´à¹à¸à¸£à¸²à¸°à¸«à¹+à¸à¹à¸­à¸¡à¸à¸­à¸£à¹à¸','V003','SEND_REPAIR','2026-05-05',null,'MEDIUM'),
-  _mkJob(43,'EQ-010','Compressor à¹à¸ªà¸µà¸¢à¸«à¸à¸±à¸','Major Overhaul','V002','SEND_REPAIR','2026-05-08',null,'CRITICAL'),
-  _mkJob(44,'EQ-021','PCB Inverter à¹à¸ªà¸µà¸¢','à¹à¸à¸¥à¸µà¹à¸¢à¸ Inverter','V003','SEND_REPAIR','2026-05-10',null,'HIGH'),
-  _mkJob(45,'EQ-022','Bearing à¸à¸¸à¸à¸¥à¹à¸²à¸','à¹à¸à¸¥à¸µà¹à¸¢à¸ Bearing Lower','V001','WAIT_SPARE_PART','2026-05-12',null,'MEDIUM'),
-  _mkJob(46,'EQ-023','à¸£à¸°à¸à¸à¹à¸®à¸à¸£à¸­à¸¥à¸´à¸à¸£à¸±à¹à¸§','à¸£à¸­ Seal Kit','V001','WAIT_APPROVAL','2026-05-15',null,'HIGH'),
-  _mkJob(47,'EQ-024','à¸¡à¸­à¹à¸à¸­à¸£à¹à¹à¸ªà¸µà¸¢à¸','à¸à¸£à¸§à¸ Alignment','V002','OPEN','2026-06-01',null,'LOW'),
-  _mkJob(48,'EQ-025','à¹à¸à¹à¸à¹à¸à¸­à¸£à¹à¸à¸´à¸','à¹à¸à¸¥à¸µà¹à¸¢à¸ Sensor','V003','OPEN','2026-06-05',null,'MEDIUM'),
-  _mkJob(49,'EQ-026','Valve à¸£à¸±à¹à¸§','à¸à¹à¸­à¸¡ Valve','V001','OPEN','2026-06-10',null,'HIGH'),
-  _mkJob(50,'EQ-027','PCB à¹à¸ªà¸µà¸¢','à¹à¸à¸¥à¸µà¹à¸¢à¸ PCB','V003','OPEN','2026-06-15',null,'CRITICAL'),
+  _mkJob(29,'EQ-010','Compressor Ã Â¸ÂÃ Â¸Â±Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Piston Ring','V002','CLOSED','2026-02-20','2026-03-05','HIGH'),
+  _mkJob(30,'EQ-018','Transformer Ã Â¸Â£Ã Â¹ÂÃ Â¸Â­Ã Â¸Â','Ã Â¸ÂÃ Â¸Â£Ã Â¸Â§Ã Â¸Â Load+Ã Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸Â²Ã Â¸Â¢','V003','CLOSED','2026-02-22','2026-03-04','HIGH'),
+  _mkJob(31,'EQ-003','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â´Ã Â¹ÂÃ Â¸ÂÃ Â¸ÂÃ Â¸Â¸Ã Â¸ÂÃ Â¸ÂÃ Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Bearing','V001','CLOSED','2026-03-01','2026-03-12','MEDIUM'),
+  _mkJob(32,'EQ-019','Pump Shaft Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Shaft+Ã Â¸ÂÃ Â¸ÂµÃ Â¸Â¥','V001','CLOSED','2026-03-03','2026-03-16','HIGH'),
+  _mkJob(33,'EQ-011','Ã Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸Â Logic Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Logic Board','V003','CLOSED','2026-03-05','2026-03-18','HIGH'),
+  _mkJob(34,'EQ-004','Inverter Error','Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡ Inverter Board','V003','CLOSED','2026-03-08','2026-03-22','CRITICAL'),
+  _mkJob(35,'EQ-020','Filter Ã Â¸Â­Ã Â¸Â¸Ã Â¸ÂÃ Â¸ÂÃ Â¸Â±Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Filter Ã Â¸ÂÃ Â¸Â¸Ã Â¸Â','V002','CLOSED','2026-03-10','2026-03-18','LOW'),
+  _mkJob(36,'EQ-001','Ã Â¸ÂÃ Â¸ÂµÃ Â¸Â¥Ã Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸ÂÃ Â¸ÂÃ Â¸ÂµÃ Â¹Â 4','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â O-Ring Ã Â¸ÂÃ Â¸Â¸Ã Â¸Â','V001','RETURNED','2026-04-01','2026-04-12','HIGH'),
+  _mkJob(37,'EQ-002','Rotor Ã Â¹ÂÃ Â¸ÂªÃ Â¸Â·Ã Â¹ÂÃ Â¸Â­Ã Â¸Â¡','Rewind Motor','V002','RETURNED','2026-04-03','2026-04-18','CRITICAL'),
+  _mkJob(38,'EQ-005','Ã Â¸ÂªÃ Â¸Â²Ã Â¸Â¢Ã Â¸ÂÃ Â¸Â²Ã Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸ÂÃ Â¸ÂªÃ Â¸Â²Ã Â¸Â¢Ã Â¸ÂÃ Â¸Â²Ã Â¸ÂÃ Â¸ÂÃ Â¸Â¸Ã Â¸Â','V001','RETURNED','2026-04-05','2026-04-14','MEDIUM'),
+  _mkJob(39,'EQ-006','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹ÂÃ Â¸Â­Ã Â¸ÂµÃ Â¸ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸ÂÃ Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹Â','V002','RETURNED','2026-04-08','2026-04-22','CRITICAL'),
+  _mkJob(40,'EQ-007','Valve Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢Ã Â¸Â«Ã Â¸Â²Ã Â¸Â¢','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Valve Ã Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹Â','V003','RETURNED','2026-04-10','2026-04-20','LOW'),
+  _mkJob(41,'EQ-008','Ã Â¸ÂÃ Â¸Â±Ã Â¹ÂÃ Â¸Â¡Ã Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Mechanical Seal','V001','SEND_REPAIR','2026-05-02',null,'HIGH'),
+  _mkJob(42,'EQ-009','Ã Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸Â Error','Ã Â¸Â§Ã Â¸Â´Ã Â¹ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â²Ã Â¸Â°Ã Â¸Â«Ã Â¹Â+Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡Ã Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸Â','V003','SEND_REPAIR','2026-05-05',null,'MEDIUM'),
+  _mkJob(43,'EQ-010','Compressor Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢Ã Â¸Â«Ã Â¸ÂÃ Â¸Â±Ã Â¸Â','Major Overhaul','V002','SEND_REPAIR','2026-05-08',null,'CRITICAL'),
+  _mkJob(44,'EQ-021','PCB Inverter Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Inverter','V003','SEND_REPAIR','2026-05-10',null,'HIGH'),
+  _mkJob(45,'EQ-022','Bearing Ã Â¸ÂÃ Â¸Â¸Ã Â¸ÂÃ Â¸Â¥Ã Â¹ÂÃ Â¸Â²Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Bearing Lower','V001','WAIT_SPARE_PART','2026-05-12',null,'MEDIUM'),
+  _mkJob(46,'EQ-023','Ã Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â®Ã Â¸ÂÃ Â¸Â£Ã Â¸Â­Ã Â¸Â¥Ã Â¸Â´Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§','Ã Â¸Â£Ã Â¸Â­ Seal Kit','V001','WAIT_APPROVAL','2026-05-15',null,'HIGH'),
+  _mkJob(47,'EQ-024','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢Ã Â¸Â','Ã Â¸ÂÃ Â¸Â£Ã Â¸Â§Ã Â¸Â Alignment','V002','OPEN','2026-06-01',null,'LOW'),
+  _mkJob(48,'EQ-025','Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸ÂÃ Â¸Â´Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Sensor','V003','OPEN','2026-06-05',null,'MEDIUM'),
+  _mkJob(49,'EQ-026','Valve Ã Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§','Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡ Valve','V001','OPEN','2026-06-10',null,'HIGH'),
+  _mkJob(50,'EQ-027','PCB Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â PCB','V003','OPEN','2026-06-15',null,'CRITICAL'),
 ];
 
-/* ââ State ââ */
+/* Ã¢ÂÂÃ¢ÂÂ State Ã¢ÂÂÃ¢ÂÂ */
 let _jobs=[], _parts=[], _charts={};
 
-/* ââ Utils ââ */
-function fmtDate(d){if(!d)return'â';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'numeric'})}
+/* Ã¢ÂÂÃ¢ÂÂ Utils Ã¢ÂÂÃ¢ÂÂ */
+function fmtDate(d){if(!d)return'Ã¢ÂÂ';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'numeric'})}
 function pct(n,t){return t?Math.round(n/t*100):0}
 function destroyChart(id){if(_charts[id]){_charts[id].destroy();delete _charts[id]}}
-function getVendorName(id){return(SAMPLE_VENDORS.find(v=>v.Vendor_ID===id)||{}).Vendor_Name?.replace('à¸à¸£à¸´à¸©à¸±à¸ ','').replace(' à¸à¸³à¸à¸±à¸','')||id||'â'}
+function getVendorName(id){return(SAMPLE_VENDORS.find(v=>v.Vendor_ID===id)||{}).Vendor_Name?.replace('Ã Â¸ÂÃ Â¸Â£Ã Â¸Â´Ã Â¸Â©Ã Â¸Â±Ã Â¸Â ','').replace(' Ã Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â±Ã Â¸Â','')||id||'Ã¢ÂÂ'}
 
-/* ââ Load Data ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Load Data Ã¢ÂÂÃ¢ÂÂ */
 function loadData(){
   document.getElementById('loadingOverlay').classList.remove('hidden');
   Promise.all([
@@ -763,7 +763,7 @@ function loadData(){
   });
 }
 
-/* ââ KPI Calculations ââ */
+/* Ã¢ÂÂÃ¢ÂÂ KPI Calculations Ã¢ÂÂÃ¢ÂÂ */
 function calcKPIs(jobs){
   const now = new Date();
   const thisMonthStart = new Date(now.getFullYear(), now.getMonth(), 1);
@@ -865,7 +865,7 @@ function calcKPIs(jobs){
   };
 }
 
-/* ââ Render Dashboard ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Render Dashboard Ã¢ÂÂÃ¢ÂÂ */
 function renderDashboard(){
   const kpi=calcKPIs(_jobs);
   renderKPIRow(kpi);
@@ -878,10 +878,10 @@ function renderDashboard(){
   const d1=new Date(now.getFullYear(),now.getMonth(),1);
   document.getElementById('tbDateLabel').textContent=
     d1.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'numeric'})+
-    ' â '+now.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'numeric'});
+    ' Ã¢ÂÂ '+now.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'numeric'});
 }
 
-/* ââ KPI Row ââ */
+/* Ã¢ÂÂÃ¢ÂÂ KPI Row Ã¢ÂÂÃ¢ÂÂ */
 function renderKPIRow(kpi){
   const mttrChg=kpi.lastMttr>0?((kpi.mttr-kpi.lastMttr)/kpi.lastMttr*100).toFixed(1):0;
   const cards=[
@@ -891,14 +891,14 @@ function renderKPIRow(kpi){
     {label:'MTTR (Days)',value:kpi.mttr,valClass:parseFloat(kpi.mttr)>7?'kpi-red':'kpi-green',trend:{chg:(mttrChg>0?'+':'')+mttrChg+'%',up:mttrChg<=0,label:'vs Last Month'},cl:'kc-r',id:'sp3'},
     {label:'PM COMPLIANCE',value:kpi.pmCompliance+'%',valClass:'kpi-green',trend:{chg:'+3.2%',up:true,label:'vs Last Month'},cl:'kc-y',id:'sp4'},
     {label:'PLANNED JOBS %',value:Math.round(kpi.closedJobs/Math.max(1,kpi.totalJobs)*100)+'%',valClass:'kpi-green',trend:{chg:'+6.5%',up:true,label:'vs Last Month'},cl:'kc-t',id:'sp5'},
-    {label:'OPEN WORK ORDERS',value:kpi.openJobs,valClass:kpi.openJobs>10?'kpi-orange':'kpi-green',trend:{chg:'â² '+(kpi.openJobs>5?kpi.openJobs-5:0)+' vs Last Month',up:false,label:''},cl:'kc-o',id:'sp6'},
+    {label:'OPEN WORK ORDERS',value:kpi.openJobs,valClass:kpi.openJobs>10?'kpi-orange':'kpi-green',trend:{chg:'Ã¢ÂÂ² '+(kpi.openJobs>5?kpi.openJobs-5:0)+' vs Last Month',up:false,label:''},cl:'kc-o',id:'sp6'},
     {label:'CRITICAL JOBS',value:kpi.criticalOpen,valClass:kpi.criticalOpen>0?'kpi-red':'kpi-green',trend:{chg:'vs Last Month: 0',up:kpi.criticalOpen===0,label:''},cl:'kc-pu',id:'sp7'},
   ];
   document.getElementById('kpiRow').innerHTML=cards.map(c=>`
     <div class="kpi-card ${c.cl}">
       <div class="kpi-label">${c.label}</div>
       <div class="kpi-value ${c.valClass}">${c.value}</div>
-      <div class="kpi-trend">${c.trend.up?'<span class="up">â²</span>':'<span class="dn">â¼</span>'} <span>${c.trend.chg}</span> <span style="color:var(--g40)">${c.trend.label}</span></div>
+      <div class="kpi-trend">${c.trend.up?'<span class="up">Ã¢ÂÂ²</span>':'<span class="dn">Ã¢ÂÂ¼</span>'} <span>${c.trend.chg}</span> <span style="color:var(--g40)">${c.trend.label}</span></div>
       <div class="kpi-sparkline" id="${c.id}"></div>
     </div>`).join('');
   // Sparklines
@@ -934,7 +934,7 @@ function svgSparkline(data,color,w=200,h=30,filled=true){
   </svg>`;
 }
 
-/* ââ Charts ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Charts Ã¢ÂÂÃ¢ÂÂ */
 function renderCharts(kpi){
   // Job Trend Bar
   destroyChart('chartJobTrend');
@@ -1046,7 +1046,7 @@ function renderCharts(kpi){
   });
 }
 
-/* ââ Widgets ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Widgets Ã¢ÂÂÃ¢ÂÂ */
 function renderWidgets(kpi){
   // Top Equipment
   const maxCnt=kpi.topEq[0]?.count||1;
@@ -1109,7 +1109,7 @@ function renderWidgets(kpi){
     </div>`).join('');
 }
 
-/* ââ UI Actions ââ */
+/* Ã¢ÂÂÃ¢ÂÂ UI Actions Ã¢ÂÂÃ¢ÂÂ */
 function toggleSidebar(){
   const sb=document.getElementById('mxmSidebar');
   const ov=document.getElementById('sidebarOverlay');
@@ -1124,7 +1124,7 @@ function applyFilter(){
   renderDashboard();
 }
 function refreshData(){
-  document.getElementById('lastUpdate').textContent='à¸à¸³à¸¥à¸±à¸à¹à¸«à¸¥à¸...';
+  document.getElementById('lastUpdate').textContent='Ã Â¸ÂÃ Â¸Â³Ã Â¸Â¥Ã Â¸Â±Ã Â¸ÂÃ Â¹ÂÃ Â¸Â«Ã Â¸Â¥Ã Â¸Â...';
   loadData();
 }
 
@@ -1143,7 +1143,7 @@ function toast(msg,type='info'){
   setTimeout(()=>t.remove(),3000);
 }
 
-/* ââ Init ââ */
+/* Ã¢ÂÂÃ¢ÂÂ Init Ã¢ÂÂÃ¢ÂÂ */
 loadData();
 </script>
 <script>function toggleWO(e){if(e)e.stopPropagation();var g=document.getElementById('woGroup'),s=document.getElementById('woSub');if(g)g.classList.toggle('open');if(s)s.classList.toggle('open');}</script>
