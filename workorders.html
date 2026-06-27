@@ -54,9 +54,11 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .mxm-sidebar.collapsed .nav-submenu{display:none}
 /* -- WO Dashboard -- */
 .wo-sum-strip{display:flex;gap:2px;flex-shrink:0;padding:12px 16px 0;background:var(--g10)}
-.wo-sum-card{flex:1;background:#fff;border:1px solid var(--g20);padding:12px 14px;text-align:center}
-.wo-sum-val{font-size:1.4rem;font-weight:700;color:var(--g100);line-height:1}
-.wo-sum-lbl{font-size:.63rem;color:var(--g50);margin-top:3px}
+.wo-sum-card{flex:1;background:#fff;border:1px solid var(--g20);padding:10px 8px;text-align:center;transition:background .12s}
+.wo-sum-card[onclick]{cursor:pointer}
+.wo-sum-card[onclick]:hover{background:var(--g10)}
+.wo-sum-val{font-size:1.2rem;font-weight:700;color:var(--g100);line-height:1}
+.wo-sum-lbl{font-size:.6rem;color:var(--g50);margin-top:3px}
 .wo-charts-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding:12px 16px}
 .wo-chart-card{background:#fff;border:1px solid var(--g20);padding:12px 14px}
 .wo-chart-title{font-size:.63rem;font-weight:600;color:var(--g50);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
@@ -102,14 +104,18 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .sys-card-name{font-weight:600;font-size:.82rem;flex:1}
 .sys-card-link{font-size:.72rem;color:var(--p60);text-decoration:none;white-space:nowrap;flex-shrink:0}
 .sys-card-link:hover{text-decoration:underline}
-.sys-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-bottom:1px solid var(--g20)}
-.sys-kpi{padding:12px 14px;text-align:center;border-right:1px solid var(--g20)}
+.sys-kpis{display:grid;grid-template-columns:repeat(7,1fr);gap:0;border-bottom:1px solid var(--g20)}
+.sys-kpi{padding:8px 4px;text-align:center;border-right:1px solid var(--g20);cursor:pointer;transition:background .12s}
+.sys-kpi:hover{background:var(--g10)}
 .sys-kpi:last-child{border-right:none}
-.sys-kpi-val{font-size:1.4rem;font-weight:700;color:var(--g100);line-height:1}
-.sys-kpi-val.clr-open{color:var(--p60)}
+.sys-kpi-val{font-size:1.1rem;font-weight:700;color:var(--g100);line-height:1}
+.sys-kpi-val.clr-open{color:var(--cyan50)}
 .sys-kpi-val.clr-repair{color:var(--orange40)}
+.sys-kpi-val.clr-waitpart{color:#7d6300}
+.sys-kpi-val.clr-waitapp{color:var(--teal50)}
 .sys-kpi-val.clr-closed{color:var(--green50)}
-.sys-kpi-lbl{font-size:.65rem;color:var(--g50);margin-top:4px}
+.sys-kpi-val.clr-cancel{color:var(--g60)}
+.sys-kpi-lbl{font-size:.58rem;color:var(--g50);margin-top:3px}
 /* Status bar */
 .sys-sbar-wrap{padding:12px 16px 8px}
 .sys-sbar-title{font-size:.65rem;color:var(--g50);margin-bottom:6px}
@@ -247,10 +253,13 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
             <a class="sys-card-link" href="jobs.html">View All <i class="fas fa-arrow-right"></i></a>
           </div>
           <div class="sys-kpis">
-            <div class="sys-kpi"><div class="sys-kpi-val" id="ewsTotal">—</div><div class="sys-kpi-lbl">Total</div></div>
-            <div class="sys-kpi"><div class="sys-kpi-val clr-open" id="ewsOpen">—</div><div class="sys-kpi-lbl">Open/WIP</div></div>
-            <div class="sys-kpi"><div class="sys-kpi-val clr-repair" id="ewsRepair">—</div><div class="sys-kpi-lbl">In Repair</div></div>
-            <div class="sys-kpi"><div class="sys-kpi-val clr-closed" id="ewsClosed">—</div><div class="sys-kpi-lbl">Closed</div></div>
+            <div class="sys-kpi" onclick="location.href='jobs.html'"><div class="sys-kpi-val" id="ewsTotal">—</div><div class="sys-kpi-lbl">Total</div></div>
+            <div class="sys-kpi" onclick="location.href='jobs.html?status=OPEN'"><div class="sys-kpi-val clr-open" id="ewsOpen">—</div><div class="sys-kpi-lbl">Open</div></div>
+            <div class="sys-kpi" onclick="location.href='jobs.html?status=SEND_REPAIR'"><div class="sys-kpi-val clr-repair" id="ewsRepair">—</div><div class="sys-kpi-lbl">In Repair</div></div>
+            <div class="sys-kpi" onclick="location.href='jobs.html?status=WAIT_SPARE_PART'"><div class="sys-kpi-val clr-waitpart" id="ewsWaitPart">—</div><div class="sys-kpi-lbl">Wait Parts</div></div>
+            <div class="sys-kpi" onclick="location.href='jobs.html?status=WAIT_APPROVAL'"><div class="sys-kpi-val clr-waitapp" id="ewsWaitApp">—</div><div class="sys-kpi-lbl">Wait Approv.</div></div>
+            <div class="sys-kpi" onclick="location.href='jobs.html?status=CLOSED'"><div class="sys-kpi-val clr-closed" id="ewsClosed">—</div><div class="sys-kpi-lbl">Closed</div></div>
+            <div class="sys-kpi" onclick="location.href='jobs.html?status=RETURNED'"><div class="sys-kpi-val clr-cancel" id="ewsCancel">—</div><div class="sys-kpi-lbl">Cancelled</div></div>
           </div>
           <div class="sys-sbar-wrap">
             <div class="sys-sbar-title">Status Distribution</div>
@@ -266,7 +275,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
               <div class="ssl-item"><div class="ssl-dot" style="background:var(--orange40)"></div>In Repair</div>
               <div class="ssl-item"><div class="ssl-dot" style="background:var(--yellow30)"></div>Waiting</div>
               <div class="ssl-item"><div class="ssl-dot" style="background:var(--green50)"></div>Closed</div>
-              <div class="ssl-item"><div class="ssl-dot" style="background:var(--g40)"></div>Returned</div>
+              <div class="ssl-item"><div class="ssl-dot" style="background:var(--g40)"></div>Cancelled</div>
             </div>
           </div>
         </div>
@@ -280,9 +289,12 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
           </div>
           <div class="sys-kpis">
             <div class="sys-kpi"><div class="sys-kpi-val" id="afcTotal">0</div><div class="sys-kpi-lbl">Total</div></div>
-            <div class="sys-kpi"><div class="sys-kpi-val clr-open" id="afcOpen">0</div><div class="sys-kpi-lbl">Open/WIP</div></div>
+            <div class="sys-kpi"><div class="sys-kpi-val clr-open" id="afcOpen">0</div><div class="sys-kpi-lbl">Open</div></div>
             <div class="sys-kpi"><div class="sys-kpi-val clr-repair" id="afcRepair">0</div><div class="sys-kpi-lbl">In Repair</div></div>
+            <div class="sys-kpi"><div class="sys-kpi-val clr-waitpart" id="afcWaitPart">0</div><div class="sys-kpi-lbl">Wait Parts</div></div>
+            <div class="sys-kpi"><div class="sys-kpi-val clr-waitapp" id="afcWaitApp">0</div><div class="sys-kpi-lbl">Wait Approv.</div></div>
             <div class="sys-kpi"><div class="sys-kpi-val clr-closed" id="afcClosed">0</div><div class="sys-kpi-lbl">Closed</div></div>
+            <div class="sys-kpi"><div class="sys-kpi-val clr-cancel" id="afcCancel">0</div><div class="sys-kpi-lbl">Cancelled</div></div>
           </div>
           <div class="sys-no-data"><i class="fas fa-plug-circle-exclamation"></i> Not Connected — AFC System</div>
         </div>
@@ -296,9 +308,12 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
           </div>
           <div class="sys-kpis">
             <div class="sys-kpi"><div class="sys-kpi-val" id="comTotal">0</div><div class="sys-kpi-lbl">Total</div></div>
-            <div class="sys-kpi"><div class="sys-kpi-val clr-open" id="comOpen">0</div><div class="sys-kpi-lbl">Open/WIP</div></div>
+            <div class="sys-kpi"><div class="sys-kpi-val clr-open" id="comOpen">0</div><div class="sys-kpi-lbl">Open</div></div>
             <div class="sys-kpi"><div class="sys-kpi-val clr-repair" id="comRepair">0</div><div class="sys-kpi-lbl">In Repair</div></div>
+            <div class="sys-kpi"><div class="sys-kpi-val clr-waitpart" id="comWaitPart">0</div><div class="sys-kpi-lbl">Wait Parts</div></div>
+            <div class="sys-kpi"><div class="sys-kpi-val clr-waitapp" id="comWaitApp">0</div><div class="sys-kpi-lbl">Wait Approv.</div></div>
             <div class="sys-kpi"><div class="sys-kpi-val clr-closed" id="comClosed">0</div><div class="sys-kpi-lbl">Closed</div></div>
+            <div class="sys-kpi"><div class="sys-kpi-val clr-cancel" id="comCancel">0</div><div class="sys-kpi-lbl">Cancelled</div></div>
           </div>
           <div class="sys-no-data"><i class="fas fa-plug-circle-exclamation"></i> Not Connected — COM System</div>
         </div>
@@ -307,10 +322,13 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 
       <!-- SUMMARY KPI STRIP -->
       <div class="wo-sum-strip">
-        <div class="wo-sum-card"><div class="wo-sum-val" id="sumTotal">—</div><div class="wo-sum-lbl">Total (EWS)</div></div>
-        <div class="wo-sum-card"><div class="wo-sum-val" style="color:var(--p60)" id="sumOpen">—</div><div class="wo-sum-lbl">Open / WIP</div></div>
-        <div class="wo-sum-card"><div class="wo-sum-val" style="color:var(--orange40)" id="sumRepair">—</div><div class="wo-sum-lbl">In Repair</div></div>
-        <div class="wo-sum-card"><div class="wo-sum-val" style="color:var(--green50)" id="sumClosed">—</div><div class="wo-sum-lbl">Closed</div></div>
+        <div class="wo-sum-card" onclick="location.href='jobs.html'"><div class="wo-sum-val" id="sumTotal">—</div><div class="wo-sum-lbl">Total (EWS)</div></div>
+        <div class="wo-sum-card" onclick="location.href='jobs.html?status=OPEN'"><div class="wo-sum-val" style="color:var(--cyan50)" id="sumOpen">—</div><div class="wo-sum-lbl">Open</div></div>
+        <div class="wo-sum-card" onclick="location.href='jobs.html?status=SEND_REPAIR'"><div class="wo-sum-val" style="color:var(--orange40)" id="sumRepair">—</div><div class="wo-sum-lbl">In Repair</div></div>
+        <div class="wo-sum-card" onclick="location.href='jobs.html?status=WAIT_SPARE_PART'"><div class="wo-sum-val" style="color:#7d6300" id="sumWaitPart">—</div><div class="wo-sum-lbl">Wait Parts</div></div>
+        <div class="wo-sum-card" onclick="location.href='jobs.html?status=WAIT_APPROVAL'"><div class="wo-sum-val" style="color:var(--teal50)" id="sumWaitApp">—</div><div class="wo-sum-lbl">Wait Approval</div></div>
+        <div class="wo-sum-card" onclick="location.href='jobs.html?status=CLOSED'"><div class="wo-sum-val" style="color:var(--green50)" id="sumClosed">—</div><div class="wo-sum-lbl">Closed</div></div>
+        <div class="wo-sum-card" onclick="location.href='jobs.html?status=RETURNED'"><div class="wo-sum-val" style="color:var(--g60)" id="sumCancel">—</div><div class="wo-sum-lbl">Cancelled</div></div>
         <div class="wo-sum-card"><div class="wo-sum-val" style="color:var(--teal50)" id="sumAvgTAT">—</div><div class="wo-sum-lbl">Avg TAT (days)</div></div>
       </div>
 
@@ -443,17 +461,25 @@ async function loadEWS(){
       return;
     }
     const jobs = r.data;
-    const open  = jobs.filter(j=>['OPEN','WAIT_APPROVAL','WAIT_SPARE_PART'].includes(j.Status||j.status||'')).length;
-    const repair= jobs.filter(j=>(j.Status||j.status||'')==='SEND_REPAIR').length;
-    const closed= jobs.filter(j=>['CLOSED'].includes(j.Status||j.status||'')).length;
-    const ret   = jobs.filter(j=>(j.Status||j.status||'')==='RETURNED').length;
-    const wait  = jobs.filter(j=>['WAIT_APPROVAL','WAIT_SPARE_PART'].includes(j.Status||j.status||'')).length;
-    const total = jobs.length;
+    const _st   = j=>(j.Status||j.status||'');
+    const openOnly= jobs.filter(j=>_st(j)==='OPEN').length;
+    const repair  = jobs.filter(j=>_st(j)==='SEND_REPAIR').length;
+    const waitPart= jobs.filter(j=>_st(j)==='WAIT_SPARE_PART').length;
+    const waitApp = jobs.filter(j=>_st(j)==='WAIT_APPROVAL').length;
+    const closed  = jobs.filter(j=>_st(j)==='CLOSED').length;
+    const cancel  = jobs.filter(j=>_st(j)==='RETURNED').length;
+    const open    = openOnly+waitPart+waitApp;
+    const wait    = waitPart+waitApp;
+    const ret     = cancel;
+    const total   = jobs.length;
 
-    document.getElementById('ewsTotal').textContent  = total;
-    document.getElementById('ewsOpen').textContent   = open;
-    document.getElementById('ewsRepair').textContent = repair;
-    document.getElementById('ewsClosed').textContent = closed;
+    document.getElementById('ewsTotal').textContent    = total;
+    document.getElementById('ewsOpen').textContent     = openOnly;
+    document.getElementById('ewsRepair').textContent   = repair;
+    document.getElementById('ewsWaitPart').textContent = waitPart;
+    document.getElementById('ewsWaitApp').textContent  = waitApp;
+    document.getElementById('ewsClosed').textContent   = closed;
+    document.getElementById('ewsCancel').textContent   = cancel;
 
     // Status bar
     if(total>0){
@@ -479,10 +505,13 @@ async function loadEWS(){
     // Summary KPI strip
     (function(){
       function el(id){return document.getElementById(id);}
-      if(el('sumTotal'))  el('sumTotal').textContent=total;
-      if(el('sumOpen'))   el('sumOpen').textContent=open;
-      if(el('sumRepair')) el('sumRepair').textContent=repair;
-      if(el('sumClosed')) el('sumClosed').textContent=closed;
+      if(el('sumTotal'))   el('sumTotal').textContent=total;
+      if(el('sumOpen'))    el('sumOpen').textContent=openOnly;
+      if(el('sumRepair'))  el('sumRepair').textContent=repair;
+      if(el('sumWaitPart'))el('sumWaitPart').textContent=waitPart;
+      if(el('sumWaitApp')) el('sumWaitApp').textContent=waitApp;
+      if(el('sumClosed'))  el('sumClosed').textContent=closed;
+      if(el('sumCancel'))  el('sumCancel').textContent=cancel;
       var cj=jobs.filter(function(j){return j.Status==='CLOSED'&&j.Create_Date&&j.Close_Date;});
       if(cj.length&&el('sumAvgTAT')){
         var avg=(cj.reduce(function(s,j){

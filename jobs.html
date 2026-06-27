@@ -98,7 +98,10 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 
 /* KPI strip */
 .kpi-strip{display:flex;gap:2px;padding:0 0 2px;flex-shrink:0}
-.ks-card{flex:1;background:#fff;padding:10px 14px;border-top:2px solid var(--g30)}
+.ks-card{flex:1;background:#fff;padding:10px 10px;border-top:2px solid var(--g30);cursor:pointer;transition:background .12s}
+.ks-card:hover{background:var(--g10)}
+.ks-card.ks-active{background:var(--cyan10)!important;border-top-width:3px}
+.ksc-cy{border-top-color:var(--cyan50)}
 .ks-card.ksc-p{border-top-color:var(--p60)}
 .ks-card.ksc-g{border-top-color:var(--green50)}
 .ks-card.ksc-r{border-top-color:var(--red60)}
@@ -394,12 +397,13 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   <!-- KPI STRIP -->
   <div style="padding:2px 0 0;flex-shrink:0">
   <div class="kpi-strip" id="kpiStrip">
-    <div class="ks-card ksc-p"><div class="ks-label">Total Jobs</div><div class="ks-value" id="ksTotal">—</div></div>
-    <div class="ks-card ksc-r"><div class="ks-label">Open / WIP</div><div class="ks-value" id="ksOpen">—</div></div>
-    <div class="ks-card ksc-y"><div class="ks-label">In Repair</div><div class="ks-value" id="ksWIP">—</div></div>
-    <div class="ks-card ksc-g"><div class="ks-label">Closed</div><div class="ks-value" id="ksClosed">—</div></div>
-    <div class="ks-card ksc-t"><div class="ks-label">Returned</div><div class="ks-value" id="ksReturned">—</div></div>
-    <div class="ks-card ksc-o"><div class="ks-label">Avg TAT (Days)</div><div class="ks-value" id="ksAvgTAT">—</div></div>
+    <div class="ks-card ksc-p" data-status="" onclick="filterByStatus('')"><div class="ks-label">Total</div><div class="ks-value" id="ksTotal">—</div></div>
+    <div class="ks-card ksc-cy" data-status="OPEN" onclick="filterByStatus('OPEN')"><div class="ks-label">Open</div><div class="ks-value" style="color:var(--cyan50)" id="ksOpen">—</div></div>
+    <div class="ks-card ksc-o" data-status="SEND_REPAIR" onclick="filterByStatus('SEND_REPAIR')"><div class="ks-label">In Repair</div><div class="ks-value" style="color:var(--orange40)" id="ksWIP">—</div></div>
+    <div class="ks-card ksc-y" data-status="WAIT_SPARE_PART" onclick="filterByStatus('WAIT_SPARE_PART')"><div class="ks-label">Wait Parts</div><div class="ks-value" style="color:#7d6300" id="ksWaitPart">—</div></div>
+    <div class="ks-card ksc-t" data-status="WAIT_APPROVAL" onclick="filterByStatus('WAIT_APPROVAL')"><div class="ks-label">Wait Approval</div><div class="ks-value" style="color:var(--teal50)" id="ksWaitApp">—</div></div>
+    <div class="ks-card ksc-g" data-status="CLOSED" onclick="filterByStatus('CLOSED')"><div class="ks-label">Closed</div><div class="ks-value" style="color:var(--green50)" id="ksClosed">—</div></div>
+    <div class="ks-card ksc-r" data-status="RETURNED" onclick="filterByStatus('RETURNED')"><div class="ks-label">Cancelled</div><div class="ks-value" style="color:var(--g60)" id="ksCancel">—</div></div>
   </div>
   </div>
 
@@ -745,18 +749,40 @@ function renderAll(){
   applyFilters();
   renderKPIStrip();
   _renderDashCharts(_jobs);
+  _applyUrlStatus();
 }
 
 function renderKPIStrip(){
-  const closed=_jobs.filter(j=>j.Status==='CLOSED');
-  const withDates=closed.filter(j=>j.Create_Date&&j.Close_Date);
-  const avgTAT=withDates.length?(withDates.reduce((s,j)=>s+calcTAT(j.Create_Date,j.Close_Date),0)/withDates.length).toFixed(1):'—';
-  document.getElementById('ksTotal').textContent=_jobs.length;
-  document.getElementById('ksOpen').textContent=_jobs.filter(j=>['OPEN','WAIT_APPROVAL','WAIT_SPARE_PART'].includes(j.Status)).length;
-  document.getElementById('ksWIP').textContent=_jobs.filter(j=>j.Status==='SEND_REPAIR').length;
-  document.getElementById('ksClosed').textContent=closed.length;
-  document.getElementById('ksReturned').textContent=_jobs.filter(j=>j.Status==='RETURNED').length;
-  document.getElementById('ksAvgTAT').textContent=avgTAT;
+  var e=function(id){return document.getElementById(id);};
+  if(e('ksTotal'))    e('ksTotal').textContent=_jobs.length;
+  if(e('ksOpen'))     e('ksOpen').textContent=_jobs.filter(j=>j.Status==='OPEN').length;
+  if(e('ksWIP'))      e('ksWIP').textContent=_jobs.filter(j=>j.Status==='SEND_REPAIR').length;
+  if(e('ksWaitPart')) e('ksWaitPart').textContent=_jobs.filter(j=>j.Status==='WAIT_SPARE_PART').length;
+  if(e('ksWaitApp'))  e('ksWaitApp').textContent=_jobs.filter(j=>j.Status==='WAIT_APPROVAL').length;
+  if(e('ksClosed'))   e('ksClosed').textContent=_jobs.filter(j=>j.Status==='CLOSED').length;
+  if(e('ksCancel'))   e('ksCancel').textContent=_jobs.filter(j=>j.Status==='RETURNED').length;
+}
+
+/* ── KPI click filter ── */
+function filterByStatus(st){
+  var sel=document.getElementById('filterStatus');
+  if(sel) sel.value=st;
+  document.querySelectorAll('.ks-card').forEach(function(c){c.classList.remove('ks-active');});
+  if(st){
+    var card=document.querySelector('.ks-card[data-status="'+st+'"]');
+    if(card) card.classList.add('ks-active');
+  }
+  applyFilters();
+}
+function _applyUrlStatus(){
+  var st=new URLSearchParams(location.search).get('status')||'';
+  if(!st) return;
+  var sel=document.getElementById('filterStatus');
+  if(sel) sel.value=st;
+  document.querySelectorAll('.ks-card').forEach(function(c){c.classList.remove('ks-active');});
+  var card=document.querySelector('.ks-card[data-status="'+st+'"]');
+  if(card) card.classList.add('ks-active');
+  applyFilters();
 }
 
 /* ── Filters ── */
