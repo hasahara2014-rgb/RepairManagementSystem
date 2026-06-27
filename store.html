@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
-<title>EWS Enterprise Ã¢ÂÂ Store / Receiving</title>
+<title>EWS Enterprise &mdash; Store / Receiving</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
@@ -160,7 +160,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 
 
 /* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
-   RESPONSIVE Ã¢ÂÂ TABLET & MOBILE
+   RESPONSIVE &mdash; TABLET & MOBILE
    Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 
 /* Sidebar overlay (mobile) */
@@ -271,7 +271,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   <div class="sys-info">
     <div class="sys-title">System Status</div>
     <div class="sys-status-row"><div class="sys-dot"></div><div class="sys-online">Online</div></div>
-    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">Ã¢ÂÂ</span></div>
+    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">&mdash;</span></div>
   </div>
 </aside>
 <div class="mxm-main">
@@ -289,8 +289,8 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
     <button class="tb-icon-btn"><i class="fas fa-bell"></i></button>
     <a href="dashboard.html" class="tb-icon-btn" title="Dashboard"><i class="fas fa-gauge-high"></i></a>
     <div class="tb-user" onclick="logout()" title="Logout" style="cursor:pointer">
-      <div class="tb-avatar" id="tbAvatar">Ã¢ÂÂ</div>
-      <span class="tb-username" id="tbUsername">Ã¢ÂÂ</span>
+      <div class="tb-avatar" id="tbAvatar">&mdash;</div>
+      <span class="tb-username" id="tbUsername">&mdash;</span>
     </div>
   </div>
 </header>
@@ -305,10 +305,10 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   <button class="tb-btn-ghost" onclick="openModal('ISSUE')"><i class="fas fa-arrow-up"></i> Issue</button>
 </div>
 <div class="ks-strip" style="grid-template-columns:repeat(4,1fr);display:grid;gap:2px;flex-shrink:0">
-  <div class="ks-card ksc-g"><div class="ks-label">Total Received (month)</div><div class="ks-value" id="ksRec">Ã¢ÂÂ</div></div>
-  <div class="ks-card ksc-o"><div class="ks-label">Total Issued (month)</div><div class="ks-value" id="ksIss">Ã¢ÂÂ</div></div>
-  <div class="ks-card ksc-r"><div class="ks-label">Pending Requests</div><div class="ks-value" id="ksPend">Ã¢ÂÂ</div></div>
-  <div class="ks-card ksc-p"><div class="ks-label">Transactions Today</div><div class="ks-value" id="ksToday">Ã¢ÂÂ</div></div>
+  <div class="ks-card ksc-g"><div class="ks-label">Total Received (month)</div><div class="ks-value" id="ksRec">&mdash;</div></div>
+  <div class="ks-card ksc-o"><div class="ks-label">Total Issued (month)</div><div class="ks-value" id="ksIss">&mdash;</div></div>
+  <div class="ks-card ksc-r"><div class="ks-label">Pending Requests</div><div class="ks-value" id="ksPend">&mdash;</div></div>
+  <div class="ks-card ksc-p"><div class="ks-label">Transactions Today</div><div class="ks-value" id="ksToday">&mdash;</div></div>
 </div>
 <div class="tbl-wrap">
 <table class="data-table" style="min-width:600px"><thead><tr>
@@ -383,7 +383,7 @@ function toggleSidebar(){
     sb.classList.toggle('collapsed');
   }
 }
-function fmtDate(d){if(!d)return'Ã¢ÂÂ';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'2-digit'})}
+function fmtDate(d){if(!d)return'&mdash;';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'2-digit'})}
 function statusBadge(s){const st=(s||'OPEN').replace(/ /g,'_').toUpperCase();const lbl={OPEN:'Open',SEND_REPAIR:'In Repair',RETURNED:'Returned',WAIT_APPROVAL:'Wait Approval',WAIT_SPARE_PART:'Wait Parts',CLOSED:'Closed'};return`<span class="bs bs-${st}">${lbl[st]||st}</span>`}
 function priBadge(p){const pr=(p||'MEDIUM').toUpperCase();const lbl={CRITICAL:'Critical',HIGH:'High',MEDIUM:'Medium',LOW:'Low'};return`<span class="pri pri-${pr}"><span class="pri-dot"></span>${lbl[pr]||pr}</span>`}
 
@@ -427,7 +427,7 @@ function renderTable(){
       <td style="font-size:.72rem;color:var(--g60)">${t.unit}</td>
       <td style="font-size:.72rem;color:var(--p60)">${t.ref}</td>
       <td style="font-size:.72rem;color:var(--g60)">${t.by}</td>
-      <td style="font-size:.7rem;color:var(--g50);max-width:120px;overflow:hidden;text-overflow:ellipsis">${t.remarks||'Ã¢ÂÂ'}</td>
+      <td style="font-size:.7rem;color:var(--g50);max-width:120px;overflow:hidden;text-overflow:ellipsis">${t.remarks||'&mdash;'}</td>
     </tr>`).join('');
   renderKPIs();
 }
