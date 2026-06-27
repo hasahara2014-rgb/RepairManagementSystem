@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
-<title>EWS Enterprise — Sign In</title>
+<title>EWS Enterprise â Sign In</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <style>
@@ -20,7 +20,7 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
 
 .login-shell{display:flex;height:100vh}
 
-/* ── LEFT PANEL ── */
+/* ââ LEFT PANEL ââ */
 .lp{
   width:55%;background:var(--g90);
   display:flex;flex-direction:column;
@@ -61,7 +61,7 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
 .lp-footer-text{color:var(--g60);font-size:.68rem;line-height:1.5}
 .lp-version{display:inline-block;background:rgba(15,98,254,.2);color:var(--p50);font-size:.62rem;font-weight:600;padding:2px 10px;margin-top:6px;border:1px solid rgba(15,98,254,.3)}
 
-/* ── RIGHT PANEL ── */
+/* ââ RIGHT PANEL ââ */
 .rp{
   flex:1;background:var(--g10);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -130,15 +130,15 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
 
 .rp-footer{position:absolute;bottom:24px;left:0;right:0;text-align:center;color:var(--g50);font-size:.65rem}
 
-/* ══════════════════════════════════════════
-   RESPONSIVE — TABLET & MOBILE
-   ══════════════════════════════════════════ */
+/* ââââââââââââââââââââââââââââââââââââââââââ
+   RESPONSIVE â TABLET & MOBILE
+   ââââââââââââââââââââââââââââââââââââââââââ */
 
 /* Sidebar overlay (mobile) */
 .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:199;backdrop-filter:blur(2px)}
 .sidebar-overlay.active{display:block}
 
-/* ── TABLET ≤1024px ── */
+/* ââ TABLET â¤1024px ââ */
 @media(max-width:1024px){
   .mxm-sidebar{position:fixed;z-index:200;height:100%;transform:translateX(-240px);transition:transform .22s cubic-bezier(.4,0,.2,1);box-shadow:none}
   .mxm-sidebar.mobile-open{transform:translateX(0);box-shadow:4px 0 24px rgba(0,0,0,.25)}
@@ -155,7 +155,7 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
   .settings-grid{grid-template-columns:180px 1fr!important}
 }
 
-/* ── MOBILE ≤767px ── */
+/* ââ MOBILE â¤767px ââ */
 @media(max-width:767px){
   .mxm-topbar{padding:0 10px;gap:6px}
   .tb-title-sub,.ccard-sub{display:none}
@@ -191,7 +191,7 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
   td.td-long{max-width:120px}
 }
 
-/* ── SMALL MOBILE ≤480px ── */
+/* ââ SMALL MOBILE â¤480px ââ */
 @media(max-width:480px){
   .kpi-row{grid-template-columns:repeat(2,1fr)!important}
   .kpi-value{font-size:1.1rem}
@@ -199,7 +199,7 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
   .tb-title{display:none}
 }
 
-/* ── Login Responsive ── */
+/* ââ Login Responsive ââ */
 @media(max-width:1024px){
   .login-shell{grid-template-columns:1fr 1.2fr}
   .lp{padding:32px 28px}
@@ -241,7 +241,7 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
 
     <div class="lp-headline">
       <h1>Maintenance &amp;<br><strong>Repair Management</strong></h1>
-      <p>ระบบบริหารจัดการงานซ่อมบำรุงแบบครบวงจร สำหรับองค์กรระดับ Enterprise ที่ต้องการควบคุมคุณภาพและประสิทธิภาพ</p>
+      <p>à¸£à¸°à¸à¸à¸à¸£à¸´à¸«à¸²à¸£à¸à¸±à¸à¸à¸²à¸£à¸à¸²à¸à¸à¹à¸­à¸¡à¸à¸³à¸£à¸¸à¸à¹à¸à¸à¸à¸£à¸à¸§à¸à¸à¸£ à¸ªà¸³à¸«à¸£à¸±à¸à¸­à¸à¸à¹à¸à¸£à¸£à¸°à¸à¸±à¸ Enterprise à¸à¸µà¹à¸à¹à¸­à¸à¸à¸²à¸£à¸à¸§à¸à¸à¸¸à¸¡à¸à¸¸à¸à¸ à¸²à¸à¹à¸¥à¸°à¸à¸£à¸°à¸ªà¸´à¸à¸à¸´à¸ à¸²à¸</p>
     </div>
 
     <div class="lp-features">
@@ -249,35 +249,35 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
         <div class="feature-icon"><i class="fas fa-gauge-high"></i></div>
         <div>
           <div class="feature-title">Real-time Dashboard</div>
-          <div class="feature-desc">ติดตาม KPI สำคัญ — MTTR, MTBF, Repair Yield และ Equipment Availability แบบ Real-time</div>
+          <div class="feature-desc">à¸à¸´à¸à¸à¸²à¸¡ KPI à¸ªà¸³à¸à¸±à¸ â MTTR, MTBF, Repair Yield à¹à¸¥à¸° Equipment Availability à¹à¸à¸ Real-time</div>
         </div>
       </div>
       <div class="feature-item">
         <div class="feature-icon"><i class="fas fa-clipboard-list"></i></div>
         <div>
           <div class="feature-title">Work Order Management</div>
-          <div class="feature-desc">สร้าง ติดตาม และปิดงานซ่อมได้อย่างมีประสิทธิภาพ พร้อม Approval Workflow</div>
+          <div class="feature-desc">à¸ªà¸£à¹à¸²à¸ à¸à¸´à¸à¸à¸²à¸¡ à¹à¸¥à¸°à¸à¸´à¸à¸à¸²à¸à¸à¹à¸­à¸¡à¹à¸à¹à¸­à¸¢à¹à¸²à¸à¸¡à¸µà¸à¸£à¸°à¸ªà¸´à¸à¸à¸´à¸ à¸²à¸ à¸à¸£à¹à¸­à¸¡ Approval Workflow</div>
         </div>
       </div>
       <div class="feature-item">
         <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
         <div>
           <div class="feature-title">Analytics &amp; Reports</div>
-          <div class="feature-desc">วิเคราะห์แนวโน้มการซ่อม Pareto Analysis และ Vendor Performance</div>
+          <div class="feature-desc">à¸§à¸´à¹à¸à¸£à¸²à¸°à¸«à¹à¹à¸à¸§à¹à¸à¹à¸¡à¸à¸²à¸£à¸à¹à¸­à¸¡ Pareto Analysis à¹à¸¥à¸° Vendor Performance</div>
         </div>
       </div>
       <div class="feature-item">
         <div class="feature-icon"><i class="fas fa-shield-halved"></i></div>
         <div>
           <div class="feature-title">Role-based Access Control</div>
-          <div class="feature-desc">ควบคุมสิทธิ์การเข้าถึงตาม Role: Admin, Manager, Technician, Viewer</div>
+          <div class="feature-desc">à¸à¸§à¸à¸à¸¸à¸¡à¸ªà¸´à¸à¸à¸´à¹à¸à¸²à¸£à¹à¸à¹à¸²à¸à¸¶à¸à¸à¸²à¸¡ Role: Admin, Manager, Technician, Viewer</div>
         </div>
       </div>
     </div>
 
     <div class="lp-footer">
       <div class="lp-footer-text">EWS Enterprise Repair Management System<br>Powered by Google Apps Script &amp; GitHub Pages</div>
-      <div class="lp-version">v5.0 Design System — IBM Carbon Inspired</div>
+      <div class="lp-version">v5.0 Design System â IBM Carbon Inspired</div>
     </div>
   </div>
 
@@ -285,11 +285,11 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
   <div class="rp">
     <div class="rp-inner">
       <div class="rp-title">Sign in to <strong>EWS Enterprise</strong></div>
-      <div class="rp-sub">เข้าสู่ระบบด้วยบัญชีที่ได้รับมอบหมาย</div>
+      <div class="rp-sub">à¹à¸à¹à¸²à¸ªà¸¹à¹à¸£à¸°à¸à¸à¸à¹à¸§à¸¢à¸à¸±à¸à¸à¸µà¸à¸µà¹à¹à¸à¹à¸£à¸±à¸à¸¡à¸­à¸à¸«à¸¡à¸²à¸¢</div>
 
       <div class="form-error hidden" id="loginError">
         <i class="fas fa-circle-exclamation"></i>
-        <span id="loginErrorMsg">Username หรือ Password ไม่ถูกต้อง</span>
+        <span id="loginErrorMsg">Username à¸«à¸£à¸·à¸­ Password à¹à¸¡à¹à¸à¸¹à¸à¸à¹à¸­à¸</span>
       </div>
 
       <form id="loginForm" onsubmit="doLogin(event)">
@@ -323,30 +323,30 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
         <div class="demo-title"><i class="fas fa-circle-info" style="margin-right:4px"></i>Demo Accounts</div>
         <div class="demo-row">
           <button class="demo-tag" onclick="fillDemo('admin','admin1234')">admin / admin1234</button>
-          <span class="demo-sep">•</span>
+          <span class="demo-sep">â¢</span>
           <span style="font-size:.65rem;color:var(--g60)">Administrator</span>
         </div>
         <div class="demo-row">
           <button class="demo-tag" onclick="fillDemo('tech','tech1234')">tech / tech1234</button>
-          <span class="demo-sep">•</span>
+          <span class="demo-sep">â¢</span>
           <span style="font-size:.65rem;color:var(--g60)">Technician</span>
         </div>
         <div class="demo-row">
           <button class="demo-tag" onclick="fillDemo('viewer','view1234')">viewer / view1234</button>
-          <span class="demo-sep">•</span>
+          <span class="demo-sep">â¢</span>
           <span style="font-size:.65rem;color:var(--g60)">Viewer</span>
         </div>
       </div>
     </div>
 
-    <div class="rp-footer">© 2025 EWS Enterprise. All rights reserved.</div>
+    <div class="rp-footer">Â© 2025 EWS Enterprise. All rights reserved.</div>
   </div>
 
 </div>
 
 <script>
 const GAS_URL = localStorage.getItem('rms_gas_url') ||
-  'https://script.google.com/macros/s/AKfycbys3dgS7s6rUtWqxk1jaSTpjeHcHEAE6NUcDeyRIJ9vna8Gl2SEZodMUAvlQvW9P-jWww/exec';
+  'https://script.google.com/macros/s/AKfycbyf0GUfEleoJv1RHZT9nT3Z5JmktyQMEHkviWFs10eNHKkGUbm_pr-lbpj9R4rVVIWVCw/exec';
 
 const DEMO_ACCOUNTS = {
   admin:  {password:'admin1234',role:'admin',displayName:'Admin User'},
@@ -410,7 +410,7 @@ async function doLogin(e){
     return;
   }
 
-  showError('Username หรือ Password ไม่ถูกต้อง กรุณาลองใหม่อีกครั้ง');
+  showError('Username à¸«à¸£à¸·à¸­ Password à¹à¸¡à¹à¸à¸¹à¸à¸à¹à¸­à¸ à¸à¸£à¸¸à¸à¸²à¸¥à¸­à¸à¹à¸«à¸¡à¹à¸­à¸µà¸à¸à¸£à¸±à¹à¸');
   btn.disabled=false;
   btn.innerHTML='<i class="fas fa-right-to-bracket"></i> Sign In';
 }
