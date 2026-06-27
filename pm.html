@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
-<title>EWS Enterprise Ã¢ÂÂ Preventive Maintenance</title>
+<title>EWS Enterprise &mdash; Preventive Maintenance</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
@@ -160,7 +160,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 
 
 /* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
-   RESPONSIVE Ã¢ÂÂ TABLET & MOBILE
+   RESPONSIVE &mdash; TABLET & MOBILE
    Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 
 /* Sidebar overlay (mobile) */
@@ -271,7 +271,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   <div class="sys-info">
     <div class="sys-title">System Status</div>
     <div class="sys-status-row"><div class="sys-dot"></div><div class="sys-online">Online</div></div>
-    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">Ã¢ÂÂ</span></div>
+    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">&mdash;</span></div>
   </div>
 </aside>
 <div class="mxm-main">
@@ -289,8 +289,8 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
     <button class="tb-icon-btn"><i class="fas fa-bell"></i></button>
     <a href="dashboard.html" class="tb-icon-btn" title="Dashboard"><i class="fas fa-gauge-high"></i></a>
     <div class="tb-user" onclick="logout()" title="Logout" style="cursor:pointer">
-      <div class="tb-avatar" id="tbAvatar">Ã¢ÂÂ</div>
-      <span class="tb-username" id="tbUsername">Ã¢ÂÂ</span>
+      <div class="tb-avatar" id="tbAvatar">&mdash;</div>
+      <span class="tb-username" id="tbUsername">&mdash;</span>
     </div>
   </div>
 </header>
@@ -309,11 +309,11 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   <button class="tb-btn-primary" onclick="openModal()"><i class="fas fa-plus"></i> New PM Task</button>
 </div>
 <div class="ks-strip" style="grid-template-columns:repeat(5,1fr);display:grid;gap:2px;flex-shrink:0">
-  <div class="ks-card ksc-p"><div class="ks-label">Total PM Tasks</div><div class="ks-value" id="ksTotal">Ã¢ÂÂ</div></div>
-  <div class="ks-card ksc-y"><div class="ks-label">Scheduled</div><div class="ks-value" id="ksScheduled">Ã¢ÂÂ</div></div>
-  <div class="ks-card ksc-r"><div class="ks-label">Overdue</div><div class="ks-value" id="ksOverdue">Ã¢ÂÂ</div></div>
-  <div class="ks-card ksc-g"><div class="ks-label">Completed</div><div class="ks-value" id="ksCompleted">Ã¢ÂÂ</div></div>
-  <div class="ks-card ksc-o"><div class="ks-label">Compliance %</div><div class="ks-value" id="ksCompliance">Ã¢ÂÂ</div></div>
+  <div class="ks-card ksc-p"><div class="ks-label">Total PM Tasks</div><div class="ks-value" id="ksTotal">&mdash;</div></div>
+  <div class="ks-card ksc-y"><div class="ks-label">Scheduled</div><div class="ks-value" id="ksScheduled">&mdash;</div></div>
+  <div class="ks-card ksc-r"><div class="ks-label">Overdue</div><div class="ks-value" id="ksOverdue">&mdash;</div></div>
+  <div class="ks-card ksc-g"><div class="ks-label">Completed</div><div class="ks-value" id="ksCompleted">&mdash;</div></div>
+  <div class="ks-card ksc-o"><div class="ks-label">Compliance %</div><div class="ks-value" id="ksCompliance">&mdash;</div></div>
 </div>
 <div class="tbl-wrap">
 <table class="data-table" style="min-width:600px"><thead><tr>
@@ -389,7 +389,7 @@ function toggleSidebar(){
     sb.classList.toggle('collapsed');
   }
 }
-function fmtDate(d){if(!d)return'Ã¢ÂÂ';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'2-digit'})}
+function fmtDate(d){if(!d)return'&mdash;';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'2-digit'})}
 function statusBadge(s){const st=(s||'OPEN').replace(/ /g,'_').toUpperCase();const lbl={OPEN:'Open',SEND_REPAIR:'In Repair',RETURNED:'Returned',WAIT_APPROVAL:'Wait Approval',WAIT_SPARE_PART:'Wait Parts',CLOSED:'Closed'};return`<span class="bs bs-${st}">${lbl[st]||st}</span>`}
 function priBadge(p){const pr=(p||'MEDIUM').toUpperCase();const lbl={CRITICAL:'Critical',HIGH:'High',MEDIUM:'Medium',LOW:'Low'};return`<span class="pri pri-${pr}"><span class="pri-dot"></span>${lbl[pr]||pr}</span>`}
 
@@ -477,7 +477,7 @@ function saveTask(){
   const data={eq:document.getElementById('mEq').value.trim(),task:document.getElementById('mTask').value.trim(),type:document.getElementById('mType').value,assign:document.getElementById('mAssign').value.trim(),due:document.getElementById('mDue').value,status:document.getElementById('mStatus').value};
   if(!data.eq||!data.task){toast('Equipment ID and Task required','danger');return}
   if(eid){Object.assign(PM_DATA.find(p=>p.id===eid),data);toast('PM Task updated','success')}
-  else{PM_DATA.push({id:'PM-'+String(PM_DATA.length+1).padStart(3,'0'),freq:'Ã Â¸ÂÃ Â¸Â¸Ã Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â·Ã Â¸Â­Ã Â¸Â',last:'Ã¢ÂÂ',...data});toast('PM Task created','success')}
+  else{PM_DATA.push({id:'PM-'+String(PM_DATA.length+1).padStart(3,'0'),freq:'Ã Â¸ÂÃ Â¸Â¸Ã Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â·Ã Â¸Â­Ã Â¸Â',last:'&mdash;',...data});toast('PM Task created','success')}
   closeModal();renderTable();
 }
 
