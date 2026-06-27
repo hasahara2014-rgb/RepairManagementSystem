@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
-<title>EWS Enterprise Ã¢ÂÂ Reports & Analytics</title>
+<title>EWS Enterprise &mdash; Reports & Analytics</title>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
@@ -166,7 +166,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 
 
 /* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
-   RESPONSIVE Ã¢ÂÂ TABLET & MOBILE
+   RESPONSIVE &mdash; TABLET & MOBILE
    Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 
 /* Sidebar overlay (mobile) */
@@ -277,7 +277,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   <div class="sys-info">
     <div class="sys-title">System Status</div>
     <div class="sys-status-row"><div class="sys-dot"></div><div class="sys-online">Online</div></div>
-    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">Ã¢ÂÂ</span></div>
+    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">&mdash;</span></div>
   </div>
 </aside>
 <div class="mxm-main">
@@ -295,8 +295,8 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
     <button class="tb-icon-btn"><i class="fas fa-bell"></i></button>
     <a href="dashboard.html" class="tb-icon-btn" title="Dashboard"><i class="fas fa-gauge-high"></i></a>
     <div class="tb-user" onclick="logout()" title="Logout" style="cursor:pointer">
-      <div class="tb-avatar" id="tbAvatar">Ã¢ÂÂ</div>
-      <span class="tb-username" id="tbUsername">Ã¢ÂÂ</span>
+      <div class="tb-avatar" id="tbAvatar">&mdash;</div>
+      <span class="tb-username" id="tbUsername">&mdash;</span>
     </div>
   </div>
 </header>
@@ -350,7 +350,7 @@ function toggleSidebar(){
     sb.classList.toggle('collapsed');
   }
 }
-function fmtDate(d){if(!d)return'Ã¢ÂÂ';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'2-digit'})}
+function fmtDate(d){if(!d)return'&mdash;';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'2-digit'})}
 function statusBadge(s){const st=(s||'OPEN').replace(/ /g,'_').toUpperCase();const lbl={OPEN:'Open',SEND_REPAIR:'In Repair',RETURNED:'Returned',WAIT_APPROVAL:'Wait Approval',WAIT_SPARE_PART:'Wait Parts',CLOSED:'Closed'};return`<span class="bs bs-${st}">${lbl[st]||st}</span>`}
 function priBadge(p){const pr=(p||'MEDIUM').toUpperCase();const lbl={CRITICAL:'Critical',HIGH:'High',MEDIUM:'Medium',LOW:'Low'};return`<span class="pri pri-${pr}"><span class="pri-dot"></span>${lbl[pr]||pr}</span>`}
 
@@ -500,7 +500,7 @@ function renderTrendReport(el){
   const prefixes=['2025-11','2025-12','2026-01','2026-02','2026-03','2026-04','2026-05','2026-06'];
   const totals=prefixes.map(p=>_jobs.filter(j=>j.Create_Date?.startsWith(p)).length);
   const closeds=prefixes.map(p=>_jobs.filter(j=>j.Create_Date?.startsWith(p)&&['CLOSED','RETURNED'].includes(j.Status)).length);
-  el.innerHTML=`<div class="ccard" style="margin-bottom:2px"><div class="ccard-head"><div><div class="ccard-title">MONTHLY JOB VOLUME TREND</div><div class="ccard-sub">Last 8 months Ã¢ÂÂ total jobs created vs closed</div></div></div><canvas id="cTrend" height="180"></canvas></div>
+  el.innerHTML=`<div class="ccard" style="margin-bottom:2px"><div class="ccard-head"><div><div class="ccard-title">MONTHLY JOB VOLUME TREND</div><div class="ccard-sub">Last 8 months &mdash; total jobs created vs closed</div></div></div><canvas id="cTrend" height="180"></canvas></div>
   <div class="ccard"><div class="ccard-head"><div><div class="ccard-title">MONTHLY SUMMARY TABLE</div></div></div>
     <table class="data-table" style="min-width:600px"><thead><tr><th>Month</th><th>Jobs Created</th><th>Jobs Closed</th><th>Completion Rate</th><th>Bar</th></tr></thead><tbody>
     ${months.map((m,i)=>`<tr><td style="font-weight:600">${m}</td><td style="text-align:center">${totals[i]}</td><td style="text-align:center;color:var(--green50)">${closeds[i]}</td>
@@ -518,7 +518,7 @@ function renderParetoReport(el){
   const tot=sorted.reduce((s,[,c])=>s+c,0);
   let cum=0;
   const pareto=sorted.slice(0,8).map(([name,cnt])=>{cum+=cnt;return{name,cnt,cum:Math.round(cum/tot*100)}});
-  el.innerHTML=`<div class="ccard" style="margin-bottom:2px"><div class="ccard-head"><div><div class="ccard-title">PARETO Ã¢ÂÂ TOP DAMAGE CODES</div><div class="ccard-sub">80/20 analysis of repair causes</div></div></div><canvas id="cPareto" height="200"></canvas></div>
+  el.innerHTML=`<div class="ccard" style="margin-bottom:2px"><div class="ccard-head"><div><div class="ccard-title">PARETO &mdash; TOP DAMAGE CODES</div><div class="ccard-sub">80/20 analysis of repair causes</div></div></div><canvas id="cPareto" height="200"></canvas></div>
   <div class="ccard"><table class="data-table" style="min-width:600px"><thead><tr><th>Rank</th><th>Damage Code</th><th>Count</th><th>% of Total</th><th>Cumulative %</th><th>Bar</th></tr></thead><tbody>
   ${pareto.map((p,i)=>`<tr><td style="text-align:center;font-weight:700;color:var(--p60)">${i+1}</td><td style="max-width:200px;overflow:hidden;text-overflow:ellipsis">${p.name}</td>
   <td style="text-align:center;font-weight:700">${p.cnt}</td><td style="text-align:center">${Math.round(p.cnt/tot*100)}%</td>
@@ -543,7 +543,7 @@ function renderVendorReport(el){
     const avgTat=withDates.length?withDates.reduce((s,j)=>{const d=(new Date(j.Close_Date)-new Date(j.Create_Date))/86400000;return s+d},0)/withDates.length:0;
     return{id,name,total:vJobs.length,closed:vClosed.length,rate:vJobs.length?Math.round(vClosed.length/vJobs.length*100):0,avgTat:avgTat.toFixed(1)};
   });
-  el.innerHTML=`<div class="ccard" style="margin-bottom:2px"><div class="ccard-head"><div><div class="ccard-title">VENDOR PERFORMANCE Ã¢ÂÂ COMPLETION RATE</div></div></div><canvas id="cVendor" height="180"></canvas></div>
+  el.innerHTML=`<div class="ccard" style="margin-bottom:2px"><div class="ccard-head"><div><div class="ccard-title">VENDOR PERFORMANCE &mdash; COMPLETION RATE</div></div></div><canvas id="cVendor" height="180"></canvas></div>
   <div class="ccard"><table class="data-table" style="min-width:600px"><thead><tr><th>Vendor</th><th>Total Jobs</th><th>Completed</th><th>Completion %</th><th>Avg TAT (days)</th><th>Rating</th></tr></thead><tbody>
   ${vData.map(v=>{
     const stars='Ã¢ÂÂ'.repeat(Math.round(v.rate/20))+'Ã¢ÂÂ'.repeat(5-Math.round(v.rate/20));
@@ -562,14 +562,14 @@ function renderEquipReport(el){
   const eqMap={};
   _jobs.forEach(j=>{if(j.Equipment_ID){if(!eqMap[j.Equipment_ID])eqMap[j.Equipment_ID]=[];eqMap[j.Equipment_ID].push(j)}});
   const eqArr=Object.entries(eqMap).map(([id,jobs])=>({id,total:jobs.length,closed:jobs.filter(j=>['CLOSED','RETURNED'].includes(j.Status)).length,latest:jobs.sort((a,b)=>(b.Create_Date||'').localeCompare(a.Create_Date||''))[0]})).sort((a,b)=>b.total-a.total);
-  el.innerHTML=`<div class="ccard" style="margin-bottom:2px"><div class="ccard-head"><div><div class="ccard-title">EQUIPMENT Ã¢ÂÂ JOB FREQUENCY</div><div class="ccard-sub">Most repaired equipment</div></div></div>
+  el.innerHTML=`<div class="ccard" style="margin-bottom:2px"><div class="ccard-head"><div><div class="ccard-title">EQUIPMENT &mdash; JOB FREQUENCY</div><div class="ccard-sub">Most repaired equipment</div></div></div>
   <canvas id="cEquip" height="160"></canvas></div>
   <div class="ccard"><table class="data-table" style="min-width:600px"><thead><tr><th>Equipment ID</th><th>Total Jobs</th><th>Completed</th><th>Latest Issue</th><th>Last Status</th><th>Frequency</th></tr></thead><tbody>
   ${eqArr.map(e=>`<tr>
     <td><span class="td-eq">${e.id}</span></td>
     <td style="text-align:center;font-size:.9rem;font-weight:700;color:${e.total>=4?'var(--red60)':e.total>=3?'var(--orange40)':'var(--g100)'}">${e.total}</td>
     <td style="text-align:center;color:var(--green50)">${e.closed}</td>
-    <td class="td-long" style="font-size:.72rem">${e.latest?.Damage_Code||'Ã¢ÂÂ'}</td>
+    <td class="td-long" style="font-size:.72rem">${e.latest?.Damage_Code||'&mdash;'}</td>
     <td>${statusBadge(e.latest?.Status)}</td>
     <td><div class="prog-bar"><div class="prog-fill" style="width:${Math.round(e.total/eqArr[0].total*100)}%;background:${e.total>=4?'var(--red60)':'var(--p60)'}"></div></div></td>
   </tr>`).join('')}
