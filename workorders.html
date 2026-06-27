@@ -622,8 +622,8 @@ function renderTable(jobs){
     var st=j.Status||j.status||'';
     var pri=j.Priority||j.priority||'\u2014';
     return '<tr onclick="location.href=\'jobs.html\'" style="cursor:pointer">'
-      +'<td><span class="sys-pill" style="background:'+clr+';">'+sys+'</span></td>'
-      +'<td style="font-weight:600;color:'+clr+';">'+jobNo+'</td>'
+      +'<td><span class="sys-pill" style="background:'+clr+'">'+sys+'</span></td>'
+      +'<td style="font-weight:600;color:'+clr+'">'+jobNo+'</td>'
       +'<td>'+(j.Work_Order||'\u2014')+'</td>'
       +'<td>'+(j.Equipment_ID||'\u2014')+'</td>'
       +'<td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(j.Damage_Code||'\u2014')+'</td>'
@@ -645,7 +645,7 @@ function _mergeTable(){
   all.sort(function(a,b){
     return new Date(b.Create_Date||b.createDate||0)-new Date(a.Create_Date||a.createDate||0);
   });
-  renderTable(all.slice(0,30));
+  renderTable(all.slice(0,50));
 }
 
 // ── Demo jobs generator (fallback when GAS auth unavailable) ──
@@ -657,7 +657,6 @@ function _makeDemoJobs(sys, total){
   for(var st of statuses){
     var n=st==='OPEN'?Math.round(total*weights[idx]):(idx===statuses.length-1?total-cum:Math.round(total*weights[idx]));
     for(var i=0;i<n;i++){
-
       jobs.push({Status:st,Sys:sys,
         Repeat_Repair: (i<Math.round(n*0.09)?'YES':'NO')});
     }
@@ -769,7 +768,7 @@ async function loadCOM(){
     document.getElementById('comTotal').textContent=s.total;
     document.getElementById('comOpen').textContent=s.openOnly;
     document.getElementById('comRepair').textContent=s.repair;
-    document.getElemntById('comWaitPart').textContent=s.waitPart;
+    document.getElementById('comWaitPart').textContent=s.waitPart;
     document.getElementById('comWaitApp').textContent=s.waitApp;
     document.getElementById('comClosed').textContent=s.closed;
     document.getElementById('comCancel').textContent=s.cancel;
