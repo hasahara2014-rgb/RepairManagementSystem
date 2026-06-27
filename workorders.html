@@ -286,7 +286,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
         <div class="sys-card">
           <div class="sys-card-hdr">
             <span class="sys-badge afc">AFC</span>
-            <span class="sys-card-name">AFC - SYSTEMP</span>
+            <span class="sys-card-name">AFC - Enterprise</span>
             <a class="sys-card-link" href="jobs.html?sys=AFC">View <i class="fas fa-arrow-right"></i></a>
           </div>
           <div class="sys-kpis">
@@ -299,14 +299,25 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
             <div class="sys-kpi"><div class="sys-kpi-val clr-cancel" id="afcCancel">0</div><div class="sys-kpi-lbl">Cancelled</div></div>
             <div class="sys-kpi"><div class="sys-kpi-val clr-repeat" id="afcRepeat">0</div><div class="sys-kpi-lbl">Repeat</div></div>
           </div>
-          <div class="sys-no-data"><i class="fas fa-plug-circle-exclamation"></i> Not Connected — AFC System</div>
+          <div class="sys-sbar-wrap" id="afcSbar" style="display:none">
+            <div class="sys-sbar-title">Status Distribution</div>
+            <div class="sys-sbar">
+              <div class="sys-sbar-fill sf-open"   id="afcBarOpen"   style="width:0%"></div>
+              <div class="sys-sbar-fill sf-repair"  id="afcBarRepair" style="width:0%"></div>
+              <div class="sys-sbar-fill sf-wait"    id="afcBarWait"   style="width:0%"></div>
+              <div class="sys-sbar-fill sf-closed"  id="afcBarClosed" style="width:0%"></div>
+              <div class="sys-sbar-fill sf-ret"     id="afcBarRet"    style="width:0%"></div>
+            </div>
+          </div>
+          <div class="sys-no-data" id="afcNoData" style="display:none"><i class="fas fa-plug-circle-exclamation"></i> Not Connected — AFC System</div>
+          <div class="sys-no-data" id="afcLoading"><i class="fas fa-spinner fa-spin"></i> Loading AFC data…</div>
         </div>
 
         <!-- COM -->
         <div class="sys-card">
           <div class="sys-card-hdr">
             <span class="sys-badge com">COM</span>
-            <span class="sys-card-name">COM - SYSTEMP</span>
+            <span class="sys-card-name">COM - Enterprise</span>
             <a class="sys-card-link" href="jobs.html?sys=COM">View <i class="fas fa-arrow-right"></i></a>
           </div>
           <div class="sys-kpis">
@@ -319,14 +330,25 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
             <div class="sys-kpi"><div class="sys-kpi-val clr-cancel" id="comCancel">0</div><div class="sys-kpi-lbl">Cancelled</div></div>
             <div class="sys-kpi"><div class="sys-kpi-val clr-repeat" id="comRepeat">0</div><div class="sys-kpi-lbl">Repeat</div></div>
           </div>
-          <div class="sys-no-data"><i class="fas fa-plug-circle-exclamation"></i> Not Connected — COM System</div>
+          <div class="sys-sbar-wrap" id="comSbar" style="display:none">
+            <div class="sys-sbar-title">Status Distribution</div>
+            <div class="sys-sbar">
+              <div class="sys-sbar-fill sf-open"   id="comBarOpen"   style="width:0%"></div>
+              <div class="sys-sbar-fill sf-repair"  id="comBarRepair" style="width:0%"></div>
+              <div class="sys-sbar-fill sf-wait"    id="comBarWait"   style="width:0%"></div>
+              <div class="sys-sbar-fill sf-closed"  id="comBarClosed" style="width:0%"></div>
+              <div class="sys-sbar-fill sf-ret"     id="comBarRet"    style="width:0%"></div>
+            </div>
+          </div>
+          <div class="sys-no-data" id="comNoData" style="display:none"><i class="fas fa-plug-circle-exclamation"></i> Not Connected — COM System</div>
+          <div class="sys-no-data" id="comLoading"><i class="fas fa-spinner fa-spin"></i> Loading COM data…</div>
         </div>
 
       </div>
 
       <!-- SUMMARY KPI STRIP -->
       <div class="wo-sum-strip">
-        <div class="wo-sum-card" onclick="location.href='jobs.html'"><div class="wo-sum-val" id="sumTotal">—</div><div class="wo-sum-lbl">Total (EWS)</div></div>
+        <div class="wo-sum-card" onclick="location.href='jobs.html'"><div class="wo-sum-val" id="sumTotal">—</div><div class="wo-sum-lbl">Total (All)</div></div>
         <div class="wo-sum-card" onclick="location.href='jobs.html?status=OPEN'"><div class="wo-sum-val" style="color:var(--cyan50)" id="sumOpen">—</div><div class="wo-sum-lbl">Open</div></div>
         <div class="wo-sum-card" onclick="location.href='jobs.html?status=SEND_REPAIR'"><div class="wo-sum-val" style="color:var(--orange40)" id="sumRepair">—</div><div class="wo-sum-lbl">In Repair</div></div>
         <div class="wo-sum-card" onclick="location.href='jobs.html?status=WAIT_SPARE_PART'"><div class="wo-sum-val" style="color:#7d6300" id="sumWaitPart">—</div><div class="wo-sum-lbl">Wait Parts</div></div>
@@ -456,6 +478,48 @@ function fmtDate(d){
   }catch(e){return d;}
 }
 
+// ── Shared state for aggregation ──
+var _sysData = {ews: null, afc: null, com: null};
+
+function _calcStats(jobs){
+  var st=function(j){return j.Status||j.status||'';};
+  var openOnly=jobs.filter(function(j){return st(j)==='OPEN';}).length;
+  var repair=jobs.filter(function(j){return st(j)==='SEND_REPAIR';}).length;
+  var waitPart=jobs.filter(function(j){return st(j)==='WAIT_SPARE_PART';}).length;
+  var waitApp=jobs.filter(function(j){return st(j)==='WAIT_APPROVAL';}).length;
+  var closed=jobs.filter(function(j){return st(j)==='CLOSED';}).length;
+  var cancel=jobs.filter(function(j){return st(j)==='RETURNED';}).length;
+  var c={};jobs.forEach(function(j){var e=j.Equipment_ID||'';if(e)c[e]=(c[e]||0)+1;});
+  var repeat=jobs.filter(function(j){return c[j.Equipment_ID||'']>1;}).length;
+  return {total:jobs.length,openOnly:openOnly,repair:repair,waitPart:waitPart,waitApp:waitApp,closed:closed,cancel:cancel,repeat:repeat,jobs:jobs};
+}
+
+function _updateAllSummary(){
+  var all=[];
+  if(_sysData.ews) all=all.concat(_sysData.ews.jobs);
+  if(_sysData.afc) all=all.concat(_sysData.afc.jobs);
+  if(_sysData.com) all=all.concat(_sysData.com.jobs);
+  if(!all.length) return;
+  var s=_calcStats(all);
+  var el=function(id){return document.getElementById(id);};
+  if(el('sumTotal'))   el('sumTotal').textContent=s.total;
+  if(el('sumOpen'))    el('sumOpen').textContent=s.openOnly;
+  if(el('sumRepair'))  el('sumRepair').textContent=s.repair;
+  if(el('sumWaitPart'))el('sumWaitPart').textContent=s.waitPart;
+  if(el('sumWaitApp')) el('sumWaitApp').textContent=s.waitApp;
+  if(el('sumClosed'))  el('sumClosed').textContent=s.closed;
+  if(el('sumCancel'))  el('sumCancel').textContent=s.cancel;
+  if(el('sumRepeat'))  el('sumRepeat').textContent=s.repeat;
+  var cj=all.filter(function(j){return j.Status==='CLOSED'&&j.Create_Date&&(j.Close_Date||j.Actual_Close);});
+  if(cj.length&&el('sumAvgTAT')){
+    var avg=(cj.reduce(function(acc,j){
+      var d=(new Date(j.Close_Date||j.Actual_Close)-new Date(j.Create_Date))/86400000;
+      return acc+(d>0?d:0);
+    },0)/cj.length).toFixed(1);
+    el('sumAvgTAT').textContent=avg;
+  }
+}
+
 // ── Load EWS data ──
 async function loadEWS(){
   try{
@@ -506,29 +570,13 @@ async function loadEWS(){
     // Last update
     document.getElementById('lastUpdate').textContent = new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
 
-    // Combined table (show up to 50 rows)
-    renderTable(jobs.slice(0,50));
+    // Store EWS jobs so _mergeTable can combine with AFC/COM
+    _sysData.ews = _calcStats(jobs);
+    _sysData.ews.jobs = jobs;
+    _mergeTable();
 
-    // Summary KPI strip
-    (function(){
-      function el(id){return document.getElementById(id);}
-      if(el('sumTotal'))   el('sumTotal').textContent=total;
-      if(el('sumOpen'))    el('sumOpen').textContent=openOnly;
-      if(el('sumRepair'))  el('sumRepair').textContent=repair;
-      if(el('sumWaitPart'))el('sumWaitPart').textContent=waitPart;
-      if(el('sumWaitApp')) el('sumWaitApp').textContent=waitApp;
-      if(el('sumClosed'))  el('sumClosed').textContent=closed;
-      if(el('sumCancel'))  el('sumCancel').textContent=cancel;
-      if(el('sumRepeat'))  el('sumRepeat').textContent=_rCnt;
-      var cj=jobs.filter(function(j){return j.Status==='CLOSED'&&j.Create_Date&&j.Close_Date;});
-      if(cj.length&&el('sumAvgTAT')){
-        var avg=(cj.reduce(function(s,j){
-          var d=(new Date(j.Close_Date)-new Date(j.Create_Date))/86400000;
-          return s+(d>0?d:0);
-        },0)/cj.length).toFixed(1);
-        el('sumAvgTAT').textContent=avg;
-      }
-    })();
+    // Update combined summary (jobs already stored above)
+    _updateAllSummary();
     _renderWOCharts(jobs);
 
   }catch(e){
@@ -537,27 +585,135 @@ async function loadEWS(){
   }
 }
 
+function _jobSys(j){
+  var n=j.JOB_No||j.Job_No||'';
+  if(n.startsWith('AFC-'))return 'AFC';
+  if(n.startsWith('COM-'))return 'COM';
+  return 'EWS';
+}
+function _sysColor(sys){
+  return sys==='AFC'?'var(--teal50)':sys==='COM'?'var(--orange40)':'var(--p60)';
+}
+
 function renderTable(jobs){
-  const tbody = document.getElementById('wctBody');
+  var tbody=document.getElementById('wctBody');
   if(!jobs.length){
     tbody.innerHTML='<tr><td colspan="9" style="text-align:center;padding:24px;color:var(--g50)">No records found</td></tr>';
     document.getElementById('wctCount').textContent='0 records';
     return;
   }
-  tbody.innerHTML = jobs.map(j=>`
-    <tr onclick="location.href='jobs.html'" style="cursor:pointer">
-      <td><span class="sys-pill" style="background:var(--p60)">EWS</span></td>
-      <td style="font-weight:600;color:var(--p60)">${j.JOB_No||j.Job_No||'—'}</td>
-      <td>${j.Work_Order||'—'}</td>
-      <td>${j.Equipment_ID||'—'}</td>
-      <td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${j.Damage_Code||'—'}</td>
-      <td><span class="${statusCls(j.Status||j.status)}">${statusLabel(j.Status||j.status)}</span></td>
-      <td><span class="${priCls(j.Priority||j.priority)}">${j.Priority||j.priority||'—'}</span></td>
-      <td>${fmtDate(j.Create_Date||j.createDate||'')}</td>
-      <td><a href="jobs.html" style="color:var(--p60);font-size:.75rem"><i class="fas fa-arrow-right"></i></a></td>
-    </tr>
-  `).join('');
-  document.getElementById('wctCount').textContent = jobs.length + (jobs.length===50?' (latest 50)':' records');
+  tbody.innerHTML=jobs.map(function(j){
+    var sys=_jobSys(j),clr=_sysColor(sys);
+    var jobNo=j.JOB_No||j.Job_No||'\u2014';
+    var st=j.Status||j.status||'';
+    var pri=j.Priority||j.priority||'\u2014';
+    return '<tr onclick="location.href=\'jobs.html\'" style="cursor:pointer">'
+      +'<td><span class="sys-pill" style="background:'+clr+'">'+sys+'</span></td>'
+      +'<td style="font-weight:600;color:'+clr+'">'+jobNo+'</td>'
+      +'<td>'+(j.Work_Order||'\u2014')+'</td>'
+      +'<td>'+(j.Equipment_ID||'\u2014')+'</td>'
+      +'<td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+(j.Damage_Code||'\u2014')+'</td>'
+      +'<td><span class="'+statusCls(st)+'">'+statusLabel(st)+'</span></td>'
+      +'<td><span class="'+priCls(pri)+'">'+pri+'</span></td>'
+      +'<td>'+fmtDate(j.Create_Date||j.createDate||'')+'</td>'
+      +'<td><a href="jobs.html" style="color:'+clr+';font-size:.75rem"><i class="fas fa-arrow-right"></i></a></td>'
+      +'</tr>';
+  }).join('');
+  document.getElementById('wctCount').textContent=jobs.length+(jobs.length===50?' (latest 50)':' records');
+}
+
+// ── Merge all systems into Recent Work Orders table ──
+function _mergeTable(){
+  var all=[];
+  if(_sysData.ews&&_sysData.ews.jobs) all=all.concat(_sysData.ews.jobs);
+  if(_sysData.afc&&_sysData.afc.jobs) all=all.concat(_sysData.afc.jobs);
+  if(_sysData.com&&_sysData.com.jobs) all=all.concat(_sysData.com.jobs);
+  all.sort(function(a,b){
+    return new Date(b.Create_Date||b.createDate||0)-new Date(a.Create_Date||a.createDate||0);
+  });
+  renderTable(all.slice(0,50));
+}
+
+// ── Load AFC data ──
+async function loadAFC(){
+  var elLoad=document.getElementById('afcLoading'),
+      elSbar=document.getElementById('afcSbar'),
+      elNoData=document.getElementById('afcNoData');
+  try{
+    var token=_getToken();
+    if(!token){if(elLoad)elLoad.style.display='none';if(elNoData)elNoData.style.display='block';return;}
+    var url=GAS_URL+'?action=getJobs&token='+encodeURIComponent(token)+'&payload='+encodeURIComponent(JSON.stringify({sys:'AFC'}));
+    var r=await fetch(url).then(function(x){return x.json();});
+    if(elLoad)elLoad.style.display='none';
+    if(!r.success||!Array.isArray(r.data)){if(elNoData)elNoData.style.display='block';return;}
+    var jobs=r.data;
+    var s=_calcStats(jobs);
+    document.getElementById('afcTotal').textContent    =s.total;
+    document.getElementById('afcOpen').textContent     =s.openOnly;
+    document.getElementById('afcRepair').textContent   =s.repair;
+    document.getElementById('afcWaitPart').textContent =s.waitPart;
+    document.getElementById('afcWaitApp').textContent  =s.waitApp;
+    document.getElementById('afcClosed').textContent   =s.closed;
+    document.getElementById('afcCancel').textContent   =s.cancel;
+    document.getElementById('afcRepeat').textContent   =s.repeat;
+    if(s.total>0&&elSbar){
+      var pct=function(v){return (v/s.total*100).toFixed(1)+'%';};
+      document.getElementById('afcBarOpen').style.width   =pct(s.openOnly);
+      document.getElementById('afcBarRepair').style.width =pct(s.repair);
+      document.getElementById('afcBarWait').style.width   =pct(s.waitPart+s.waitApp);
+      document.getElementById('afcBarClosed').style.width =pct(s.closed);
+      document.getElementById('afcBarRet').style.width    =pct(s.cancel);
+      elSbar.style.display='block';
+    }
+    _sysData.afc=s;
+    _updateAllSummary();
+    _mergeTable();
+  }catch(e){
+    console.warn('loadAFC error',e);
+    if(elLoad)elLoad.style.display='none';
+    if(elNoData)elNoData.style.display='block';
+  }
+}
+
+// ── Load COM data ──
+async function loadCOM(){
+  var elLoad=document.getElementById('comLoading'),
+      elSbar=document.getElementById('comSbar'),
+      elNoData=document.getElementById('comNoData');
+  try{
+    var token=_getToken();
+    if(!token){if(elLoad)elLoad.style.display='none';if(elNoData)elNoData.style.display='block';return;}
+    var url=GAS_URL+'?action=getJobs&token='+encodeURIComponent(token)+'&payload='+encodeURIComponent(JSON.stringify({sys:'COM'}));
+    var r=await fetch(url).then(function(x){return x.json();});
+    if(elLoad)elLoad.style.display='none';
+    if(!r.success||!Array.isArray(r.data)){if(elNoData)elNoData.style.display='block';return;}
+    var jobs=r.data;
+    var s=_calcStats(jobs);
+    document.getElementById('comTotal').textContent    =s.total;
+    document.getElementById('comOpen').textContent     =s.openOnly;
+    document.getElementById('comRepair').textContent   =s.repair;
+    document.getElementById('comWaitPart').textContent =s.waitPart;
+    document.getElementById('comWaitApp').textContent  =s.waitApp;
+    document.getElementById('comClosed').textContent   =s.closed;
+    document.getElementById('comCancel').textContent   =s.cancel;
+    document.getElementById('comRepeat').textContent   =s.repeat;
+    if(s.total>0&&elSbar){
+      var pct=function(v){return (v/s.total*100).toFixed(1)+'%';};
+      document.getElementById('comBarOpen').style.width   =pct(s.openOnly);
+      document.getElementById('comBarRepair').style.width =pct(s.repair);
+      document.getElementById('comBarWait').style.width   =pct(s.waitPart+s.waitApp);
+      document.getElementById('comBarClosed').style.width =pct(s.closed);
+      document.getElementById('comBarRet').style.width    =pct(s.cancel);
+      elSbar.style.display='block';
+    }
+    _sysData.com=s;
+    _updateAllSummary();
+    _mergeTable();
+  }catch(e){
+    console.warn('loadCOM error',e);
+    if(elLoad)elLoad.style.display='none';
+    if(elNoData)elNoData.style.display='block';
+  }
 }
 
 var _woS=null,_woP=null,_woT=null;
@@ -611,8 +767,11 @@ function _renderWOCharts(jobs){
 }
 
 function loadAll(){
+  _sysData={ews:null,afc:null,com:null};
   document.getElementById('wctBody').innerHTML='<tr><td colspan="9" style="text-align:center;padding:24px;color:var(--g50)"><i class="fas fa-spinner fa-spin"></i> Loading...</td></tr>';
   loadEWS();
+  loadAFC();
+  loadCOM();
 }
 
 // ── Init ──
