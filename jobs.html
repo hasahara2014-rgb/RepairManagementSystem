@@ -577,7 +577,7 @@ function _getToken(){
 let VENDORS={};
 async function loadVendors(){
   try{
-    const r=await fetch(`${GAS_URL}?action=getVendors&token=${_getToken()}`).then(x=>x.json());
+    const r=await _fetchJSON(`${GAS_URL}?action=getVendors&token=${_getToken()}`);
     if(r.success&&Array.isArray(r.data)&&r.data.length>0){
       const sel=document.getElementById('mVendor');
       sel.innerHTML='<option value="">— Select Vendor —</option>';
@@ -739,9 +739,13 @@ function priBadge(p){const pr=(p||'MEDIUM').toUpperCase();const lbl={CRITICAL:'C
 function getVendorName(id){return VENDORS[id]||id||'—'}
 
 /* ── Load ── */
+function _fetchJSON(url,ms=6000){
+  const ctrl=new AbortController();
+  const t=setTimeout(()=>ctrl.abort(),ms);
+  return fetch(url,{signal:ctrl.signal}).then(r=>r.json()).catch(()=>({success:false,data:[]})).finally(()=>clearTimeout(t));
+}
 function loadJobs(){
-  fetch(GAS_URL+'?action=getJobs&token='+encodeURIComponent(_getToken()))
-    .then(r=>r.json())
+  _fetchJSON(GAS_URL+'?action=getJobs&token='+encodeURIComponent(_getToken()))
     .then(res=>{
       if(res.success===false){
         // Token invalid — clear session and redirect to login
