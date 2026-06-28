@@ -1002,4 +1002,26 @@ async function deleteJob(){
 /* ── Export ── */
 function exportCSV(){
   const header='Job No.,Equipment ID,Damage,Repair Action,Vendor,Priority,Status,Created,Closed,TAT(d)';
-  const rows=_filtered.map(j=>[j.JOB_No,j.Equipment_ID,`"${j.Damage_Code||''}"`,`"${j.Repair_Action||''}"`,getVendorName(j.Vendor_ID),j.Priority,j.S
+  const rows=_filtered.map(j=>[
+    j.JOB_No||'',
+    j.Equipment_ID||'',
+    '"'+(j.Damage_Code||'')+'"',
+    '"'+(j.Repair_Action||'')+'"',
+    getVendorName(j.Vendor_ID),
+    j.Priority||'',
+    j.Status||'',
+    j.Create_Date||'',
+    j.Close_Date||'',
+    calcTAT(j.Create_Date,j.Close_Date)!=null?calcTAT(j.Create_Date,j.Close_Date):''
+  ].join(','));
+  const csv=[header,...rows].join('\n');
+  const a=document.createElement('a');
+  a.href='data:text/csv;charset=utf-8,\uFEFF'+encodeURIComponent(csv);
+  a.download='work-orders-'+new Date().toISOString().slice(0,10)+'.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  toast('Exported '+_filtered.length+' records','success');
+}
+document.addEventListener('DOMContentLoaded', loadJobs);
+</script>
+</body>
+</html>
