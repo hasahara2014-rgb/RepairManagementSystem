@@ -188,9 +188,9 @@ textarea.form-control{resize:vertical;min-height:64px}
 </div>
 </div>
 <script>const GAS_URL=(function(){const k=localStorage.getItem('gasUrl');if(k)return k;const s=document.querySelector('meta[name="gas-url"]');return s?s.content:'';})();
-function _getToken(){return localStorage.getItem('rms_token')||'';}
+function _getToken(){try{const s=JSON.parse(localStorage.getItem('rms_v3_session')||sessionStorage.getItem('rms_v3_session')||'null');return s?.token||'';}catch(e){return '';}}
 function _getUser(){try{return JSON.parse(localStorage.getItem('rms_user')||'{}');}catch(e){return{};}}
-function _requireAuth(){if(!_getToken()){location.href='login.html';return false;}return true;}
+function _requireAuth(){try{const s=JSON.parse(localStorage.getItem('rms_v3_session')||sessionStorage.getItem('rms_v3_session')||'null');if(!s||!s.username||(Date.now()-s.loginTime>28800000)){location.href='login.html';return false;}return true;}catch(e){location.href='login.html';return false;}}
 async function _gasGet(action,params){
   if(!GAS_URL)throw new Error('GAS URL not configured');
   let url=GAS_URL+'?action='+encodeURIComponent(action)+'&token='+encodeURIComponent(_getToken());
