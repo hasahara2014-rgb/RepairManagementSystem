@@ -791,6 +791,32 @@ async function loadCOM(){
 // ─── Render WO Charts ───
 var _charts = {};
 function _renderWOCharts(){
-  // Collect all jobs across systems
   var all = [];
-  if
+  if(_sysData.ews&&_sysData.ews.jobs) all=all.concat(_sysData.ews.jobs);
+  if(_sysData.afc&&_sysData.afc.jobs) all=all.concat(_sysData.afc.jobs);
+  if(_sysData.com&&_sysData.com.jobs) all=all.concat(_sysData.com.jobs);
+  if(!all.length||typeof Chart==='undefined') return;
+  var statuses=['OPEN','WAIT_APPROVAL','WAIT_SPARE_PART','SEND_REPAIR','CLOSED','RETURNED'];
+  var sLabels=['Open','Wait Approval','Wait Part','In Repair','Closed','Returned'];
+  var sColors=['#0f62fe','#ff832b','#f1c21b','#8a3ffc','#24a148','#6f6f6f'];
+  var sCounts=statuses.map(function(s){return all.filter(function(j){return j.Status===s;}).length;});
+  var ctx1=document.getElementById('woStatusChart');
+  if(ctx1){if(_charts.status)_charts.status.destroy();_charts.status=new Chart(ctx1,{type:'doughnut',data:{labels:sLabels,datasets:[{data:sCounts,backgroundColor:sColors,borderWidth:1}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:9},boxWidth:10}}}}});}
+  var pris=['CRITICAL','HIGH','MEDIUM','LOW'];
+  var pLabels=['Critical','High','Medium','Low'];
+  var pColors=['#da1e28','#ff832b','#f1c21b','#0f62fe'];
+  var pCounts=pris.map(function(p){return all.filter(function(j){return j.Priority===p;}).length;});
+  var ctx2=document.getElementById('woPriChart');
+  if(ctx2){if(_charts.pri)_charts.pri.destroy();_charts.pri=new Chart(ctx2,{type:'bar',data:{labels:pLabels,datasets:[{data:pCounts,backgroundColor:pColors,borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1,font:{size:9}}}}}});}
+  var now=new Date();var months=[];var mCounts=[];
+  for(var i=5;i>=0;i--){var d=new Date(now.getFullYear(),now.getMonth()-i,1);var nd=new Date(now.getFullYear(),now.getMonth()-i+1,1);months.push(d.toLocaleString('en',{month:'short'})+' '+d.getFullYear().toString().slice(2));mCounts.push(all.filter(function(j){if(!j.Create_Date)return false;var jd=new Date(j.Create_Date);return jd>=d&&jd<nd;}).length);}
+  var ctx3=document.getElementById('woTrendChart');
+  if(ctx3){if(_charts.trend)_charts.trend.destroy();_charts.trend=new Chart(ctx3,{type:'line',data:{labels:months,datasets:[{label:'Jobs',data:mCounts,borderColor:'#0f62fe',backgroundColor:'rgba(15,98,254,0.1)',fill:true,tension:0.3,pointRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1,font:{size:9}}}}}});}
+}
+document.addEventListener('DOMContentLoaded', function(){
+  initAuth();
+  Promise.all([loadEWS(), loadAFC(), loadCOM()]).catch(function(){});
+});
+</script>
+</body>
+</html>
