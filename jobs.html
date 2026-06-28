@@ -637,8 +637,8 @@ let SAMPLE_JOBS=[
 var SYS=new URLSearchParams(location.search).get('sys')||'EWS';
 var SYS_CFG={
   EWS:{name:'EWS - Enterprise',badge:'EWS',color:'#0F62FE',connected:true},
-  AFC:{name:'AFC - SYSTEMP',badge:'AFC',color:'#009D9A',connected:false},
-  COM:{name:'COM - SYSTEMP',badge:'COM',color:'#8A3FFC',connected:false}
+  AFC:{name:'AFC - SYSTEMP',badge:'AFC',color:'#009D9A',connected:true},
+  COM:{name:'COM - SYSTEMP',badge:'COM',color:'#8A3FFC',connected:true}
 };
 var _sc=SYS_CFG[SYS]||SYS_CFG.EWS;
 
@@ -745,7 +745,7 @@ function _fetchJSON(url,ms=6000){
   return fetch(url,{signal:ctrl.signal}).then(r=>r.json()).catch(()=>({success:false,data:[]})).finally(()=>clearTimeout(t));
 }
 function loadJobs(){
-  _fetchJSON(GAS_URL+'?action=getJobs&token='+encodeURIComponent(_getToken()))
+  _fetchJSON(GAS_URL+'?action=getJobs&sys='+SYS+'&token='+encodeURIComponent(_getToken()))
     .then(res=>{
       const d=res.data||res;
       _jobs=Array.isArray(d)?d:SAMPLE_JOBS;
