@@ -465,9 +465,14 @@ renderTable();
 
 document.getElementById('lastUpdate').textContent=new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
 
+function _fetchJSON(url,ms=6000){
+  const ctrl=new AbortController();
+  const t=setTimeout(()=>ctrl.abort(),ms);
+  return fetch(url,{signal:ctrl.signal}).then(r=>r.json()).catch(()=>({success:false,data:[]})).finally(()=>clearTimeout(t));
+}
 function loadData(){
   document.getElementById('loadingOverlay').classList.remove('hidden');
-  fetch(GAS_URL+'?action=getTransactions&token='+encodeURIComponent(_getToken())).then(r=>r.json()).then(res=>{
+  _fetchJSON(GAS_URL+'?action=getTransactions&token='+encodeURIComponent(_getToken())).then(res=>{
     const data=res.data||res;
     if(Array.isArray(data)&&data.length>0){
       TRANS=data.map(t=>({
