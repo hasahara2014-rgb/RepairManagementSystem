@@ -756,16 +756,17 @@ function getVendorName(id){
 function _tagJobs(jobs, sys){
   return (Array.isArray(jobs)?jobs:[]).map(j=>Object.assign({},j,{_sys:sys}));
 }
+function _fetchJSON(url,ms=6000){const ctrl=new AbortController();const t=setTimeout(()=>ctrl.abort(),ms);return fetch(url,{signal:ctrl.signal}).then(r=>r.json()).catch(()=>({success:false,data:[]})).finally(()=>clearTimeout(t));}
 function loadData(){
   document.getElementById('loadingOverlay').classList.remove('hidden');
   const tok=_getToken();
   const b=GAS_URL+'?token='+encodeURIComponent(tok);
   Promise.all([
-    fetch(b+'&action=getJobs').then(r=>r.json()).catch(()=>({success:false,data:[]})),
-    fetch(b+'&action=getJobs&payload='+encodeURIComponent(JSON.stringify({sys:'AFC'}))).then(r=>r.json()).catch(()=>({success:false,data:[]})),
-    fetch(b+'&action=getJobs&payload='+encodeURIComponent(JSON.stringify({sys:'COM'}))).then(r=>r.json()).catch(()=>({success:false,data:[]})),
-    fetch(b+'&action=getParts').then(r=>r.json()).catch(()=>({success:false,data:[]})),
-    fetch(b+'&action=getVendors').then(r=>r.json()).catch(()=>({success:false,data:[]})),
+    _fetchJSON(b+'&action=getJobs').then(r=>r.json()).catch(()=>({success:false,data:[]})),
+    _fetchJSON(b+'&action=getJobs&payload='+encodeURIComponent(JSON.stringify({sys:'AFC'}))).then(r=>r.json()).catch(()=>({success:false,data:[]})),
+    _fetchJSON(b+'&action=getJobs&payload='+encodeURIComponent(JSON.stringify({sys:'COM'}))).then(r=>r.json()).catch(()=>({success:false,data:[]})),
+    _fetchJSON(b+'&action=getParts').then(r=>r.json()).catch(()=>({success:false,data:[]})),
+    _fetchJSON(b+'&action=getVendors').then(r=>r.json()).catch(()=>({success:false,data:[]})),
   ]).then(([ewsR,afcR,comR,pRes,vRes])=>{
     const ewsJ=_tagJobs(ewsR.success&&Array.isArray(ewsR.data)?ewsR.data:SAMPLE_JOBS,'EWS');
     const afcJ=_tagJobs(afcR.success&&Array.isArray(afcR.data)?afcR.data:[],'AFC');
