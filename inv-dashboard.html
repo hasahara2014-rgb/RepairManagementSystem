@@ -441,22 +441,57 @@ let _charts = {};
 
 function _destroyChart(id){ if(_charts[id]){ _charts[id].destroy(); delete _charts[id]; } }
 
+
+/* ── Demo data (shown when GAS not configured) ── */
+const DEMO_INV = {
+  kpi:{totalItems:247,totalValue:3850000,totalOnHand:8420,lowStock:18,outOfStock:5,criticalParts:32,monthlyConsumption:156},
+  catDist:{'Electronics':45,'Mechanical':72,'Hydraulic':38,'Electrical':51,'Safety':28,'Other':13},
+  abcCount:{A:48,B:89,C:110},
+  topConsumed:[
+    {Item_Code:'EL-001',Item_Name:'Bearing 6205 ZZ',Qty:42},
+    {Item_Code:'ME-012',Item_Name:'Oil Seal 25x40x7',Qty:38},
+    {Item_Code:'EL-018',Item_Name:'Fuse 10A 250V',Qty:35},
+    {Item_Code:'HY-003',Item_Name:'Hydraulic Hose 3/4"',Qty:28},
+    {Item_Code:'ME-007',Item_Name:'V-Belt B52',Qty:25}
+  ]
+};
+const DEMO_REORDER={data:[
+  {Item_Code:'ME-012',Qty_On_Hand:3,Reorder_Point:10},
+  {Item_Code:'EL-005',Qty_On_Hand:0,Reorder_Point:5},
+  {Item_Code:'HY-008',Qty_On_Hand:2,Reorder_Point:8},
+  {Item_Code:'SA-001',Qty_On_Hand:1,Reorder_Point:6}
+]};
+function _renderDashData(d,rd){
+  const k=d.kpi||{};
+  _e('kTotal').textContent=_fmt(k.totalItems);_e('kValue').textContent=_fmtCur(k.totalValue);
+  _e('kOnHand').textContent=_fmt(k.totalOnHand);_e('kLow').textContent=_fmt(k.lowStock);
+  _e('kOut').textContent=_fmt(k.outOfStock);_e('kCritical').textContent=_fmt(k.criticalParts);
+  _e('kConsumption').textContent=_fmt(k.monthlyConsumption);_e('kReorder').textContent=_fmt(k.lowStock);
+  _e('kAbcA').textContent=_fmt((d.abcCount||{}).A||0);
+  const cats=d.catDist||{};
+  _destroyChart('chartCategory');
+  _charts.chartCategory=new Chart(document.getElementById('chartCategory').getContext('2d'),{type:'doughnut',data:{labels:Object.keys(cats),datasets:[{data:Object.values(cats),backgroundColor:['#0F62FE','#009D9A','#198038','#F1C21B','#FF832B','#8A3FFC','#1192E8','#DA1E28'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:11},boxWidth:12}}}}});
+  const abc=d.abcCount||{};
+  _destroyChart('chartAbc');
+  _charts.chartAbc=new Chart(document.getElementById('chartAbc').getContext('2d'),{type:'bar',data:{labels:['Class A','Class B','Class C'],datasets:[{data:[abc.A||0,abc.B||0,abc.C||0],backgroundColor:['#0F62FE','#009D9A','#8D8D8D'],borderWidth:0,borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{font:{size:11}}},x:{ticks:{font:{size:11}}}}}});
+  const ok=(k.totalItems||0)-(k.lowStock||0)-(k.outOfStock||0);
+  _destroyChart('chartHealth');
+  _charts.chartHealth=new Chart(document.getElementById('chartHealth').getContext('2d'),{type:'doughnut',data:{labels:['OK','Low Stock','Out of Stock'],datasets:[{data:[Math.max(0,ok),k.lowStock||0,k.outOfStock||0],backgroundColor:['#198038','#FF832B','#DA1E28'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:11},boxWidth:12}}}}});
+  const tb1=document.querySelector('#topConsumedTable tbody');tb1.innerHTML='';
+  (d.topConsumed||[]).forEach(function(r){tb1.innerHTML+='<tr><td class="td-mono">'+r.Item_Code+'</td><td class="td-long">'+r.Item_Name+'</td><td class="td-right td-num">'+_fmt(r.Qty)+'</td></tr>';});
+  if(!tb1.children.length)tb1.innerHTML='<tr><td colspan="3" style="padding:20px;text-align:center;color:var(--g50)">No data</td></tr>';
+  const tb2=document.querySelector('#reorderTable tbody');tb2.innerHTML='';
+  ((rd&&rd.data)||[]).slice(0,8).forEach(function(r){const cls=r.Qty_On_Hand===0?'stock-out':'stock-low';tb2.innerHTML+='<tr><td class="td-mono">'+r.Item_Code+'</td><td class="td-num '+cls+'">'+_fmt(r.Qty_On_Hand)+'</td><td class="td-num">'+_fmt(r.Reorder_Point)+'</td></tr>';});
+  if(!tb2.children.length)tb2.innerHTML='<tr><td colspan="3" style="padding:20px;text-align:center;color:var(--g50)">No reorder needed</td></tr>';
+}
 async function loadDashboard(){
   showLoading();
   try{
-    const d = await _gasGet('getInvDashboard');
-    const k = d.kpi || {};
-    _e('kTotal').textContent      = _fmt(k.totalItems);
-    _e('kValue').textContent      = _fmtCur(k.totalValue);
-    _e('kOnHand').textContent     = _fmt(k.totalOnHand);
-    _e('kLow').textContent        = _fmt(k.lowStock);
-    _e('kOut').textContent        = _fmt(k.outOfStock);
-    _e('kCritical').textContent   = _fmt(k.criticalParts);
-    _e('kConsumption').textContent= _fmt(k.monthlyConsumption);
-    _e('kReorder').textContent    = _fmt(k.lowStock);
-    _e('kAbcA').textContent       = _fmt((d.abcCount||{}).A||0);
-
-    // Category chart
+    if(!GAS_URL){_renderDashData(DEMO_INV,DEMO_REORDER);return;}
+    const d=await _gasGet('getInvDashboard');
+    // charts rendered by _renderDashData
+    // Category chart (moved to _renderDashData)
+    if(false&&d){ // placeholder
     const cats = d.catDist || {};
     _destroyChart('chartCategory');
     const ctx1 = document.getElementById('chartCategory').getContext('2d');
@@ -506,11 +541,10 @@ async function loadDashboard(){
       if(!tbody2.children.length) tbody2.innerHTML = '<tr><td colspan="3" style="padding:20px;text-align:center;color:var(--g50)">No reorder needed</td></tr>';
     }catch(e){}
 
-  } catch(err){
-    toast('Error loading dashboard: '+err.message,'danger');
-  } finally{
-    hideLoading();
-  }
+    let rd={data:[]};try{rd=await _gasGet('getReorderReport');}catch(e){}
+    _renderDashData(d,rd);
+  }catch(err){_renderDashData(DEMO_INV,DEMO_REORDER);toast('Using demo data — '+err.message,'info');}
+  finally{hideLoading();}
 }
 
 document.addEventListener('DOMContentLoaded',function(){
