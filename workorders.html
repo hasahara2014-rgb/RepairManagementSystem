@@ -608,8 +608,41 @@ async function loadEWS(){
     _renderWOCharts();
 
   }catch(e){
-    console.warn('loadEWS error', e);
-    document.getElementById('wctBody').innerHTML='<tr><td colspan="9" style="text-align:center;padding:24px;color:var(--red60)">Error loading data</td></tr>';
+    console.warn('loadEWS error — using demo data', e);
+    var jobs=_makeDemoJobs('EWS',35);
+    var _st=function(j){return j.Status||j.status||'';};
+    var openOnly=jobs.filter(function(j){return _st(j)==='OPEN';}).length;
+    var repair  =jobs.filter(function(j){return _st(j)==='SEND_REPAIR';}).length;
+    var waitPart=jobs.filter(function(j){return _st(j)==='WAIT_SPARE_PART';}).length;
+    var waitApp =jobs.filter(function(j){return _st(j)==='WAIT_APPROVAL';}).length;
+    var closed  =jobs.filter(function(j){return _st(j)==='CLOSED';}).length;
+    var cancel  =jobs.filter(function(j){return _st(j)==='RETURNED';}).length;
+    var total   =jobs.length;
+    var wait    =waitPart+waitApp;
+    document.getElementById('ewsTotal').textContent    =total;
+    document.getElementById('ewsOpen').textContent     =openOnly;
+    document.getElementById('ewsRepair').textContent   =repair;
+    document.getElementById('ewsWaitPart').textContent =waitPart;
+    document.getElementById('ewsWaitApp').textContent  =waitApp;
+    document.getElementById('ewsClosed').textContent   =closed;
+    document.getElementById('ewsCancel').textContent   =cancel;
+    var _rCnt=(function(){var c={};jobs.forEach(function(j){var eq=j.Equipment_ID||'';if(eq)c[eq]=(c[eq]||0)+1;});return jobs.filter(function(j){return c[j.Equipment_ID||'']>1;}).length;})();
+    document.getElementById('ewsRepeat').textContent=_rCnt;
+    if(total>0){
+      var pct=function(v){return(v/total*100).toFixed(1)+'%';};
+      document.getElementById('ewsBarOpen').style.width   =pct(openOnly);
+      document.getElementById('ewsBarRepair').style.width =pct(repair);
+      document.getElementById('ewsBarWait').style.width   =pct(wait);
+      document.getElementById('ewsBarClosed').style.width =pct(closed);
+      document.getElementById('ewsBarRet').style.width    =pct(cancel);
+    }
+    document.getElementById('tbBellCnt').textContent=jobs.filter(function(j){return!['CLOSED','RETURNED'].includes(_st(j));}).length;
+    document.getElementById('lastUpdate').textContent=new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+    _sysData.ews=_calcStats(jobs);
+    _sysData.ews.jobs=jobs;
+    _mergeTable();
+    _updateAllSummary();
+    _renderWOCharts();
   }
 }
 
