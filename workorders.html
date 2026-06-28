@@ -172,10 +172,16 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   .tb-menu-btn{display:flex!important}
   .wo-sys-grid{grid-template-columns:1fr}
 }
+/* Toast */
+#wo-toast-wrap{position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.wo-toast{display:flex;align-items:center;gap:10px;padding:10px 16px;background:#fff;border-left:4px solid var(--orange40);box-shadow:0 4px 16px rgba(0,0,0,.18);font-size:.78rem;color:var(--g80);min-width:220px;max-width:320px;opacity:0;transform:translateX(40px);transition:opacity .25s,transform .25s;pointer-events:none}
+.wo-toast.show{opacity:1;transform:translateX(0)}
+.wo-toast i{color:var(--orange40);font-size:1rem;flex-shrink:0}
 </style>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 </head>
 <body>
+<div id="wo-toast-wrap"></div>
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 <div class="mxm-shell">
 
@@ -509,6 +515,17 @@ function fmtDate(d){
 // ── Shared state for aggregation ──
 var _sysData = {ews: null, afc: null, com: null};
 
+function _gasToast(sys){
+  var wrap=document.getElementById('wo-toast-wrap');
+  if(!wrap)return;
+  var t=document.createElement('div');
+  t.className='wo-toast';
+  t.innerHTML='<i class="fas fa-triangle-exclamation"></i><span>GAS ไม่ตอบสนอง ('+sys+') — แสดงข้อมูล Demo</span>';
+  wrap.appendChild(t);
+  requestAnimationFrame(function(){t.classList.add('show');});
+  setTimeout(function(){t.classList.remove('show');setTimeout(function(){t.remove();},300);},4000);
+}
+
 function _calcStats(jobs){
   var st=function(j){return j.Status||j.status||'';};
   var openOnly=jobs.filter(function(j){return st(j)==='OPEN';}).length;
@@ -608,7 +625,8 @@ async function loadEWS(){
     _renderWOCharts();
 
   }catch(e){
-    console.warn('loadEWS error — using demo data', e);
+    console.warn('loadEWS error', e);
+    _gasToast('EWS');
     var jobs=_makeDemoJobs('EWS',35);
     var _st=function(j){return j.Status||j.status||'';};
     var openOnly=jobs.filter(function(j){return _st(j)==='OPEN';}).length;
@@ -765,6 +783,7 @@ async function loadAFC(){
     _renderWOCharts();
   }catch(e){
     console.warn('loadAFC error',e);
+    _gasToast('AFC');
     if(elLoad)elLoad.style.display='none';
     var s=_calcStats(_makeDemoJobs('AFC',22));
     document.getElementById('afcTotal').textContent=s.total;
@@ -821,6 +840,7 @@ async function loadCOM(){
     _renderWOCharts();
   }catch(e){
     console.warn('loadCOM error',e);
+    _gasToast('COM');
     if(elLoad)elLoad.style.display='none';
     var s=_calcStats(_makeDemoJobs('COM',15));
     document.getElementById('comTotal').textContent=s.total;
