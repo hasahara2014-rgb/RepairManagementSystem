@@ -210,8 +210,11 @@ async function _gasGet(action,params){
   if(!GAS_URL)throw new Error('GAS URL not configured');
   let url=GAS_URL+'?action='+encodeURIComponent(action)+'&token='+encodeURIComponent(_getToken());
   if(params)url+='&payload='+encodeURIComponent(JSON.stringify(params));
-  const r=await fetch(url);if(!r.ok)throw new Error('HTTP '+r.status);
-  const j=await r.json();if(j.success===false)throw new Error(j.error||'GAS error');return j;
+  const ctrl=new AbortController(),t=setTimeout(()=>ctrl.abort(),8000);
+  try{
+    const r=await fetch(url,{signal:ctrl.signal});if(!r.ok)throw new Error('HTTP '+r.status);
+    const j=await r.json();if(j.success===false)throw new Error(j.error||'GAS error');return j;
+  }finally{clearTimeout(t);}
 }
 async function _gasPost(payload){
   if(!GAS_URL)throw new Error('GAS URL not configured');
