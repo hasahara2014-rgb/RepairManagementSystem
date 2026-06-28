@@ -451,6 +451,11 @@ function logout(){
   localStorage.removeItem('rms_v3_session');
   location.href='login.html';
 }
+function _fetchJSON(url,ms=6000){
+  const ctrl=new AbortController();
+  const t=setTimeout(()=>ctrl.abort(),ms);
+  return fetch(url,{signal:ctrl.signal}).then(r=>r.json()).catch(()=>({success:false,data:[]})).finally(()=>clearTimeout(t));
+}
 function initAuth(){
   const s=_getSession();
   if(!s||!s.username||(Date.now()-s.loginTime>28800000)){location.href='login.html';return;}
@@ -547,7 +552,7 @@ function _updateAllSummary(){
 async function loadEWS(){
   try{
     const url = GAS_URL+'?action=getJobs&token='+encodeURIComponent(_getToken());
-    const r = await fetch(url).then(x=>x.json());
+    const r = await _fetchJSON(url);
     if(!r.success || !Array.isArray(r.data)){
       document.getElementById('wctBody').innerHTML='<tr><td colspan="9" style="text-align:center;padding:24px;color:var(--g50)">No data available</td></tr>';
       return;
@@ -685,7 +690,7 @@ async function loadAFC(){
     var token=_getToken();
 
     var url=GAS_URL+'?action=getJobs&token='+encodeURIComponent(token)+'&payload='+encodeURIComponent(JSON.stringify({sys:'AFC'}));
-    var r=await fetch(url).then(function(x){return x.json();});
+    var r=await _fetchJSON(url);
     if(elLoad)elLoad.style.display='none';
     var jobs=null;
     if(r.success&&Array.isArray(r.data)){
@@ -741,7 +746,7 @@ async function loadCOM(){
     var token=_getToken();
 
     var url=GAS_URL+'?action=getJobs&token='+encodeURIComponent(token)+'&payload='+encodeURIComponent(JSON.stringify({sys:'COM'}));
-    var r=await fetch(url).then(function(x){return x.json();});
+    var r=await _fetchJSON(url);
     if(elLoad)elLoad.style.display='none';
     var jobs=null;
     if(r.success&&Array.isArray(r.data)){
