@@ -496,11 +496,15 @@ applyFilter();
 
 document.getElementById('lastUpdate').textContent=new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
 
+function _fetchJSON(url,ms=6000){
+  const ctrl=new AbortController();
+  const t=setTimeout(()=>ctrl.abort(),ms);
+  return fetch(url,{signal:ctrl.signal}).then(r=>r.json()).catch(()=>({success:false,data:[]})).finally(()=>clearTimeout(t));
+}
 function loadData(){
   const ov=document.getElementById('loadingOverlay');
   if(ov)ov.classList.remove('hidden');
-  fetch(GAS_URL+'?action=getUsers&token='+encodeURIComponent(_getToken()))
-    .then(r=>r.json())
+  _fetchJSON(GAS_URL+'?action=getUsers&token='+encodeURIComponent(_getToken()))
     .then(res=>{
       const data=res.data||res;
       if(Array.isArray(data)&&data.length>0){
