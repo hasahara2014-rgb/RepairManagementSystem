@@ -441,11 +441,16 @@ const mtdChange=lastMonthJobs.length?Math.round((thisMonthJobs.length-lastMonthJ
 
 
 
+function _fetchJSON(url,ms=6000){
+  const ctrl=new AbortController();
+  const t=setTimeout(()=>ctrl.abort(),ms);
+  return fetch(url,{signal:ctrl.signal}).then(r=>r.json()).catch(()=>({success:false,data:[]})).finally(()=>clearTimeout(t));
+}
 function loadData(){
   document.getElementById('loadingOverlay').classList.remove('hidden');
   Promise.all([
-    fetch(GAS_URL+'?action=getJobs&token='+encodeURIComponent(_getToken())).then(r=>r.json()).catch(()=>({data:[],source:'error'})),
-    fetch(GAS_URL+'?action=getParts&token='+encodeURIComponent(_getToken())).then(r=>r.json()).catch(()=>({data:[],source:'error'})),
+    _fetchJSON(GAS_URL+'?action=getJobs&token='+encodeURIComponent(_getToken())),
+    _fetchJSON(GAS_URL+'?action=getParts&token='+encodeURIComponent(_getToken())),
   ]).then(([jRes,pRes])=>{
     _jobs=(jRes.data||jRes||SAMPLE_JOBS);
     _parts=(pRes.data||pRes||SAMPLE_PARTS);
