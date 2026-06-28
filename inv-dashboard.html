@@ -323,7 +323,7 @@ const GAS_URL = (function(){
   const s = document.querySelector('meta[name="gas-url"]');
   return s ? s.content : '';
 })();
-function _getToken(){ return localStorage.getItem('rms_token')||''; }
+function _getToken(){try{const s=JSON.parse(localStorage.getItem('rms_v3_session')||sessionStorage.getItem('rms_v3_session')||'null');return s?.token||'';}catch(e){return '';}}
 function _getUser(){
   try{ return JSON.parse(localStorage.getItem('rms_user')||'{}'); }catch(e){ return {}; }
 }
