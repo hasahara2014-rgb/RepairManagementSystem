@@ -747,13 +747,6 @@ function _fetchJSON(url,ms=6000){
 function loadJobs(){
   _fetchJSON(GAS_URL+'?action=getJobs&token='+encodeURIComponent(_getToken()))
     .then(res=>{
-      if(res.success===false){
-        // Token invalid — clear session and redirect to login
-        sessionStorage.removeItem('rms_v3_session');
-        localStorage.removeItem('rms_v3_session');
-        location.href='login.html';
-        return;
-      }
       const d=res.data||res;
       _jobs=Array.isArray(d)?d:SAMPLE_JOBS;
     }).catch(()=>{_jobs=SAMPLE_JOBS})
