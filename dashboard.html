@@ -8,9 +8,9 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
-   EWS Design System v5.0  &mdash;  IBM Carbon / Maximo Inspired
-Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ════════════════════════════════════════════════════════════
+   EWS Design System v5.0  —  IBM Carbon / Maximo Inspired
+════════════════════════════════════════════════════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
   --p60:#0F62FE; --p70:#0043CE; --p50:#4589FF; --p40:#78A9FF;
@@ -32,10 +32,10 @@
 
 html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g10);color:var(--g100);overflow:hidden}
 
-/* Ã¢ÂÂÃ¢ÂÂ SHELL Ã¢ÂÂÃ¢ÂÂ */
+/* ── SHELL ── */
 .mxm-shell{display:flex;height:100vh;overflow:hidden}
 
-/* Ã¢ÂÂÃ¢ÂÂ SIDEBAR Ã¢ÂÂÃ¢ÂÂ */
+/* ══ SIDEBAR ══ */
 .mxm-sidebar{
   width:var(--sidebar-w);min-width:var(--sidebar-w);
   background:var(--g100);
@@ -74,7 +74,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .nav-item:hover{background:var(--g90);color:var(--white)}
 .nav-item.active{background:var(--g90);color:var(--white);border-left-color:var(--p60)}
 .nav-icon{font-size:.85rem;width:16px;text-align:center;flex-shrink:0}
-.nav-badge{background:var(--p60);color:#fff;font-size:.6rem;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:auto}.nav-item-group{position:relative}.nav-item-parent{cursor:pointer;user-select:none}.nav-submenu-arrow{margin-left:auto;font-size:.6rem;transition:transform .25s;opacity:.7}.nav-item-group.open .nav-submenu-arrow{transform:rotate(180deg)}.nav-submenu{overflow:hidden;max-height:0;transition:max-height .25s ease}.nav-submenu.open{max-height:300px}.nav-item.nav-sub{padding-left:34px;font-size:.74rem}.mxm-sidebar.collapsed .nav-submenu{display:none}.wo-link{color:inherit;text-decoration:none;display:flex;align-items:center;gap:12px;flex:1;min-width:0;overflow:hidden}
+.nav-badge{background:var(--p60);color:#fff;font-size:.6rem;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:auto}
 
 /* Quick Filter */
 .qf-panel{padding:12px 14px;border-top:1px solid var(--g80);flex-shrink:0}
@@ -101,10 +101,10 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .sys-online{color:var(--g30);font-size:.72rem}
 .sys-update{color:var(--g50);font-size:.63rem;line-height:1.5}
 
-/* Ã¢ÂÂÃ¢ÂÂ MAIN Ã¢ÂÂÃ¢ÂÂ */
+/* ══ MAIN ══ */
 .mxm-main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
 
-/* Ã¢ÂÂÃ¢ÂÂ TOPBAR Ã¢ÂÂÃ¢ÂÂ */
+/* ── TOPBAR ── */
 .mxm-topbar{
   height:var(--topbar-h);min-height:var(--topbar-h);
   background:var(--white);
@@ -175,12 +175,12 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 }
 .tb-username{font-size:.72rem;font-weight:500;color:var(--g100);white-space:nowrap}
 
-/* Ã¢ÂÂÃ¢ÂÂ CONTENT Ã¢ÂÂÃ¢ÂÂ */
+/* ── CONTENT ── */
 .mxm-content{flex:1;overflow-y:auto;overflow-x:hidden;padding:14px 16px;scrollbar-width:thin;scrollbar-color:var(--g20) transparent}
 .mxm-content::-webkit-scrollbar{width:6px}
 .mxm-content::-webkit-scrollbar-thumb{background:var(--g20);border-radius:3px}
 
-/* Ã¢ÂÂÃ¢ÂÂ KPI ROW Ã¢ÂÂÃ¢ÂÂ */
+/* ── KPI ROW ── */
 .kpi-row{display:grid;grid-template-columns:repeat(8,1fr);gap:2px;margin-bottom:14px}
 .kpi-card{background:var(--white);padding:12px 14px;border-top:3px solid transparent;cursor:default;position:relative;overflow:hidden}
 .kpi-card:hover{box-shadow:0 2px 8px rgba(0,0,0,.1)}
@@ -203,7 +203,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .kpi-trend .dn{color:var(--red60)}
 .kpi-sparkline{height:30px;width:100%;overflow:hidden}
 
-/* Ã¢ÂÂÃ¢ÂÂ CHART CARDS Ã¢ÂÂÃ¢ÂÂ */
+/* ── CHART CARDS ── */
 .chart-row{display:grid;gap:2px;margin-bottom:2px}
 .chart-row-3{grid-template-columns:1fr 1fr 1fr}
 .chart-row-4{grid-template-columns:1fr 1fr 1fr 1fr}
@@ -279,7 +279,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .alert-text{font-size:.7rem;color:var(--g70);flex:1;line-height:1.4}
 .alert-cnt{font-size:.68rem;font-weight:700;color:var(--g100);white-space:nowrap;margin-left:auto}
 
-/* Ã¢ÂÂÃ¢ÂÂ QUICK ACTIONS BAR Ã¢ÂÂÃ¢ÂÂ */
+/* ── QUICK ACTIONS BAR ── */
 .mxm-qbar{
   height:var(--qbar-h);min-height:var(--qbar-h);
   background:var(--g90);
@@ -299,7 +299,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .qbar-btn i{font-size:.8rem}
 .qbar-sep{width:1px;height:24px;background:var(--g80);flex-shrink:0;margin:0 4px}
 
-/* Ã¢ÂÂÃ¢ÂÂ STATUS BADGES Ã¢ÂÂÃ¢ÂÂ */
+/* ── STATUS BADGES ── */
 .badge-status{display:inline-block;font-size:.62rem;font-weight:600;padding:2px 8px;letter-spacing:.3px}
 .bs-OPEN{background:#EDF5FF;color:#0043CE}
 .bs-SEND_REPAIR{background:var(--yellow10);color:#8B6900}
@@ -325,15 +325,15 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .g30{color:var(--g30)}
 .nowrap{white-space:nowrap}
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
-   RESPONSIVE &mdash; TABLET & MOBILE
-   Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════════════════════════════════
+   RESPONSIVE — TABLET & MOBILE
+   ══════════════════════════════════════════ */
 
 /* Sidebar overlay (mobile) */
 .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:199;backdrop-filter:blur(2px)}
 .sidebar-overlay.active{display:block}
 
-/* Ã¢ÂÂÃ¢ÂÂ TABLET Ã¢ÂÂ¤1024px Ã¢ÂÂÃ¢ÂÂ */
+/* ── TABLET ≤1024px ── */
 @media(max-width:1024px){
   .mxm-sidebar{position:fixed;z-index:200;height:100%;transform:translateX(-240px);transition:transform .22s cubic-bezier(.4,0,.2,1);box-shadow:none}
   .mxm-sidebar.mobile-open{transform:translateX(0);box-shadow:4px 0 24px rgba(0,0,0,.25)}
@@ -350,7 +350,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   .settings-grid{grid-template-columns:180px 1fr!important}
 }
 
-/* Ã¢ÂÂÃ¢ÂÂ MOBILE Ã¢ÂÂ¤767px Ã¢ÂÂÃ¢ÂÂ */
+/* ── MOBILE ≤767px ── */
 @media(max-width:767px){
   .mxm-topbar{padding:0 10px;gap:6px}
   .tb-title-sub,.ccard-sub{display:none}
@@ -386,7 +386,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   td.td-long{max-width:120px}
 }
 
-/* Ã¢ÂÂÃ¢ÂÂ SMALL MOBILE Ã¢ÂÂ¤480px Ã¢ÂÂÃ¢ÂÂ */
+/* ── SMALL MOBILE ≤480px ── */
 @media(max-width:480px){
   .kpi-row{grid-template-columns:repeat(2,1fr)!important}
   .kpi-value{font-size:1.1rem}
@@ -402,12 +402,12 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 <!-- Loading -->
 <div class="mxm-loading" id="loadingOverlay">
   <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
-  <div class="loading-text">Ã Â¸ÂÃ Â¸Â³Ã Â¸Â¥Ã Â¸Â±Ã Â¸ÂÃ Â¹ÂÃ Â¸Â«Ã Â¸Â¥Ã Â¸ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡Ã Â¸Â¹Ã Â¸Â¥...</div>
+  <div class="loading-text">กำลังโหลดข้อมูล...</div>
 </div>
 
 <div class="mxm-shell">
 
-<!-- Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ SIDEBAR Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ -->
+<!-- ════ SIDEBAR ════ -->
 <aside class="mxm-sidebar" id="mxmSidebar">
   <div class="sb-brand">
     <div class="sb-logo-box"><span>EWS</span></div>
@@ -419,20 +419,22 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 
   <nav class="sidebar-nav">
     <a class="nav-item active" href="dashboard.html"><i class="nav-icon fas fa-gauge-high"></i><span class="nav-label">Dashboards</span></a>
-    <div class="nav-item-group" id="woGroup">
-  <div class="nav-item nav-item-parent" onclick="toggleWO()"><i class="nav-icon fas fa-clipboard-list"></i><span class="nav-label">Work Orders</span><span class="nav-badge" id="navBadgeJobs">&mdash;</span><i class="nav-submenu-arrow fas fa-chevron-down nav-label"></i></div>
-  <div class="nav-submenu" id="woSub">
-    <a class="nav-item nav-sub" href="jobs.html"><i class="nav-icon fas fa-circle-dot"></i><span class="nav-label">EWS - Enterprise</span></a>
-    <a class="nav-item nav-sub" href="jobs.html?sys=AFC"><i class="nav-icon fas fa-circle-dot"></i><span class="nav-label">AFC - SYSTEMP</span></a>
-    <a class="nav-item nav-sub" href="jobs.html?sys=COM"><i class="nav-icon fas fa-circle-dot"></i><span class="nav-label">COM - SYSTEMP</span></a>
-  </div>
-</div>
+    <a class="nav-item" href="jobs.html"><i class="nav-icon fas fa-clipboard-list"></i><span class="nav-label">Work Orders</span><span class="nav-badge" id="navBadgeJobs">—</span></a>
     <a class="nav-item" href="approvals.html"><i class="nav-icon fas fa-clipboard-check"></i><span class="nav-label">Approvals</span></a>
     <div class="sidebar-section-label">Operations</div>
     <a class="nav-item" href="pm.html"><i class="nav-icon fas fa-calendar-check"></i><span class="nav-label">Preventive Maintenance</span></a>
-    <a class="nav-item" href="parts.html"><i class="nav-icon fas fa-cubes"></i><span class="nav-label">Inventory</span></a>
-    <a class="nav-item" href="store.html"><i class="nav-icon fas fa-boxes-stacking"></i><span class="nav-label">Store / Receiving</span></a>
     <a class="nav-item" href="vendors.html"><i class="nav-icon fas fa-building"></i><span class="nav-label">Vendors</span></a>
+    <div class="sidebar-section-label">Inventory</div>
+    <a class="nav-item" href="inv-dashboard.html"><i class="nav-icon fas fa-chart-pie"></i><span class="nav-label">Inv Dashboard</span></a>
+    <a class="nav-item" href="inv-items.html"><i class="nav-icon fas fa-boxes-stacking"></i><span class="nav-label">Item Master</span></a>
+    <a class="nav-item" href="inv-receiving.html"><i class="nav-icon fas fa-truck-ramp-box"></i><span class="nav-label">Receiving</span></a>
+    <a class="nav-item" href="inv-issue.html"><i class="nav-icon fas fa-arrow-up-from-bracket"></i><span class="nav-label">Issue Parts</span></a>
+    <a class="nav-item" href="inv-return.html"><i class="nav-icon fas fa-rotate-left"></i><span class="nav-label">Return Parts</span></a>
+    <a class="nav-item" href="inv-transfer.html"><i class="nav-icon fas fa-right-left"></i><span class="nav-label">Transfer Stock</span></a>
+    <a class="nav-item" href="inv-adjustment.html"><i class="nav-icon fas fa-sliders"></i><span class="nav-label">Adjustment</span></a>
+    <a class="nav-item" href="inv-inquiry.html"><i class="nav-icon fas fa-magnifying-glass-chart"></i><span class="nav-label">Stock Inquiry</span></a>
+    <a class="nav-item" href="inv-transactions.html"><i class="nav-icon fas fa-list-check"></i><span class="nav-label">Transactions</span></a>
+    <a class="nav-item" href="inv-reorder.html"><i class="nav-icon fas fa-cart-shopping"></i><span class="nav-label">Reorder Planning</span></a>
     <div class="sidebar-section-label">Analytics</div>
     <a class="nav-item" href="reports.html"><i class="nav-icon fas fa-chart-bar"></i><span class="nav-label">Reports &amp; Analytics</span></a>
     <a class="nav-item" href="analytics.html"><i class="nav-icon fas fa-chart-line"></i><span class="nav-label">Trend Analysis</span></a>
@@ -454,11 +456,11 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   <div class="sys-info">
     <div class="sys-title">System Status</div>
     <div class="sys-status-row"><div class="sys-dot"></div><div class="sys-online">Online</div></div>
-    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">&mdash;</span></div>
+    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">—</span></div>
   </div>
 </aside>
 
-<!-- Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ MAIN Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ -->
+<!-- ════ MAIN ════ -->
 <div class="mxm-main">
 
   <!-- TOPBAR -->
@@ -489,18 +491,20 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   <!-- CONTENT -->
   <main class="mxm-content" id="mainContent">
 
-    <!-- Ã¢ÂÂÃ¢ÂÂ KPI ROW Ã¢ÂÂÃ¢ÂÂ -->
+    <!-- ── KPI ROW ── -->
     <div class="kpi-row" id="kpiRow">
       <!-- 8 KPI cards rendered by JS -->
     </div>
 
-    <!-- Ã¢ÂÂÃ¢ÂÂ ROW 1: Trend charts Ã¢ÂÂÃ¢ÂÂ -->
+    <!-- ── SYSTEM BREAKDOWN STRIP ── -->
     <div id="sysBreakdown" style="display:flex;gap:8px;margin-bottom:8px"></div>
+
+    <!-- ── ROW 1: Trend charts ── -->
     <div class="chart-row chart-row-3" style="margin-bottom:2px">
       <!-- Job Trend -->
       <div class="ccard">
         <div class="ccard-head">
-          <div><div class="ccard-title">JOB TREND <span class="ccard-badge badge-p">(No. of Jobs)</span></div><div class="ccard-sub">Monthly job volume &mdash; last 6 months</div></div>
+          <div><div class="ccard-title">JOB TREND <span class="ccard-badge badge-p">(No. of Jobs)</span></div><div class="ccard-sub">Monthly job volume — last 6 months</div></div>
           <select class="ccard-selector" id="trendSelector"><option value="monthly">Monthly</option><option value="weekly">Weekly</option></select>
         </div>
         <div class="chart-area" style="height:120px"><canvas id="chartJobTrend"></canvas></div>
@@ -509,7 +513,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
       <!-- Completion Trend -->
       <div class="ccard">
         <div class="ccard-head">
-          <div><div class="ccard-title">REPAIR COMPLETION TREND <span class="ccard-badge badge-p">(No. of Jobs Closed)</span></div><div class="ccard-sub">Monthly closed jobs &mdash; last 6 months</div></div>
+          <div><div class="ccard-title">REPAIR COMPLETION TREND <span class="ccard-badge badge-p">(No. of Jobs Closed)</span></div><div class="ccard-sub">Monthly closed jobs — last 6 months</div></div>
           <select class="ccard-selector"><option>Monthly</option></select>
         </div>
         <div class="chart-area" style="height:120px"><canvas id="chartClosedTrend"></canvas></div>
@@ -518,20 +522,20 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
       <!-- Vendor Cost Summary -->
       <div class="ccard">
         <div class="ccard-head">
-          <div><div class="ccard-title">VENDOR JOB DISTRIBUTION</div><div class="ccard-sub">Jobs by vendor &mdash; current period</div></div>
+          <div><div class="ccard-title">VENDOR JOB DISTRIBUTION</div><div class="ccard-sub">Jobs by vendor — current period</div></div>
           <select class="ccard-selector"><option>This Month</option></select>
         </div>
         <div class="donut-layout" style="padding:6px 0">
           <div class="donut-chart-wrap">
             <canvas id="chartVendorDonut" width="110" height="110"></canvas>
-            <div class="donut-center"><div class="donut-center-label">Total</div><div class="donut-center-val" id="vendorDonutTotal">&mdash;</div></div>
+            <div class="donut-center"><div class="donut-center-label">Total</div><div class="donut-center-val" id="vendorDonutTotal">—</div></div>
           </div>
           <div class="legend-list" id="vendorLegend"></div>
         </div>
       </div>
     </div>
 
-    <!-- Ã¢ÂÂÃ¢ÂÂ ROW 2: Status / Priority / PM / Overdue Ã¢ÂÂÃ¢ÂÂ -->
+    <!-- ── ROW 2: Status / Priority / PM / Overdue ── -->
     <div class="chart-row chart-row-4" style="margin-bottom:2px">
       <!-- WO by Status -->
       <div class="ccard">
@@ -539,7 +543,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
         <div class="donut-layout">
           <div class="donut-chart-wrap">
             <canvas id="chartStatusDonut" width="100" height="100"></canvas>
-            <div class="donut-center"><div class="donut-center-label">Total</div><div class="donut-center-val" id="statusDonutTotal">&mdash;</div></div>
+            <div class="donut-center"><div class="donut-center-label">Total</div><div class="donut-center-val" id="statusDonutTotal">—</div></div>
           </div>
           <div class="legend-list" id="statusLegend"></div>
         </div>
@@ -551,7 +555,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
         <div class="donut-layout">
           <div class="donut-chart-wrap">
             <canvas id="chartPriorityDonut" width="100" height="100"></canvas>
-            <div class="donut-center"><div class="donut-center-label">Total</div><div class="donut-center-val" id="priorityDonutTotal">&mdash;</div></div>
+            <div class="donut-center"><div class="donut-center-label">Total</div><div class="donut-center-val" id="priorityDonutTotal">—</div></div>
           </div>
           <div class="legend-list" id="priorityLegend"></div>
         </div>
@@ -562,7 +566,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
         <div class="ccard-head"><div><div class="ccard-title">PM COMPLIANCE</div></div></div>
         <div class="gauge-wrap">
           <canvas id="chartPMGauge" width="130" height="80"></canvas>
-          <div class="gauge-pct" id="gaugeValue">&mdash;</div>
+          <div class="gauge-pct" id="gaugeValue">—</div>
           <div class="gauge-label">Compliance Rate</div>
           <div class="gauge-target">Target: 95%</div>
         </div>
@@ -574,7 +578,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
           <div>
             <div class="ccard-title">OVERDUE WORK ORDERS</div>
             <div style="display:flex;align-items:center;gap:8px;margin-top:4px">
-              <div class="overdue-big" id="overdueCount">&mdash;</div>
+              <div class="overdue-big" id="overdueCount">—</div>
               <i class="fas fa-triangle-exclamation overdue-icon"></i>
             </div>
             <div class="overdue-label">Overdue Work Orders</div>
@@ -585,11 +589,11 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
       </div>
     </div>
 
-    <!-- Ã¢ÂÂÃ¢ÂÂ ROW 3: Top Equipment / Health / Reliability / Alerts Ã¢ÂÂÃ¢ÂÂ -->
+    <!-- ── ROW 3: Top Equipment / Health / Reliability / Alerts ── -->
     <div class="chart-row chart-row-4">
       <!-- Top Equipment -->
       <div class="ccard">
-        <div class="ccard-head"><div><div class="ccard-title">TOP 10 EQUIPMENT &mdash; BY JOB COUNT</div><div class="ccard-sub">Most repaired equipment (all time)</div></div></div>
+        <div class="ccard-head"><div><div class="ccard-title">TOP 10 EQUIPMENT — BY JOB COUNT</div><div class="ccard-sub">Most repaired equipment (all time)</div></div></div>
         <div id="topEquipTable"></div>
         <div class="link-row"><a class="view-link" href="master.html">View All Equipment <i class="fas fa-arrow-right"></i></a></div>
       </div>
@@ -598,7 +602,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
         <div class="ccard-head"><div><div class="ccard-title">EQUIPMENT HEALTH INDEX</div><div class="ccard-sub">Based on repair frequency &amp; recency</div></div></div>
         <div class="donut-layout" style="flex-direction:column;align-items:center;gap:4px">
           <div class="health-grade" id="healthGrade">A</div>
-          <div class="health-score" id="healthScore">&mdash; / 100</div>
+          <div class="health-score" id="healthScore">— / 100</div>
           <canvas id="chartHealthDonut" width="120" height="120"></canvas>
         </div>
         <div class="link-row"><a class="view-link" href="master.html">View Asset Health <i class="fas fa-arrow-right"></i></a></div>
@@ -642,9 +646,9 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 </div><!-- /mxm-shell -->
 
 <script>
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
-   EWS DASHBOARD v5.0  &mdash;  IBM Maximo Style
-Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ════════════════════════════════════════════════════════
+   EWS DASHBOARD v5.0  —  IBM Maximo Style
+════════════════════════════════════════════════════════ */
 const GAS_URL = localStorage.getItem('rms_gas_url') ||
   'https://script.google.com/macros/s/AKfycbyf0GUfEIeoJv1RHZT9nT3Z5JmktyQMEHkviWFs10eNHKkGUbm_pr-lbpj9R4rVVIWVCw/exec';
 
@@ -653,7 +657,7 @@ function _getToken(){
   return s?.token||'';
 }
 
-/* Ã¢ÂÂÃ¢ÂÂ Auth Ã¢ÂÂÃ¢ÂÂ */
+/* ── Auth ── */
 (function(){
   const s = JSON.parse(sessionStorage.getItem('rms_v3_session')||localStorage.getItem('rms_v3_session')||'null');
   if(!s||(Date.now()-s.loginTime>28800000)){location.href='login.html';return}
@@ -662,7 +666,7 @@ function _getToken(){
   document.getElementById('tbUsername').textContent=s.displayName||s.username||'User';
 })();
 
-/* Ã¢ÂÂÃ¢ÂÂ Sample Data Ã¢ÂÂÃ¢ÂÂ */
+/* ── Sample Data ── */
 const SAMPLE_VENDORS=[
   {Vendor_ID:'V001',Vendor_Name:'Technomaster Co.'},
   {Vendor_ID:'V002',Vendor_Name:'IndustrialPart Co.'},
@@ -684,102 +688,107 @@ function _mkJob(n,eq,dmg,act,ven,st,cr,cl,pri){
   return{JOB_No:'JOB-'+String(n).padStart(4,'0'),Equipment_ID:eq,Damage_Code:dmg,Repair_Action:act,Vendor_ID:ven,Status:st,Create_Date:cr,Close_Date:cl||'',Priority:pri||'MEDIUM'};
 }
 const SAMPLE_JOBS=[
-  _mkJob(1,'EQ-001','Ã Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â®Ã Â¸ÂÃ Â¸Â£Ã Â¸Â­Ã Â¸Â¥Ã Â¸Â´Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Seal Kit','V001','CLOSED','2025-11-05','2025-11-18','HIGH'),
-  _mkJob(2,'EQ-002','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸ÂÃ Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹Â','V002','CLOSED','2025-11-08','2025-11-22','CRITICAL'),
-  _mkJob(3,'EQ-003','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â´Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Bearing','V001','CLOSED','2025-11-10','2025-11-19','MEDIUM'),
-  _mkJob(4,'EQ-004','PCB Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡ PCB','V003','CLOSED','2025-11-12','2025-11-28','HIGH'),
-  _mkJob(5,'EQ-005','Ã Â¸ÂªÃ Â¸Â²Ã Â¸Â¢Ã Â¸ÂÃ Â¸Â²Ã Â¸ÂÃ Â¸ÂÃ Â¸Â²Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸ÂÃ Â¸ÂªÃ Â¸Â²Ã Â¸Â¢Ã Â¸ÂÃ Â¸Â²Ã Â¸Â','V001','CLOSED','2025-11-14','2025-11-20','LOW'),
-  _mkJob(6,'EQ-001','Ã Â¹ÂÃ Â¸Â®Ã Â¸ÂÃ Â¸Â£Ã Â¸Â­Ã Â¸Â¥Ã Â¸Â´Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§Ã Â¸ÂÃ Â¹ÂÃ Â¸Â³','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Seal','V001','CLOSED','2025-12-01','2025-12-10','HIGH'),
-  _mkJob(7,'EQ-006','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸Â£Ã Â¹ÂÃ Â¸Â­Ã Â¸Â','Ã Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â§Ã Â¸Â²Ã Â¸Â¡Ã Â¸ÂªÃ Â¸Â°Ã Â¸Â­Ã Â¸Â²Ã Â¸Â+Ã Â¸ÂÃ Â¸Â£Ã Â¸Â§Ã Â¸Â','V002','CLOSED','2025-12-03','2025-12-12','MEDIUM'),
-  _mkJob(8,'EQ-007','Valve Ã Â¸ÂÃ Â¸Â´Ã Â¸Â','Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡ Valve','V003','CLOSED','2025-12-05','2025-12-16','LOW'),
-  _mkJob(9,'EQ-002','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸ÂªÃ Â¸Â±Ã Â¹ÂÃ Â¸Â','Ã Â¸ÂÃ Â¸Â£Ã Â¸Â§Ã Â¸ÂÃ Â¸ÂªÃ Â¸Â­Ã Â¸Â Coupling','V002','CLOSED','2025-12-08','2025-12-20','HIGH'),
-  _mkJob(10,'EQ-008','Ã Â¸ÂÃ Â¸Â±Ã Â¹ÂÃ Â¸Â¡Ã Â¹ÂÃ Â¸Â¡Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¹Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Impeller','V001','CLOSED','2025-12-10','2025-12-24','CRITICAL'),
-  _mkJob(11,'EQ-009','Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸ÂÃ Â¸Â´Ã Â¸ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸Â²Ã Â¸Â','Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¸Â Calibrate','V003','CLOSED','2025-12-12','2025-12-22','MEDIUM'),
-  _mkJob(12,'EQ-010','Compressor Ã Â¸ÂÃ Â¸Â´Ã Â¸ÂÃ Â¸ÂÃ Â¸ÂÃ Â¸ÂÃ Â¸Â´','Overhaul','V002','CLOSED','2025-12-15','2026-01-05','HIGH'),
-  _mkJob(13,'EQ-003','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â´Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂªÃ Â¸Â·Ã Â¹ÂÃ Â¸Â­Ã Â¸Â¡','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Bearing Ã Â¸ÂÃ Â¸Â¸Ã Â¸ÂÃ Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹Â','V001','CLOSED','2026-01-05','2026-01-14','MEDIUM'),
-  _mkJob(14,'EQ-011','PCB Controller Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â PCB','V003','CLOSED','2026-01-08','2026-01-20','HIGH'),
-  _mkJob(15,'EQ-004','Ã Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â²Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡Ã Â¸Â§Ã Â¸ÂÃ Â¸ÂÃ Â¸Â£','V003','CLOSED','2026-01-10','2026-01-25','HIGH'),
-  _mkJob(16,'EQ-012','Ã Â¸ÂÃ Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸Â­Ã Â¸ÂÃ Â¹ÂÃ Â¸Â®Ã Â¸ÂÃ Â¸Â£Ã Â¸Â­Ã Â¸Â¥Ã Â¸Â´Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Seal','V001','CLOSED','2026-01-12','2026-01-22','MEDIUM'),
-  _mkJob(17,'EQ-005','Ã Â¸ÂªÃ Â¸Â²Ã Â¸Â¢Ã Â¸ÂÃ Â¸Â²Ã Â¸ÂÃ Â¸Â«Ã Â¸Â¥Ã Â¸Â¸Ã Â¸Â','Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â§Ã Â¸ÂªÃ Â¸Â²Ã Â¸Â¢Ã Â¸ÂÃ Â¸Â²Ã Â¸Â','V001','CLOSED','2026-01-15','2026-01-18','LOW'),
-  _mkJob(18,'EQ-013','Ã Â¸ÂÃ Â¸Â±Ã Â¹ÂÃ Â¸Â¡Ã Â¸ÂÃ Â¹ÂÃ Â¸Â³Ã Â¸Â¡Ã Â¸Â±Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸ÂÃ Â¸ÂÃ Â¸ÂµÃ Â¸Â¥Ã Â¸ÂÃ Â¸Â±Ã Â¹ÂÃ Â¸Â¡','V001','CLOSED','2026-01-18','2026-01-28','HIGH'),
-  _mkJob(19,'EQ-006','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸Â«Ã Â¸Â¢Ã Â¸Â¸Ã Â¸ÂÃ Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â²Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸ÂÃ Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹Â','V002','CLOSED','2026-01-20','2026-02-03','CRITICAL'),
-  _mkJob(20,'EQ-014','Ã Â¸Â«Ã Â¸Â±Ã Â¸Â§Ã Â¸ÂÃ Â¸ÂµÃ Â¸ÂÃ Â¸Â­Ã Â¸Â¸Ã Â¸ÂÃ Â¸ÂÃ Â¸Â±Ã Â¸Â','Ã Â¸Â¥Ã Â¹ÂÃ Â¸Â²Ã Â¸ÂÃ Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â§Ã Â¸Â²Ã Â¸Â¡Ã Â¸ÂªÃ Â¸Â°Ã Â¸Â­Ã Â¸Â²Ã Â¸Â','V002','CLOSED','2026-01-22','2026-01-30','MEDIUM'),
-  _mkJob(21,'EQ-001','Ã Â¹ÂÃ Â¸Â®Ã Â¸ÂÃ Â¸Â£Ã Â¸Â­Ã Â¸Â¥Ã Â¸Â´Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸ÂÃ Â¸ÂÃ Â¸ÂµÃ Â¹Â 3','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Cylinder','V001','CLOSED','2026-02-02','2026-02-14','HIGH'),
-  _mkJob(22,'EQ-015','Belt Drive Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Belt Set','V001','CLOSED','2026-02-04','2026-02-12','MEDIUM'),
-  _mkJob(23,'EQ-007','Valve Ã Â¸Â­Ã Â¸Â¸Ã Â¸ÂÃ Â¸ÂÃ Â¸Â±Ã Â¸Â','Ã Â¸ÂÃ Â¸Â­Ã Â¸ÂÃ Â¸Â¥Ã Â¹ÂÃ Â¸Â²Ã Â¸ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸Â­Ã Â¸Â','V003','CLOSED','2026-02-06','2026-02-18','LOW'),
-  _mkJob(24,'EQ-002','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸Â£Ã Â¹ÂÃ Â¸Â­Ã Â¸ÂÃ Â¸Â¡Ã Â¸Â²Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Cooling Fan','V002','CLOSED','2026-02-08','2026-02-20','HIGH'),
-  _mkJob(25,'EQ-016','Gear Box Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Gear Oil+Ã Â¸ÂÃ Â¸Â£Ã Â¸Â§Ã Â¸Â','V002','CLOSED','2026-02-10','2026-02-22','MEDIUM'),
-  _mkJob(26,'EQ-008','Ã Â¸ÂÃ Â¸Â±Ã Â¹ÂÃ Â¸Â¡Ã Â¸ÂªÃ Â¸Â±Ã Â¹ÂÃ Â¸Â','Balance Impeller','V001','CLOSED','2026-02-12','2026-02-24','MEDIUM'),
-  _mkJob(27,'EQ-017','Sensor Ã Â¸ÂÃ Â¸Â²Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Sensor Ã Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹Â','V003','CLOSED','2026-02-15','2026-02-24','LOW'),
+  _mkJob(1,'EQ-001','ระบบไฮดรอลิกรั่ว','เปลี่ยน Seal Kit','V001','CLOSED','2025-11-05','2025-11-18','HIGH'),
+  _mkJob(2,'EQ-002','มอเตอร์ไหม้','เปลี่ยนมอเตอร์ใหม่','V002','CLOSED','2025-11-08','2025-11-22','CRITICAL'),
+  _mkJob(3,'EQ-003','แบริ่งเสียง','เปลี่ยน Bearing','V001','CLOSED','2025-11-10','2025-11-19','MEDIUM'),
+  _mkJob(4,'EQ-004','PCB เสีย','ซ่อม PCB','V003','CLOSED','2025-11-12','2025-11-28','HIGH'),
+  _mkJob(5,'EQ-005','สายพานขาด','เปลี่ยนสายพาน','V001','CLOSED','2025-11-14','2025-11-20','LOW'),
+  _mkJob(6,'EQ-001','ไฮดรอลิกรั่วซ้ำ','เปลี่ยน Seal','V001','CLOSED','2025-12-01','2025-12-10','HIGH'),
+  _mkJob(7,'EQ-006','มอเตอร์ร้อน','ทำความสะอาด+ตรวจ','V002','CLOSED','2025-12-03','2025-12-12','MEDIUM'),
+  _mkJob(8,'EQ-007','Valve ติด','ซ่อม Valve','V003','CLOSED','2025-12-05','2025-12-16','LOW'),
+  _mkJob(9,'EQ-002','มอเตอร์สั่น','ตรวจสอบ Coupling','V002','CLOSED','2025-12-08','2025-12-20','HIGH'),
+  _mkJob(10,'EQ-008','ปั๊มไม่ดูด','เปลี่ยน Impeller','V001','CLOSED','2025-12-10','2025-12-24','CRITICAL'),
+  _mkJob(11,'EQ-009','เซ็นเซอร์ผิดพลาด','ปรับ Calibrate','V003','CLOSED','2025-12-12','2025-12-22','MEDIUM'),
+  _mkJob(12,'EQ-010','Compressor ผิดปกติ','Overhaul','V002','CLOSED','2025-12-15','2026-01-05','HIGH'),
+  _mkJob(13,'EQ-003','แบริ่งเสื่อม','เปลี่ยน Bearing ชุดใหม่','V001','CLOSED','2026-01-05','2026-01-14','MEDIUM'),
+  _mkJob(14,'EQ-011','PCB Controller เสีย','เปลี่ยน PCB','V003','CLOSED','2026-01-08','2026-01-20','HIGH'),
+  _mkJob(15,'EQ-004','บอร์ดไฟฟ้าเสีย','ซ่อมวงจร','V003','CLOSED','2026-01-10','2026-01-25','HIGH'),
+  _mkJob(16,'EQ-012','กระบอกไฮดรอลิกรั่ว','เปลี่ยน Seal','V001','CLOSED','2026-01-12','2026-01-22','MEDIUM'),
+  _mkJob(17,'EQ-005','สายพานหลุด','ปรับแนวสายพาน','V001','CLOSED','2026-01-15','2026-01-18','LOW'),
+  _mkJob(18,'EQ-013','ปั๊มน้ำมันรั่ว','เปลี่ยนซีลปั๊ม','V001','CLOSED','2026-01-18','2026-01-28','HIGH'),
+  _mkJob(19,'EQ-006','มอเตอร์หยุดทำงาน','เปลี่ยนมอเตอร์','V002','CLOSED','2026-01-20','2026-02-03','CRITICAL'),
+  _mkJob(20,'EQ-014','หัวฉีดอุดตัน','ล้างทำความสะอาด','V002','CLOSED','2026-01-22','2026-01-30','MEDIUM'),
+  _mkJob(21,'EQ-001','ไฮดรอลิกรั่วครั้งที่ 3','เปลี่ยน Cylinder','V001','CLOSED','2026-02-02','2026-02-14','HIGH'),
+  _mkJob(22,'EQ-015','Belt Drive เสีย','เปลี่ยน Belt Set','V001','CLOSED','2026-02-04','2026-02-12','MEDIUM'),
+  _mkJob(23,'EQ-007','Valve อุดตัน','ถอดล้างประกอบ','V003','CLOSED','2026-02-06','2026-02-18','LOW'),
+  _mkJob(24,'EQ-002','มอเตอร์ร้อนมาก','เปลี่ยน Cooling Fan','V002','CLOSED','2026-02-08','2026-02-20','HIGH'),
+  _mkJob(25,'EQ-016','Gear Box เสียง','เปลี่ยน Gear Oil+ตรวจ','V002','CLOSED','2026-02-10','2026-02-22','MEDIUM'),
+  _mkJob(26,'EQ-008','ปั๊มสั่น','Balance Impeller','V001','CLOSED','2026-02-12','2026-02-24','MEDIUM'),
+  _mkJob(27,'EQ-017','Sensor ขาด','เปลี่ยน Sensor ใหม่','V003','CLOSED','2026-02-15','2026-02-24','LOW'),
   _mkJob(28,'EQ-009','Display Error','Reset+Update Firmware','V003','CLOSED','2026-02-18','2026-03-01','MEDIUM'),
-  _mkJob(29,'EQ-010','Compressor Ã Â¸ÂÃ Â¸Â±Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Piston Ring','V002','CLOSED','2026-02-20','2026-03-05','HIGH'),
-  _mkJob(30,'EQ-018','Transformer Ã Â¸Â£Ã Â¹ÂÃ Â¸Â­Ã Â¸Â','Ã Â¸ÂÃ Â¸Â£Ã Â¸Â§Ã Â¸Â Load+Ã Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸Â²Ã Â¸Â¢','V003','CLOSED','2026-02-22','2026-03-04','HIGH'),
-  _mkJob(31,'EQ-003','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â´Ã Â¹ÂÃ Â¸ÂÃ Â¸ÂÃ Â¸Â¸Ã Â¸ÂÃ Â¸ÂÃ Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Bearing','V001','CLOSED','2026-03-01','2026-03-12','MEDIUM'),
-  _mkJob(32,'EQ-019','Pump Shaft Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Shaft+Ã Â¸ÂÃ Â¸ÂµÃ Â¸Â¥','V001','CLOSED','2026-03-03','2026-03-16','HIGH'),
-  _mkJob(33,'EQ-011','Ã Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸Â Logic Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Logic Board','V003','CLOSED','2026-03-05','2026-03-18','HIGH'),
-  _mkJob(34,'EQ-004','Inverter Error','Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡ Inverter Board','V003','CLOSED','2026-03-08','2026-03-22','CRITICAL'),
-  _mkJob(35,'EQ-020','Filter Ã Â¸Â­Ã Â¸Â¸Ã Â¸ÂÃ Â¸ÂÃ Â¸Â±Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Filter Ã Â¸ÂÃ Â¸Â¸Ã Â¸Â','V002','CLOSED','2026-03-10','2026-03-18','LOW'),
-  _mkJob(36,'EQ-001','Ã Â¸ÂÃ Â¸ÂµÃ Â¸Â¥Ã Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸ÂÃ Â¸ÂÃ Â¸ÂµÃ Â¹Â 4','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â O-Ring Ã Â¸ÂÃ Â¸Â¸Ã Â¸Â','V001','RETURNED','2026-04-01','2026-04-12','HIGH'),
-  _mkJob(37,'EQ-002','Rotor Ã Â¹ÂÃ Â¸ÂªÃ Â¸Â·Ã Â¹ÂÃ Â¸Â­Ã Â¸Â¡','Rewind Motor','V002','RETURNED','2026-04-03','2026-04-18','CRITICAL'),
-  _mkJob(38,'EQ-005','Ã Â¸ÂªÃ Â¸Â²Ã Â¸Â¢Ã Â¸ÂÃ Â¸Â²Ã Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸ÂÃ Â¸ÂªÃ Â¸Â²Ã Â¸Â¢Ã Â¸ÂÃ Â¸Â²Ã Â¸ÂÃ Â¸ÂÃ Â¸Â¸Ã Â¸Â','V001','RETURNED','2026-04-05','2026-04-14','MEDIUM'),
-  _mkJob(39,'EQ-006','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹ÂÃ Â¸Â­Ã Â¸ÂµÃ Â¸ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸ÂÃ Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹Â','V002','RETURNED','2026-04-08','2026-04-22','CRITICAL'),
-  _mkJob(40,'EQ-007','Valve Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢Ã Â¸Â«Ã Â¸Â²Ã Â¸Â¢','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Valve Ã Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹Â','V003','RETURNED','2026-04-10','2026-04-20','LOW'),
-  _mkJob(41,'EQ-008','Ã Â¸ÂÃ Â¸Â±Ã Â¹ÂÃ Â¸Â¡Ã Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Mechanical Seal','V001','SEND_REPAIR','2026-05-02',null,'HIGH'),
-  _mkJob(42,'EQ-009','Ã Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸Â Error','Ã Â¸Â§Ã Â¸Â´Ã Â¹ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â²Ã Â¸Â°Ã Â¸Â«Ã Â¹Â+Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡Ã Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸Â','V003','SEND_REPAIR','2026-05-05',null,'MEDIUM'),
-  _mkJob(43,'EQ-010','Compressor Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢Ã Â¸Â«Ã Â¸ÂÃ Â¸Â±Ã Â¸Â','Major Overhaul','V002','SEND_REPAIR','2026-05-08',null,'CRITICAL'),
-  _mkJob(44,'EQ-021','PCB Inverter Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Inverter','V003','SEND_REPAIR','2026-05-10',null,'HIGH'),
-  _mkJob(45,'EQ-022','Bearing Ã Â¸ÂÃ Â¸Â¸Ã Â¸ÂÃ Â¸Â¥Ã Â¹ÂÃ Â¸Â²Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Bearing Lower','V001','WAIT_SPARE_PART','2026-05-12',null,'MEDIUM'),
-  _mkJob(46,'EQ-023','Ã Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â®Ã Â¸ÂÃ Â¸Â£Ã Â¸Â­Ã Â¸Â¥Ã Â¸Â´Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§','Ã Â¸Â£Ã Â¸Â­ Seal Kit','V001','WAIT_APPROVAL','2026-05-15',null,'HIGH'),
-  _mkJob(47,'EQ-024','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢Ã Â¸Â','Ã Â¸ÂÃ Â¸Â£Ã Â¸Â§Ã Â¸Â Alignment','V002','OPEN','2026-06-01',null,'LOW'),
-  _mkJob(48,'EQ-025','Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸ÂÃ Â¸Â´Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Sensor','V003','OPEN','2026-06-05',null,'MEDIUM'),
-  _mkJob(49,'EQ-026','Valve Ã Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§','Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡ Valve','V001','OPEN','2026-06-10',null,'HIGH'),
-  _mkJob(50,'EQ-027','PCB Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â PCB','V003','OPEN','2026-06-15',null,'CRITICAL'),
+  _mkJob(29,'EQ-010','Compressor ขัด','เปลี่ยน Piston Ring','V002','CLOSED','2026-02-20','2026-03-05','HIGH'),
+  _mkJob(30,'EQ-018','Transformer ร้อน','ตรวจ Load+ระบาย','V003','CLOSED','2026-02-22','2026-03-04','HIGH'),
+  _mkJob(31,'EQ-003','แบริ่งชุดบน','เปลี่ยน Bearing','V001','CLOSED','2026-03-01','2026-03-12','MEDIUM'),
+  _mkJob(32,'EQ-019','Pump Shaft เสีย','เปลี่ยน Shaft+ซีล','V001','CLOSED','2026-03-03','2026-03-16','HIGH'),
+  _mkJob(33,'EQ-011','บอร์ด Logic เสีย','เปลี่ยน Logic Board','V003','CLOSED','2026-03-05','2026-03-18','HIGH'),
+  _mkJob(34,'EQ-004','Inverter Error','ซ่อม Inverter Board','V003','CLOSED','2026-03-08','2026-03-22','CRITICAL'),
+  _mkJob(35,'EQ-020','Filter อุดตัน','เปลี่ยน Filter ชุด','V002','CLOSED','2026-03-10','2026-03-18','LOW'),
+  _mkJob(36,'EQ-001','ซีลรั่วครั้งที่ 4','เปลี่ยน O-Ring ชุด','V001','RETURNED','2026-04-01','2026-04-12','HIGH'),
+  _mkJob(37,'EQ-002','Rotor เสื่อม','Rewind Motor','V002','RETURNED','2026-04-03','2026-04-18','CRITICAL'),
+  _mkJob(38,'EQ-005','สายพานแตก','เปลี่ยนสายพานชุด','V001','RETURNED','2026-04-05','2026-04-14','MEDIUM'),
+  _mkJob(39,'EQ-006','มอเตอร์ไหม้อีกครั้ง','เปลี่ยนมอเตอร์ใหม่','V002','RETURNED','2026-04-08','2026-04-22','CRITICAL'),
+  _mkJob(40,'EQ-007','Valve เสียหาย','เปลี่ยน Valve ใหม่','V003','RETURNED','2026-04-10','2026-04-20','LOW'),
+  _mkJob(41,'EQ-008','ปั๊มรั่ว','เปลี่ยน Mechanical Seal','V001','SEND_REPAIR','2026-05-02',null,'HIGH'),
+  _mkJob(42,'EQ-009','ระบบ Error','วิเคราะห์+ซ่อมบอร์ด','V003','SEND_REPAIR','2026-05-05',null,'MEDIUM'),
+  _mkJob(43,'EQ-010','Compressor เสียหนัก','Major Overhaul','V002','SEND_REPAIR','2026-05-08',null,'CRITICAL'),
+  _mkJob(44,'EQ-021','PCB Inverter เสีย','เปลี่ยน Inverter','V003','SEND_REPAIR','2026-05-10',null,'HIGH'),
+  _mkJob(45,'EQ-022','Bearing ชุดล่าง','เปลี่ยน Bearing Lower','V001','WAIT_SPARE_PART','2026-05-12',null,'MEDIUM'),
+  _mkJob(46,'EQ-023','ระบบไฮดรอลิกรั่ว','รอ Seal Kit','V001','WAIT_APPROVAL','2026-05-15',null,'HIGH'),
+  _mkJob(47,'EQ-024','มอเตอร์เสียง','ตรวจ Alignment','V002','OPEN','2026-06-01',null,'LOW'),
+  _mkJob(48,'EQ-025','เซ็นเซอร์ผิด','เปลี่ยน Sensor','V003','OPEN','2026-06-05',null,'MEDIUM'),
+  _mkJob(49,'EQ-026','Valve รั่ว','ซ่อม Valve','V001','OPEN','2026-06-10',null,'HIGH'),
+  _mkJob(50,'EQ-027','PCB เสีย','เปลี่ยน PCB','V003','OPEN','2026-06-15',null,'CRITICAL'),
 ];
 
-/* Ã¢ÂÂÃ¢ÂÂ State Ã¢ÂÂÃ¢ÂÂ */
+/* ── State ── */
 let _jobs=[], _parts=[], _charts={};
 
-/* Ã¢ÂÂÃ¢ÂÂ Utils Ã¢ÂÂÃ¢ÂÂ */
-function fmtDate(d){if(!d)return'&mdash;';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'numeric'})}
+/* ── Utils ── */
+function fmtDate(d){if(!d)return'—';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'numeric'})}
 function pct(n,t){return t?Math.round(n/t*100):0}
 function destroyChart(id){if(_charts[id]){_charts[id].destroy();delete _charts[id]}}
-function getVendorName(id){return(SAMPLE_VENDORS.find(v=>v.Vendor_ID===id)||{}).Vendor_Name?.replace('Ã Â¸ÂÃ Â¸Â£Ã Â¸Â´Ã Â¸Â©Ã Â¸Â±Ã Â¸Â ','').replace(' Ã Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â±Ã Â¸Â','')||id||'&mdash;'}
+function getVendorName(id){
+  if(window._vendorMap&&window._vendorMap[id]) return window._vendorMap[id];
+  return(SAMPLE_VENDORS.find(v=>v.Vendor_ID===id)||{}).Vendor_Name||id||'Unknown';
+}
 
-/* Ã¢ÂÂÃ¢ÂÂ Load Data Ã¢ÂÂÃ¢ÂÂ */
-function _tagJobs(jobs,sys){return(Array.isArray(jobs)?jobs:[]).map(j=>Object.assign({},j,{_sys:sys}));}
+/* ── Load Data ── */
+function _tagJobs(jobs, sys){
+  return (Array.isArray(jobs)?jobs:[]).map(j=>Object.assign({},j,{_sys:sys}));
+}
 function loadData(){
   document.getElementById('loadingOverlay').classList.remove('hidden');
   const tok=_getToken();
   const b=GAS_URL+'?token='+encodeURIComponent(tok);
-  const mkUrl=function(act,pl){return b+'&action='+act+(pl?'&payload='+encodeURIComponent(JSON.stringify(pl)):'');};
   Promise.all([
-    fetch(mkUrl('getJobs')).then(r=>r.json()).catch(()=>({success:false,data:[]})),
-    fetch(mkUrl('getJobs',{sys:'AFC'})).then(r=>r.json()).catch(()=>({success:false,data:[]})),
-    fetch(mkUrl('getJobs',{sys:'COM'})).then(r=>r.json()).catch(()=>({success:false,data:[]})),
-    fetch(mkUrl('getParts')).then(r=>r.json()).catch(()=>({success:false,data:[]})),
-    fetch(mkUrl('getVendors')).then(r=>r.json()).catch(()=>({success:false,data:[]})),
-  ]).then(function(rs){
-    var ewsR=rs[0],afcR=rs[1],comR=rs[2],pRes=rs[3],vRes=rs[4];
-    var ewsJ=_tagJobs(ewsR.success&&Array.isArray(ewsR.data)?ewsR.data:SAMPLE_JOBS,'EWS');
-    var afcJ=_tagJobs(afcR.success&&Array.isArray(afcR.data)?afcR.data:[],'AFC');
-    var comJ=_tagJobs(comR.success&&Array.isArray(comR.data)?comR.data:[],'COM');
+    fetch(b+'&action=getJobs').then(r=>r.json()).catch(()=>({success:false,data:[]})),
+    fetch(b+'&action=getJobs&payload='+encodeURIComponent(JSON.stringify({sys:'AFC'}))).then(r=>r.json()).catch(()=>({success:false,data:[]})),
+    fetch(b+'&action=getJobs&payload='+encodeURIComponent(JSON.stringify({sys:'COM'}))).then(r=>r.json()).catch(()=>({success:false,data:[]})),
+    fetch(b+'&action=getParts').then(r=>r.json()).catch(()=>({success:false,data:[]})),
+    fetch(b+'&action=getVendors').then(r=>r.json()).catch(()=>({success:false,data:[]})),
+  ]).then(([ewsR,afcR,comR,pRes,vRes])=>{
+    const ewsJ=_tagJobs(ewsR.success&&Array.isArray(ewsR.data)?ewsR.data:SAMPLE_JOBS,'EWS');
+    const afcJ=_tagJobs(afcR.success&&Array.isArray(afcR.data)?afcR.data:[],'AFC');
+    const comJ=_tagJobs(comR.success&&Array.isArray(comR.data)?comR.data:[],'COM');
     _jobs=ewsJ.concat(afcJ).concat(comJ);
     _parts=pRes.success&&Array.isArray(pRes.data)?pRes.data:SAMPLE_PARTS;
     if(vRes.success&&Array.isArray(vRes.data)&&vRes.data.length>0){
       window._vendorMap={};
-      vRes.data.forEach(function(v){if(v.Vendor_ID)window._vendorMap[v.Vendor_ID]=v.Vendor_Name||v.Name||v.Vendor_ID;});
+      vRes.data.forEach(v=>{if(v.Vendor_ID) window._vendorMap[v.Vendor_ID]=v.Vendor_Name||v.Name||v.Vendor_ID;});
     }
     window._sysCounts={EWS:ewsJ.length,AFC:afcJ.length,COM:comJ.length};
     renderDashboard();
-  }).catch(function(){
-    _jobs=_tagJobs(SAMPLE_JOBS,'EWS');_parts=SAMPLE_PARTS;renderDashboard();
-  }).finally(function(){
+  }).catch(()=>{
+    _jobs=_tagJobs(SAMPLE_JOBS,'EWS');
+    _parts=SAMPLE_PARTS;
+    renderDashboard();
+  }).finally(()=>{
     document.getElementById('loadingOverlay').classList.add('hidden');
     document.getElementById('lastUpdate').textContent=new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
   });
 }
 
-/* Ã¢ÂÂÃ¢ÂÂ KPI Calculations Ã¢ÂÂÃ¢ÂÂ */
+/* ── KPI Calculations ── */
 function calcKPIs(jobs){
   const now = new Date();
   const thisMonthStart = new Date(now.getFullYear(), now.getMonth(), 1);
@@ -881,28 +890,35 @@ function calcKPIs(jobs){
   };
 }
 
-/* Ã¢ÂÂÃ¢ÂÂ Render Dashboard Ã¢ÂÂÃ¢ÂÂ */
+/* ── System Breakdown Strip ── */
 function renderSysBreakdown(){
-  var sc=window._sysCounts||{EWS:_jobs.length,AFC:0,COM:0};
-  var total=sc.EWS+sc.AFC+sc.COM||1;
-  var sysArr=[
+  const sc=window._sysCounts||{EWS:_jobs.length,AFC:0,COM:0};
+  const total=sc.EWS+sc.AFC+sc.COM||1;
+  const sys=[
     {key:'EWS',label:'EWS Enterprise',color:'#0F62FE',ico:'fa-bolt'},
     {key:'AFC',label:'AFC Enterprise',color:'#198038',ico:'fa-wind'},
-    {key:'COM',label:'COM Enterprise',color:'#8A3FFC',ico:'fa-tower-broadcast'}
+    {key:'COM',label:'COM Enterprise',color:'#8A3FFC',ico:'fa-tower-broadcast'},
   ];
-  var el=document.getElementById('sysBreakdown');if(!el)return;
-  el.innerHTML=sysArr.map(function(s){
-    var cnt=sc[s.key]||0;var p=Math.round(cnt/total*100);
-    return'<div style="flex:1;background:var(--ui01);border:1px solid var(--ui03);padding:8px 12px;border-radius:2px;min-width:0">'+
-      '<div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">'+
-      '<i class="fas '+s.ico+'" style="color:'+s.color+';font-size:.7rem"></i>'+
-      '<span style="font-size:.65rem;font-weight:600;color:var(--text02)">'+s.label+'</span>'+
-      '<span style="margin-left:auto;font-size:.8rem;font-weight:700;color:var(--text01)">'+cnt+'</span>'+
-      '<span style="font-size:.65rem;color:var(--g40)">('+p+'%)</span></div>'+
-      '<div style="height:4px;background:var(--ui03);border-radius:2px">'+
-      '<div style="height:4px;width:'+p+'%;background:'+s.color+';border-radius:2px;transition:width .4s"></div></div></div>';
+  const el=document.getElementById('sysBreakdown');
+  if(!el)return;
+  el.innerHTML=sys.map(s=>{
+    const cnt=sc[s.key]||0;
+    const pct=Math.round(cnt/total*100);
+    return`<div style="flex:1;background:var(--ui01);border:1px solid var(--ui03);padding:8px 12px;border-radius:2px;min-width:0">
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+        <i class="fas ${s.ico}" style="color:${s.color};font-size:.7rem"></i>
+        <span style="font-size:.65rem;font-weight:600;color:var(--text02);letter-spacing:.05em">${s.label}</span>
+        <span style="margin-left:auto;font-size:.8rem;font-weight:700;color:var(--text01)">${cnt}</span>
+        <span style="font-size:.65rem;color:var(--g40)">(${pct}%)</span>
+      </div>
+      <div style="height:4px;background:var(--ui03);border-radius:2px">
+        <div style="height:4px;width:${pct}%;background:${s.color};border-radius:2px;transition:width .4s"></div>
+      </div>
+    </div>`;
   }).join('');
 }
+
+/* ── Render Dashboard ── */
 function renderDashboard(){
   const kpi=calcKPIs(_jobs);
   renderSysBreakdown();
@@ -916,10 +932,10 @@ function renderDashboard(){
   const d1=new Date(now.getFullYear(),now.getMonth(),1);
   document.getElementById('tbDateLabel').textContent=
     d1.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'numeric'})+
-    ' Ã¢ÂÂ '+now.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'numeric'});
+    ' – '+now.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'numeric'});
 }
 
-/* Ã¢ÂÂÃ¢ÂÂ KPI Row Ã¢ÂÂÃ¢ÂÂ */
+/* ── KPI Row ── */
 function renderKPIRow(kpi){
   const mttrChg=kpi.lastMttr>0?((kpi.mttr-kpi.lastMttr)/kpi.lastMttr*100).toFixed(1):0;
   const cards=[
@@ -929,14 +945,14 @@ function renderKPIRow(kpi){
     {label:'MTTR (Days)',value:kpi.mttr,valClass:parseFloat(kpi.mttr)>7?'kpi-red':'kpi-green',trend:{chg:(mttrChg>0?'+':'')+mttrChg+'%',up:mttrChg<=0,label:'vs Last Month'},cl:'kc-r',id:'sp3'},
     {label:'PM COMPLIANCE',value:kpi.pmCompliance+'%',valClass:'kpi-green',trend:{chg:'+3.2%',up:true,label:'vs Last Month'},cl:'kc-y',id:'sp4'},
     {label:'PLANNED JOBS %',value:Math.round(kpi.closedJobs/Math.max(1,kpi.totalJobs)*100)+'%',valClass:'kpi-green',trend:{chg:'+6.5%',up:true,label:'vs Last Month'},cl:'kc-t',id:'sp5'},
-    {label:'OPEN WORK ORDERS',value:kpi.openJobs,valClass:kpi.openJobs>10?'kpi-orange':'kpi-green',trend:{chg:'Ã¢ÂÂ² '+(kpi.openJobs>5?kpi.openJobs-5:0)+' vs Last Month',up:false,label:''},cl:'kc-o',id:'sp6'},
+    {label:'OPEN WORK ORDERS',value:kpi.openJobs,valClass:kpi.openJobs>10?'kpi-orange':'kpi-green',trend:{chg:'▲ '+(kpi.openJobs>5?kpi.openJobs-5:0)+' vs Last Month',up:false,label:''},cl:'kc-o',id:'sp6'},
     {label:'CRITICAL JOBS',value:kpi.criticalOpen,valClass:kpi.criticalOpen>0?'kpi-red':'kpi-green',trend:{chg:'vs Last Month: 0',up:kpi.criticalOpen===0,label:''},cl:'kc-pu',id:'sp7'},
   ];
   document.getElementById('kpiRow').innerHTML=cards.map(c=>`
     <div class="kpi-card ${c.cl}">
       <div class="kpi-label">${c.label}</div>
       <div class="kpi-value ${c.valClass}">${c.value}</div>
-      <div class="kpi-trend">${c.trend.up?'<span class="up">Ã¢ÂÂ²</span>':'<span class="dn">Ã¢ÂÂ¼</span>'} <span>${c.trend.chg}</span> <span style="color:var(--g40)">${c.trend.label}</span></div>
+      <div class="kpi-trend">${c.trend.up?'<span class="up">▲</span>':'<span class="dn">▼</span>'} <span>${c.trend.chg}</span> <span style="color:var(--g40)">${c.trend.label}</span></div>
       <div class="kpi-sparkline" id="${c.id}"></div>
     </div>`).join('');
   // Sparklines
@@ -972,7 +988,7 @@ function svgSparkline(data,color,w=200,h=30,filled=true){
   </svg>`;
 }
 
-/* Ã¢ÂÂÃ¢ÂÂ Charts Ã¢ÂÂÃ¢ÂÂ */
+/* ── Charts ── */
 function renderCharts(kpi){
   // Job Trend Bar
   destroyChart('chartJobTrend');
@@ -1084,7 +1100,7 @@ function renderCharts(kpi){
   });
 }
 
-/* Ã¢ÂÂÃ¢ÂÂ Widgets Ã¢ÂÂÃ¢ÂÂ */
+/* ── Widgets ── */
 function renderWidgets(kpi){
   // Top Equipment
   const maxCnt=kpi.topEq[0]?.count||1;
@@ -1147,7 +1163,7 @@ function renderWidgets(kpi){
     </div>`).join('');
 }
 
-/* Ã¢ÂÂÃ¢ÂÂ UI Actions Ã¢ÂÂÃ¢ÂÂ */
+/* ── UI Actions ── */
 function toggleSidebar(){
   const sb=document.getElementById('mxmSidebar');
   const ov=document.getElementById('sidebarOverlay');
@@ -1158,32 +1174,16 @@ function toggleSidebar(){
     sb.classList.toggle('collapsed');
   }
 }
-function applyFilter(){
-  renderDashboard();
-}
+function applyFilter(){ renderDashboard(); }
 function refreshData(){
-  document.getElementById('lastUpdate').textContent='Ã Â¸ÂÃ Â¸Â³Ã Â¸Â¥Ã Â¸Â±Ã Â¸ÂÃ Â¹ÂÃ Â¸Â«Ã Â¸Â¥Ã Â¸Â...';
+  document.getElementById('lastUpdate').textContent='Loading...';
   loadData();
 }
-
-
 function logout(){
   sessionStorage.removeItem('rms_v3_session');
   localStorage.removeItem('rms_v3_session');
   location.href='login.html';
 }
-function toast(msg,type='info'){
-  const t=document.createElement('div');
-  const colors={'success':'#42BE65','error':'#DA1E28','info':'#4589FF','warning':'#F1C21B'};
-  t.style.cssText=`position:fixed;bottom:24px;right:24px;background:${colors[type]||colors.info};color:#fff;padding:10px 18px;border-radius:4px;font-size:.875rem;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,.3);animation:fadeIn .2s`;
-  t.textContent=msg;
-  document.body.appendChild(t);
-  setTimeout(()=>t.remove(),3000);
-}
-
-/* Ã¢ÂÂÃ¢ÂÂ Init Ã¢ÂÂÃ¢ÂÂ */
-loadData();
 </script>
-<script>function toggleWO(e){if(e)e.stopPropagation();var g=document.getElementById('woGroup'),s=document.getElementById('woSub');if(g)g.classList.toggle('open');if(s)s.classList.toggle('open');}</script>
 </body>
 </html>

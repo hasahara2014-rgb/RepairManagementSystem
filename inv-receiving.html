@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>EWS Enterprise &mdash; Receiving</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --p60:#0F62FE;--p70:#0043CE;--p50:#4589FF;
+  --g100:#161616;--g90:#262626;--g80:#393939;--g70:#525252;
+  --g60:#6F6F6F;--g50:#8D8D8D;--g40:#A8A8A8;--g30:#C6C6C6;
+  --g20:#E0E0E0;--g10:#F4F4F4;--white:#FFFFFF;
+  --green50:#198038;--green10:#DEFBE6;
+  --red60:#DA1E28;--red10:#FFF1F1;
+  --yellow30:#F1C21B;--yellow10:#FFF8E1;
+  --teal50:#009D9A;--teal10:#D9FBFB;
+  --purple50:#8A3FFC;--purple10:#F6F2FF;
+  --orange40:#FF832B;--orange10:#FFF2E8;
+  --cyan50:#1192E8;--cyan10:#E5F6FF;
+  --sidebar-w:220px;--topbar-h:52px;
+  --font:'IBM Plex Sans',system-ui,sans-serif;--t-fast:.12s ease;
+}
+html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g10);color:var(--g100);overflow:hidden}
+.mxm-shell{display:flex;height:100vh;overflow:hidden}
+.mxm-sidebar{width:var(--sidebar-w);min-width:var(--sidebar-w);background:var(--g100);display:flex;flex-direction:column;overflow-y:auto;z-index:100;flex-shrink:0;transition:width .2s,min-width .2s;scrollbar-width:thin;scrollbar-color:var(--g80) transparent}
+.mxm-sidebar.collapsed{width:48px;min-width:48px}
+.mxm-sidebar.collapsed .nav-label,.mxm-sidebar.collapsed .sidebar-section-label,.mxm-sidebar.collapsed .sys-info,.mxm-sidebar.collapsed .sb-brand-text{display:none}
+.mxm-sidebar.collapsed .sb-brand{justify-content:center}
+.mxm-sidebar.collapsed .nav-item{justify-content:center;padding:10px 0}
+.sb-brand{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--g80);flex-shrink:0;min-height:52px}
+.sb-logo-box{width:28px;height:28px;background:var(--p60);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sb-logo-box span{color:#fff;font-weight:700;font-size:.85rem}
+.sb-brand-text .brand-name{color:#fff;font-weight:600;font-size:.78rem;line-height:1.2}
+.sb-brand-text .brand-sub{color:var(--g50);font-size:.65rem}
+.sidebar-nav{flex:1;padding:8px 0}
+.sidebar-section-label{color:var(--g50);font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.8px;padding:12px 16px 4px}
+.nav-item{display:flex;align-items:center;gap:12px;padding:9px 16px;color:var(--g30);font-size:.78rem;text-decoration:none;border-left:3px solid transparent;transition:background var(--t-fast),color var(--t-fast);white-space:nowrap}
+.nav-item:hover{background:var(--g90);color:#fff}
+.nav-item.active{background:var(--g90);color:#fff;border-left-color:var(--p60)}
+.nav-icon{font-size:.85rem;width:16px;text-align:center;flex-shrink:0}
+.sys-info{padding:12px 14px;border-top:1px solid var(--g80);flex-shrink:0}
+.sys-title{color:var(--g40);font-size:.63rem;font-weight:600;text-transform:uppercase;margin-bottom:6px}
+.sys-status-row{display:flex;align-items:center;gap:6px;margin-bottom:4px}
+.sys-dot{width:8px;height:8px;border-radius:50%;background:#24A148}
+.sys-online{color:var(--g30);font-size:.72rem}
+.sys-update{color:var(--g50);font-size:.63rem;line-height:1.5}
+.mxm-main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0}
+.mxm-topbar{height:52px;min-height:52px;background:#fff;border-bottom:1px solid var(--g20);display:flex;align-items:center;padding:0 16px;gap:12px;z-index:50;flex-shrink:0}
+.tb-menu-btn{background:none;border:none;color:var(--g70);width:32px;height:32px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.tb-menu-btn:hover{background:var(--g10)}
+.tb-brand{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+.tb-title-block .tb-title{font-size:.92rem;font-weight:600;color:var(--g100)}
+.tb-title-block .tb-sub{font-size:.68rem;color:var(--g50)}
+.tb-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.tb-btn-primary{background:var(--p60);border:none;color:#fff;font-family:var(--font);font-size:.72rem;font-weight:600;padding:7px 16px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:background var(--t-fast);text-decoration:none;white-space:nowrap}
+.tb-btn-primary:hover{background:var(--p70)}
+.tb-btn-ghost{background:none;border:1px solid var(--g20);color:var(--g70);font-family:var(--font);font-size:.72rem;padding:7px 14px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:background var(--t-fast);text-decoration:none;white-space:nowrap}
+.tb-btn-ghost:hover{background:var(--g10)}
+.tb-btn-danger{background:var(--red60);border:none;color:#fff;font-family:var(--font);font-size:.72rem;padding:7px 14px;cursor:pointer;display:flex;align-items:center;gap:6px;transition:background var(--t-fast)}
+.tb-btn-danger:hover{background:#b01723}
+.tb-icon-btn{background:none;border:none;width:34px;height:34px;cursor:pointer;color:var(--g70);font-size:.9rem;display:flex;align-items:center;justify-content:center;text-decoration:none}
+.tb-icon-btn:hover{background:var(--g10)}
+.tb-user{display:flex;align-items:center;gap:8px;padding:4px 10px;cursor:pointer;border:1px solid transparent}
+.tb-user:hover{background:var(--g10)}
+.tb-avatar{width:28px;height:28px;background:var(--p60);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700}
+.tb-username{font-size:.72rem;font-weight:500;color:var(--g100)}
+.mxm-content{flex:1;overflow-y:auto;overflow-x:hidden;padding:0;display:flex;flex-direction:column;scrollbar-width:thin;scrollbar-color:var(--g20) transparent}
+.page-toolbar{background:#fff;border-bottom:1px solid var(--g20);padding:10px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;flex-shrink:0}
+.filter-select,.filter-input{background:var(--g10);border:1px solid var(--g20);color:var(--g100);font-family:var(--font);font-size:.72rem;padding:5px 10px;outline:none;min-width:110px}
+.filter-input{background:#fff;min-width:200px}.filter-input::placeholder{color:var(--g40)}
+.filter-select:focus,.filter-input:focus{border-color:var(--p60)}
+.search-wrap{position:relative;flex:1;min-width:180px;max-width:320px}
+.search-wrap input{width:100%;padding-left:32px}
+.search-icon{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--g50);font-size:.75rem;pointer-events:none}
+.toolbar-spacer{flex:1}
+.tbl-wrap{flex:1;overflow-y:auto}
+.data-table{width:100%;border-collapse:collapse;background:#fff}
+.data-table thead th{position:sticky;top:0;z-index:10;background:#fff;border-bottom:2px solid var(--g20);font-size:.65rem;font-weight:600;color:var(--g60);text-transform:uppercase;letter-spacing:.4px;padding:10px 12px;text-align:left;white-space:nowrap;user-select:none;cursor:pointer}
+.data-table thead th:hover{background:var(--g10)}
+.data-table tbody tr{border-bottom:1px solid var(--g10);transition:background var(--t-fast)}
+.data-table tbody tr:hover{background:var(--cyan10)}
+.data-table td{padding:9px 12px;font-size:.75rem;color:var(--g100);vertical-align:middle;white-space:nowrap}
+.td-mono{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--p60);font-size:.78rem}
+.td-long{max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.td-right{text-align:right}.td-num{font-family:'IBM Plex Mono',monospace;font-size:.75rem}
+.bs{display:inline-block;font-size:.62rem;font-weight:600;padding:2px 8px}
+.bs-A{background:#FFF8E1;color:#8B6900}.bs-B{background:var(--cyan10);color:var(--cyan50)}.bs-C{background:var(--g10);color:var(--g60)}
+.bs-CRITICAL{background:var(--red10);color:var(--red60)}.bs-HIGH{background:var(--orange10);color:var(--orange40)}
+.bs-MEDIUM{background:var(--yellow10);color:#8B6900}.bs-LOW{background:var(--green10);color:var(--green50)}
+.bs-ACTIVE{background:var(--green10);color:var(--green50)}.bs-INACTIVE{background:var(--g10);color:var(--g60)}
+.bs-POSTED{background:var(--green10);color:var(--green50)}.bs-PENDING{background:var(--yellow10);color:#8B6900}
+.bs-DRAFT{background:var(--g10);color:var(--g60)}.bs-CANCELLED{background:var(--red10);color:var(--red60)}
+.bs-INCREASE{background:var(--green10);color:var(--green50)}.bs-DECREASE{background:var(--red10);color:var(--red60)}
+.bs-FOUND{background:var(--teal10);color:var(--teal50)}.bs-LOSS{background:var(--red10);color:var(--red60)}
+.bs-DAMAGE{background:var(--orange10);color:var(--orange40)}.bs-CORRECTION{background:var(--purple10);color:var(--purple50)}
+.stock-ok{color:var(--green50)}.stock-low{color:var(--orange40)}.stock-out{color:var(--red60)}
+.loading-overlay{position:fixed;inset:0;background:rgba(22,22,22,.5);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999}
+.loading-overlay.hidden{display:none}
+.loading-spinner{width:36px;height:36px;border:3px solid rgba(255,255,255,.2);border-top-color:#fff;border-radius:50%;animation:spin .8s linear infinite;margin-bottom:12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-overlay p{color:#fff;font-size:.8rem}
+.toast-container{position:fixed;top:16px;right:16px;z-index:10000;display:flex;flex-direction:column;gap:8px;pointer-events:none}
+.toast{background:var(--g90);color:#fff;padding:12px 18px;font-size:.78rem;max-width:340px;pointer-events:auto;display:flex;align-items:center;gap:10px;box-shadow:0 4px 16px rgba(0,0,0,.3);animation:slideIn .2s ease}
+.toast-success{border-left:3px solid var(--green50)}.toast-danger{border-left:3px solid var(--red60)}
+.toast-info{border-left:3px solid var(--p60)}.toast-warning{border-left:3px solid var(--yellow30)}
+@keyframes slideIn{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
+.modal-overlay{position:fixed;inset:0;background:rgba(22,22,22,.6);z-index:2000;display:flex;align-items:center;justify-content:center;padding:16px}
+.modal-overlay.hidden{display:none}
+.modal-box{background:#fff;width:100%;max-width:680px;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.modal-box.wide{max-width:900px}
+.modal-head{padding:16px 20px;border-bottom:1px solid var(--g20);display:flex;align-items:center;gap:12px;flex-shrink:0}
+.modal-title{font-size:.92rem;font-weight:600;color:var(--g100);flex:1}
+.modal-close{background:none;border:none;width:32px;height:32px;cursor:pointer;color:var(--g70);display:flex;align-items:center;justify-content:center;font-size:1rem}
+.modal-close:hover{background:var(--g10)}
+.modal-body{padding:20px;overflow-y:auto;flex:1}
+.modal-footer{padding:12px 20px;border-top:1px solid var(--g20);display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-shrink:0;background:#fff}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 20px}
+.form-grid.cols-3{grid-template-columns:1fr 1fr 1fr}
+.form-group{display:flex;flex-direction:column;gap:4px}
+.form-group.span-2{grid-column:span 2}.form-group.span-3{grid-column:span 3}
+label{font-size:.7rem;font-weight:600;color:var(--g70);text-transform:uppercase;letter-spacing:.3px}
+label .req{color:var(--red60)}
+.form-control{background:var(--g10);border:1px solid var(--g20);color:var(--g100);font-family:var(--font);font-size:.8rem;padding:8px 12px;outline:none;width:100%;transition:border-color var(--t-fast)}
+.form-control:focus{border-color:var(--p60);background:#fff}
+select.form-control{cursor:pointer}
+textarea.form-control{resize:vertical;min-height:64px}
+.pager{display:flex;align-items:center;gap:4px;justify-content:flex-end;padding:8px 16px;background:#fff;border-top:1px solid var(--g20);flex-shrink:0}
+.pager-btn{background:none;border:1px solid var(--g20);color:var(--g70);font-family:var(--font);font-size:.72rem;padding:4px 10px;cursor:pointer;min-width:32px;text-align:center}
+.pager-btn:hover{background:var(--g10)}.pager-btn.active{background:var(--p60);color:#fff;border-color:var(--p60)}.pager-btn:disabled{opacity:.4;cursor:default}
+.pager-info{font-size:.7rem;color:var(--g60);margin-right:8px}
+.conn-badge{display:flex;align-items:center;gap:6px;font-size:.7rem;color:var(--g60)}
+.conn-dot{width:8px;height:8px;border-radius:50%;background:var(--g40)}.conn-dot.connected{background:#24A148}
+.form-divider{grid-column:span 2;border:none;border-top:1px solid var(--g20);margin:4px 0}
+.section-label{grid-column:span 2;font-size:.65rem;font-weight:600;color:var(--g60);text-transform:uppercase;letter-spacing:.4px;margin-top:4px}
+.empty-state{text-align:center;padding:48px 24px;color:var(--g50)}
+.empty-state i{font-size:2rem;margin-bottom:12px;display:block;color:var(--g30)}
+.empty-state p{font-size:.78rem}
+.action-btn{background:none;border:none;color:var(--g60);cursor:pointer;padding:4px 6px;font-size:.8rem;transition:color var(--t-fast)}
+.action-btn:hover{color:var(--p60)}.action-btn.danger:hover{color:var(--red60)}
+.ks-strip{display:grid;gap:2px;margin-bottom:0}
+.ks-card{background:#fff;padding:12px 16px;border-top:3px solid var(--g30)}
+.ks-card.ksc-p{border-top-color:var(--p60)}.ks-card.ksc-g{border-top-color:var(--green50)}
+.ks-card.ksc-r{border-top-color:var(--red60)}.ks-card.ksc-y{border-top-color:var(--yellow30)}
+.ks-card.ksc-t{border-top-color:var(--teal50)}.ks-card.ksc-o{border-top-color:var(--orange40)}
+.ks-card.ksc-pur{border-top-color:var(--purple50)}.ks-card.ksc-c{border-top-color:var(--cyan50)}
+.ks-label{font-size:.6rem;font-weight:600;color:var(--g60);text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
+.ks-value{font-size:1.4rem;font-weight:300;color:var(--g100);line-height:1}
+.ks-sub{font-size:.62rem;color:var(--g50);margin-top:2px}
+.detail-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--g20);border:1px solid var(--g20);margin-bottom:16px}
+.detail-cell{background:#fff;padding:10px 14px}
+.detail-label{font-size:.65rem;color:var(--g50);text-transform:uppercase;letter-spacing:.3px;margin-bottom:3px}
+.detail-value{font-size:.8rem;color:var(--g100);font-weight:500}
+@media(max-width:960px){.form-grid{grid-template-columns:1fr}.form-group.span-2{grid-column:span 1}.form-divider,.section-label{grid-column:span 1}}
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;flex-shrink:0}</style>
+</head>
+<body>
+<div id="loadingOverlay" class="loading-overlay hidden"><div class="loading-spinner"></div><p>Loading...</p></div>
+<div class="toast-container" id="toastContainer"></div>
+<div class="mxm-shell">
+<aside class="mxm-sidebar" id="mxmSidebar">
+  <div class="sb-brand"><div class="sb-logo-box"><span>EWS</span></div><div class="sb-brand-text"><div class="brand-name">EWS Enterprise</div><div class="brand-sub">Inventory Management</div></div></div>
+  <nav class="sidebar-nav">
+<a class="nav-item" href="dashboard.html"><i class="nav-icon fas fa-gauge-high"></i><span class="nav-label">Dashboards</span></a>
+<a class="nav-item" href="jobs.html"><i class="nav-icon fas fa-clipboard-list"></i><span class="nav-label">Work Orders</span></a>
+<a class="nav-item" href="approvals.html"><i class="nav-icon fas fa-clipboard-check"></i><span class="nav-label">Approvals</span></a>
+<div class="sidebar-section-label">Operations</div>
+<a class="nav-item" href="pm.html"><i class="nav-icon fas fa-calendar-check"></i><span class="nav-label">Preventive Maintenance</span></a>
+<a class="nav-item" href="vendors.html"><i class="nav-icon fas fa-building"></i><span class="nav-label">Vendors</span></a>
+<div class="sidebar-section-label">Inventory</div>
+<a class="nav-item" href="inv-dashboard.html"><i class="nav-icon fas fa-chart-pie"></i><span class="nav-label">Inv Dashboard</span></a>
+<a class="nav-item" href="inv-items.html"><i class="nav-icon fas fa-boxes-stacking"></i><span class="nav-label">Item Master</span></a>
+<a class="nav-item active" href="inv-receiving.html"><i class="nav-icon fas fa-truck-ramp-box"></i><span class="nav-label">Receiving</span></a>
+<a class="nav-item" href="inv-issue.html"><i class="nav-icon fas fa-arrow-up-from-bracket"></i><span class="nav-label">Issue Parts</span></a>
+<a class="nav-item" href="inv-return.html"><i class="nav-icon fas fa-rotate-left"></i><span class="nav-label">Return Parts</span></a>
+<a class="nav-item" href="inv-transfer.html"><i class="nav-icon fas fa-right-left"></i><span class="nav-label">Transfer Stock</span></a>
+<a class="nav-item" href="inv-adjustment.html"><i class="nav-icon fas fa-sliders"></i><span class="nav-label">Adjustment</span></a>
+<a class="nav-item" href="inv-inquiry.html"><i class="nav-icon fas fa-magnifying-glass-chart"></i><span class="nav-label">Stock Inquiry</span></a>
+<a class="nav-item" href="inv-transactions.html"><i class="nav-icon fas fa-list-check"></i><span class="nav-label">Transactions</span></a>
+<a class="nav-item" href="inv-reorder.html"><i class="nav-icon fas fa-cart-shopping"></i><span class="nav-label">Reorder Planning</span></a>
+<div class="sidebar-section-label">Analytics</div>
+<a class="nav-item" href="reports.html"><i class="nav-icon fas fa-chart-bar"></i><span class="nav-label">Reports &amp; Analytics</span></a>
+<div class="sidebar-section-label">Administration</div>
+<a class="nav-item" href="master.html"><i class="nav-icon fas fa-database"></i><span class="nav-label">Master Data</span></a>
+<a class="nav-item" href="users.html"><i class="nav-icon fas fa-users"></i><span class="nav-label">Users</span></a>
+<a class="nav-item" href="settings.html"><i class="nav-icon fas fa-gear"></i><span class="nav-label">Settings</span></a>
+</nav>
+  <div class="sys-info"><div class="sys-title">System Status</div><div class="sys-status-row"><div class="sys-dot"></div><div class="sys-online">Online</div></div><div class="sys-update">Updated<br><span id="lastUpdate" style="color:var(--g30)">—</span></div></div>
+</aside>
+<div class="mxm-main">
+<div class="mxm-topbar">
+    <button class="tb-menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
+    <div class="tb-brand"><div class="tb-title-block"><div class="tb-title">Receiving</div><div class="tb-sub">Receive and inspect incoming stock</div></div></div>
+    <div class="tb-right">
+      <div class="conn-badge"><div class="conn-dot" id="connDot"></div><span id="connLabel">Checking...</span></div>
+      <button class="tb-btn-primary" onclick="openRecvModal()"><i class="fas fa-plus"></i> New Receipt</button>
+      <div class="tb-icon-btn" title="Notifications"><i class="fas fa-bell"></i></div>
+      <div class="tb-user"><div class="tb-avatar" id="userAvatar">U</div><span class="tb-username" id="userName">—</span></div>
+    </div>
+  </div>
+  <div class="kpi-row">
+    <div class="ks-card ksc-p"><div class="ks-label">Total Receipts</div><div class="ks-value" id="kTotal">—</div></div>
+    <div class="ks-card ksc-g"><div class="ks-label">Today</div><div class="ks-value" id="kToday">—</div></div>
+    <div class="ks-card ksc-t"><div class="ks-label">This Month</div><div class="ks-value" id="kMonth">—</div></div>
+    <div class="ks-card ksc-g"><div class="ks-label">Total Value Received</div><div class="ks-value" id="kVal" style="font-size:1rem">—</div></div>
+  </div>
+  <div class="mxm-content">
+    <div class="page-toolbar">
+      <div class="search-wrap"><i class="fas fa-search search-icon"></i><input class="filter-input" id="searchInput" type="text" placeholder="Search GRN, PO, item..." oninput="renderTable()"></div>
+      <input class="filter-input" id="dateFrom" type="date" onchange="renderTable()" style="min-width:130px">
+      <input class="filter-input" id="dateTo" type="date" onchange="renderTable()" style="min-width:130px">
+      <div class="toolbar-spacer"></div>
+      <span id="rowCount" style="font-size:.72rem;color:var(--g60)"></span>
+    </div>
+    <div class="tbl-wrap">
+      <table class="data-table">
+        <thead><tr>
+          <th>GRN No.</th><th>Date</th><th>Item Code</th><th>Item Name</th>
+          <th>PO No.</th><th>Vendor</th><th class="td-right">Qty Recv</th>
+          <th class="td-right">Unit Price</th><th class="td-right">Total</th><th>Received By</th>
+        </tr></thead>
+        <tbody id="recvBody"></tbody>
+      </table>
+    </div>
+    <div class="pager" id="pagerRow"></div>
+  </div>
+
+<!-- Receive Modal -->
+<div class="modal-overlay hidden" id="recvModal">
+  <div class="modal-box">
+    <div class="modal-head"><div class="modal-title">New Goods Receipt</div><button class="modal-close" onclick="closeModal('recvModal')"><i class="fas fa-times"></i></button></div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group"><label>Item Code <span class="req">*</span></label><input class="form-control" id="fItemCode" placeholder="Enter item code"></div>
+        <div class="form-group"><label>Item Name</label><input class="form-control" id="fItemName" readonly placeholder="Auto-filled"></div>
+        <div class="form-group"><label>PO Number</label><input class="form-control" id="fPoNo" placeholder="e.g. PO-2024-001"></div>
+        <div class="form-group"><label>Receipt Date <span class="req">*</span></label><input class="form-control" id="fDate" type="date"></div>
+        <div class="form-group"><label>Qty Received <span class="req">*</span></label><input class="form-control" id="fQty" type="number" min="0.01" step="0.01" placeholder="0"></div>
+        <div class="form-group"><label>Unit Price <span class="req">*</span></label><input class="form-control" id="fUnitPrice" type="number" min="0" step="0.01" placeholder="0.00"></div>
+        <div class="form-group"><label>Vendor Code</label><input class="form-control" id="fVendor" placeholder="Vendor code"></div>
+        <div class="form-group"><label>Invoice No.</label><input class="form-control" id="fInvoice" placeholder="Invoice number"></div>
+        <div class="form-group"><label>Warehouse</label><input class="form-control" id="fWh" placeholder="WH-01"></div>
+        <div class="form-group"><label>Received By</label><input class="form-control" id="fRecvBy" placeholder="Name"></div>
+        <div class="form-group span-2"><label>Remarks</label><textarea class="form-control" id="fRemarks" rows="2" placeholder="Inspection notes, condition..."></textarea></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="tb-btn-ghost" onclick="closeModal('recvModal')">Cancel</button>
+      <button class="tb-btn-primary" onclick="submitRecv()"><i class="fas fa-truck-ramp-box"></i> Confirm Receipt</button>
+    </div>
+  </div>
+</div>
+</div><!-- mxm-main -->
+</div><!-- mxm-shell -->
+<script>
+const GAS_URL=(function(){const k=localStorage.getItem('gasUrl');if(k)return k;const s=document.querySelector('meta[name="gas-url"]');return s?s.content:'';})();
+function _getToken(){return localStorage.getItem('rms_token')||'';}
+function _getUser(){try{return JSON.parse(localStorage.getItem('rms_user')||'{}');}catch(e){return{};}}
+function _requireAuth(){if(!_getToken()){location.href='login.html';return false;}return true;}
+async function _gasGet(action,params){
+  if(!GAS_URL)throw new Error('GAS URL not configured');
+  let url=GAS_URL+'?action='+encodeURIComponent(action)+'&token='+encodeURIComponent(_getToken());
+  if(params)url+='&payload='+encodeURIComponent(JSON.stringify(params));
+  const r=await fetch(url);if(!r.ok)throw new Error('HTTP '+r.status);
+  const j=await r.json();if(j.success===false)throw new Error(j.error||'GAS error');return j;
+}
+async function _gasPost(payload){
+  if(!GAS_URL)throw new Error('GAS URL not configured');
+  const r=await fetch(GAS_URL,{method:'POST',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)});
+  if(!r.ok)throw new Error('HTTP '+r.status);
+  const j=await r.json();if(j.success===false)throw new Error(j.error||'GAS error');return j;
+}
+function toast(msg,type,ms){
+  type=type||'info';ms=ms||3500;
+  const tc=document.getElementById('toastContainer');if(!tc)return;
+  const d=document.createElement('div');
+  const icons={success:'check-circle',danger:'exclamation-triangle',info:'info-circle',warning:'exclamation-circle'};
+  d.className='toast toast-'+type;
+  d.innerHTML='<i class="fas fa-'+icons[type]+'"></i><span>'+msg+'</span>';
+  tc.appendChild(d);setTimeout(function(){d.remove();},ms);
+}
+function showLoading(){document.getElementById('loadingOverlay').classList.remove('hidden');}
+function hideLoading(){document.getElementById('loadingOverlay').classList.add('hidden');}
+function _fmt(n,dec){dec=dec||0;return isNaN(n)?'—':Number(n).toLocaleString('en',{minimumFractionDigits:dec,maximumFractionDigits:dec});}
+function _fmtCur(n){return isNaN(n)?'—':'฿'+Number(n).toLocaleString('en',{minimumFractionDigits:0,maximumFractionDigits:0});}
+function _fmtDate(v){
+  if(!v)return'—';
+  try{const d=new Date(v);if(isNaN(d))return String(v).substring(0,10);return d.toLocaleDateString('th-TH',{year:'numeric',month:'short',day:'numeric'});}catch(e){return String(v).substring(0,10);}
+}
+function _e(id){return document.getElementById(id);}
+function openModal(id){document.getElementById(id).classList.remove('hidden');}
+function closeModal(id){document.getElementById(id).classList.add('hidden');}
+function _initUI(){
+  const u=_getUser();
+  const av=document.getElementById('userAvatar');const un=document.getElementById('userName');
+  if(av)av.textContent=(u.name||'U').charAt(0).toUpperCase();
+  if(un)un.textContent=u.name||'User';
+  const sb=document.getElementById('mxmSidebar');const mb=document.getElementById('menuBtn');
+  if(mb&&sb)mb.onclick=function(){sb.classList.toggle('collapsed');};
+  document.querySelectorAll('.modal-overlay').forEach(function(m){
+    m.addEventListener('click',function(e){if(e.target===m)m.classList.add('hidden');});
+  });
+  const dot=document.getElementById('connDot');const lbl=document.getElementById('connLabel');
+  if(dot&&lbl){if(GAS_URL){dot.classList.add('connected');lbl.textContent='Connected';}else{lbl.textContent='Not configured';}}
+  const lu=document.getElementById('lastUpdate');
+  if(lu)lu.textContent=new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
+}
+let _sortKey='',_sortDir=1;
+function _setSort(key){if(_sortKey===key)_sortDir*=-1;else{_sortKey=key;_sortDir=1;}}
+function _sortData(arr){
+  if(!_sortKey)return arr;
+  return arr.slice().sort(function(a,b){const av=a[_sortKey]||'',bv=b[_sortKey]||'';return _sortDir*(av<bv?-1:av>bv?1:0);});
+}
+
+
+let _recvs=[], _page=1, _perPage=50;
+async function pageInit(){
+  const today=new Date();
+  const m1=new Date(today);m1.setMonth(m1.getMonth()-1);
+  _e('dateFrom').value=m1.toISOString().substring(0,10);
+  _e('dateTo').value=today.toISOString().substring(0,10);
+  _e('fDate').value=today.toISOString().substring(0,10);
+  const u=_getUser();_e('fRecvBy').value=u.name||'';
+  await loadData();
+}
+async function loadData(){
+  showLoading();
+  try{
+    const d=await _gasGet('getReceivingList');
+    _recvs=d.data||[];
+    const today=new Date().toISOString().substring(0,10);
+    const mon=new Date().getMonth();
+    let todayCnt=0,monCnt=0,val=0;
+    _recvs.forEach(function(r){
+      const dt=(r.Receipt_Date||'').substring(0,10);
+      if(dt===today)todayCnt++;
+      if(new Date(dt).getMonth()===mon)monCnt++;
+      val+=Number(r.Total_Cost||0);
+    });
+    _e('kTotal').textContent=_fmt(_recvs.length);
+    _e('kToday').textContent=_fmt(todayCnt);
+    _e('kMonth').textContent=_fmt(monCnt);
+    _e('kVal').textContent=_fmtCur(val);
+    renderTable();
+  }catch(err){toast('Load error: '+err.message,'danger');}
+  finally{hideLoading();}
+}
+function getFiltered(){
+  var q=(_e('searchInput').value||'').toLowerCase();
+  var from=_e('dateFrom').value,to=_e('dateTo').value;
+  return _recvs.filter(function(r){
+    if(q&&!((r.GRN_No||'').toLowerCase().includes(q)||(r.PO_No||'').toLowerCase().includes(q)||(r.Item_Code||'').toLowerCase().includes(q)||(r.Item_Name||'').toLowerCase().includes(q)))return false;
+    var dt=(r.Receipt_Date||'').substring(0,10);
+    if(from&&dt<from)return false;
+    if(to&&dt>to)return false;
+    return true;
+  });
+}
+function renderTable(){
+  var arr=getFiltered();
+  _e('rowCount').textContent=arr.length+' records';
+  var slice=arr.slice((_page-1)*_perPage,_page*_perPage);
+  var tb=_e('recvBody');tb.innerHTML='';
+  if(!slice.length){tb.innerHTML='<tr><td colspan="10" style="padding:32px;text-align:center;color:var(--g50)"><i class="fas fa-truck-ramp-box" style="font-size:1.5rem;display:block;margin-bottom:8px;color:var(--g30)"></i>No receipt records found</td></tr>';renderPager(0);return;}
+  slice.forEach(function(r){
+    var row=document.createElement('tr');
+    row.innerHTML=`<td class="td-mono">${r.GRN_No||''}</td><td>${_fmtDate(r.Receipt_Date)}</td><td class="td-mono" style="font-size:.72rem">${r.Item_Code||''}</td><td class="td-long">${r.Item_Name||''}</td><td style="font-size:.72rem">${r.PO_No||'—'}</td><td style="font-size:.72rem">${r.Vendor_Code||'—'}</td><td class="td-right td-num">${_fmt(r.Qty_Received)}</td><td class="td-right td-num">${_fmtCur(r.Unit_Price)}</td><td class="td-right td-num">${_fmtCur(r.Total_Cost)}</td><td style="font-size:.72rem">${r.Received_By||'—'}</td>`;
+    tb.appendChild(row);
+  });
+  renderPager(arr.length);
+}
+function renderPager(total){
+  var pages=Math.ceil(total/_perPage)||1,p=_e('pagerRow');p.innerHTML='';
+  if(pages<=1)return;
+  p.innerHTML='<span class="pager-info">Page '+_page+' of '+pages+'</span>';
+  var b=function(lbl,pg,dis){var btn=document.createElement('button');btn.className='pager-btn'+(pg===_page?' active':'');btn.textContent=lbl;btn.disabled=dis;btn.onclick=function(){_page=pg;renderTable();};p.appendChild(btn);};
+  b('‹',Math.max(1,_page-1),_page===1);
+  for(var i=Math.max(1,_page-2);i<=Math.min(pages,_page+2);i++)b(i,i,false);
+  b('›',Math.min(pages,_page+1),_page===pages);
+}
+function openRecvModal(){openModal('recvModal');}
+async function submitRecv(){
+  var code=_e('fItemCode').value.trim(),qty=Number(_e('fQty').value),price=Number(_e('fUnitPrice').value);
+  if(!code||!qty){toast('Item code and quantity required','warning');return;}
+  showLoading();
+  try{
+    await _gasPost({action:'receiveStock',token:_getToken(),itemCode:code,qty:qty,unitPrice:price,poNo:_e('fPoNo').value,vendorCode:_e('fVendor').value,invoiceNo:_e('fInvoice').value,warehouse:_e('fWh').value,date:_e('fDate').value,receivedBy:_e('fRecvBy').value,remarks:_e('fRemarks').value});
+    toast('Stock received successfully','success');
+    closeModal('recvModal');
+    _e('fItemCode').value='';_e('fItemName').value='';_e('fQty').value='';_e('fUnitPrice').value='';_e('fPoNo').value='';_e('fVendor').value='';_e('fInvoice').value='';_e('fRemarks').value='';
+    await loadData();
+  }catch(err){toast('Error: '+err.message,'danger');}
+  finally{hideLoading();}
+}
+
+document.addEventListener('DOMContentLoaded',function(){
+  if(!_requireAuth())return;
+  _initUI();
+  if(typeof pageInit==='function')pageInit();
+});
+</script>
+</body>
+</html>

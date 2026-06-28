@@ -43,7 +43,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .nav-item:hover{background:var(--g90);color:#fff}
 .nav-item.active{background:var(--g90);color:#fff;border-left-color:var(--p60)}
 .nav-icon{font-size:.85rem;width:16px;text-align:center;flex-shrink:0}
-.nav-badge{background:var(--p60);color:#fff;font-size:.6rem;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:auto}.nav-item-group{position:relative}.nav-item-parent{cursor:pointer;user-select:none}.nav-submenu-arrow{margin-left:auto;font-size:.6rem;transition:transform .25s;opacity:.7}.nav-item-group.open .nav-submenu-arrow{transform:rotate(180deg)}.nav-submenu{overflow:hidden;max-height:0;transition:max-height .25s ease}.nav-submenu.open{max-height:300px}.nav-item.nav-sub{padding-left:34px;font-size:.74rem}.mxm-sidebar.collapsed .nav-submenu{display:none}.wo-link{color:inherit;text-decoration:none;display:flex;align-items:center;gap:12px;flex:1;min-width:0;overflow:hidden}
+.nav-badge{background:var(--p60);color:#fff;font-size:.6rem;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:auto}
 .sys-info{padding:12px 14px;border-top:1px solid var(--g80);flex-shrink:0}
 .sys-title{color:var(--g40);font-size:.63rem;font-weight:600;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px}
 .sys-status-row{display:flex;align-items:center;gap:6px;margin-bottom:4px}
@@ -159,15 +159,15 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 
 
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
-   RESPONSIVE &mdash; TABLET & MOBILE
-   Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════════════════════════════════
+   RESPONSIVE — TABLET & MOBILE
+   ══════════════════════════════════════════ */
 
 /* Sidebar overlay (mobile) */
 .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:199;backdrop-filter:blur(2px)}
 .sidebar-overlay.active{display:block}
 
-/* Ã¢ÂÂÃ¢ÂÂ TABLET Ã¢ÂÂ¤1024px Ã¢ÂÂÃ¢ÂÂ */
+/* ── TABLET ≤1024px ── */
 @media(max-width:1024px){
   .mxm-sidebar{position:fixed;z-index:200;height:100%;transform:translateX(-240px);transition:transform .22s cubic-bezier(.4,0,.2,1);box-shadow:none}
   .mxm-sidebar.mobile-open{transform:translateX(0);box-shadow:4px 0 24px rgba(0,0,0,.25)}
@@ -184,7 +184,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   .settings-grid{grid-template-columns:180px 1fr!important}
 }
 
-/* Ã¢ÂÂÃ¢ÂÂ MOBILE Ã¢ÂÂ¤767px Ã¢ÂÂÃ¢ÂÂ */
+/* ── MOBILE ≤767px ── */
 @media(max-width:767px){
   .mxm-topbar{padding:0 10px;gap:6px}
   .tb-title-sub,.ccard-sub{display:none}
@@ -220,7 +220,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   td.td-long{max-width:120px}
 }
 
-/* Ã¢ÂÂÃ¢ÂÂ SMALL MOBILE Ã¢ÂÂ¤480px Ã¢ÂÂÃ¢ÂÂ */
+/* ── SMALL MOBILE ≤480px ── */
 @media(max-width:480px){
   .kpi-row{grid-template-columns:repeat(2,1fr)!important}
   .kpi-value{font-size:1.1rem}
@@ -245,20 +245,22 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
     <div class="sb-brand-text"><div class="brand-name">EWS Enterprise</div><div class="brand-sub">Repair Management v5.0</div></div>
   </div>
   <nav class="sidebar-nav"><a class="nav-item" href="dashboard.html"><i class="nav-icon fas fa-gauge-high"></i><span class="nav-label">Dashboards</span></a>
-<div class="nav-item-group" id="woGroup">
-  <div class="nav-item nav-item-parent"><a href="workorders.html" class="wo-link"><i class="nav-icon fas fa-clipboard-list"></i><span class="nav-label">Work Orders</span></a><i class="nav-submenu-arrow fas fa-chevron-down nav-label" onclick="toggleWO(event)"></i></div>
-  <div class="nav-submenu" id="woSub">
-    <a class="nav-item nav-sub" href="jobs.html"><i class="nav-icon fas fa-circle-dot"></i><span class="nav-label">EWS - Enterprise</span></a>
-    <a class="nav-item nav-sub" href="jobs.html?sys=AFC"><i class="nav-icon fas fa-circle-dot"></i><span class="nav-label">AFC - SYSTEMP</span></a>
-    <a class="nav-item nav-sub" href="jobs.html?sys=COM"><i class="nav-icon fas fa-circle-dot"></i><span class="nav-label">COM - SYSTEMP</span></a>
-  </div>
-</div>
+<a class="nav-item" href="jobs.html"><i class="nav-icon fas fa-clipboard-list"></i><span class="nav-label">Work Orders</span></a>
 <a class="nav-item active" href="approvals.html"><i class="nav-icon fas fa-clipboard-check"></i><span class="nav-label">Approvals</span></a>
 <div class="sidebar-section-label">Operations</div>
 <a class="nav-item" href="pm.html"><i class="nav-icon fas fa-calendar-check"></i><span class="nav-label">Preventive Maintenance</span></a>
-<a class="nav-item" href="parts.html"><i class="nav-icon fas fa-cubes"></i><span class="nav-label">Inventory</span></a>
-<a class="nav-item" href="store.html"><i class="nav-icon fas fa-boxes-stacking"></i><span class="nav-label">Store / Receiving</span></a>
 <a class="nav-item" href="vendors.html"><i class="nav-icon fas fa-building"></i><span class="nav-label">Vendors</span></a>
+<div class="sidebar-section-label">Inventory</div>
+<a class="nav-item" href="inv-dashboard.html"><i class="nav-icon fas fa-chart-pie"></i><span class="nav-label">Inv Dashboard</span></a>
+<a class="nav-item" href="inv-items.html"><i class="nav-icon fas fa-boxes-stacking"></i><span class="nav-label">Item Master</span></a>
+<a class="nav-item" href="inv-receiving.html"><i class="nav-icon fas fa-truck-ramp-box"></i><span class="nav-label">Receiving</span></a>
+<a class="nav-item" href="inv-issue.html"><i class="nav-icon fas fa-arrow-up-from-bracket"></i><span class="nav-label">Issue Parts</span></a>
+<a class="nav-item" href="inv-return.html"><i class="nav-icon fas fa-rotate-left"></i><span class="nav-label">Return Parts</span></a>
+<a class="nav-item" href="inv-transfer.html"><i class="nav-icon fas fa-right-left"></i><span class="nav-label">Transfer Stock</span></a>
+<a class="nav-item" href="inv-adjustment.html"><i class="nav-icon fas fa-sliders"></i><span class="nav-label">Adjustment</span></a>
+<a class="nav-item" href="inv-inquiry.html"><i class="nav-icon fas fa-magnifying-glass-chart"></i><span class="nav-label">Stock Inquiry</span></a>
+<a class="nav-item" href="inv-transactions.html"><i class="nav-icon fas fa-list-check"></i><span class="nav-label">Transactions</span></a>
+<a class="nav-item" href="inv-reorder.html"><i class="nav-icon fas fa-cart-shopping"></i><span class="nav-label">Reorder Planning</span></a>
 <div class="sidebar-section-label">Analytics</div>
 <a class="nav-item" href="reports.html"><i class="nav-icon fas fa-chart-bar"></i><span class="nav-label">Reports &amp; Analytics</span></a>
 <a class="nav-item" href="analytics.html"><i class="nav-icon fas fa-chart-line"></i><span class="nav-label">Trend Analysis</span></a>
@@ -271,7 +273,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   <div class="sys-info">
     <div class="sys-title">System Status</div>
     <div class="sys-status-row"><div class="sys-dot"></div><div class="sys-online">Online</div></div>
-    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">&mdash;</span></div>
+    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">—</span></div>
   </div>
 </aside>
 <div class="mxm-main">
@@ -289,8 +291,8 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
     <button class="tb-icon-btn"><i class="fas fa-bell"></i></button>
     <a href="dashboard.html" class="tb-icon-btn" title="Dashboard"><i class="fas fa-gauge-high"></i></a>
     <div class="tb-user" onclick="logout()" title="Logout" style="cursor:pointer">
-      <div class="tb-avatar" id="tbAvatar">&mdash;</div>
-      <span class="tb-username" id="tbUsername">&mdash;</span>
+      <div class="tb-avatar" id="tbAvatar">—</div>
+      <span class="tb-username" id="tbUsername">—</span>
     </div>
   </div>
 </header>
@@ -303,13 +305,13 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
     <option value="MEDIUM">Medium</option><option value="LOW">Low</option>
   </select>
   <div class="toolbar-spacer"></div>
-  <span style="font-size:.72rem;color:var(--g60)" id="approvalCount">&mdash; pending</span>
+  <span style="font-size:.72rem;color:var(--g60)" id="approvalCount">— pending</span>
 </div>
 <div class="ks-strip" style="grid-template-columns:repeat(4,1fr);display:grid;gap:2px;flex-shrink:0">
-  <div class="ks-card ksc-y"><div class="ks-label">Pending Approval</div><div class="ks-value" id="ksPending">&mdash;</div></div>
-  <div class="ks-card ksc-r"><div class="ks-label">Critical Pending</div><div class="ks-value" id="ksCritical">&mdash;</div></div>
-  <div class="ks-card ksc-o"><div class="ks-label">High Priority</div><div class="ks-value" id="ksHigh">&mdash;</div></div>
-  <div class="ks-card ksc-g"><div class="ks-label">Approved Today</div><div class="ks-value" id="ksApproved">&mdash;</div></div>
+  <div class="ks-card ksc-y"><div class="ks-label">Pending Approval</div><div class="ks-value" id="ksPending">—</div></div>
+  <div class="ks-card ksc-r"><div class="ks-label">Critical Pending</div><div class="ks-value" id="ksCritical">—</div></div>
+  <div class="ks-card ksc-o"><div class="ks-label">High Priority</div><div class="ks-value" id="ksHigh">—</div></div>
+  <div class="ks-card ksc-g"><div class="ks-label">Approved Today</div><div class="ks-value" id="ksApproved">—</div></div>
 </div>
 <div class="tbl-wrap">
 <table class="data-table" style="min-width:600px"><thead><tr>
@@ -357,7 +359,7 @@ function toggleSidebar(){
     sb.classList.toggle('collapsed');
   }
 }
-function fmtDate(d){if(!d)return'&mdash;';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'2-digit'})}
+function fmtDate(d){if(!d)return'—';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'2-digit'})}
 function statusBadge(s){const st=(s||'OPEN').replace(/ /g,'_').toUpperCase();const lbl={OPEN:'Open',SEND_REPAIR:'In Repair',RETURNED:'Returned',WAIT_APPROVAL:'Wait Approval',WAIT_SPARE_PART:'Wait Parts',CLOSED:'Closed'};return`<span class="bs bs-${st}">${lbl[st]||st}</span>`}
 function priBadge(p){const pr=(p||'MEDIUM').toUpperCase();const lbl={CRITICAL:'Critical',HIGH:'High',MEDIUM:'Medium',LOW:'Low'};return`<span class="pri pri-${pr}"><span class="pri-dot"></span>${lbl[pr]||pr}</span>`}
 
@@ -372,56 +374,56 @@ function _mkJob(n,eq,dmg,act,ven,st,cr,cl,pri){
   return{JOB_No:'JOB-'+String(n).padStart(4,'0'),Equipment_ID:eq,Damage_Code:dmg,Repair_Action:act,Vendor_ID:ven,Status:st,Create_Date:cr,Close_Date:cl||'',Priority:pri||'MEDIUM'};
 }
 const SAMPLE_JOBS=[
-  _mkJob(1,'EQ-001','Ã Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â®Ã Â¸ÂÃ Â¸Â£Ã Â¸Â­Ã Â¸Â¥Ã Â¸Â´Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Seal Kit','V001','CLOSED','2025-11-05','2025-11-18','HIGH'),
-  _mkJob(2,'EQ-002','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸ÂÃ Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹Â','V002','CLOSED','2025-11-08','2025-11-22','CRITICAL'),
-  _mkJob(3,'EQ-003','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â´Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Bearing','V001','CLOSED','2025-11-10','2025-11-19','MEDIUM'),
-  _mkJob(4,'EQ-004','PCB Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡ PCB','V003','CLOSED','2025-11-12','2025-11-28','HIGH'),
-  _mkJob(5,'EQ-005','Ã Â¸ÂªÃ Â¸Â²Ã Â¸Â¢Ã Â¸ÂÃ Â¸Â²Ã Â¸ÂÃ Â¸ÂÃ Â¸Â²Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸ÂÃ Â¸ÂªÃ Â¸Â²Ã Â¸Â¢Ã Â¸ÂÃ Â¸Â²Ã Â¸Â','V001','CLOSED','2025-11-14','2025-11-20','LOW'),
-  _mkJob(6,'EQ-001','Ã Â¹ÂÃ Â¸Â®Ã Â¸ÂÃ Â¸Â£Ã Â¸Â­Ã Â¸Â¥Ã Â¸Â´Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§Ã Â¸ÂÃ Â¹ÂÃ Â¸Â³','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Seal','V001','CLOSED','2025-12-01','2025-12-10','HIGH'),
-  _mkJob(7,'EQ-006','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸Â£Ã Â¹ÂÃ Â¸Â­Ã Â¸Â','Ã Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â§Ã Â¸Â²Ã Â¸Â¡Ã Â¸ÂªÃ Â¸Â°Ã Â¸Â­Ã Â¸Â²Ã Â¸Â+Ã Â¸ÂÃ Â¸Â£Ã Â¸Â§Ã Â¸Â','V002','CLOSED','2025-12-03','2025-12-12','MEDIUM'),
-  _mkJob(8,'EQ-007','Valve Ã Â¸ÂÃ Â¸Â´Ã Â¸Â','Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡ Valve','V003','CLOSED','2025-12-05','2025-12-16','LOW'),
-  _mkJob(9,'EQ-002','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸ÂªÃ Â¸Â±Ã Â¹ÂÃ Â¸Â','Ã Â¸ÂÃ Â¸Â£Ã Â¸Â§Ã Â¸ÂÃ Â¸ÂªÃ Â¸Â­Ã Â¸Â Coupling','V002','CLOSED','2025-12-08','2025-12-20','HIGH'),
-  _mkJob(10,'EQ-008','Ã Â¸ÂÃ Â¸Â±Ã Â¹ÂÃ Â¸Â¡Ã Â¹ÂÃ Â¸Â¡Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¹Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Impeller','V001','CLOSED','2025-12-10','2025-12-24','CRITICAL'),
-  _mkJob(11,'EQ-009','Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸ÂÃ Â¸Â´Ã Â¸ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸Â²Ã Â¸Â','Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¸Â Calibrate','V003','CLOSED','2025-12-12','2025-12-22','MEDIUM'),
-  _mkJob(12,'EQ-010','Compressor Ã Â¸ÂÃ Â¸Â´Ã Â¸ÂÃ Â¸ÂÃ Â¸ÂÃ Â¸ÂÃ Â¸Â´','Overhaul','V002','CLOSED','2025-12-15','2026-01-05','HIGH'),
-  _mkJob(13,'EQ-003','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â´Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂªÃ Â¸Â·Ã Â¹ÂÃ Â¸Â­Ã Â¸Â¡','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Bearing Ã Â¸ÂÃ Â¸Â¸Ã Â¸ÂÃ Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹Â','V001','CLOSED','2026-01-05','2026-01-14','MEDIUM'),
-  _mkJob(14,'EQ-011','PCB Controller Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â PCB','V003','CLOSED','2026-01-08','2026-01-20','HIGH'),
-  _mkJob(15,'EQ-004','Ã Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â²Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡Ã Â¸Â§Ã Â¸ÂÃ Â¸ÂÃ Â¸Â£','V003','CLOSED','2026-01-10','2026-01-25','HIGH'),
-  _mkJob(16,'EQ-012','Ã Â¸ÂÃ Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸Â­Ã Â¸ÂÃ Â¹ÂÃ Â¸Â®Ã Â¸ÂÃ Â¸Â£Ã Â¸Â­Ã Â¸Â¥Ã Â¸Â´Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Seal','V001','CLOSED','2026-01-12','2026-01-22','MEDIUM'),
-  _mkJob(17,'EQ-005','Ã Â¸ÂªÃ Â¸Â²Ã Â¸Â¢Ã Â¸ÂÃ Â¸Â²Ã Â¸ÂÃ Â¸Â«Ã Â¸Â¥Ã Â¸Â¸Ã Â¸Â','Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â§Ã Â¸ÂªÃ Â¸Â²Ã Â¸Â¢Ã Â¸ÂÃ Â¸Â²Ã Â¸Â','V001','CLOSED','2026-01-15','2026-01-18','LOW'),
-  _mkJob(18,'EQ-013','Ã Â¸ÂÃ Â¸Â±Ã Â¹ÂÃ Â¸Â¡Ã Â¸ÂÃ Â¹ÂÃ Â¸Â³Ã Â¸Â¡Ã Â¸Â±Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸ÂÃ Â¸ÂÃ Â¸ÂµÃ Â¸Â¥Ã Â¸ÂÃ Â¸Â±Ã Â¹ÂÃ Â¸Â¡','V001','CLOSED','2026-01-18','2026-01-28','HIGH'),
-  _mkJob(19,'EQ-006','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸Â«Ã Â¸Â¢Ã Â¸Â¸Ã Â¸ÂÃ Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â²Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸ÂÃ Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹Â','V002','CLOSED','2026-01-20','2026-02-03','CRITICAL'),
-  _mkJob(20,'EQ-014','Ã Â¸Â«Ã Â¸Â±Ã Â¸Â§Ã Â¸ÂÃ Â¸ÂµÃ Â¸ÂÃ Â¸Â­Ã Â¸Â¸Ã Â¸ÂÃ Â¸ÂÃ Â¸Â±Ã Â¸Â','Ã Â¸Â¥Ã Â¹ÂÃ Â¸Â²Ã Â¸ÂÃ Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â§Ã Â¸Â²Ã Â¸Â¡Ã Â¸ÂªÃ Â¸Â°Ã Â¸Â­Ã Â¸Â²Ã Â¸Â','V002','CLOSED','2026-01-22','2026-01-30','MEDIUM'),
-  _mkJob(21,'EQ-001','Ã Â¹ÂÃ Â¸Â®Ã Â¸ÂÃ Â¸Â£Ã Â¸Â­Ã Â¸Â¥Ã Â¸Â´Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸ÂÃ Â¸ÂÃ Â¸ÂµÃ Â¹Â 3','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Cylinder','V001','CLOSED','2026-02-02','2026-02-14','HIGH'),
-  _mkJob(22,'EQ-015','Belt Drive Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Belt Set','V001','CLOSED','2026-02-04','2026-02-12','MEDIUM'),
-  _mkJob(23,'EQ-007','Valve Ã Â¸Â­Ã Â¸Â¸Ã Â¸ÂÃ Â¸ÂÃ Â¸Â±Ã Â¸Â','Ã Â¸ÂÃ Â¸Â­Ã Â¸ÂÃ Â¸Â¥Ã Â¹ÂÃ Â¸Â²Ã Â¸ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸Â­Ã Â¸Â','V003','CLOSED','2026-02-06','2026-02-18','LOW'),
-  _mkJob(24,'EQ-002','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸Â£Ã Â¹ÂÃ Â¸Â­Ã Â¸ÂÃ Â¸Â¡Ã Â¸Â²Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Cooling Fan','V002','CLOSED','2026-02-08','2026-02-20','HIGH'),
-  _mkJob(25,'EQ-016','Gear Box Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Gear Oil+Ã Â¸ÂÃ Â¸Â£Ã Â¸Â§Ã Â¸Â','V002','CLOSED','2026-02-10','2026-02-22','MEDIUM'),
-  _mkJob(26,'EQ-008','Ã Â¸ÂÃ Â¸Â±Ã Â¹ÂÃ Â¸Â¡Ã Â¸ÂªÃ Â¸Â±Ã Â¹ÂÃ Â¸Â','Balance Impeller','V001','CLOSED','2026-02-12','2026-02-24','MEDIUM'),
-  _mkJob(27,'EQ-017','Sensor Ã Â¸ÂÃ Â¸Â²Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Sensor Ã Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹Â','V003','CLOSED','2026-02-15','2026-02-24','LOW'),
+  _mkJob(1,'EQ-001','ระบบไฮดรอลิกรั่ว','เปลี่ยน Seal Kit','V001','CLOSED','2025-11-05','2025-11-18','HIGH'),
+  _mkJob(2,'EQ-002','มอเตอร์ไหม้','เปลี่ยนมอเตอร์ใหม่','V002','CLOSED','2025-11-08','2025-11-22','CRITICAL'),
+  _mkJob(3,'EQ-003','แบริ่งเสียง','เปลี่ยน Bearing','V001','CLOSED','2025-11-10','2025-11-19','MEDIUM'),
+  _mkJob(4,'EQ-004','PCB เสีย','ซ่อม PCB','V003','CLOSED','2025-11-12','2025-11-28','HIGH'),
+  _mkJob(5,'EQ-005','สายพานขาด','เปลี่ยนสายพาน','V001','CLOSED','2025-11-14','2025-11-20','LOW'),
+  _mkJob(6,'EQ-001','ไฮดรอลิกรั่วซ้ำ','เปลี่ยน Seal','V001','CLOSED','2025-12-01','2025-12-10','HIGH'),
+  _mkJob(7,'EQ-006','มอเตอร์ร้อน','ทำความสะอาด+ตรวจ','V002','CLOSED','2025-12-03','2025-12-12','MEDIUM'),
+  _mkJob(8,'EQ-007','Valve ติด','ซ่อม Valve','V003','CLOSED','2025-12-05','2025-12-16','LOW'),
+  _mkJob(9,'EQ-002','มอเตอร์สั่น','ตรวจสอบ Coupling','V002','CLOSED','2025-12-08','2025-12-20','HIGH'),
+  _mkJob(10,'EQ-008','ปั๊มไม่ดูด','เปลี่ยน Impeller','V001','CLOSED','2025-12-10','2025-12-24','CRITICAL'),
+  _mkJob(11,'EQ-009','เซ็นเซอร์ผิดพลาด','ปรับ Calibrate','V003','CLOSED','2025-12-12','2025-12-22','MEDIUM'),
+  _mkJob(12,'EQ-010','Compressor ผิดปกติ','Overhaul','V002','CLOSED','2025-12-15','2026-01-05','HIGH'),
+  _mkJob(13,'EQ-003','แบริ่งเสื่อม','เปลี่ยน Bearing ชุดใหม่','V001','CLOSED','2026-01-05','2026-01-14','MEDIUM'),
+  _mkJob(14,'EQ-011','PCB Controller เสีย','เปลี่ยน PCB','V003','CLOSED','2026-01-08','2026-01-20','HIGH'),
+  _mkJob(15,'EQ-004','บอร์ดไฟฟ้าเสีย','ซ่อมวงจร','V003','CLOSED','2026-01-10','2026-01-25','HIGH'),
+  _mkJob(16,'EQ-012','กระบอกไฮดรอลิกรั่ว','เปลี่ยน Seal','V001','CLOSED','2026-01-12','2026-01-22','MEDIUM'),
+  _mkJob(17,'EQ-005','สายพานหลุด','ปรับแนวสายพาน','V001','CLOSED','2026-01-15','2026-01-18','LOW'),
+  _mkJob(18,'EQ-013','ปั๊มน้ำมันรั่ว','เปลี่ยนซีลปั๊ม','V001','CLOSED','2026-01-18','2026-01-28','HIGH'),
+  _mkJob(19,'EQ-006','มอเตอร์หยุดทำงาน','เปลี่ยนมอเตอร์','V002','CLOSED','2026-01-20','2026-02-03','CRITICAL'),
+  _mkJob(20,'EQ-014','หัวฉีดอุดตัน','ล้างทำความสะอาด','V002','CLOSED','2026-01-22','2026-01-30','MEDIUM'),
+  _mkJob(21,'EQ-001','ไฮดรอลิกรั่วครั้งที่ 3','เปลี่ยน Cylinder','V001','CLOSED','2026-02-02','2026-02-14','HIGH'),
+  _mkJob(22,'EQ-015','Belt Drive เสีย','เปลี่ยน Belt Set','V001','CLOSED','2026-02-04','2026-02-12','MEDIUM'),
+  _mkJob(23,'EQ-007','Valve อุดตัน','ถอดล้างประกอบ','V003','CLOSED','2026-02-06','2026-02-18','LOW'),
+  _mkJob(24,'EQ-002','มอเตอร์ร้อนมาก','เปลี่ยน Cooling Fan','V002','CLOSED','2026-02-08','2026-02-20','HIGH'),
+  _mkJob(25,'EQ-016','Gear Box เสียง','เปลี่ยน Gear Oil+ตรวจ','V002','CLOSED','2026-02-10','2026-02-22','MEDIUM'),
+  _mkJob(26,'EQ-008','ปั๊มสั่น','Balance Impeller','V001','CLOSED','2026-02-12','2026-02-24','MEDIUM'),
+  _mkJob(27,'EQ-017','Sensor ขาด','เปลี่ยน Sensor ใหม่','V003','CLOSED','2026-02-15','2026-02-24','LOW'),
   _mkJob(28,'EQ-009','Display Error','Reset+Update Firmware','V003','CLOSED','2026-02-18','2026-03-01','MEDIUM'),
-  _mkJob(29,'EQ-010','Compressor Ã Â¸ÂÃ Â¸Â±Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Piston Ring','V002','CLOSED','2026-02-20','2026-03-05','HIGH'),
-  _mkJob(30,'EQ-018','Transformer Ã Â¸Â£Ã Â¹ÂÃ Â¸Â­Ã Â¸Â','Ã Â¸ÂÃ Â¸Â£Ã Â¸Â§Ã Â¸Â Load+Ã Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸Â²Ã Â¸Â¢','V003','CLOSED','2026-02-22','2026-03-04','HIGH'),
-  _mkJob(31,'EQ-003','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â´Ã Â¹ÂÃ Â¸ÂÃ Â¸ÂÃ Â¸Â¸Ã Â¸ÂÃ Â¸ÂÃ Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Bearing','V001','CLOSED','2026-03-01','2026-03-12','MEDIUM'),
-  _mkJob(32,'EQ-019','Pump Shaft Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Shaft+Ã Â¸ÂÃ Â¸ÂµÃ Â¸Â¥','V001','CLOSED','2026-03-03','2026-03-16','HIGH'),
-  _mkJob(33,'EQ-011','Ã Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸Â Logic Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Logic Board','V003','CLOSED','2026-03-05','2026-03-18','HIGH'),
-  _mkJob(34,'EQ-004','Inverter Error','Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡ Inverter Board','V003','CLOSED','2026-03-08','2026-03-22','CRITICAL'),
-  _mkJob(35,'EQ-020','Filter Ã Â¸Â­Ã Â¸Â¸Ã Â¸ÂÃ Â¸ÂÃ Â¸Â±Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Filter Ã Â¸ÂÃ Â¸Â¸Ã Â¸Â','V002','CLOSED','2026-03-10','2026-03-18','LOW'),
-  _mkJob(36,'EQ-001','Ã Â¸ÂÃ Â¸ÂµÃ Â¸Â¥Ã Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸ÂÃ Â¸ÂÃ Â¸ÂµÃ Â¹Â 4','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â O-Ring Ã Â¸ÂÃ Â¸Â¸Ã Â¸Â','V001','RETURNED','2026-04-01','2026-04-12','HIGH'),
-  _mkJob(37,'EQ-002','Rotor Ã Â¹ÂÃ Â¸ÂªÃ Â¸Â·Ã Â¹ÂÃ Â¸Â­Ã Â¸Â¡','Rewind Motor','V002','RETURNED','2026-04-03','2026-04-18','CRITICAL'),
-  _mkJob(38,'EQ-005','Ã Â¸ÂªÃ Â¸Â²Ã Â¸Â¢Ã Â¸ÂÃ Â¸Â²Ã Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸ÂÃ Â¸ÂªÃ Â¸Â²Ã Â¸Â¢Ã Â¸ÂÃ Â¸Â²Ã Â¸ÂÃ Â¸ÂÃ Â¸Â¸Ã Â¸Â','V001','RETURNED','2026-04-05','2026-04-14','MEDIUM'),
-  _mkJob(39,'EQ-006','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹ÂÃ Â¸Â­Ã Â¸ÂµÃ Â¸ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸ÂÃ Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹Â','V002','RETURNED','2026-04-08','2026-04-22','CRITICAL'),
-  _mkJob(40,'EQ-007','Valve Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢Ã Â¸Â«Ã Â¸Â²Ã Â¸Â¢','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Valve Ã Â¹ÂÃ Â¸Â«Ã Â¸Â¡Ã Â¹Â','V003','RETURNED','2026-04-10','2026-04-20','LOW'),
-  _mkJob(41,'EQ-008','Ã Â¸ÂÃ Â¸Â±Ã Â¹ÂÃ Â¸Â¡Ã Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Mechanical Seal','V001','SEND_REPAIR','2026-05-02',null,'HIGH'),
-  _mkJob(42,'EQ-009','Ã Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸Â Error','Ã Â¸Â§Ã Â¸Â´Ã Â¹ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â²Ã Â¸Â°Ã Â¸Â«Ã Â¹Â+Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡Ã Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸Â','V003','SEND_REPAIR','2026-05-05',null,'MEDIUM'),
-  _mkJob(43,'EQ-010','Compressor Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢Ã Â¸Â«Ã Â¸ÂÃ Â¸Â±Ã Â¸Â','Major Overhaul','V002','SEND_REPAIR','2026-05-08',null,'CRITICAL'),
-  _mkJob(44,'EQ-021','PCB Inverter Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Inverter','V003','SEND_REPAIR','2026-05-10',null,'HIGH'),
-  _mkJob(45,'EQ-022','Bearing Ã Â¸ÂÃ Â¸Â¸Ã Â¸ÂÃ Â¸Â¥Ã Â¹ÂÃ Â¸Â²Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Bearing Lower','V001','WAIT_SPARE_PART','2026-05-12',null,'MEDIUM'),
-  _mkJob(46,'EQ-023','Ã Â¸Â£Ã Â¸Â°Ã Â¸ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â®Ã Â¸ÂÃ Â¸Â£Ã Â¸Â­Ã Â¸Â¥Ã Â¸Â´Ã Â¸ÂÃ Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§','Ã Â¸Â£Ã Â¸Â­ Seal Kit','V001','WAIT_APPROVAL','2026-05-15',null,'HIGH'),
-  _mkJob(47,'EQ-024','Ã Â¸Â¡Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢Ã Â¸Â','Ã Â¸ÂÃ Â¸Â£Ã Â¸Â§Ã Â¸Â Alignment','V002','OPEN','2026-06-01',null,'LOW'),
-  _mkJob(48,'EQ-025','Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹ÂÃ Â¸ÂÃ Â¸Â´Ã Â¸Â','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â Sensor','V003','OPEN','2026-06-05',null,'MEDIUM'),
-  _mkJob(49,'EQ-026','Valve Ã Â¸Â£Ã Â¸Â±Ã Â¹ÂÃ Â¸Â§','Ã Â¸ÂÃ Â¹ÂÃ Â¸Â­Ã Â¸Â¡ Valve','V001','OPEN','2026-06-10',null,'HIGH'),
-  _mkJob(50,'EQ-027','PCB Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂµÃ Â¸Â¢','Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¥Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¢Ã Â¸Â PCB','V003','OPEN','2026-06-15',null,'CRITICAL'),
+  _mkJob(29,'EQ-010','Compressor ขัด','เปลี่ยน Piston Ring','V002','CLOSED','2026-02-20','2026-03-05','HIGH'),
+  _mkJob(30,'EQ-018','Transformer ร้อน','ตรวจ Load+ระบาย','V003','CLOSED','2026-02-22','2026-03-04','HIGH'),
+  _mkJob(31,'EQ-003','แบริ่งชุดบน','เปลี่ยน Bearing','V001','CLOSED','2026-03-01','2026-03-12','MEDIUM'),
+  _mkJob(32,'EQ-019','Pump Shaft เสีย','เปลี่ยน Shaft+ซีล','V001','CLOSED','2026-03-03','2026-03-16','HIGH'),
+  _mkJob(33,'EQ-011','บอร์ด Logic เสีย','เปลี่ยน Logic Board','V003','CLOSED','2026-03-05','2026-03-18','HIGH'),
+  _mkJob(34,'EQ-004','Inverter Error','ซ่อม Inverter Board','V003','CLOSED','2026-03-08','2026-03-22','CRITICAL'),
+  _mkJob(35,'EQ-020','Filter อุดตัน','เปลี่ยน Filter ชุด','V002','CLOSED','2026-03-10','2026-03-18','LOW'),
+  _mkJob(36,'EQ-001','ซีลรั่วครั้งที่ 4','เปลี่ยน O-Ring ชุด','V001','RETURNED','2026-04-01','2026-04-12','HIGH'),
+  _mkJob(37,'EQ-002','Rotor เสื่อม','Rewind Motor','V002','RETURNED','2026-04-03','2026-04-18','CRITICAL'),
+  _mkJob(38,'EQ-005','สายพานแตก','เปลี่ยนสายพานชุด','V001','RETURNED','2026-04-05','2026-04-14','MEDIUM'),
+  _mkJob(39,'EQ-006','มอเตอร์ไหม้อีกครั้ง','เปลี่ยนมอเตอร์ใหม่','V002','RETURNED','2026-04-08','2026-04-22','CRITICAL'),
+  _mkJob(40,'EQ-007','Valve เสียหาย','เปลี่ยน Valve ใหม่','V003','RETURNED','2026-04-10','2026-04-20','LOW'),
+  _mkJob(41,'EQ-008','ปั๊มรั่ว','เปลี่ยน Mechanical Seal','V001','SEND_REPAIR','2026-05-02',null,'HIGH'),
+  _mkJob(42,'EQ-009','ระบบ Error','วิเคราะห์+ซ่อมบอร์ด','V003','SEND_REPAIR','2026-05-05',null,'MEDIUM'),
+  _mkJob(43,'EQ-010','Compressor เสียหนัก','Major Overhaul','V002','SEND_REPAIR','2026-05-08',null,'CRITICAL'),
+  _mkJob(44,'EQ-021','PCB Inverter เสีย','เปลี่ยน Inverter','V003','SEND_REPAIR','2026-05-10',null,'HIGH'),
+  _mkJob(45,'EQ-022','Bearing ชุดล่าง','เปลี่ยน Bearing Lower','V001','WAIT_SPARE_PART','2026-05-12',null,'MEDIUM'),
+  _mkJob(46,'EQ-023','ระบบไฮดรอลิกรั่ว','รอ Seal Kit','V001','WAIT_APPROVAL','2026-05-15',null,'HIGH'),
+  _mkJob(47,'EQ-024','มอเตอร์เสียง','ตรวจ Alignment','V002','OPEN','2026-06-01',null,'LOW'),
+  _mkJob(48,'EQ-025','เซ็นเซอร์ผิด','เปลี่ยน Sensor','V003','OPEN','2026-06-05',null,'MEDIUM'),
+  _mkJob(49,'EQ-026','Valve รั่ว','ซ่อม Valve','V001','OPEN','2026-06-10',null,'HIGH'),
+  _mkJob(50,'EQ-027','PCB เสีย','เปลี่ยน PCB','V003','OPEN','2026-06-15',null,'CRITICAL'),
 ];
 const SAMPLE_PARTS=[
   {Part_ID:'P001',Part_Name:'Motor Bearing 6205',Category:'Bearing',Current_Stock:12,Min_Stock:5,Cost:350},
@@ -434,9 +436,9 @@ const SAMPLE_PARTS=[
   {Part_ID:'P008',Part_Name:'Coupling Jaw Insert',Category:'Mechanical',Current_Stock:0,Min_Stock:2,Cost:560},
 ];
 const SAMPLE_VENDORS=[
-  {Vendor_ID:'V001',Vendor_Name:'Ã Â¹ÂÃ Â¸ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â¡Ã Â¸Â²Ã Â¸ÂªÃ Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹Â Ã Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â±Ã Â¸Â'},
-  {Vendor_ID:'V002',Vendor_Name:'Ã Â¸Â­Ã Â¸Â´Ã Â¸ÂÃ Â¸ÂÃ Â¸Â±Ã Â¸ÂªÃ Â¹ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸ÂµÃ Â¸Â¢Ã Â¸Â¥Ã Â¸ÂÃ Â¸Â²Ã Â¸Â£Ã Â¹ÂÃ Â¸Â Ã Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â±Ã Â¸Â'},
-  {Vendor_ID:'V003',Vendor_Name:'Ã Â¸Â­Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â¡Ã Â¸ÂÃ Â¸Â±Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â£ Ã Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â±Ã Â¸Â'},
+  {Vendor_ID:'V001',Vendor_Name:'เทคโนมาสเตอร์ จำกัด'},
+  {Vendor_ID:'V002',Vendor_Name:'อินดัสเทรียลพาร์ท จำกัด'},
+  {Vendor_ID:'V003',Vendor_Name:'ออโตเมชั่นโปร จำกัด'},
 ];
 let _jobs=[], _parts=[];
 
@@ -502,6 +504,5 @@ function loadData(){
 
 loadData();
 </script>
-<script>function toggleWO(e){if(e)e.stopPropagation();var g=document.getElementById('woGroup'),s=document.getElementById('woSub');if(g)g.classList.toggle('open');if(s)s.classList.toggle('open');}</script>
 </body>
 </html>

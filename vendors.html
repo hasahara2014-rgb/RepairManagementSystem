@@ -43,7 +43,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .nav-item:hover{background:var(--g90);color:#fff}
 .nav-item.active{background:var(--g90);color:#fff;border-left-color:var(--p60)}
 .nav-icon{font-size:.85rem;width:16px;text-align:center;flex-shrink:0}
-.nav-badge{background:var(--p60);color:#fff;font-size:.6rem;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:auto}.nav-item-group{position:relative}.nav-item-parent{cursor:pointer;user-select:none}.nav-submenu-arrow{margin-left:auto;font-size:.6rem;transition:transform .25s;opacity:.7}.nav-item-group.open .nav-submenu-arrow{transform:rotate(180deg)}.nav-submenu{overflow:hidden;max-height:0;transition:max-height .25s ease}.nav-submenu.open{max-height:300px}.nav-item.nav-sub{padding-left:34px;font-size:.74rem}.mxm-sidebar.collapsed .nav-submenu{display:none}.wo-link{color:inherit;text-decoration:none;display:flex;align-items:center;gap:12px;flex:1;min-width:0;overflow:hidden}
+.nav-badge{background:var(--p60);color:#fff;font-size:.6rem;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:auto}
 .sys-info{padding:12px 14px;border-top:1px solid var(--g80);flex-shrink:0}
 .sys-title{color:var(--g40);font-size:.63rem;font-weight:600;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px}
 .sys-status-row{display:flex;align-items:center;gap:6px;margin-bottom:4px}
@@ -159,15 +159,15 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 
 
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
-   RESPONSIVE &mdash; TABLET & MOBILE
-   Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════════════════════════════════
+   RESPONSIVE — TABLET & MOBILE
+   ══════════════════════════════════════════ */
 
 /* Sidebar overlay (mobile) */
 .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:199;backdrop-filter:blur(2px)}
 .sidebar-overlay.active{display:block}
 
-/* Ã¢ÂÂÃ¢ÂÂ TABLET Ã¢ÂÂ¤1024px Ã¢ÂÂÃ¢ÂÂ */
+/* ── TABLET ≤1024px ── */
 @media(max-width:1024px){
   .mxm-sidebar{position:fixed;z-index:200;height:100%;transform:translateX(-240px);transition:transform .22s cubic-bezier(.4,0,.2,1);box-shadow:none}
   .mxm-sidebar.mobile-open{transform:translateX(0);box-shadow:4px 0 24px rgba(0,0,0,.25)}
@@ -184,7 +184,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   .settings-grid{grid-template-columns:180px 1fr!important}
 }
 
-/* Ã¢ÂÂÃ¢ÂÂ MOBILE Ã¢ÂÂ¤767px Ã¢ÂÂÃ¢ÂÂ */
+/* ── MOBILE ≤767px ── */
 @media(max-width:767px){
   .mxm-topbar{padding:0 10px;gap:6px}
   .tb-title-sub,.ccard-sub{display:none}
@@ -220,7 +220,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   td.td-long{max-width:120px}
 }
 
-/* Ã¢ÂÂÃ¢ÂÂ SMALL MOBILE Ã¢ÂÂ¤480px Ã¢ÂÂÃ¢ÂÂ */
+/* ── SMALL MOBILE ≤480px ── */
 @media(max-width:480px){
   .kpi-row{grid-template-columns:repeat(2,1fr)!important}
   .kpi-value{font-size:1.1rem}
@@ -245,20 +245,22 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
     <div class="sb-brand-text"><div class="brand-name">EWS Enterprise</div><div class="brand-sub">Repair Management v5.0</div></div>
   </div>
   <nav class="sidebar-nav"><a class="nav-item" href="dashboard.html"><i class="nav-icon fas fa-gauge-high"></i><span class="nav-label">Dashboards</span></a>
-<div class="nav-item-group" id="woGroup">
-  <div class="nav-item nav-item-parent"><a href="workorders.html" class="wo-link"><i class="nav-icon fas fa-clipboard-list"></i><span class="nav-label">Work Orders</span></a><i class="nav-submenu-arrow fas fa-chevron-down nav-label" onclick="toggleWO(event)"></i></div>
-  <div class="nav-submenu" id="woSub">
-    <a class="nav-item nav-sub" href="jobs.html"><i class="nav-icon fas fa-circle-dot"></i><span class="nav-label">EWS - Enterprise</span></a>
-    <a class="nav-item nav-sub" href="jobs.html?sys=AFC"><i class="nav-icon fas fa-circle-dot"></i><span class="nav-label">AFC - SYSTEMP</span></a>
-    <a class="nav-item nav-sub" href="jobs.html?sys=COM"><i class="nav-icon fas fa-circle-dot"></i><span class="nav-label">COM - SYSTEMP</span></a>
-  </div>
-</div>
+<a class="nav-item" href="jobs.html"><i class="nav-icon fas fa-clipboard-list"></i><span class="nav-label">Work Orders</span></a>
 <a class="nav-item" href="approvals.html"><i class="nav-icon fas fa-clipboard-check"></i><span class="nav-label">Approvals</span></a>
 <div class="sidebar-section-label">Operations</div>
 <a class="nav-item" href="pm.html"><i class="nav-icon fas fa-calendar-check"></i><span class="nav-label">Preventive Maintenance</span></a>
-<a class="nav-item" href="parts.html"><i class="nav-icon fas fa-cubes"></i><span class="nav-label">Inventory</span></a>
-<a class="nav-item" href="store.html"><i class="nav-icon fas fa-boxes-stacking"></i><span class="nav-label">Store / Receiving</span></a>
 <a class="nav-item active" href="vendors.html"><i class="nav-icon fas fa-building"></i><span class="nav-label">Vendors</span></a>
+<div class="sidebar-section-label">Inventory</div>
+<a class="nav-item" href="inv-dashboard.html"><i class="nav-icon fas fa-chart-pie"></i><span class="nav-label">Inv Dashboard</span></a>
+<a class="nav-item" href="inv-items.html"><i class="nav-icon fas fa-boxes-stacking"></i><span class="nav-label">Item Master</span></a>
+<a class="nav-item" href="inv-receiving.html"><i class="nav-icon fas fa-truck-ramp-box"></i><span class="nav-label">Receiving</span></a>
+<a class="nav-item" href="inv-issue.html"><i class="nav-icon fas fa-arrow-up-from-bracket"></i><span class="nav-label">Issue Parts</span></a>
+<a class="nav-item" href="inv-return.html"><i class="nav-icon fas fa-rotate-left"></i><span class="nav-label">Return Parts</span></a>
+<a class="nav-item" href="inv-transfer.html"><i class="nav-icon fas fa-right-left"></i><span class="nav-label">Transfer Stock</span></a>
+<a class="nav-item" href="inv-adjustment.html"><i class="nav-icon fas fa-sliders"></i><span class="nav-label">Adjustment</span></a>
+<a class="nav-item" href="inv-inquiry.html"><i class="nav-icon fas fa-magnifying-glass-chart"></i><span class="nav-label">Stock Inquiry</span></a>
+<a class="nav-item" href="inv-transactions.html"><i class="nav-icon fas fa-list-check"></i><span class="nav-label">Transactions</span></a>
+<a class="nav-item" href="inv-reorder.html"><i class="nav-icon fas fa-cart-shopping"></i><span class="nav-label">Reorder Planning</span></a>
 <div class="sidebar-section-label">Analytics</div>
 <a class="nav-item" href="reports.html"><i class="nav-icon fas fa-chart-bar"></i><span class="nav-label">Reports &amp; Analytics</span></a>
 <a class="nav-item" href="analytics.html"><i class="nav-icon fas fa-chart-line"></i><span class="nav-label">Trend Analysis</span></a>
@@ -271,7 +273,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   <div class="sys-info">
     <div class="sys-title">System Status</div>
     <div class="sys-status-row"><div class="sys-dot"></div><div class="sys-online">Online</div></div>
-    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">&mdash;</span></div>
+    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">—</span></div>
   </div>
 </aside>
 <div class="mxm-main">
@@ -289,8 +291,8 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
     <button class="tb-icon-btn"><i class="fas fa-bell"></i></button>
     <a href="dashboard.html" class="tb-icon-btn" title="Dashboard"><i class="fas fa-gauge-high"></i></a>
     <div class="tb-user" onclick="logout()" title="Logout" style="cursor:pointer">
-      <div class="tb-avatar" id="tbAvatar">&mdash;</div>
-      <span class="tb-username" id="tbUsername">&mdash;</span>
+      <div class="tb-avatar" id="tbAvatar">—</div>
+      <span class="tb-username" id="tbUsername">—</span>
     </div>
   </div>
 </header>
@@ -304,10 +306,10 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   <button class="tb-btn-primary" onclick="openModal()"><i class="fas fa-plus"></i> Add Vendor</button>
 </div>
 <div class="ks-strip" style="grid-template-columns:repeat(4,1fr);display:grid;gap:2px;flex-shrink:0">
-  <div class="ks-card ksc-p"><div class="ks-label">Total Vendors</div><div class="ks-value" id="ksTotal">&mdash;</div></div>
-  <div class="ks-card ksc-g"><div class="ks-label">Active Vendors</div><div class="ks-value" id="ksActive">&mdash;</div></div>
-  <div class="ks-card ksc-o"><div class="ks-label">Avg Completion Rate</div><div class="ks-value" id="ksAvg">&mdash;</div></div>
-  <div class="ks-card ksc-t"><div class="ks-label">Jobs This Month</div><div class="ks-value" id="ksMonth">&mdash;</div></div>
+  <div class="ks-card ksc-p"><div class="ks-label">Total Vendors</div><div class="ks-value" id="ksTotal">—</div></div>
+  <div class="ks-card ksc-g"><div class="ks-label">Active Vendors</div><div class="ks-value" id="ksActive">—</div></div>
+  <div class="ks-card ksc-o"><div class="ks-label">Avg Completion Rate</div><div class="ks-value" id="ksAvg">—</div></div>
+  <div class="ks-card ksc-t"><div class="ks-label">Jobs This Month</div><div class="ks-value" id="ksMonth">—</div></div>
 </div>
 <div class="tbl-wrap">
 <table class="data-table" style="min-width:600px"><thead><tr>
@@ -385,17 +387,17 @@ function toggleSidebar(){
     sb.classList.toggle('collapsed');
   }
 }
-function fmtDate(d){if(!d)return'&mdash;';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'2-digit'})}
+function fmtDate(d){if(!d)return'—';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'2-digit'})}
 function statusBadge(s){const st=(s||'OPEN').replace(/ /g,'_').toUpperCase();const lbl={OPEN:'Open',SEND_REPAIR:'In Repair',RETURNED:'Returned',WAIT_APPROVAL:'Wait Approval',WAIT_SPARE_PART:'Wait Parts',CLOSED:'Closed'};return`<span class="bs bs-${st}">${lbl[st]||st}</span>`}
 function priBadge(p){const pr=(p||'MEDIUM').toUpperCase();const lbl={CRITICAL:'Critical',HIGH:'High',MEDIUM:'Medium',LOW:'Low'};return`<span class="pri pri-${pr}"><span class="pri-dot"></span>${lbl[pr]||pr}</span>`}
 
 
 let VENDORS=[
-  {id:'V001',name:'Ã Â¹ÂÃ Â¸ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â¡Ã Â¸Â²Ã Â¸ÂªÃ Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹Â Ã Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â±Ã Â¸Â',contact:'Ã Â¸ÂÃ Â¸Â¸Ã Â¸ÂÃ Â¸Â­Ã Â¸ÂÃ Â¸Â±Ã Â¸ÂÃ Â¸ÂÃ Â¹Â Ã Â¸Â§Ã Â¸ÂÃ Â¸Â©Ã Â¹ÂÃ Â¸ÂÃ Â¸Âµ',phone:'02-555-1234',email:'info@technomaster.co.th',spec:'Hydraulics, Mechanical Seals',addr:'123 Ã Â¸Â.Ã Â¸ÂÃ Â¸Â£Ã Â¸Â°Ã Â¸Â£Ã Â¸Â²Ã Â¸Â¡9 Ã Â¸ÂÃ Â¸ÂÃ Â¸Â¡',status:'Active',total:22,closed:20,avgTat:9.2},
-  {id:'V002',name:'Ã Â¸Â­Ã Â¸Â´Ã Â¸ÂÃ Â¸ÂÃ Â¸Â±Ã Â¸ÂªÃ Â¹ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸ÂµÃ Â¸Â¢Ã Â¸Â¥Ã Â¸ÂÃ Â¸Â²Ã Â¸Â£Ã Â¹ÂÃ Â¸Â Ã Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â±Ã Â¸Â',contact:'Ã Â¸ÂÃ Â¸Â¸Ã Â¸ÂÃ Â¸ÂªÃ Â¸Â¡Ã Â¸Â¨Ã Â¸Â±Ã Â¸ÂÃ Â¸ÂÃ Â¸Â´Ã Â¹Â Ã Â¹ÂÃ Â¸ÂÃ Â¸ÂÃ Â¸Âµ',phone:'02-666-5678',email:'sales@ipart.co.th',spec:'Motors, Electrical',addr:'456 Ã Â¸Â.Ã Â¸Â£Ã Â¸Â±Ã Â¸ÂÃ Â¸ÂÃ Â¸Â² Ã Â¸ÂÃ Â¸ÂÃ Â¸Â¡',status:'Active',total:15,closed:13,avgTat:12.4},
-  {id:'V003',name:'Ã Â¸Â­Ã Â¸Â­Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸Â¡Ã Â¸ÂÃ Â¸Â±Ã Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â£ Ã Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â±Ã Â¸Â',contact:'Ã Â¸ÂÃ Â¸Â¸Ã Â¸ÂÃ Â¸ÂÃ Â¸Â´Ã Â¸ÂÃ Â¸Â±Ã Â¸Â¢ Ã Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Âµ',phone:'02-777-9012',email:'support@autopro.co.th',spec:'PLC, Electronics, Control Systems',addr:'789 Ã Â¸Â.Ã Â¸Â¥Ã Â¸Â²Ã Â¸ÂÃ Â¸ÂÃ Â¸Â£Ã Â¹ÂÃ Â¸Â²Ã Â¸Â§ Ã Â¸ÂÃ Â¸ÂÃ Â¸Â¡',status:'Active',total:13,closed:12,avgTat:10.8},
-  {id:'V004',name:'Ã Â¹ÂÃ Â¸ÂÃ Â¸Â¢Ã Â¹ÂÃ Â¸Â¡Ã Â¸ÂÃ Â¸Â¹Ã Â¹ÂÃ Â¸ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¸Â´Ã Â¹ÂÃ Â¸Â Ã Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â±Ã Â¸Â',contact:'Ã Â¸ÂÃ Â¸Â¸Ã Â¸ÂÃ Â¸Â§Ã Â¸ÂµÃ Â¸Â£Ã Â¸Â° Ã Â¹ÂÃ Â¸ÂªÃ Â¸ÂÃ Â¸ÂÃ Â¸Âµ',phone:'038-123-456',email:'contact@thaiman.co.th',spec:'Pumps, Compressors',addr:'12/5 Ã Â¸ÂÃ Â¸Â´Ã Â¸ÂÃ Â¸Â¡Ã Â¸Â­Ã Â¸Â¸Ã Â¸ÂÃ Â¸ÂªÃ Â¸Â²Ã Â¸Â«Ã Â¸ÂÃ Â¸Â£Ã Â¸Â£Ã Â¸Â¡ Ã Â¸ÂÃ Â¸Â¥Ã Â¸ÂÃ Â¸Â¸Ã Â¸Â£Ã Â¸Âµ',status:'Active',total:0,closed:0,avgTat:0},
-  {id:'V005',name:'Ã Â¸Â­Ã Â¸ÂµÃ Â¹ÂÃ Â¸Â¥Ã Â¹ÂÃ Â¸ÂÃ Â¸ÂÃ Â¸Â£Ã Â¸Â­Ã Â¸ÂÃ Â¸Â´Ã Â¸ÂÃ Â¸ÂªÃ Â¹ÂÃ Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¹ÂÃ Â¸ÂÃ Â¸Â­Ã Â¸Â£Ã Â¹Â Ã Â¸ÂÃ Â¸Â³Ã Â¸ÂÃ Â¸Â±Ã Â¸Â',contact:'Ã Â¸ÂÃ Â¸Â¸Ã Â¸ÂÃ Â¸ÂÃ Â¸ÂÃ Â¸ÂÃ Â¸Â¥ Ã Â¸ÂÃ Â¸Â£Ã Â¸Â´Ã Â¸ÂÃ Â¹ÂÃ Â¸Â',phone:'02-888-3456',email:'nopphadon@ec.co.th',spec:'PCB Repair, Inverters, Drives',addr:'321 Ã Â¸Â.Ã Â¸ÂªÃ Â¸Â¸Ã Â¸ÂÃ Â¸Â¸Ã Â¸Â¡Ã Â¸Â§Ã Â¸Â´Ã Â¸Â Ã Â¸ÂÃ Â¸ÂÃ Â¸Â¡',status:'Inactive',total:5,closed:4,avgTat:14.2},
+  {id:'V001',name:'เทคโนมาสเตอร์ จำกัด',contact:'คุณอนันต์ วงษ์ดี',phone:'02-555-1234',email:'info@technomaster.co.th',spec:'Hydraulics, Mechanical Seals',addr:'123 ถ.พระราม9 กทม',status:'Active',total:22,closed:20,avgTat:9.2},
+  {id:'V002',name:'อินดัสเทรียลพาร์ท จำกัด',contact:'คุณสมศักดิ์ ใจดี',phone:'02-666-5678',email:'sales@ipart.co.th',spec:'Motors, Electrical',addr:'456 ถ.รัชดา กทม',status:'Active',total:15,closed:13,avgTat:12.4},
+  {id:'V003',name:'ออโตเมชั่นโปร จำกัด',contact:'คุณพิชัย ทำดี',phone:'02-777-9012',email:'support@autopro.co.th',spec:'PLC, Electronics, Control Systems',addr:'789 ถ.ลาดพร้าว กทม',status:'Active',total:13,closed:12,avgTat:10.8},
+  {id:'V004',name:'ไทยแมนูแฟคเจอริ่ง จำกัด',contact:'คุณวีระ แสนดี',phone:'038-123-456',email:'contact@thaiman.co.th',spec:'Pumps, Compressors',addr:'12/5 นิคมอุตสาหกรรม ชลบุรี',status:'Active',total:0,closed:0,avgTat:0},
+  {id:'V005',name:'อีเล็กทรอนิกส์เซ็นเตอร์ จำกัด',contact:'คุณนพดล จริงใจ',phone:'02-888-3456',email:'nopphadon@ec.co.th',spec:'PCB Repair, Inverters, Drives',addr:'321 ถ.สุขุมวิท กทม',status:'Inactive',total:5,closed:4,avgTat:14.2},
 ];
 
 function renderKPIs(){
@@ -423,7 +425,7 @@ function renderTable(){
       <td style="text-align:center;font-weight:600">${v.total}</td>
       <td style="text-align:center;color:var(--green50);font-weight:600">${v.closed}</td>
       <td><span style="font-weight:700;color:${rateColor}">${rate}%</span></td>
-      <td style="text-align:center;color:var(--g60)">${v.avgTat||'&mdash;'}</td>
+      <td style="text-align:center;color:var(--g60)">${v.avgTat||'—'}</td>
       <td><span class="bs" style="${v.status==='Active'?'background:var(--green10);color:var(--green50)':'background:var(--g10);color:var(--g50)'}">${v.status}</span></td>
       <td onclick="event.stopPropagation()">
         <button onclick="openModal('${v.id}')" style="background:none;border:1px solid var(--g20);color:var(--p60);font-size:.65rem;padding:4px 8px;cursor:pointer;font-family:var(--font)"><i class="fas fa-pen"></i></button>
@@ -470,17 +472,13 @@ function loadData(){
     if(Array.isArray(data)&&data.length>0){
       VENDORS=data.map(v=>({
         id:v.Vendor_ID||v.id,
-        name:v.Name||v.Vendor_Name||v.name||'-',
+        name:v.Vendor_Name||v.name||'-',
         contact:v.Contact||v.contact||'-',
         phone:v.Phone||v.phone||'-',
         email:v.Email||v.email||'-',
         cat:v.Category||v.cat||'-',
         rating:Number(v.Rating||v.rating||0),
-        spec:v.Specialty||v.spec||'-',total:v.Total_Jobs||v.total||0,closed:v.Completed||v.closed||0,avgTat:v.Avg_TAT||v.avgTat||0,spec:v.Specialty||v.spec||'-',total:v.Total_Jobs||v.total||0,closed:v.Completed||v.closed||0,avgTat:v.Avg_TAT||v.avgTat||0,spec:v.Specialty||v.spec||'-',total:v.Total_Jobs||v.total||0,closed:v.Completed||v.closed||0,avgTat:v.Avg_TAT||v.avgTat||0,status:v.Status||v.status||'ACTIVE',
-        spec:v.Specialty||v.spec||'-',
-        total:v.Total_Jobs||v.total||0,
-        closed:v.Completed||v.closed||0,
-        avgTat:v.Avg_TAT||v.avgTat||0
+        status:v.Status||v.status||'ACTIVE'
       }));
     }
   }).catch(()=>{}).finally(()=>{
@@ -491,6 +489,5 @@ function loadData(){
 
 loadData();
 </script>
-<script>function toggleWO(e){if(e)e.stopPropagation();var g=document.getElementById('woGroup'),s=document.getElementById('woSub');if(g)g.classList.toggle('open');if(s)s.classList.toggle('open');}</script>
 </body>
 </html>

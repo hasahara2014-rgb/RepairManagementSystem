@@ -178,7 +178,7 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
   .modal-panel{width:100vw!important;max-width:100vw!important;border-radius:0}
   .modal-overlay{align-items:flex-end!important}
   .modal-panel{height:92vh!important;border-radius:12px 12px 0 0!important}
-  .form-row{flex-direction:column! important;gap:8px!important}
+  .form-row{flex-direction:column!important;gap:8px!important}
   .settings-grid{grid-template-columns:1fr!important;gap:0}
   .settings-nav{display:flex;flex-wrap:wrap;border-right:none;border-bottom:1px solid var(--g20)}
   .sn-item{flex:1 1 auto;text-align:center;padding:8px 6px;font-size:.7rem}
@@ -215,8 +215,8 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
   .rp-title{font-size:1.2rem}
   .rp-subtitle{font-size:.78rem}
   .login-form{margin-top:16px}
-  .demo-accounts{flex-direction:columm;gap:6px}
-  .demo-btn;width:100%}
+  .demo-accounts{flex-direction:column;gap:6px}
+  .demo-btn{width:100%}
 }
 @media(max-width:480px){
   .lp{padding:14px 16px 10px}
@@ -241,7 +241,7 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
 
     <div class="lp-headline">
       <h1>Maintenance &amp;<br><strong>Repair Management</strong></h1>
-      <p>ระบบบริหารจัดการงานซ่อมบำรุงแบบครบวงจร สำหรับองค์กรระดับ ที่ต้องการควบคุมคุณภาพและประสิทธิภาพ</p>
+      <p>ระบบบริหารจัดการงานซ่อมบำรุงแบบครบวงจร สำหรับองค์กรระดับ Enterprise ที่ต้องการควบคุมคุณภาพและประสิทธิภาพ</p>
     </div>
 
     <div class="lp-features">
@@ -249,14 +249,14 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
         <div class="feature-icon"><i class="fas fa-gauge-high"></i></div>
         <div>
           <div class="feature-title">Real-time Dashboard</div>
-          <div class="feature-desc">ติดตาม KPI สำคัญด ┓ MTTR, MTBF, Repair Yield และ Equipment Availability แบบ Real-time</div>
+          <div class="feature-desc">ติดตาม KPI สำคัญ — MTTR, MTBF, Repair Yield และ Equipment Availability แบบ Real-time</div>
         </div>
       </div>
       <div class="feature-item">
         <div class="feature-icon"><i class="fas fa-clipboard-list"></i></div>
         <div>
           <div class="feature-title">Work Order Management</div>
-          <div class="feature-desc">สร้างติดตาม และ ปิดงานซ่อมได้อย่างมีประสิทธิภาพ พร้อม Approval Workflow</div>
+          <div class="feature-desc">สร้าง ติดตาม และปิดงานซ่อมได้อย่างมีประสิทธิภาพ พร้อม Approval Workflow</div>
         </div>
       </div>
       <div class="feature-item">
@@ -270,7 +270,7 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
         <div class="feature-icon"><i class="fas fa-shield-halved"></i></div>
         <div>
           <div class="feature-title">Role-based Access Control</div>
-          <div class="feature-desc">ควบคุมสิทธิ์การเข้าถึงตา.ม Role: Admin, Manager, Technician, Viewer</div>
+          <div class="feature-desc">ควบคุมสิทธิ์การเข้าถึงตาม Role: Admin, Manager, Technician, Viewer</div>
         </div>
       </div>
     </div>
@@ -302,7 +302,7 @@ html,body{height:100%;font-family:var(--font);background:var(--g100);color:var(-
         </div>
         <div class="form-group">
           <label class="form-label" for="password">Password</label>
-          <div class="form-input-wral">
+          <div class="form-input-wrap">
             <input class="form-input" type="password" id="password" name="password" placeholder="Enter your password" autocomplete="current-password" required>
             <i class="fas fa-eye input-icon" id="pwToggle" onclick="togglePw()"></i>
           </div>
@@ -424,4 +424,4 @@ function createSession(username,role,displayName,token){
 }
 </script>
 </body>
-</html>
+</html

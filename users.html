@@ -43,7 +43,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 .nav-item:hover{background:var(--g90);color:#fff}
 .nav-item.active{background:var(--g90);color:#fff;border-left-color:var(--p60)}
 .nav-icon{font-size:.85rem;width:16px;text-align:center;flex-shrink:0}
-.nav-badge{background:var(--p60);color:#fff;font-size:.6rem;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:auto}.nav-item-group{position:relative}.nav-item-parent{cursor:pointer;user-select:none}.nav-submenu-arrow{margin-left:auto;font-size:.6rem;transition:transform .25s;opacity:.7}.nav-item-group.open .nav-submenu-arrow{transform:rotate(180deg)}.nav-submenu{overflow:hidden;max-height:0;transition:max-height .25s ease}.nav-submenu.open{max-height:300px}.nav-item.nav-sub{padding-left:34px;font-size:.74rem}.mxm-sidebar.collapsed .nav-submenu{display:none}.wo-link{color:inherit;text-decoration:none;display:flex;align-items:center;gap:12px;flex:1;min-width:0;overflow:hidden}
+.nav-badge{background:var(--p60);color:#fff;font-size:.6rem;font-weight:700;padding:1px 5px;border-radius:8px;margin-left:auto}
 .sys-info{padding:12px 14px;border-top:1px solid var(--g80);flex-shrink:0}
 .sys-title{color:var(--g40);font-size:.63rem;font-weight:600;text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px}
 .sys-status-row{display:flex;align-items:center;gap:6px;margin-bottom:4px}
@@ -159,15 +159,15 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
 
 
 
-/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
-   RESPONSIVE &mdash; TABLET & MOBILE
-   Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
+/* ══════════════════════════════════════════
+   RESPONSIVE — TABLET & MOBILE
+   ══════════════════════════════════════════ */
 
 /* Sidebar overlay (mobile) */
 .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:199;backdrop-filter:blur(2px)}
 .sidebar-overlay.active{display:block}
 
-/* Ã¢ÂÂÃ¢ÂÂ TABLET Ã¢ÂÂ¤1024px Ã¢ÂÂÃ¢ÂÂ */
+/* ── TABLET ≤1024px ── */
 @media(max-width:1024px){
   .mxm-sidebar{position:fixed;z-index:200;height:100%;transform:translateX(-240px);transition:transform .22s cubic-bezier(.4,0,.2,1);box-shadow:none}
   .mxm-sidebar.mobile-open{transform:translateX(0);box-shadow:4px 0 24px rgba(0,0,0,.25)}
@@ -184,7 +184,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   .settings-grid{grid-template-columns:180px 1fr!important}
 }
 
-/* Ã¢ÂÂÃ¢ÂÂ MOBILE Ã¢ÂÂ¤767px Ã¢ÂÂÃ¢ÂÂ */
+/* ── MOBILE ≤767px ── */
 @media(max-width:767px){
   .mxm-topbar{padding:0 10px;gap:6px}
   .tb-title-sub,.ccard-sub{display:none}
@@ -220,7 +220,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   td.td-long{max-width:120px}
 }
 
-/* Ã¢ÂÂÃ¢ÂÂ SMALL MOBILE Ã¢ÂÂ¤480px Ã¢ÂÂÃ¢ÂÂ */
+/* ── SMALL MOBILE ≤480px ── */
 @media(max-width:480px){
   .kpi-row{grid-template-columns:repeat(2,1fr)!important}
   .kpi-value{font-size:1.1rem}
@@ -238,20 +238,22 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
     <div class="sb-brand-text"><div class="brand-name">EWS Enterprise</div><div class="brand-sub">Repair Management v5.0</div></div>
   </div>
   <nav class="sidebar-nav"><a class="nav-item" href="dashboard.html"><i class="nav-icon fas fa-gauge-high"></i><span class="nav-label">Dashboards</span></a>
-<div class="nav-item-group" id="woGroup">
-  <div class="nav-item nav-item-parent"><a href="workorders.html" class="wo-link"><i class="nav-icon fas fa-clipboard-list"></i><span class="nav-label">Work Orders</span></a><i class="nav-submenu-arrow fas fa-chevron-down nav-label" onclick="toggleWO(event)"></i></div>
-  <div class="nav-submenu" id="woSub">
-    <a class="nav-item nav-sub" href="jobs.html"><i class="nav-icon fas fa-circle-dot"></i><span class="nav-label">EWS - Enterprise</span></a>
-    <a class="nav-item nav-sub" href="jobs.html?sys=AFC"><i class="nav-icon fas fa-circle-dot"></i><span class="nav-label">AFC - SYSTEMP</span></a>
-    <a class="nav-item nav-sub" href="jobs.html?sys=COM"><i class="nav-icon fas fa-circle-dot"></i><span class="nav-label">COM - SYSTEMP</span></a>
-  </div>
-</div>
+<a class="nav-item" href="jobs.html"><i class="nav-icon fas fa-clipboard-list"></i><span class="nav-label">Work Orders</span></a>
 <a class="nav-item" href="approvals.html"><i class="nav-icon fas fa-clipboard-check"></i><span class="nav-label">Approvals</span></a>
 <div class="sidebar-section-label">Operations</div>
 <a class="nav-item" href="pm.html"><i class="nav-icon fas fa-calendar-check"></i><span class="nav-label">Preventive Maintenance</span></a>
-<a class="nav-item" href="parts.html"><i class="nav-icon fas fa-cubes"></i><span class="nav-label">Inventory</span></a>
-<a class="nav-item" href="store.html"><i class="nav-icon fas fa-boxes-stacking"></i><span class="nav-label">Store / Receiving</span></a>
 <a class="nav-item" href="vendors.html"><i class="nav-icon fas fa-building"></i><span class="nav-label">Vendors</span></a>
+<div class="sidebar-section-label">Inventory</div>
+<a class="nav-item" href="inv-dashboard.html"><i class="nav-icon fas fa-chart-pie"></i><span class="nav-label">Inv Dashboard</span></a>
+<a class="nav-item" href="inv-items.html"><i class="nav-icon fas fa-boxes-stacking"></i><span class="nav-label">Item Master</span></a>
+<a class="nav-item" href="inv-receiving.html"><i class="nav-icon fas fa-truck-ramp-box"></i><span class="nav-label">Receiving</span></a>
+<a class="nav-item" href="inv-issue.html"><i class="nav-icon fas fa-arrow-up-from-bracket"></i><span class="nav-label">Issue Parts</span></a>
+<a class="nav-item" href="inv-return.html"><i class="nav-icon fas fa-rotate-left"></i><span class="nav-label">Return Parts</span></a>
+<a class="nav-item" href="inv-transfer.html"><i class="nav-icon fas fa-right-left"></i><span class="nav-label">Transfer Stock</span></a>
+<a class="nav-item" href="inv-adjustment.html"><i class="nav-icon fas fa-sliders"></i><span class="nav-label">Adjustment</span></a>
+<a class="nav-item" href="inv-inquiry.html"><i class="nav-icon fas fa-magnifying-glass-chart"></i><span class="nav-label">Stock Inquiry</span></a>
+<a class="nav-item" href="inv-transactions.html"><i class="nav-icon fas fa-list-check"></i><span class="nav-label">Transactions</span></a>
+<a class="nav-item" href="inv-reorder.html"><i class="nav-icon fas fa-cart-shopping"></i><span class="nav-label">Reorder Planning</span></a>
 <div class="sidebar-section-label">Analytics</div>
 <a class="nav-item" href="reports.html"><i class="nav-icon fas fa-chart-bar"></i><span class="nav-label">Reports &amp; Analytics</span></a>
 <a class="nav-item" href="analytics.html"><i class="nav-icon fas fa-chart-line"></i><span class="nav-label">Trend Analysis</span></a>
@@ -264,7 +266,7 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
   <div class="sys-info">
     <div class="sys-title">System Status</div>
     <div class="sys-status-row"><div class="sys-dot"></div><div class="sys-online">Online</div></div>
-    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">&mdash;</span></div>
+    <div class="sys-update">Last Update<br><span id="lastUpdate" style="color:var(--g30)">—</span></div>
   </div>
 </aside>
 <div class="mxm-main">
@@ -282,14 +284,14 @@ html,body{height:100%;font-family:var(--font);font-size:13px;background:var(--g1
     <button class="tb-icon-btn"><i class="fas fa-bell"></i></button>
     <a href="dashboard.html" class="tb-icon-btn" title="Dashboard"><i class="fas fa-gauge-high"></i></a>
     <div class="tb-user" onclick="logout()" title="Logout" style="cursor:pointer">
-      <div class="tb-avatar" id="tbAvatar">&mdash;</div>
-      <span class="tb-username" id="tbUsername">&mdash;</span>
+      <div class="tb-avatar" id="tbAvatar">—</div>
+      <span class="tb-username" id="tbUsername">—</span>
     </div>
   </div>
 </header>
 
 <div class="filter-bar">
-  <input class="fb-input" id="searchU" placeholder="Search name or emailÃ¢ÂÂ¦" oninput="applyFilter()">
+  <input class="fb-input" id="searchU" placeholder="Search name or email…" oninput="applyFilter()">
   <select class="fb-select" id="filterRole" onchange="applyFilter()">
     <option value="">All Roles</option>
     <option>Admin</option><option>Technician</option><option>Viewer</option><option>Approver</option>
@@ -383,7 +385,7 @@ function toggleSidebar(){
     sb.classList.toggle('collapsed');
   }
 }
-function fmtDate(d){if(!d)return'&mdash;';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'2-digit'})}
+function fmtDate(d){if(!d)return'—';const dt=new Date(d);return isNaN(dt)?d:dt.toLocaleDateString('th-TH',{day:'2-digit',month:'short',year:'2-digit'})}
 function statusBadge(s){const st=(s||'OPEN').replace(/ /g,'_').toUpperCase();const lbl={OPEN:'Open',SEND_REPAIR:'In Repair',RETURNED:'Returned',WAIT_APPROVAL:'Wait Approval',WAIT_SPARE_PART:'Wait Parts',CLOSED:'Closed'};return`<span class="bs bs-${st}">${lbl[st]||st}</span>`}
 function priBadge(p){const pr=(p||'MEDIUM').toUpperCase();const lbl={CRITICAL:'Critical',HIGH:'High',MEDIUM:'Medium',LOW:'Low'};return`<span class="pri pri-${pr}"><span class="pri-dot"></span>${lbl[pr]||pr}</span>`}
 
@@ -407,7 +409,7 @@ let editId=null;
 
 const roleColors={Admin:'#DA1E28',Technician:'#0043CE',Viewer:'#198038',Approver:'#8A3FFC'};
 
-function initials(name){return (name||'').split(' ').map(p=>p[0]).join('').substring(0,2).toUpperCase();}
+function initials(name){return name.split(' ').map(p=>p[0]).join('').substring(0,2).toUpperCase();}
 
 function applyFilter(){
   const q=document.getElementById('searchU').value.toLowerCase();
@@ -440,10 +442,10 @@ function renderTable(){
       <button class="act-btn danger" onclick="deleteUser(${u.id})"><i class="fas fa-trash"></i></button>
     </td></tr>`).join('');
   const pages=Math.ceil(filtered.length/PAGE);
-  document.getElementById('uPager').innerHTML=`<span style="font-size:.72rem;color:var(--g60)">Showing ${start+1}Ã¢ÂÂ${Math.min(end,filtered.length)} of ${filtered.length}</span>
-    <div style="display:flex;gap:4px">${page>1?`<button class="pg-btn" onclick="changePage(${page-1})">Ã¢ÂÂ¹</button>`:''}
+  document.getElementById('uPager').innerHTML=`<span style="font-size:.72rem;color:var(--g60)">Showing ${start+1}–${Math.min(end,filtered.length)} of ${filtered.length}</span>
+    <div style="display:flex;gap:4px">${page>1?`<button class="pg-btn" onclick="changePage(${page-1})">‹</button>`:''}
     ${Array.from({length:pages},(_,j)=>`<button class="pg-btn${j+1===page?' active':''}" onclick="changePage(${j+1})">${j+1}</button>`).join('')}
-    ${page<pages?`<button class="pg-btn" onclick="changePage(${page+1})">Ã¢ÂÂº</button>`:''}</div>`;
+    ${page<pages?`<button class="pg-btn" onclick="changePage(${page+1})">›</button>`:''}</div>`;
 }
 function changePage(p){page=p;renderTable();}
 
@@ -486,7 +488,7 @@ function saveUser(){
     const u=USERS.find(x=>x.id===editId);
     if(u){u.Name=name;u.Username=username;u.Email=email;u.Role=document.getElementById('fRole').value;u.Department=document.getElementById('fDept').value;u.Status=document.getElementById('fSt').value;}
   } else {
-    USERS.unshift({id:Date.now(),Name:name,Username:username,Email:email,Role:document.getElementById('fRole').value,Department:document.getElementById('fDept').value,LastLogin:'&mdash;',Status:document.getElementById('fSt').value});
+    USERS.unshift({id:Date.now(),Name:name,Username:username,Email:email,Role:document.getElementById('fRole').value,Department:document.getElementById('fDept').value,LastLogin:'—',Status:document.getElementById('fSt').value});
   }
   closeModal();applyFilter();toast('User saved','success');
 }
@@ -510,7 +512,7 @@ function loadData(){
           role:u.Role||u.role||'viewer',
           dept:u.Department||u.dept||'-',
           status:u.Status||u.status||'ACTIVE',
-          LastLogin:u.LastLogin||'&mdash;'
+          LastLogin:u.LastLogin||'—'
         }));
       }
     })
@@ -523,6 +525,5 @@ function loadData(){
 
 loadData();
 </script>
-<script>function toggleWO(e){if(e)e.stopPropagation();var g=document.getElementById('woGroup'),s=document.getElementById('woSub');if(g)g.classList.toggle('open');if(s)s.classList.toggle('open');}</script>
 </body>
 </html>
